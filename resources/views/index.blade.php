@@ -28,7 +28,7 @@
 					<li><a href="">下载站</a></li>
 					<li><a href="">充值</a></li>
 					<li><a href="">客服</a></li>
-					<li><a href="/login">登录</a></li>
+					<li><a href="/login">登录</a></li>  
 					<li><a href="/login">注册</a></li>
 				</ul>
 			</div>

@@ -25,5 +25,7 @@ Route::group(['namespace' => 'Admin'], function () {
 	// 后台登录
 	Route::get('/admin/login', 'UserController@login');
 	Route::get('/admin/kit/captcha/{tmp}', 'UserController@captcha');
+	Route::get('/admin/logout', 'UserController@logout');
+	Route::get('/admin/index', 'UserController@index');
 	Route::post('/admin/loginHandle', 'UserController@loginHandle');
 });

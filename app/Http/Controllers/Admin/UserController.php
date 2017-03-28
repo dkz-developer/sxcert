@@ -12,6 +12,11 @@ use Session;
 use DB;
 class UserController extends Controller
 {
+	public function index()
+	{
+		return view('admin.index');
+	}
+
 	public function login()
 	{
 		return view('admin.login');
@@ -19,20 +24,22 @@ class UserController extends Controller
 
 	public function loginHandle(Request $request)
 	{
-		$this->validate($request, [
-			'captcha' => 'required|captcha',
-			'userName' => 'required',
-			'password' => 'required',
-		]);
 		$captcha = $request->input('captcha');
-		dd($captcha);
 		if (Session::get('milkcaptcha') != $captcha) 
-			return redirect('admin/login')->withInput()->with('message','验证码错误');
+			return response()->json(['code'=>'F','msg'=>'验证码错误']);
 		$userName = $request->input('userName');
-		$password = md5($request->input('password'));
-		$userInfo = AdminUser::where([['user_name',$userName],['password',$password]])->find();
-		dd($userInfo);
-		return redirect('admin/login')->withInput();
+		$password = $request->input('password');
+		$userInfo = AdminUser::where([['user_name',$userName],['password',md5($password)]])->first();
+		if(! $userInfo)
+			return response()->json(['code'=>'F','msg'=>'用户名或密码不正确']);
+		session(['adminInfo'=>$userInfo->toArray()]);
+		return response()->json(['code'=>'S','msg'=>'登录成功','url'=>'/admin/index']);
+	}
+
+	public function logout(Request $request)
+	{
+		$request->session()->flush();
+		return redirect('/');
 	}
 
 	// 验证码

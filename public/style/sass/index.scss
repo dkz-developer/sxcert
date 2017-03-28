@@ -1,0 +1,415 @@
+@charset "utf-8";
+/* -------------------------------------------------
+ * 
+ * -------------------------------------------------
+*/
+@import "./bootstrap.min.css";
+
+body {
+	background: #f3f3f3;
+	font-smoothing: grayscale;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+nav {
+	height: 60px;
+	background: #333;
+	.inner {
+		width: 1200px;
+		height: 60px;
+		margin: 0 auto;
+		
+		.logo {
+			width: 100px;
+			height: 20px;
+			background: #fff;
+			float: left;
+			margin-top: 20px;
+		}
+
+		.items {
+			float: right;
+			margin-right: 10px;
+
+			li {
+				height: 60px;
+				line-height: 60px;
+				float: left;
+				text-align: center;
+				list-style: none;
+				margin-right: 15px;
+
+				a {
+					color: #fff;
+					text-decoration: none;
+
+					&:hover {
+						color: #03978b;
+					}
+				}
+
+
+			}
+		}
+
+		.search {
+			float: right;
+			margin-top: 15px;
+			position: relative;
+
+			input {
+				outline: none;
+				border: none;
+				width: 200px;
+				height: 30px;
+				padding-left: 30px;
+			}
+
+			span {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 30px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				cursor: pointer;
+				font-size: 18px;
+			}
+		}
+	}
+}
+
+.container {
+	width: 1200px;
+	margin: 0 auto;
+	background: #fff;
+
+	.hot-post {
+
+		.layout-left {
+			padding: 0 23px;
+			width: 533px;
+			float: left;
+
+		}
+
+		.layout-right {
+			padding: 0 23px;
+			width: 570px;
+			float: right;
+
+			.tab {
+				.tab-list {
+					width: 33.33%;
+					float: left;
+					height: 66px;
+					line-height: 66px;
+					font-weight: 600;
+					font-size: 18px;
+					color: #333;
+
+					a {
+						color: #333;
+						text-decoration: none;
+					}
+
+					span {
+						float: left;
+					    height: 35px;
+					    margin-left: 33px;
+					    margin-top: 14px;
+					    width: 40px;
+
+					}
+
+					&:nth-child(1) {
+						span {
+							background: url('../../images/logo_01.png') no-repeat;
+						}
+
+						&.active {
+							background: #03978b;
+
+							span {
+								background: url('../../images/logo_11.png') no-repeat;
+							}
+
+							a {
+								color: #fff;
+							}
+						}
+					}
+					&:nth-child(2) {
+						span {
+							background: url('../../images/logo_02.png') no-repeat;
+						}
+						&.active {
+							background: #ff9c00;
+							span {
+							background: url('../../images/logo_22.png') no-repeat;
+						}
+
+							a {
+								color: #fff;
+							}
+						}
+					}
+					&:nth-child(3) {
+						span {
+							background: url('../../images/logo_03.png') no-repeat;
+						}
+						&.active {
+							background: #3f91d6;
+							span {
+							background: url('../../images/logo_33.png') no-repeat;
+						}
+
+							a {
+								color: #fff;
+							}
+						}
+					}
+				}
+			}
+
+
+			.content {
+				.item {
+				    overflow: hidden;
+					padding-top: 24px;
+
+					li {
+						
+					    line-height: 30px;
+					    overflow: hidden;
+					    padding: 0 80px 22px 0;
+					    position: relative;
+					    text-overflow: ellipsis;
+					    white-space: nowrap;
+
+					    .circle {
+					    	width: 5px;
+					    	height: 5px;
+					    	background: #666;
+					    	border-radius: 50%;
+					    	vertical-align: middle;
+					    	margin-right: 22px;
+					    	display: inline-block;
+					    }
+
+					    a {
+					    	color: #666;
+						    outline-width: 0;
+						    text-decoration: none;
+					    }
+
+					    &:hover {
+					    	.circle {
+					    		background: #03978b;
+					    	}
+
+					    	a {
+					    		color: #03978b;
+					    	}
+					    }
+					}
+				}
+			}
+		}
+
+
+		
+		.items {
+			padding-left: 25px;
+				li {
+					list-style: none;
+					padding-bottom: 20apx;
+
+					a {
+						color: #666;
+						text-decoration: none;
+
+						&:hover {
+							color:#03978b;
+						}
+					}
+				}
+		}
+	}
+
+	.product {
+		h2 {
+		    color: #333333;
+		    font-size: 24px;
+		    line-height: 1;
+		    padding:15px 0 15px 19px;
+		    font-weight: 400;
+		}
+
+		.content {
+
+			padding:0 0 0 38px;
+			.product-list {
+				width: 276px;
+				float: left;
+				display: inline;
+				position: relative;
+				margin-right: 7px;
+				border-left: 2px solid #ffffff;
+				box-sizing: border-box;
+				border: 2px solid #fff;
+
+				&:hover {
+					border-color:#03978b;
+				}
+
+				.first {
+					height: 284px;
+					margin-right: 7px;
+					padding: 0 40px;
+					background: #fff;
+					overflow: hidden;
+					float: left;
+					.title {
+						color: #03978b;
+					    font-size: 20px;
+					    margin-bottom: 46px;
+					    margin-top: 36px;
+					    text-align: center;
+					}
+
+					.pic {
+						overflow: hidden;
+						text-align: center;
+						margin: 0 -40px;
+						border-right: 2px solid #e5e5e5;
+						img {
+						    width: 150px;
+						    height: 100px;
+						    vertical-align: middle;
+						}
+					}
+
+					.discuss {
+				    overflow: hidden;
+				    margin: 24px 55px;
+
+				    p {
+			    	    font-size: 14px;
+					    color: rgb(102, 102, 102);
+					    font-family: 微软雅黑;
+					    text-align: center;
+					    margin: 0px 0px 4px;
+					    overflow: hidden;
+
+					    span {
+				    	    color: #03978b;
+					    }
+				    }
+
+					}
+				}
+			}
+		}
+	}
+
+	.classify {
+		h2 {
+		    color: #333333;
+		    font-size: 24px;
+		    line-height: 1;
+		    padding:15px 0 15px 19px;
+		    font-weight: 400;
+		}
+
+		.content {
+			margin-left: 21px;
+			.classify-list {
+				border: 2px solid #e5e5e5;
+			    height: 117px;
+			    margin-bottom: 29px;
+			    width: 529px;
+			    float: left;
+			    margin-right: 42px;
+
+			    .icon {
+			    	float: left;
+				    padding: 24px 46px 24px 65px;
+			    }
+
+			    .info {
+			    	float: left;
+				    margin: 18px auto;
+				    h4 {
+					    font-family: "微软雅黑";
+					    font-size: 20px;
+					    font-weight: 400;
+					    a {
+					    	text-decoration: none;
+							color: #333333;
+
+							&:hover {
+								color: #03978b;
+							}
+					    }
+
+				    }
+
+				    .introduction {
+				    	p {
+				    		color: #666666;
+						    float: left;
+						    font-family: "微软雅黑";
+						    font-size: 14px;
+						    margin-right: 15px;
+					    	margin-top: 4px;
+				    	}
+				    }
+			    }
+
+			    &:hover {
+					border-color: #03978b;
+			    }
+			}
+		}
+	}
+}
+
+.footer {
+	width: 100%;
+	background: #444855;
+	height: 200px;
+
+	p {
+		color: #fff;
+		text-align: center;
+		padding-top: 50px;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

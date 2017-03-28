@@ -1,4 +1,7 @@
 <?php
+if(isset($aa)){
+	echo 1111;die;
+}
 /*
  * Laravel - A PHP Framework For Web Artisans
  *

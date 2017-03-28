@@ -28,7 +28,7 @@
 					<li><a href="">下载站</a></li>
 					<li><a href="">充值</a></li>
 					<li><a href="">客服</a></li>
-					<li><a href="/login">登录</a></li>  
+					<li><a href="/login">登录</a></li>
 					<li><a href="/login">注册</a></li>
 				</ul>
 			</div>
@@ -38,11 +38,27 @@
 	<div class="container">
 		<div class="hot-post clearfix">
 			
-			<div class="layout-left">
-				<div class="inner">
-					<img src="https://bos.nj.bpc.baidu.com/v1/developer/9faca705-01c8-4a5a-886f-a60ed8b299ef.png" alt="">
-				</div>
-			</div>
+			<div class="layout-left inner-content flickadd" >
+
+				<ul class="flicks">
+					<li class="height">
+						<div class="font-content">
+							<div class="photo"><img src="http://bos.nj.bpc.baidu.com/v1/developer/a3be4b6f-4795-4ae4-b97b-82eb68b34519.png" alt=""></div>
+						</div>
+					</li>
+					<li class="height">
+						<div class="font-content">
+							<div class="photo"><img src="https://bos.nj.bpc.baidu.com/v1/developer/f8953830-0f8b-40e6-818a-09b830bf76f2.png" alt=""></div>
+						</div>
+					</li>
+					<li class="height">
+						<div class="font-content">
+							<div class="photo"><img src="https://bos.nj.bpc.baidu.com/v1/developer/9cf08fab-2026-41c5-b9f4-e4d1c93075cc.png" alt=""></div>
+						</div>
+					</li>
+				</ul>
+			</div>	
+
 			<div class="layout-right">
 				<div class="tab clearfix">
 					<div class="tab-list active"><span></span><a href="">最新主题</a></div>
@@ -187,5 +203,22 @@
 		<p>粤ICP备17024526号-1</p>
 
 	</div>
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?b819a6a70904703dd1926e26ba9554f0";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+
+	})();
+	</script>
+	<script src="scripts/lib/jquery/jquery.min.js"></script>
+	<script src="scripts/lib/vue/vue.min.js"></script>
+	<script src="scripts/lib/flickerplate.min.js"></script>
+	<script src="scripts/index.js"></script>
 </body>
 </html>
+
+
+

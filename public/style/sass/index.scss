@@ -4,6 +4,7 @@
  * -------------------------------------------------
 */
 @import "./bootstrap.min.css";
+@import "./flickerplate.css";
 
 body {
 	background: #f3f3f3;
@@ -93,9 +94,9 @@ nav {
 	.hot-post {
 
 		.layout-left {
-			padding: 0 23px;
 			width: 533px;
 			float: left;
+			height: 330px;
 
 		}
 

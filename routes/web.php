@@ -36,8 +36,8 @@ Route::group(['namespace' => 'Admin'], function () {
 	Route::get('/admin/addInfo', 'InfoController@addInfo');
 	Route::get('/admin/infoList', 'InfoController@infoList');
 	Route::get('/admin/common', 'InfoController@common');
+	Route::get('/admin/commonPage', 'InfoController@commonPage');
 });
-
 
 // 前台
 Route::group(['namespace' => 'Custome'], function () {

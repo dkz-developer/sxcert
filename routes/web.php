@@ -20,10 +20,20 @@ Route::get('/login', function () {
 	return view('login');
 });
 
+// 下载页
+Route::get('/load', function () {
+	return view('load');
+});
+
 // 后台路由
 Route::group(['namespace' => 'Admin'], function () {
 	// 后台登录
 	Route::get('/admin/login', 'UserController@login');
 	Route::get('/admin/kit/captcha/{tmp}', 'UserController@captcha');
+	Route::get('/admin/logout', 'UserController@logout');
+	Route::get('/admin/index', 'UserController@index');
 	Route::post('/admin/loginHandle', 'UserController@loginHandle');
+	Route::get('/admin/addInfo', 'InfoController@addInfo');
+	Route::get('/admin/infoList', 'InfoController@infoList');
+	Route::get('/admin/common', 'InfoController@common');
 });

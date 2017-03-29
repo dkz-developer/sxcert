@@ -32,3 +32,7 @@ Route::group(['namespace' => 'Admin'], function () {
 	Route::get('/admin/infoList', 'InfoController@infoList');
 	Route::get('/admin/common', 'InfoController@common');
 });
+
+//注册接口
+Route
+

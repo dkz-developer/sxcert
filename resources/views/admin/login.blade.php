@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 <!--[if lt IE 9]>
@@ -26,7 +27,7 @@
 <div class="header"></div>
 <div class="loginWraper">
 	<div id="loginform" class="loginBox">
-		<form class="form form-horizontal" action="/admin/loginHandle" method="post">
+		<form class="form form-horizontal" action="javascript:void(0)" method="post" id="loginForm">
 			<div class="row cl">
 				<label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
 				<div class="formControls col-xs-8">
@@ -47,28 +48,17 @@
 					<a id="kanbuq" href="javascript:re_captcha();">看不清，换一张</a>
 				</div>
 			</div>
-			<!--<div class="row cl">
+			<div class="row cl">
 				<div class="formControls col-xs-8 col-xs-offset-3">
-					<label for="online">
-						<input type="checkbox" name="online" id="online" value="">
-						使我保持登录状态</label>
+					<label for="online" id="errorInfo" style="color:red;"></label>
 				</div>
-			</div>-->
+			</div>
 			<div class="row cl">
 				<div class="formControls col-xs-8 col-xs-offset-3">
 					<input name="" type="submit" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
 					<input name="" type="reset" class="btn btn-default radius size-L" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
 				</div>
 			</div>
-			@if (count($errors) > 0)
-				<div class="alert alert-danger">
-				 	<ul>
-				 		@foreach ($errors->all() as $error)
-				 			<li>{{ $error }}</li>
-				 		@endforeach
-				 	</ul>
-				</div>
-			@endif
 		</form>
 	</div>
 </div>
@@ -88,8 +78,38 @@ var _hmt = _hmt || [];
 function re_captcha() {
     	o_o = "{{ URL('admin/kit/captcha') }}";
     	o_o = o_o + "/" + Math.random();
-    	document.getElementById('verifyCode').src=o_o;
+    	document.getElementById('verifyCode').src = o_o;
 }
+
+$('#loginForm').submit(function(){
+	var param = $(this).serialize();
+	$.ajaxSetup(
+		{
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
+			url:"/admin/loginHandle",
+			data:param,
+			dataType:'json',
+			type:'post',
+			success:function(result) {
+				if(result.code != 'S') {
+					re_captcha();
+					$('#errorInfo').text(result.msg);
+				}else {
+					window.location.href = result.url;
+				}
+			}
+		}
+	);
+	$.ajax();
+	return false;
+})
+	
+
+		
+	
+
 </script>
 </body>
 </html>

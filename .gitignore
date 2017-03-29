@@ -1,0 +1,16 @@
+# zend
+.buildpath
+.settings
+.project
+
+# mac system
+.DS_Store
+
+# webstorm
+.idea
+
+# htaccess
+.htaccess
+
+# main
+main.php

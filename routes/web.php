@@ -29,3 +29,7 @@ Route::group(['namespace' => 'Admin'], function () {
 	Route::get('/admin/index', 'UserController@index');
 	Route::post('/admin/loginHandle', 'UserController@loginHandle');
 });
+
+//注册接口
+Route
+

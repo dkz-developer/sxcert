@@ -17,7 +17,7 @@
 	<nav class="clearfix">
 		<div class="inner">
 			<div class="logo">
-				<a href="https://cloud.baidu.com">logo暂定</a>
+				<a href="/">logo暂定</a>
 			</div>
 			<div class="search">
 				<input type="text" placeholder="请输入...">	
@@ -76,6 +76,8 @@
 							<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗？和bch的区别在哪里呢？</a></li>
 					</div>	
 				</div>
+
+
 			</div>
 		</div>
 

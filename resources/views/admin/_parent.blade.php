@@ -83,7 +83,6 @@
 			<dt><i class="Hui-iconfont">&#xe616;</i> 资料管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a href="/admin/addInfo" title="资讯管理">添加资料</a></li>
 					<li><a href="/admin/infoList" title="资讯管理">资料列表</a></li>
 					<li><a href="/admin/common" title="资讯管理">常用资料</a></li>
 				</ul>

@@ -9,12 +9,12 @@ class InfoController extends Controller
 {
 	public function addInfo()
 	{
-		return '这是资料添加页面';
+		return view('admin.addInfo');
 	}
 
 	public function infoList()
 	{
-		return '这是资料列表页面';
+		return view('admin.infoList');
 	}
 
 	public function common()

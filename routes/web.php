@@ -20,6 +20,11 @@ Route::get('/login', function () {
 	return view('login');
 });
 
+// 下载页
+Route::get('/load', function () {
+	return view('load');
+});
+
 // 后台路由
 Route::group(['namespace' => 'Admin'], function () {
 	// 后台登录
@@ -33,6 +38,9 @@ Route::group(['namespace' => 'Admin'], function () {
 	Route::get('/admin/common', 'InfoController@common');
 });
 
-//注册接口
-Route
 
+// 前台
+Route::group(['namespace' => 'Custome'], function () {
+	Route::get('/custome/login', 'UserController@login');
+	
+});

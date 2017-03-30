@@ -19,6 +19,11 @@ class InfoController extends Controller
 
 	public function common()
 	{
-		return '常用资料添加页面';
+		return view('admin.common');
+	}
+
+	public function commonPage()
+	{
+		return view('admin.commonPage');
 	}
 }

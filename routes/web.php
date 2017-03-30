@@ -25,6 +25,11 @@ Route::get('/load', function () {
 	return view('load');
 });
 
+// 下载页 search
+Route::get('/load_search', function () {
+	return view('load_search');
+});
+
 // 后台路由
 Route::group(['namespace' => 'Admin'], function () {
 	// 后台登录
@@ -41,6 +46,6 @@ Route::group(['namespace' => 'Admin'], function () {
 
 // 前台
 Route::group(['namespace' => 'Custome'], function () {
-    Route::get('/custome/kit/captcha/{tmp}', 'UserController@captcha');
-	Route::post('/custome/loginHandle', 'UserController@loginHandle');
+	Route::get('/custome/login', 'UserController@login');
+	
 });

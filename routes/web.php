@@ -41,6 +41,6 @@ Route::group(['namespace' => 'Admin'], function () {
 
 // 前台
 Route::group(['namespace' => 'Custome'], function () {
-	Route::get('/custome/login', 'UserController@login');
-	
+    Route::get('/custome/kit/captcha/{tmp}', 'UserController@captcha');
+	Route::post('/custome/loginHandle', 'UserController@loginHandle');
 });

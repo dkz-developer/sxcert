@@ -79,7 +79,7 @@
 						<li class="row-09">2016-07-08</li>
 						<li class="row-10">3399</li>
 						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
+						<li class="row-12"><a href="/load_info" class="btn btn-info">下载</a></li>
 					</ul>
 				</div>
 
@@ -96,7 +96,7 @@
 						<li class="row-09">2016-07-08</li>
 						<li class="row-10">3399</li>
 						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
+						<li class="row-12"><a href="/load_info" class="btn btn-info">下载</a></li>
 					</ul>
 				</div>
 
@@ -113,7 +113,7 @@
 						<li class="row-09">2016-07-08</li>
 						<li class="row-10">3399</li>
 						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
+						<li class="row-12"><a href="/load_info" class="btn btn-info">下载</a></li>
 					</ul>
 				</div>
 
@@ -130,7 +130,7 @@
 						<li class="row-09">2016-07-08</li>
 						<li class="row-10">3399</li>
 						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
+						<li class="row-12"><a href="/load_info" class="btn btn-info">下载</a></li>
 					</ul>
 				</div>
 
@@ -147,7 +147,7 @@
 						<li class="row-09">2016-07-08</li>
 						<li class="row-10">3399</li>
 						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
+						<li class="row-12"><a href="/load_info" class="btn btn-info">下载</a></li>
 					</ul>
 				</div>
 
@@ -164,7 +164,7 @@
 						<li class="row-09">2016-07-08</li>
 						<li class="row-10">3399</li>
 						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
+						<li class="row-12"><a href="/load_info" class="btn btn-info">下载</a></li>
 					</ul>
 				</div>
 
@@ -181,7 +181,7 @@
 						<li class="row-09">2016-07-08</li>
 						<li class="row-10">3399</li>
 						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
+						<li class="row-12"><a href="/load_info" class="btn btn-info">下载</a></li>
 					</ul>
 				</div>
 
@@ -198,7 +198,7 @@
 						<li class="row-09">2016-07-08</li>
 						<li class="row-10">3399</li>
 						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
+						<li class="row-12"><a href="/load_info" class="btn btn-info">下载</a></li>
 					</ul>
 				</div>
 

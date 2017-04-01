@@ -57,5 +57,7 @@ Route::group(['namespace' => 'Admin'], function () {
 // 前台
 Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/custome/login', 'UserController@login');
+	Route::post('/custome/loadlist', 'LoadListController@loadlist');
+	Route::post('/custome/detail', 'LoadListController@detail');
 	
 });

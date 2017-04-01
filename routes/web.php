@@ -20,6 +20,11 @@ Route::get('/login', function () {
 	return view('login');
 });
 
+// 找回密码页面
+Route::get('/findPassword', function () {
+	return view('findPassword');
+});
+
 // 下载页
 Route::get('/load', function () {
 	return view('load');
@@ -28,6 +33,11 @@ Route::get('/load', function () {
 // 下载页 search
 Route::get('/load_search', function () {
 	return view('load_search');
+});
+
+// 下载页 详情页
+Route::get('/load_info', function () {
+	return view('load_info');
 });
 
 // 后台路由
@@ -47,5 +57,7 @@ Route::group(['namespace' => 'Admin'], function () {
 // 前台
 Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/custome/login', 'UserController@login');
+	Route::post('/custome/loadlist', 'LoadListController@loadlist');
+	Route::post('/custome/detail', 'LoadListController@detail');
 	
 });

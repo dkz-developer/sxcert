@@ -1,4 +1,4 @@
-a<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-cmn-Hans">
 <head>
 	<meta charset="utf-8">
@@ -11,13 +11,18 @@ a<!DOCTYPE html>
 	<meta name="description" content="">
 
     <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="style/css/load.css" rel="stylesheet">
+    <link href="style/css/load_search.css" rel="stylesheet">
 </head>
 <body>
 	<nav class="clearfix">
 		<div class="inner">
 			<div class="logo">
 				<a href="/">LOGO暂定</a>
+			</div>
+
+			<div class="search">
+				<input class="form-control" type="text" placeholder="输入机型或版本号(至少3个字符)">
+				<button>JUST搜搜</button>
 			</div>
 
 			<div class="btnGroup">
@@ -37,19 +42,10 @@ a<!DOCTYPE html>
 	</nav>
 
 	<div class="box-container" id="app" data-value="{{ csrf_token() }}">
-		<div class="logo">
-			<a href="/load"><img src="images/logo.png" alt=""></a>
-		</div>
-
-		<div class="search">
-			<input class="form-control" type="text" placeholder="输入机型或版本号(至少3个字符)">
-			<button @click="search">JUST搜搜</button>
-		</div>
 
 		<div class="main-content">
 			
-			<div class="hotRec">
-				<h3 class="title">热门推荐</h3>
+			<div class="listRec">
 				<div class="header">
 					<div class="row-01">标签</div>
                     <div class="row-02">品牌</div>
@@ -64,8 +60,7 @@ a<!DOCTYPE html>
                     <div class="row-11">下载</div>
                     <div class="row-12">下载链接</div>
 				</div>
-
-	
+				
 				<div class="list-item" v-cloak v-for="(item,index) in list">
 					<ul>
 						<li class="row-01"><a :href="['/load_search?keyword='+item.tag]">@{{item.tag}}</a></li>
@@ -82,8 +77,11 @@ a<!DOCTYPE html>
 						<li class="row-12"><a :href="['/load_info?keyword='+item.id]" class="btn btn-info">下载</a></li>
 					</ul>
 				</div>
+				
 			</div>
 		</div>
+
+	 	<div id="kkpager"></div>
 	</div>
 
 	<div class="footer">
@@ -101,7 +99,8 @@ a<!DOCTYPE html>
 	</script>
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
-	<script src="scripts/load.js"></script>
+	<script src="scripts/public/tools.js"></script>
+	<script src="scripts/load_search.js"></script>
 </body>
 </html>
 

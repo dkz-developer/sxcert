@@ -25,11 +25,11 @@
 			</div>
 			<div class="items clearfix">
 				<ul>
-					<li><a href="">下载站</a></li>
+					<li><a href="/load">下载站</a></li>
 					<li><a href="">充值</a></li>
 					<li><a href="">客服</a></li>
 					<li><a href="/login">登录</a></li>
-					<li><a href="/login">注册</a></li>
+					<li><a href="/register">注册</a></li>
 				</ul>
 			</div>
 		</div>

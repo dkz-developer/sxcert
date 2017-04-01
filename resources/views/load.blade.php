@@ -37,6 +37,7 @@ a<!DOCTYPE html>
 	</nav>
 
 	<div class="box-container" id="app" data-value="{{ csrf_token() }}">
+	
 		<div class="logo">
 			<a href="/load"><img src="images/logo.png" alt=""></a>
 		</div>

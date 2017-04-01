@@ -13,7 +13,7 @@
 
 	// 实例化vue
 	var vm = new Vue({
-	    el: '#app',
+	    el: 'html',
 	    data: {
 	    	list: "",
             keyword: keyword, // 关键字

@@ -60,7 +60,7 @@
                     <div class="row-11">下载</div>
                     <div class="row-12">下载链接</div>
 				</div>
-				
+
 				<div class="list-item" v-cloak v-for="(item,index) in list">
 					<ul>
 						<li class="row-01"><a :href="['/load_search?keyword='+item.tag]">@{{item.tag}}</a></li>

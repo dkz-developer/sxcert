@@ -41,7 +41,7 @@
 		</div>
 	</nav>
 
-	<div class="box-container">
+	<div class="box-container" id="app" data-value="{{ csrf_token() }}">
 		<div class="account-info clearfix panel panel-default">
 			<div class="layoutLeft well well-sm">
 				ZHANG-XUAN-ZHOU

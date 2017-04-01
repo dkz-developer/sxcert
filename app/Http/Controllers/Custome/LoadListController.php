@@ -30,7 +30,8 @@ class LoadListController extends Controller
 		
 		
 		if(empty($version) && empty($model)){
-		   $list = Info::where('status','2')->orderBy('sort' , 'desc')->lists('id','tag','brand','country','model','version','os','type','price','updated_at','view_num','download_num','download_url');
+		   //$list = Info::where('status','2')->orderBy('sort' , 'desc')->lists('id','tag','brand','country','model','version','os','type','price','updated_at','view_num','download_num','download_url');
+		   $list = Info::where('status','2')->orderBy('sort' , 'desc')->get();
 		   
 		}else{
 		    $list = Info::where('model',$model)->orWhere('version',$version)->orderBy('updated_at' , 'desc')->skip($skip)->take($limit)->get();

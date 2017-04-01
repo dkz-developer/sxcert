@@ -25,6 +25,11 @@ Route::get('/load', function () {
 	return view('load');
 });
 
+// 下载页 search
+Route::get('/load_search', function () {
+	return view('load_search');
+});
+
 // 后台路由
 Route::group(['namespace' => 'Admin'], function () {
 	// 后台登录
@@ -36,7 +41,7 @@ Route::group(['namespace' => 'Admin'], function () {
 	Route::get('/admin/addInfo', 'InfoController@addInfo');
 	Route::get('/admin/infoList', 'InfoController@infoList');
 	Route::get('/admin/common', 'InfoController@common');
-	Route::get('/admin/commonPage', 'InfoController@commonPage');
+	Route::post('/admin/commonAdd', 'InfoController@commonAdd');
 });
 
 // 前台

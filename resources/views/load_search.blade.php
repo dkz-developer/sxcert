@@ -3,7 +3,6 @@
 <head>
 	<meta charset="utf-8">
 	<title>  </title>
-
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
 	<meta name="viewport" contant="width=device-width, initial-scale=1">
@@ -41,7 +40,7 @@
 		</div>
 	</nav>
 
-	<div class="box-container" id="app" data-value="{{ csrf_token() }}">
+	<div class="box-container" id="app" data-value="{{csrf_token}}">
 
 		<div class="main-content">
 			

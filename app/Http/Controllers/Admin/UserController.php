@@ -41,7 +41,7 @@ class UserController extends Controller
 		$request->session()->flush();
 		return redirect('/');
 	}
-
+	
 	// 验证码
 	public function captcha($tmp)
 	{

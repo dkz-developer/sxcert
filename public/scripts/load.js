@@ -15,7 +15,14 @@
 	    },
 	    methods: {
 	        search:search, // 按钮搜索
-	    }
+	    },
+
+        // 过滤器 取整
+        filters: {
+            escape: function(value) {
+                return escape(value);
+            }
+        }
 	});
 
 
@@ -42,7 +49,7 @@
         var keyword =escape($(".search input").val()); // 关键字
 
         if(keyword) {
-            window.location.href = '/load_search?keyword='+keyword;
+            window.location.href = '/search?keyword='+keyword;
         }else {
             return false;
         }

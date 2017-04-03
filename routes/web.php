@@ -31,13 +31,23 @@ Route::get('/load', function () {
 });
 
 // 下载页 search
-Route::get('/load_search', function () {
-	return view('load_search');
+Route::get('/search', function () {
+	return view('search');
 });
 
 // 下载页 详情页
-Route::get('/load_info', function () {
-	return view('load_info');
+Route::get('/info', function () {
+	return view('info');
+});
+
+// 个人 详情页
+Route::get('/users', function () {
+	return view('users');
+});
+
+// 意见反馈页面
+Route::get('/feedback', function () {
+	return view('feedback');
 });
 
 // 后台路由
@@ -52,6 +62,9 @@ Route::group(['namespace' => 'Admin'], function () {
 	Route::get('/admin/infoList', 'InfoController@infoList');
 	Route::get('/admin/common', 'InfoController@common');
 	Route::post('/admin/commonAdd', 'InfoController@commonAdd');
+	Route::post('/admin/fileUpload','InfoController@fileUpload');
+	Route::post('/admin/addInfoHandle','InfoController@addInfoHandle');
+	Route::post('/admin/delInfo','InfoController@rmInfo');
 });
 
 // 前台
@@ -59,5 +72,6 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/custome/login', 'UserController@login');
 	Route::post('/custome/loadlist', 'LoadListController@loadlist');
 	Route::post('/custome/detail', 'LoadListController@detail');
+	Route::get('/custome/forum', 'ForumController@ForumList');
 	
 });

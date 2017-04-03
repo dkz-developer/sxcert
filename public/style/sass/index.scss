@@ -26,11 +26,14 @@ nav {
 		margin: 0 auto;
 		
 		.logo {
-			width: 100px;
-			height: 20px;
-			background: #fff;
 			float: left;
-			margin-top: 20px;
+			a {
+				outline: none;
+			}
+			img {
+				width: 130px;
+				margin-top: 13px;
+			}
 		}
 
 		.items {

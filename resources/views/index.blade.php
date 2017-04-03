@@ -17,7 +17,7 @@
 	<nav class="clearfix">
 		<div class="inner">
 			<div class="logo">
-				<a href="/">logo暂定</a>
+				<a href="/"><img src="images/logo_main3.png" alt=""></a>
 			</div>
 			<div class="search">
 				<input type="text" placeholder="请输入...">	
@@ -29,7 +29,7 @@
 					<li><a href="">充值</a></li>
 					<li><a href="">客服</a></li>
 					<li><a href="/login">登录</a></li>
-					<li><a href="/register">注册</a></li>
+					<li><a href="/register">注册</a></li>wo
 				</ul>
 			</div>
 		</div>

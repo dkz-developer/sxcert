@@ -7,6 +7,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <link rel="Bookmark" href="favicon.ico" >
 <link rel="Shortcut Icon" href="favicon.ico" />
 <!--[if lt IE 9]>
@@ -23,112 +24,142 @@
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
 <!--/meta 作为公共模版分离出去-->
-
+<link href="/style/admin/lib/webuploader/0.1.5/webuploader.css" rel="stylesheet" type="text/css" />
 <title>新增文章 - 资讯管理 - H-ui.admin v3.0</title>
 <meta name="keywords" content="H-ui.admin v3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
 <meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
 </head>
 <body>
 <article class="page-container">
-	<form class="form form-horizontal" id="form-article-add">
+	<form class="form form-horizontal" id="form-article-add" action="javascript:void(0)">
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>品牌：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select name="" class="select">
-					<option value="0">全部类型</option>
-					<option value="1">帮助说明</option>
-					<option value="2">新闻资讯</option>
+				<select class="select" name="brand">
+					@foreach ($brand as $val)
+					 	<option value="{{$val->name}}">{{$val->name}}</option>
+					@endforeach
 				</select>
 				</span> </div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>机型：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select name="" class="select">
-					<option value="0">全部类型</option>
-					<option value="1">帮助说明</option>
-					<option value="2">新闻资讯</option>
+				<select class="select" name="model">
+					@foreach($model as $val)
+						<option value="{{$val->name}}">{{$val->name}}</option>
+					@endforeach
 				</select>
 				</span> </div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>OS：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select name="" class="select">
-					<option value="0">全部类型</option>
-					<option value="1">帮助说明</option>
-					<option value="2">新闻资讯</option>
+				<select  class="select" name="os">
+					@foreach($os as $val)
+						<option value="{{$val->name}}">{{$val->name}}</option>
+					@endforeach
 				</select>
 				</span> </div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>类型：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select name="" class="select">
-					<option value="0">全部类型</option>
-					<option value="1">帮助说明</option>
-					<option value="2">新闻资讯</option>
+				<select class="select" name="type">
+					@foreach($type as $val)
+						<option value="{{$val->name}}">{{$val->name}}</option>
+					@endforeach
 				</select>
 				</span> </div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>国家：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select name="" class="select">
-					<option value="0">全部类型</option>
-					<option value="1">帮助说明</option>
-					<option value="2">新闻资讯</option>
+				<select  class="select" name="country">
+					@foreach($country as $val)
+						<option value="{{$val->name}}">{{$val->name}}</option>
+					@endforeach
 				</select>
 				</span> </div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>标签：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
-				<select name="" class="select">
-					<option value="0">全部类型</option>
-					<option value="1">帮助说明</option>
-					<option value="2">新闻资讯</option>
+				<select  class="select" name="tag">
+					@foreach($tag as $val)
+						<option value="{{$val->name}}">{{$val->name}}</option>
+					@endforeach
 				</select>
 				</span> </div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>单价(金币)：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="" name="">
+				<input type="text" class="input-text" value="" placeholder="" id="" name="price">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">备注：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="" name="">
+				<input type="text" class="input-text" value="" placeholder="" id="" name="remarks">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>下载地址：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="" name="">
+				<input type="text" class="input-text" value="" placeholder="" id="" name="download_url">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>下载密码：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="" name="">
+				<input type="text" class="input-text" value="" placeholder="" id="" name="download_password">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>版本：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="" name="version">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="0" placeholder="" id="" name="">
+				<input type="text" class="input-text" value="0" placeholder="" id="" name="sort">
 			</div>
 		</div>
+		<!--<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">图片上传：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<div class="uploader-list-container"> 
+					<div class="queueList">
+						<div id="dndArea" class="placeholder">
+							<div id="filePicker-2"></div>
+							<p>或将照片拖到这里，单次最多可选300张</p>
+						</div>
+					</div>
+					<div class="statusBar" style="display:none;">
+						<div class="progress"> <span class="text">0%</span> <span class="percentage"></span> </div>
+						<div class="info"></div>
+						<div class="btns">
+							<div id="filePicker2"></div>
+							<div class="uploadBtn">开始上传</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>-->
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2">封面：</label>
-			<div class="formControls col-xs-8 col-sm-9"> <span class="btn-upload form-group">
-				<input class="input-text upload-url" name="uploadfile" id="uploadfile" readonly="" nullmsg="请添加封面！" style="width:200px" type="text">
-				<a href="javascript:void();" class="btn btn-primary radius upload-btn"><i class="Hui-iconfont"></i> 浏览文件</a>
-				<input multiple="" name="file-2" class="input-file" type="file">
-				</span> </div>
+			<label class="form-label col-xs-4 col-sm-2">缩略图：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<div class="uploader-thum-container">
+					<div id="fileList" class="uploader-list"></div>
+					<div id="filePicker">选择图片</div>
+					<div id="img-star" class="btn btn-default btn-uploadstar radius ml-10">开始上传</div>
+				</div>
+			</div>
 		</div>
+		<input type="hidden" name="cover" id="cover">
 		<!--<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">封面：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -142,7 +173,7 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">简介：</label>
 			<div class="formControls col-xs-8 col-sm-9"> 
-				<script id="editor" type="text/plain" style="width:100%;height:400px;"></script> 
+				<script id="abstract" type="text/plain" style="width:100%;height:400px;"></script> 
 			</div>
 		</div>
 		<div class="row cl">
@@ -172,6 +203,33 @@
 <script type="text/javascript" src="/style/admin/lib/ueditor/1.4.3/ueditor.all.min.js"> </script> 
 <script type="text/javascript" src="/style/admin/lib/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript">
+$('#form-article-add').submit(function(){
+	var param = $(this).serialize();
+	$.ajaxSetup({
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
+		url:"/admin/addInfoHandle",
+		data:param,
+		dataType:'json',
+		type:'post',
+		success:function(result) {
+			if(result.code == 'S') {
+				layer.alert(result.msg, {
+					icon: 1,
+					skin: 'layer-ext-moon' 
+				})
+			}else {
+				layer.alert(result.msg, {
+					icon: 2,
+					skin: 'layer-ext-moon' 
+				})
+			}
+		}
+	});
+	$.ajax();
+	return false;
+});
 $(function(){
 	$('.skin-minimal input').iCheck({
 		checkboxClass: 'icheckbox-blue',
@@ -181,16 +239,16 @@ $(function(){
 	
 	
 	$list = $("#fileList"),
-	$btn = $("#btn-star"),
+	$btn = $("#img-star"),
 	state = "pending",
 	uploader;
 
 	var uploader = WebUploader.create({
-		auto: true,
-		swf: 'lib/webuploader/0.1.5/Uploader.swf',
+		auto: false,
+		swf: '/style/admin/lib/webuploader/0.1.5/Uploader.swf',
 	
 		// 文件接收服务端。
-		server: 'fileupload.php',
+		server: '/admin/fileUpload',
 	
 		// 选择文件的按钮。可选。
 		// 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -242,7 +300,8 @@ $(function(){
 	});
 	
 	// 文件上传成功，给item添加成功class, 用样式标记上传成功。
-	uploader.on( 'uploadSuccess', function( file ) {
+	uploader.on( 'uploadSuccess', function( file ,response) {
+		$('#cover').val(response.path);
 		$( '#'+file.id ).addClass('upload-state-success').find(".state").text("已上传");
 	});
 	
@@ -255,6 +314,7 @@ $(function(){
 	uploader.on( 'uploadComplete', function( file ) {
 		$( '#'+file.id ).find('.progress-box').fadeOut();
 	});
+
 	uploader.on('all', function (type) {
 		if (type === 'startUpload') {
 			state = 'uploading';
@@ -279,7 +339,7 @@ $(function(){
 		}
 	});
 	
-	var ue = UE.getEditor('editor');
+	var ue = UE.getEditor('abstract');
 	
 });
 </script>

@@ -17,7 +17,7 @@ a<!DOCTYPE html>
 	<nav class="clearfix">
 		<div class="inner">
 			<div class="logo">
-				<a href="/">LOGO暂定</a>
+				<a href="/">GSMGOOD</a>
 			</div>
 
 			<div class="btnGroup">
@@ -32,11 +32,11 @@ a<!DOCTYPE html>
 					<li><a href="">充值</a></li>
 				</ul>
 			</div>
-
 		</div>
 	</nav>
 
 	<div class="box-container" id="app" data-value="{{ csrf_token() }}">
+	
 		<div class="logo">
 			<a href="/load"><img src="images/logo.png" alt=""></a>
 		</div>
@@ -68,7 +68,7 @@ a<!DOCTYPE html>
 	
 				<div class="list-item" v-cloak v-for="(item,index) in list">
 					<ul>
-						<li class="row-01"><a :href="['/load_search?keyword='+item.tag]">@{{item.tag}}</a></li>
+						<li class="row-01"><a :href="['/load_search?keyword='+item.tag ]">@{{item.tag}}</a></li>
 						<li class="row-02"><a :href="['/load_search?keyword='+item.brand]">@{{item.brand}}</a></li>
 						<li class="row-03"><a :href="['/load_search?keyword='+item.country]">@{{item.country}}/ALL</a></li>
 						<li class="row-04"><a :href="['/load_search?keyword='+item.model]">@{{item.model}}</a></li>

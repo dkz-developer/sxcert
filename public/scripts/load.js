@@ -15,7 +15,14 @@
 	    },
 	    methods: {
 	        search:search, // 按钮搜索
-	    }
+	    },
+
+        // 过滤器 取整
+        filters: {
+            escape: function(value) {
+                return escape(value);
+            }
+        }
 	});
 
 

@@ -41,7 +41,7 @@
 		</div>
 	</nav>
 
-	<div class="box-container">
+	<div class="box-container" id="app" data-value="{{ csrf_token() }}">
 		<div class="account-info clearfix panel panel-default">
 			<div class="layoutLeft well well-sm">
 				ZHANG-XUAN-ZHOU
@@ -190,7 +190,7 @@
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
 	<!-- <script src="scripts/lib/bootstrap/bootstrap.min.js"></script> -->
-	<!-- <script src="scripts/load.js"></script> -->
+	<script src="scripts/load_info.js"></script>
 </body>
 </html>
 

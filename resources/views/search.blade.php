@@ -12,19 +12,14 @@
 
     <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
      <link href="scripts/lib/kkpager/kkpager_blue.css" rel="stylesheet">
-    <link href="style/css/load_search.css" rel="stylesheet">
+    <link href="style/css/search.css" rel="stylesheet">
 </head>
 <body>
 	<div id="app" data-value="{{ csrf_token() }}">
 		<nav class="clearfix">
 			<div class="inner">
 				<div class="logo">
-					<a href="/">LOGO暂定</a>
-				</div>
-
-				<div class="search">
-					<input class="form-control"  type="text" :value="keyword" placeholder="输入机型或版本号(至少3个字符)">
-					<button @click="search">JUST搜搜</button>
+					<a href="/">GSMGOOD</a>
 				</div>
 
 				<div class="btnGroup">
@@ -39,14 +34,11 @@
 						<li><a href="">充值</a></li>
 					</ul>
 				</div>
-
 			</div>
 		</nav>
 
 		<div class="box-container" >
-
 			<div class="main-content">
-				
 				<div class="listRec">
 					<div class="header">
 						<div class="row-01">标签</div>
@@ -65,18 +57,18 @@
 
 					<div class="list-item" v-cloak v-for="(item,index) in list">
 						<ul>
-							<li class="row-01"><a :href="['/load_search?keyword='+item.tag]">@{{item.tag}}</a></li>
-							<li class="row-02"><a :href="['/load_search?keyword='+item.brand]">@{{item.brand}}</a></li>
-							<li class="row-03"><a :href="['/load_search?keyword='+item.country | escape]">@{{item.country}}</a></li>
-							<li class="row-04"><a :href="['/load_search?keyword='+item.model]">@{{item.model}}</a></li>
-							<li class="row-05"><a :href="['/load_search?keyword='+item.version]">@{{item.version}}</a></li>
-							<li class="row-06"><a :href="['/load_search?keyword='+item.os]">@{{item.os}}</a></li>
-							<li class="row-07"><a :href="['/load_search?keyword='+item.type]">@{{item.type}}</a></li>
+							<li class="row-01"><a :href="['/search?keyword='+item.tag]">@{{item.tag}}</a></li>
+							<li class="row-02"><a :href="['/search?keyword='+item.brand]">@{{item.brand}}</a></li>
+							<li class="row-03"><a :href="['/search?keyword='+item.country | escape]">@{{item.country}}</a></li>
+							<li class="row-04"><a :href="['/search?keyword='+item.model]">@{{item.model}}</a></li>
+							<li class="row-05"><a :href="['/search?keyword='+item.version]">@{{item.version}}</a></li>
+							<li class="row-06"><a :href="['/search?keyword='+item.os]">@{{item.os}}</a></li>
+							<li class="row-07"><a :href="['/search?keyword='+item.type]">@{{item.type}}</a></li>
 							<li class="row-08">@{{item.price}}</li>
 							<li class="row-09">@{{item.updated_at}}</li>
 							<li class="row-10">@{{item.view_num}}</li>
 							<li class="row-11">@{{item.download_num}}</li>
-							<li class="row-12"><a :href="['/load_info?keyword='+item.id]" class="btn btn-info">下载</a></li>
+							<li class="row-12"><a :href="['/info?keyword='+item.id]" class="btn btn-info">下载</a></li>
 						</ul>
 					</div>
 					
@@ -105,7 +97,7 @@
 	<script src="scripts/lib/vue/vue.min.js"></script>
 	<script src="scripts/public/tools.js"></script>
 	<script src="scripts/lib/kkpager/kkpager.min.js"></script>
-	<script src="scripts/load_search.js"></script>
+	<script src="scripts/search.js"></script>
 </body>
 </html>
 

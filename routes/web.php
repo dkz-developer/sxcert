@@ -36,8 +36,8 @@ Route::get('/search', function () {
 });
 
 // 下载页 详情页
-Route::get('/load_info', function () {
-	return view('load_info');
+Route::get('/info', function () {
+	return view('info');
 });
 
 // 后台路由

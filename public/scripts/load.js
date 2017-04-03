@@ -49,7 +49,7 @@
         var keyword =escape($(".search input").val()); // 关键字
 
         if(keyword) {
-            window.location.href = '/load_search?keyword='+keyword;
+            window.location.href = '/search?keyword='+keyword;
         }else {
             return false;
         }

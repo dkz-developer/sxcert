@@ -1,5 +1,17 @@
 @extends('admin._parent')
 @section('content')
+<style type="text/css">
+	.pagination{
+		float: right;
+	}
+	.pagination li{
+		float: left;
+		margin:5px;
+	}
+	.pagination .active{
+		color:#5eb95e;
+	}
+</style>
    <article class="cl pd-20">
 			<div class="text-c">
 				<span class="select-box inline">
@@ -28,50 +40,46 @@
 					<thead>
 						<tr class="text-c">
 							<th width="25"><input type="checkbox" name="" value=""></th>
-							<th width="80">ID</th>
-							<th>品牌</th>
+							<th width="50">ID</th>
+							<th width="60">品牌</th>
 							<th width="80">机型</th>
 							<th width="80">国家</th>
-							<th width="120">OS</th>
+							<th width="80">OS</th>
 							<th width="75">类型</th>
 							<th width="60">标签</th>
 							<th width="60">版本</th>
-							<th width="60">单价(金币)</th>
-							<th width="60">备注</th>
-							<th width="120">下载地址</th>
+							<th width="80">单价(金币)</th>
+							<th width="100">备注</th>
+							<th width="130">下载地址</th>
+							<th width="60">下载密码</th>
 							<th width="120">操作</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr class="text-c">
-							<td><input type="checkbox" value="" name=""></td>
-							<td>10001</td>
-							<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10001')" title="查看">资讯标题</u></td>
-							<td>行业动态</td>
-							<td>H-ui</td>
-							<td>2014-6-11 11:11:42</td>
-							<td>21212</td>
-							<td class="td-status"><span class="label label-success radius">已发布</span></td>
-							<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>
+						@foreach($list as $val)
+							<tr class="text-c">
+								<td><input type="checkbox" value="{{$val->id}}" name=""></td>
+								<td>{{$val->id}}</td>
+								<td>{{$val->brand}}</td>
+								<td >{{$val->model}}</td>
+								<td>{{$val->country}}</td>
+								<td>{{$val->os}}</td>
+								<td>{{$val->type}}</td>
+								<td>{{$val->tag}}</td>
+								<td>{{$val->version}}</td>
+								<td>{{$val->price}}</td>
+								<td>{{$val->remarks}}</td>
+								<td>{{$val->download_url}}</td>
+								<td>{{$val->download_password}}</td>
+								<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>
 								<a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
 								<a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 						</tr>
-						<tr class="text-c">
-							<td><input type="checkbox" value="" name=""></td>
-							<td>10002</td>
-							<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10002')" title="查看">资讯标题</u></td>
-							<td>行业动态</td>
-							<td>H-ui</td>
-							<td>2014-6-11 11:11:42</td>
-							<td>21212</td>
-							<td class="td-status"><span class="label label-success radius">草稿</span></td>
-							<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_shenhe(this,'10001')" href="javascript:;" title="审核">审核</a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_edit('资编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-						</tr>
+						@endforeach
 					</tbody>
 				</table>
 			</div>
+			{{$list->links()}}
 		</article>
 <footer class="footer">
 	<p>感谢jQuery、layer、laypage、Validform、UEditor、My97DatePicker、iconfont、Datatables、WebUploaded、icheck、highcharts、bootstrap-Switch<br> Copyright &copy;2015 H-ui.admin v3.0 All Rights Reserved.<br> 本后台系统由<a href="http://www.h-ui.net/" target="_blank" title="H-ui前端框架">H-ui前端框架</a>提供前端技术支持</p>

@@ -52,6 +52,8 @@ Route::group(['namespace' => 'Admin'], function () {
 	Route::get('/admin/infoList', 'InfoController@infoList');
 	Route::get('/admin/common', 'InfoController@common');
 	Route::post('/admin/commonAdd', 'InfoController@commonAdd');
+	Route::post('/admin/fileUpload','InfoController@fileUpload');
+	Route::post('/admin/addInfoHandle','InfoController@addInfoHandle');
 });
 
 // 前台

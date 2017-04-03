@@ -29,7 +29,7 @@
 				<ul>
 					<li><a class="active" href="/load">首页</a></li>
 					<li><a href="">讨论区</a></li>
-					<li><a href="">充值</a></li>
+					<li><a href="">充值</a></li>a
 				</ul>
 			</div>
 		</div>
@@ -92,7 +92,10 @@
 					<div class="discussion-info">
 						<h4 class="nickname">宣州是爷</h4>
 						<p>我在物质上的最高奢望就是，在一个和平的世界上，有一个健康的身体，过一种小康的日子。—— by 邓云华 ​​​​</p>
-						<div class="left">2017-03-31</div>
+						<div class="opts">
+							<span>2015年2月4日</span>
+							<span><i class="fa fa-reply"></i>回复</span>
+						</div>
 					</div>
 				</div>
 

@@ -81,20 +81,18 @@ body {
 					background: #fbfbfb;
 				}
 
-			li{
-				height: 68px;
-				line-height: 68px;
-				float: left;
-				text-align: center;
-				list-style: none;
-				overflow: hidden;
+				li{
+					height: 68px;
+					line-height: 68px;
+					float: left;
+					text-align: center;
+					list-style: none;
+					overflow: hidden;
 
-				a {
-					text-decoration: none;
+					a {
+						text-decoration: none;
+					}
 				}
-			}
-
-
 				.row-01{width: 80px;}
 				.row-02{width: 110px;}
 				.row-03{width: 100px;}

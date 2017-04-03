@@ -24,7 +24,10 @@ Route::get('/login', function () {
 Route::get('/findPassword', function () {
 	return view('findPassword');
 });
-
+// 支付页面
+Route::get('/pay', function () {
+	return view('pay');
+});
 // 下载页
 Route::get('/load', function () {
 	return view('load');

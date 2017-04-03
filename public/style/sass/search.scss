@@ -20,54 +20,10 @@ body {
 
 
 .box-container {
-
-	.logo {
-		text-align: center;
-		margin-top: 150px;
-
-		img {
-			width: 346px;
-			height: 97px;
-		}
-	}
-
-	.search {
-		height: 45px;
-		width: 700px;
-		margin: 0 auto;
-		margin-top: 20px;
-
-		input {
-		    float: left;
-		    font-size: 16px;
-		    height: 45px;
-		    outline: none;
-		    width: 600px;
-		    padding-left: 20px;
-		    border-radius: 4px 0 0 4px;
-		    float: left;
-		}
-
-		button {
-			width: 100px;
-			height: 45px;
-			line-height: 45px;
-			text-align: center;
-			background: #3fbad9;
-			color: #fff;
-			font-weight: 600;
-			float:left;
-			border: none;
-			outline: none;
-		    border-radius: 0 4px 4px 0;
-			transition: all 0.3s ease 0s;
-
-		    &:hover {
-		    	background: #2aa5c4;
-		    }
-		}
-	}
-
+	width: 1200px;
+	margin: 0 auto;
+	margin-top: 100px;
+	
 	.main-content {
 
 		width: 1200px;
@@ -75,9 +31,8 @@ body {
 		border-radius: 4px;
 		border: 1px solid #ccc;
 		background: #fff;
-		margin-top: 40px;
 
-		.hotRec {
+		 .listRec {
 
 			.title {
 				height: 40px;
@@ -126,20 +81,18 @@ body {
 					background: #fbfbfb;
 				}
 
-			li{
-				height: 68px;
-				line-height: 68px;
-				float: left;
-				text-align: center;
-				list-style: none;
-				overflow: hidden;
+				li{
+					height: 68px;
+					line-height: 68px;
+					float: left;
+					text-align: center;
+					list-style: none;
+					overflow: hidden;
 
-				a {
-					text-decoration: none;
-
+					a {
+						text-decoration: none;
+					}
 				}
-			}
-
 				.row-01{width: 80px;}
 				.row-02{width: 110px;}
 				.row-03{width: 100px;}
@@ -154,12 +107,18 @@ body {
 				.row-12{width: 90px;}
 			}
 		}
-
-
 	}
 }
 
+#kkpager{
+	height: 50px;
+	line-height: 50px;
 
+
+	.pageBtnWrap{
+		margin-top: 20px;
+	}
+}
 
 
 

@@ -11,18 +11,13 @@
 	<meta name="description" content="">
 
     <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="style/css/load_info.css" rel="stylesheet">
+    <link href="style/css/info.css" rel="stylesheet">
 </head>
 <body>
 	<nav class="clearfix">
 		<div class="inner">
 			<div class="logo">
-				<a href="/">LOGO暂定</a>
-			</div>
-
-			<div class="search">
-				<input class="form-control" type="text" placeholder="输入机型或版本号(至少3个字符)">
-				<button>JUST搜搜</button>
+				<a href="/">GSMGOOD</a>
 			</div>
 
 			<div class="btnGroup">
@@ -34,10 +29,9 @@
 				<ul>
 					<li><a class="active" href="/load">首页</a></li>
 					<li><a href="">讨论区</a></li>
-					<li><a href="">充值</a></li>
+					<li><a href="">充值</a></li>a
 				</ul>
 			</div>
-
 		</div>
 	</nav>
 
@@ -53,7 +47,7 @@
 				</h4>
 
 				<div class="public">
-					<span>上传者：宣州</span>
+					<span>上传者：<a href="/users">张大大</a></span>
 					<span>点击量：666</span>
 					<span>下载量：666</span>
 				</div>
@@ -98,7 +92,10 @@
 					<div class="discussion-info">
 						<h4 class="nickname">宣州是爷</h4>
 						<p>我在物质上的最高奢望就是，在一个和平的世界上，有一个健康的身体，过一种小康的日子。—— by 邓云华 ​​​​</p>
-						<div class="left">2017-03-31</div>
+						<div class="opts">
+							<span>2015年2月4日</span>
+							<span><i class="fa fa-reply"></i>回复</span>
+						</div>
 					</div>
 				</div>
 
@@ -190,7 +187,7 @@
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
 	<!-- <script src="scripts/lib/bootstrap/bootstrap.min.js"></script> -->
-	<script src="scripts/load_info.js"></script>
+	<script src="scripts/info.js"></script>
 </body>
 </html>
 

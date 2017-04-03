@@ -29,6 +29,18 @@ class InfoController extends Controller
 		return view('admin.addInfo',$result);
 	}
 
+	public  function rmInfo(Request $request)
+	{
+		$ids = $request->input('ids','');
+		$ids = explode(',', $ids);
+		if(empty($ids))
+			return response()->json(['code'=>'F','msg'=>'参数错误！']);
+		$result = Info::whereIn($ids)->delete();
+		if($result)
+			return response()->json(['code'=>'S','msg'=>'删除成功！']);
+		return response()->json(['code'=>'F','msg'=>'删除失败！']);
+	}
+
 	public function addInfoHandle(Request $request)
 	{
 		$Model = new Info();

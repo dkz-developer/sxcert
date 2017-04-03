@@ -54,6 +54,7 @@ Route::group(['namespace' => 'Admin'], function () {
 	Route::post('/admin/commonAdd', 'InfoController@commonAdd');
 	Route::post('/admin/fileUpload','InfoController@fileUpload');
 	Route::post('/admin/addInfoHandle','InfoController@addInfoHandle');
+	Route::post('/admin/delInfo','InfoController@rmInfo');
 });
 
 // 前台

@@ -24,7 +24,10 @@ Route::get('/login', function () {
 Route::get('/findPassword', function () {
 	return view('findPassword');
 });
-
+// 支付页面
+Route::get('/pay', function () {
+	return view('pay');
+});
 // 下载页
 Route::get('/load', function () {
 	return view('load');
@@ -51,7 +54,7 @@ Route::get('/feedback', function () {
 });
 
 // 后台路由
-Route::group(['namespace' => 'Admin'], function () {
+Route::group(['namespace' => 'Admin','middleware'=>'Adminauth'], function () {
 	// 后台登录
 	Route::get('/admin/login', 'UserController@login');
 	Route::get('/admin/kit/captcha/{tmp}', 'UserController@captcha');

@@ -42,9 +42,8 @@
 
 		<div class="main">
 			<div class="main-title">
-				<span class="active" data-act="login">登录</span>
-				<em></em>
-				<span data-act="register">注册</span>
+				<span>充值</span>
+				
 			</div>
 
 			<div class="main-content">

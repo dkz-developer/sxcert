@@ -40,6 +40,16 @@ Route::get('/info', function () {
 	return view('info');
 });
 
+// 个人 详情页
+Route::get('/users', function () {
+	return view('users');
+});
+
+// 意见反馈页面
+Route::get('/feedback', function () {
+	return view('feedback');
+});
+
 // 后台路由
 Route::group(['namespace' => 'Admin'], function () {
 	// 后台登录

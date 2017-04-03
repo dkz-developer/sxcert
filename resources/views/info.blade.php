@@ -11,18 +11,13 @@
 	<meta name="description" content="">
 
     <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="style/css/load_info.css" rel="stylesheet">
+    <link href="style/css/info.css" rel="stylesheet">
 </head>
 <body>
 	<nav class="clearfix">
 		<div class="inner">
 			<div class="logo">
-				<a href="/">LOGO暂定</a>
-			</div>
-
-			<div class="search">
-				<input class="form-control" type="text" placeholder="输入机型或版本号(至少3个字符)">
-				<button>JUST搜搜</button>
+				<a href="/">GSMGOOD</a>
 			</div>
 
 			<div class="btnGroup">
@@ -37,7 +32,6 @@
 					<li><a href="">充值</a></li>
 				</ul>
 			</div>
-
 		</div>
 	</nav>
 
@@ -53,7 +47,7 @@
 				</h4>
 
 				<div class="public">
-					<span>上传者：宣州</span>
+					<span>上传者：<a href="/users">张大大</a></span>
 					<span>点击量：666</span>
 					<span>下载量：666</span>
 				</div>
@@ -190,7 +184,7 @@
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
 	<!-- <script src="scripts/lib/bootstrap/bootstrap.min.js"></script> -->
-	<script src="scripts/load_info.js"></script>
+	<script src="scripts/info.js"></script>
 </body>
 </html>
 

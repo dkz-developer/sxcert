@@ -117,93 +117,96 @@ nav {
           background: #2aa5c4;
           border-color: #2aa5c4; }
 
-.box-container .main-content {
+.box-container {
   width: 1200px;
-  margin: 0 auto;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  background: #fff;
-  margin-top: 100px; }
-  .box-container .main-content .listRec .title {
-    height: 40px;
-    line-height: 40px;
-    margin: 0;
-    font-size: 18px;
-    color: #555;
-    padding-left: 20px; }
-  .box-container .main-content .listRec .header {
-    height: 48px;
-    line-height: 48px;
-    color: #4c4f4f; }
-    .box-container .main-content .listRec .header div {
-      text-align: center;
-      background: #f3f3f3;
-      font-size: 14px;
-      float: left; }
-    .box-container .main-content .listRec .header .row-01 {
-      width: 80px; }
-    .box-container .main-content .listRec .header .row-02 {
-      width: 110px; }
-    .box-container .main-content .listRec .header .row-03 {
-      width: 100px; }
-    .box-container .main-content .listRec .header .row-04 {
-      width: 100px; }
-    .box-container .main-content .listRec .header .row-05 {
-      width: 118px; }
-    .box-container .main-content .listRec .header .row-06 {
-      width: 100px; }
-    .box-container .main-content .listRec .header .row-07 {
-      width: 130px; }
-    .box-container .main-content .listRec .header .row-08 {
-      width: 90px; }
-    .box-container .main-content .listRec .header .row-09 {
-      width: 120px; }
-    .box-container .main-content .listRec .header .row-10 {
-      width: 80px; }
-    .box-container .main-content .listRec .header .row-11 {
-      width: 80px; }
-    .box-container .main-content .listRec .header .row-12 {
-      width: 90px; }
-  .box-container .main-content .listRec .list-item {
-    height: 68px;
-    line-height: 68px;
-    border-bottom: 1px #f2f2f2 solid;
-    color: #666; }
-    .box-container .main-content .listRec .list-item:nth-child(odd) {
-      background: #fbfbfb; }
-    .box-container .main-content .listRec .list-item li {
+  margin: 0 auto; }
+  .box-container .main-content {
+    width: 1200px;
+    margin: 0 auto;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #fff;
+    margin-top: 100px; }
+    .box-container .main-content .listRec .title {
+      height: 40px;
+      line-height: 40px;
+      margin: 0;
+      font-size: 18px;
+      color: #555;
+      padding-left: 20px; }
+    .box-container .main-content .listRec .header {
+      height: 48px;
+      line-height: 48px;
+      color: #4c4f4f; }
+      .box-container .main-content .listRec .header div {
+        text-align: center;
+        background: #f3f3f3;
+        font-size: 14px;
+        float: left; }
+      .box-container .main-content .listRec .header .row-01 {
+        width: 80px; }
+      .box-container .main-content .listRec .header .row-02 {
+        width: 110px; }
+      .box-container .main-content .listRec .header .row-03 {
+        width: 100px; }
+      .box-container .main-content .listRec .header .row-04 {
+        width: 100px; }
+      .box-container .main-content .listRec .header .row-05 {
+        width: 118px; }
+      .box-container .main-content .listRec .header .row-06 {
+        width: 100px; }
+      .box-container .main-content .listRec .header .row-07 {
+        width: 130px; }
+      .box-container .main-content .listRec .header .row-08 {
+        width: 90px; }
+      .box-container .main-content .listRec .header .row-09 {
+        width: 120px; }
+      .box-container .main-content .listRec .header .row-10 {
+        width: 80px; }
+      .box-container .main-content .listRec .header .row-11 {
+        width: 80px; }
+      .box-container .main-content .listRec .header .row-12 {
+        width: 90px; }
+    .box-container .main-content .listRec .list-item {
       height: 68px;
       line-height: 68px;
-      float: left;
-      text-align: center;
-      list-style: none;
-      overflow: hidden; }
-      .box-container .main-content .listRec .list-item li a {
-        text-decoration: none; }
-    .box-container .main-content .listRec .list-item .row-01 {
-      width: 80px; }
-    .box-container .main-content .listRec .list-item .row-02 {
-      width: 110px; }
-    .box-container .main-content .listRec .list-item .row-03 {
-      width: 100px; }
-    .box-container .main-content .listRec .list-item .row-04 {
-      width: 100px; }
-    .box-container .main-content .listRec .list-item .row-05 {
-      width: 118px; }
-    .box-container .main-content .listRec .list-item .row-06 {
-      width: 100px; }
-    .box-container .main-content .listRec .list-item .row-07 {
-      width: 130px; }
-    .box-container .main-content .listRec .list-item .row-08 {
-      width: 90px; }
-    .box-container .main-content .listRec .list-item .row-09 {
-      width: 120px; }
-    .box-container .main-content .listRec .list-item .row-10 {
-      width: 80px; }
-    .box-container .main-content .listRec .list-item .row-11 {
-      width: 80px; }
-    .box-container .main-content .listRec .list-item .row-12 {
-      width: 90px; }
+      border-bottom: 1px #f2f2f2 solid;
+      color: #666; }
+      .box-container .main-content .listRec .list-item:nth-child(odd) {
+        background: #fbfbfb; }
+      .box-container .main-content .listRec .list-item li {
+        height: 68px;
+        line-height: 68px;
+        float: left;
+        text-align: center;
+        list-style: none;
+        overflow: hidden; }
+        .box-container .main-content .listRec .list-item li a {
+          text-decoration: none; }
+      .box-container .main-content .listRec .list-item .row-01 {
+        width: 80px; }
+      .box-container .main-content .listRec .list-item .row-02 {
+        width: 110px; }
+      .box-container .main-content .listRec .list-item .row-03 {
+        width: 100px; }
+      .box-container .main-content .listRec .list-item .row-04 {
+        width: 100px; }
+      .box-container .main-content .listRec .list-item .row-05 {
+        width: 118px; }
+      .box-container .main-content .listRec .list-item .row-06 {
+        width: 100px; }
+      .box-container .main-content .listRec .list-item .row-07 {
+        width: 130px; }
+      .box-container .main-content .listRec .list-item .row-08 {
+        width: 90px; }
+      .box-container .main-content .listRec .list-item .row-09 {
+        width: 120px; }
+      .box-container .main-content .listRec .list-item .row-10 {
+        width: 80px; }
+      .box-container .main-content .listRec .list-item .row-11 {
+        width: 80px; }
+      .box-container .main-content .listRec .list-item .row-12 {
+        width: 90px; }
 
 .footer {
   width: 100%;

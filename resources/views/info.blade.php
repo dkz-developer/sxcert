@@ -190,7 +190,7 @@
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
 	<!-- <script src="scripts/lib/bootstrap/bootstrap.min.js"></script> -->
-	<!-- <script src="scripts/load.js"></script> -->
+	<script src="scripts/load_info.js"></script>
 </body>
 </html>
 

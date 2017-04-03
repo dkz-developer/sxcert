@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+a<!DOCTYPE html>
 <html lang="zh-cmn-Hans">
 <head>
 	<meta charset="utf-8">
@@ -17,7 +17,7 @@
 	<nav class="clearfix">
 		<div class="inner">
 			<div class="logo">
-				<a href="/">LOGO暂定</a>
+				<a href="/">GSMGOOD</a>
 			</div>
 
 			<div class="btnGroup">
@@ -27,23 +27,23 @@
 
 			<div class="items">
 				<ul>
-					<li><a class="active" href="">首页</a></li>
+					<li><a class="active" href="/load">首页</a></li>
 					<li><a href="">讨论区</a></li>
 					<li><a href="">充值</a></li>
 				</ul>
 			</div>
-
 		</div>
 	</nav>
 
-	<div class="box-container">
+	<div class="box-container" id="app" data-value="{{ csrf_token() }}">
+	
 		<div class="logo">
 			<a href="/load"><img src="images/logo.png" alt=""></a>
 		</div>
 
 		<div class="search">
 			<input class="form-control" type="text" placeholder="输入机型或版本号(至少3个字符)">
-			<button>JUST搜搜</button>
+			<button @click="search">JUST搜搜</button>
 		</div>
 
 		<div class="main-content">
@@ -65,306 +65,26 @@
                     <div class="row-12">下载链接</div>
 				</div>
 
-
-				<div class="list-item">
-					<ul>
-						<li class="row-01">1314520</li>
-						<li class="row-02">三星/Samsung</li>
-						<li class="row-03">全球/ALL</li>
-						<li class="row-04">SM-G935A</li>
-						<li class="row-05">G935AUCS2APF2</li>
-						<li class="row-06">6.0.1</li>
-						<li class="row-07">全资料[五件套] /ALL</li>
-						<li class="row-08">150.0</li>
-						<li class="row-09">2016-07-08</li>
-						<li class="row-10">3399</li>
-						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
-					</ul>
-				</div>
-
-				<div class="list-item">
-					<ul>
-						<li class="row-01">1314520</li>
-						<li class="row-02">三星/Samsung</li>
-						<li class="row-03">全球/ALL</li>
-						<li class="row-04">SM-G935A</li>
-						<li class="row-05">G935AUCS2APF2</li>
-						<li class="row-06">6.0.1</li>
-						<li class="row-07">全资料[五件套] /ALL</li>
-						<li class="row-08">150.0</li>
-						<li class="row-09">2016-07-08</li>
-						<li class="row-10">3399</li>
-						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
-					</ul>
-				</div>
-
-				<div class="list-item">
-					<ul>
-						<li class="row-01">1314520</li>
-						<li class="row-02">三星/Samsung</li>
-						<li class="row-03">全球/ALL</li>
-						<li class="row-04">SM-G935A</li>
-						<li class="row-05">G935AUCS2APF2</li>
-						<li class="row-06">6.0.1</li>
-						<li class="row-07">全资料[五件套] /ALL</li>
-						<li class="row-08">150.0</li>
-						<li class="row-09">2016-07-08</li>
-						<li class="row-10">3399</li>
-						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
-					</ul>
-				</div>
-
-				<div class="list-item">
-					<ul>
-						<li class="row-01">1314520</li>
-						<li class="row-02">三星/Samsung</li>
-						<li class="row-03">全球/ALL</li>
-						<li class="row-04">SM-G935A</li>
-						<li class="row-05">G935AUCS2APF2</li>
-						<li class="row-06">6.0.1</li>
-						<li class="row-07">全资料[五件套] /ALL</li>
-						<li class="row-08">150.0</li>
-						<li class="row-09">2016-07-08</li>
-						<li class="row-10">3399</li>
-						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
-					</ul>
-				</div>
-
-				<div class="list-item">
-					<ul>
-						<li class="row-01">1314520</li>
-						<li class="row-02">三星/Samsung</li>
-						<li class="row-03">全球/ALL</li>
-						<li class="row-04">SM-G935A</li>
-						<li class="row-05">G935AUCS2APF2</li>
-						<li class="row-06">6.0.1</li>
-						<li class="row-07">全资料[五件套] /ALL</li>
-						<li class="row-08">150.0</li>
-						<li class="row-09">2016-07-08</li>
-						<li class="row-10">3399</li>
-						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
-					</ul>
-				</div>
-
-				<div class="list-item">
-					<ul>
-						<li class="row-01">1314520</li>
-						<li class="row-02">三星/Samsung</li>
-						<li class="row-03">全球/ALL</li>
-						<li class="row-04">SM-G935A</li>
-						<li class="row-05">G935AUCS2APF2</li>
-						<li class="row-06">6.0.1</li>
-						<li class="row-07">全资料[五件套] /ALL</li>
-						<li class="row-08">150.0</li>
-						<li class="row-09">2016-07-08</li>
-						<li class="row-10">3399</li>
-						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
-					</ul>
-				</div>
-
-				<div class="list-item">
-					<ul>
-						<li class="row-01">1314520</li>
-						<li class="row-02">三星/Samsung</li>
-						<li class="row-03">全球/ALL</li>
-						<li class="row-04">SM-G935A</li>
-						<li class="row-05">G935AUCS2APF2</li>
-						<li class="row-06">6.0.1</li>
-						<li class="row-07">全资料[五件套] /ALL</li>
-						<li class="row-08">150.0</li>
-						<li class="row-09">2016-07-08</li>
-						<li class="row-10">3399</li>
-						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
-					</ul>
-				</div>
-
-				<div class="list-item">
-					<ul>
-						<li class="row-01">1314520</li>
-						<li class="row-02">三星/Samsung</li>
-						<li class="row-03">全球/ALL</li>
-						<li class="row-04">SM-G935A</li>
-						<li class="row-05">G935AUCS2APF2</li>
-						<li class="row-06">6.0.1</li>
-						<li class="row-07">全资料[五件套] /ALL</li>
-						<li class="row-08">150.0</li>
-						<li class="row-09">2016-07-08</li>
-						<li class="row-10">3399</li>
-						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
-					</ul>
-				</div>
-			</div>
-
-		</div>
-
-		<div class="main-content">
-			
-			<div class="listRec">
-				<h3 class="title">暂时未定标题</h3>
-				<div class="header">
-					<div class="row-01">标签</div>
-                    <div class="row-02">品牌</div>
-                    <div class="row-03">区域 / 国家</div>
-                    <div class="row-04">型号</div>
-                    <div class="row-05">版本号</div>
-                    <div class="row-06">Android OS</div>
-                    <div class="row-07">资料类型</div>
-                    <div class="row-08">价格(金币)</div>
-                    <div class="row-09">更新日期</div>
-                    <div class="row-10">查看</div>
-                    <div class="row-11">下载</div>
-                    <div class="row-12">下载链接</div>
-				</div>
-
-
-				<div class="list-item">
-					<ul>
-						<li class="row-01">1314520</li>
-						<li class="row-02">三星/Samsung</li>
-						<li class="row-03">全球/ALL</li>
-						<li class="row-04">SM-G935A</li>
-						<li class="row-05">G935AUCS2APF2</li>
-						<li class="row-06">6.0.1</li>
-						<li class="row-07">全资料[五件套] /ALL</li>
-						<li class="row-08">150.0</li>
-						<li class="row-09">2016-07-08</li>
-						<li class="row-10">3399</li>
-						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
-					</ul>
-				</div>
-
-				<div class="list-item">
-					<ul>
-						<li class="row-01">1314520</li>
-						<li class="row-02">三星/Samsung</li>
-						<li class="row-03">全球/ALL</li>
-						<li class="row-04">SM-G935A</li>
-						<li class="row-05">G935AUCS2APF2</li>
-						<li class="row-06">6.0.1</li>
-						<li class="row-07">全资料[五件套] /ALL</li>
-						<li class="row-08">150.0</li>
-						<li class="row-09">2016-07-08</li>
-						<li class="row-10">3399</li>
-						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
-					</ul>
-				</div>
-
-				<div class="list-item">
-					<ul>
-						<li class="row-01">1314520</li>
-						<li class="row-02">三星/Samsung</li>
-						<li class="row-03">全球/ALL</li>
-						<li class="row-04">SM-G935A</li>
-						<li class="row-05">G935AUCS2APF2</li>
-						<li class="row-06">6.0.1</li>
-						<li class="row-07">全资料[五件套] /ALL</li>
-						<li class="row-08">150.0</li>
-						<li class="row-09">2016-07-08</li>
-						<li class="row-10">3399</li>
-						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
-					</ul>
-				</div>
-
-				<div class="list-item">
-					<ul>
-						<li class="row-01">1314520</li>
-						<li class="row-02">三星/Samsung</li>
-						<li class="row-03">全球/ALL</li>
-						<li class="row-04">SM-G935A</li>
-						<li class="row-05">G935AUCS2APF2</li>
-						<li class="row-06">6.0.1</li>
-						<li class="row-07">全资料[五件套] /ALL</li>
-						<li class="row-08">150.0</li>
-						<li class="row-09">2016-07-08</li>
-						<li class="row-10">3399</li>
-						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
-					</ul>
-				</div>
-
-				<div class="list-item">
-					<ul>
-						<li class="row-01">1314520</li>
-						<li class="row-02">三星/Samsung</li>
-						<li class="row-03">全球/ALL</li>
-						<li class="row-04">SM-G935A</li>
-						<li class="row-05">G935AUCS2APF2</li>
-						<li class="row-06">6.0.1</li>
-						<li class="row-07">全资料[五件套] /ALL</li>
-						<li class="row-08">150.0</li>
-						<li class="row-09">2016-07-08</li>
-						<li class="row-10">3399</li>
-						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
-					</ul>
-				</div>
-
-				<div class="list-item">
-					<ul>
-						<li class="row-01">1314520</li>
-						<li class="row-02">三星/Samsung</li>
-						<li class="row-03">全球/ALL</li>
-						<li class="row-04">SM-G935A</li>
-						<li class="row-05">G935AUCS2APF2</li>
-						<li class="row-06">6.0.1</li>
-						<li class="row-07">全资料[五件套] /ALL</li>
-						<li class="row-08">150.0</li>
-						<li class="row-09">2016-07-08</li>
-						<li class="row-10">3399</li>
-						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
-					</ul>
-				</div>
-
-				<div class="list-item">
-					<ul>
-						<li class="row-01">1314520</li>
-						<li class="row-02">三星/Samsung</li>
-						<li class="row-03">全球/ALL</li>
-						<li class="row-04">SM-G935A</li>
-						<li class="row-05">G935AUCS2APF2</li>
-						<li class="row-06">6.0.1</li>
-						<li class="row-07">全资料[五件套] /ALL</li>
-						<li class="row-08">150.0</li>
-						<li class="row-09">2016-07-08</li>
-						<li class="row-10">3399</li>
-						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
-					</ul>
-				</div>
-
-				<div class="list-item">
-					<ul>
-						<li class="row-01">1314520</li>
-						<li class="row-02">三星/Samsung</li>
-						<li class="row-03">全球/ALL</li>
-						<li class="row-04">SM-G935A</li>
-						<li class="row-05">G935AUCS2APF2</li>
-						<li class="row-06">6.0.1</li>
-						<li class="row-07">全资料[五件套] /ALL</li>
-						<li class="row-08">150.0</li>
-						<li class="row-09">2016-07-08</li>
-						<li class="row-10">3399</li>
-						<li class="row-11">224</li>
-						<li class="row-12"><a href="/" class="btn btn-info">下载</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-	</div>
 	
+				<div class="list-item" v-cloak v-for="(item,index) in list">
+					<ul>
+						<li class="row-01"><a :href="['/load_search?keyword='+item.tag ]">@{{item.tag}}</a></li>
+						<li class="row-02"><a :href="['/load_search?keyword='+item.brand]">@{{item.brand}}</a></li>
+						<li class="row-03"><a :href="['/load_search?keyword='+item.country]">@{{item.country}}/ALL</a></li>
+						<li class="row-04"><a :href="['/load_search?keyword='+item.model]">@{{item.model}}</a></li>
+						<li class="row-05"><a :href="['/load_search?keyword='+item.version]">@{{item.version}}</a></li>
+						<li class="row-06"><a :href="['/load_search?keyword='+item.os]">@{{item.os}}</a></li>
+						<li class="row-07"><a :href="['/load_search?keyword='+item.type]">@{{item.type}}</a></li>
+						<li class="row-08">@{{item.price}}</li>
+						<li class="row-09">@{{item.updated_at}}</li>
+						<li class="row-10">@{{item.view_num}}</li>
+						<li class="row-11">@{{item.download_num}}</li>
+						<li class="row-12"><a :href="['/load_info?keyword='+item.id]" class="btn btn-info">下载</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div class="footer">
 		<p>粤ICP备17024526号-1</p>
@@ -381,7 +101,7 @@
 	</script>
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
-	<!-- <script src="scripts/load.js"></script> -->
+	<script src="scripts/load.js"></script>
 </body>
 </html>
 

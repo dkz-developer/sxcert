@@ -39,10 +39,47 @@ nav {
 
 			a {
 				color: #3fbad9;
-				font-size: 26px;
-				font-weight: 700;
+				font-size: 18px;
 				text-decoration: none;
 
+			}
+		}
+
+		.search {
+			height: 32px;
+			width: 460px;
+			margin-top: 15px;
+			float: left;
+			margin-left: 20px;
+
+			input {
+			    float: left;
+			    font-size: 14px;
+			    height: 32px;
+			    outline: none;
+			    width: 380px;
+			    padding-left: 20px;
+			    border-radius: 4px 0 0 4px;
+			    float: left;
+			}
+
+			button {
+				width: 80px;
+				height: 32px;
+				line-height: 32px;
+				text-align: center;
+				background: #3fbad9;
+				color: #fff;
+				font-weight: 600;
+				float:left;
+				border: none;
+				outline: none;
+			    border-radius: 0 4px 4px 0;
+				transition: all 0.3s ease 0s;
+
+			    &:hover {
+			    	background: #2aa5c4;
+			    }
 			}
 		}
 
@@ -118,54 +155,8 @@ nav {
 }
 
 .box-container {
-
-	.logo {
-		text-align: center;
-		margin-top: 150px;
-
-		img {
-			width: 346px;
-			height: 97px;
-		}
-	}
-
-	.search {
-		height: 45px;
-		width: 700px;
+	width: 1200px;
 		margin: 0 auto;
-		margin-top: 20px;
-
-		input {
-		    float: left;
-		    font-size: 16px;
-		    height: 45px;
-		    outline: none;
-		    width: 600px;
-		    padding-left: 20px;
-		    border-radius: 4px 0 0 4px;
-		    float: left;
-		}
-
-		button {
-			width: 100px;
-			height: 45px;
-			line-height: 45px;
-			text-align: center;
-			background: #3fbad9;
-			color: #fff;
-			font-weight: 600;
-			float:left;
-			border: none;
-			outline: none;
-		    border-radius: 0 4px 4px 0;
-			transition: all 0.3s ease 0s;
-
-		    &:hover {
-		    	background: #2aa5c4;
-		    }
-		}
-	}
-
 	.main-content {
 
 		width: 1200px;
@@ -173,9 +164,9 @@ nav {
 		border-radius: 4px;
 		border: 1px solid #ccc;
 		background: #fff;
-		margin-top: 40px;
+		margin-top: 100px;
 
-		.hotRec {
+		 .listRec {
 
 			.title {
 				height: 40px;
@@ -234,9 +225,9 @@ nav {
 
 				a {
 					text-decoration: none;
-
 				}
 			}
+
 
 				.row-01{width: 80px;}
 				.row-02{width: 110px;}
@@ -252,11 +243,8 @@ nav {
 				.row-12{width: 90px;}
 			}
 		}
-
-
 	}
 }
-
 
 .footer {
 	width: 100%;
@@ -268,6 +256,16 @@ nav {
 		color: #fff;
 		text-align: center;
 		padding-top: 100px;
+	}
+}
+
+#kkpager{
+	height: 50px;
+	line-height: 50px;
+
+
+	.pageBtnWrap{
+		margin-top: 20px;
 	}
 }
 

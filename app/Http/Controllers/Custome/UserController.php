@@ -24,7 +24,7 @@ class UserController extends Controller
 		$captcha = $request->input('captcha');
 		if (Session::get('milkcaptcha') != $captcha) 
 			return response()->json(['code'=>'F','msg'=>'验证码错误']);
-		$userName = $request->input('userName');
+		$userName = $request->input('username');
 		$password = $request->input('password');
 		$userInfo = User::where([['UserName',$userName],['Password',md5($password)]])->first();
 		if(! $userInfo)
@@ -55,4 +55,96 @@ class UserController extends Controller
 		header('Content-Type: image/jpeg');
 		$builder->output();
 	}
+	
+	
+	//注册
+	public function register(Request $request){
+	    $vcode = $request->input('vcode');
+	    if (Session::get('vcode') != $vcode){
+	        return response()->json(['code'=>'F','msg'=>'验证码错咯']);
+	    }
+	        
+	    $phone = $request->input('phone');
+	    if(Session::get('phone') != $phone){
+	        return response()->json(['code'=>'F','msg'=>'手机号与验证手机号不一致呀']);
+	    }	    
+	    $username = $request->input('username');
+	    $password = $request->input('password');
+	    $userInfo = User::where(['UserName',$username])->first();
+	    
+	    if($userInfo){
+	        return response()->json(['code'=>'F','msg'=>'用户名已存在，换一个试试呗']);
+	    }
+	    $data = array(
+	        'Mobile' => $phone,
+	        'UserName' => $username,
+	        'Password' => $password,
+	        'CreateTime' => date('Y-m-d H:i:s'),
+	    );
+	    
+	    
+	    $res = User::insert($data);
+	    if($res){
+	        session(['userInfo'=>$userInfo->toArray()]);
+	        return response()->json(['code'=>'S','msg'=>'注册成功','url'=>'/index']);
+	    }else{
+	        return response()->json(['code'=>'F','msg'=>'注册失败']);
+	    }
+	}
+	
+	//修改密码
+	public function restpwd(Request $request){
+	    $username = $request -> input ('username');
+	    if (Session::get('userInfo.UserName') != $username){  
+	        return response()->json(['code'=>'F','msg'=>'操作失败']);
+	    }
+
+	    //判断密码是否正确
+	    $userName = $request->input('username');
+	    $password = $request->input('password');
+	    $userInfo = User::where([['UserName',$userName],['Password',md5($password)]])->first();
+	    if(!$userInfo){
+	        return response()->json(['code'=>'F','msg'=>'旧密码错误']);
+	    }
+	    $newpassword = $request->input('newpassword'); //新密码一致性就靠前段来判断  后台就判断第一个密码
+	    
+	    $res = User::where('UserId',$userInfo['UserId'])->update(array('Password' => md5($newpassword) ));
+	    if($res){
+	        return response()->json(['code'=>'F','msg'=>'密码修改成功']);
+	    }else{
+	        return response()->json(['code'=>'F','msg'=>'密码修改失败']);
+	    }
+	}
+	
+	/*
+	 * 密码重置
+	 * $vcode 验证码
+	 * $username 用户名
+	 * $newpassword 新密码
+	 */
+	public function findpwd(Request $request){
+	    $vcode = $request->input('resetcode');
+	    if (Session::get('resetcode') != $vcode){
+	        return response()->json(['code'=>'F','msg'=>'验证码错咯']);
+	    }
+	    $username = $request -> input ('username');
+	    $newpassword = $request -> input ('newpassword');
+	    $userInfo = User::where(['UserName',$username])->first();
+        if(!$userInfo){
+            return response()->json(['code'=>'F','msg'=>'请确认手机号或者用户名正确']);
+        }
+	    $data = array(
+	        'Password' => $newpassword
+	    );
+	    $res = User::where('UserId',$userInfo['UserId'])->update(array('Password' => md5($newpassword) ));
+	     
+	    if($res){
+	        Session::forget('resetcode');
+	        return response()->json(['code'=>'F','msg'=>'密码修改成功']);
+	    }else{
+	        return response()->json(['code'=>'F','msg'=>'密码修改失败']);
+	    }
+	}
+
+	
 }

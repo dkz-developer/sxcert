@@ -20,9 +20,24 @@ Route::get('/login', function () {
 	return view('login');
 });
 
+// 找回密码页面
+Route::get('/findPassword', function () {
+	return view('findPassword');
+});
+
 // 下载页
 Route::get('/load', function () {
 	return view('load');
+});
+
+// 下载页 search
+Route::get('/search', function () {
+	return view('search');
+});
+
+// 下载页 详情页
+Route::get('/load_info', function () {
+	return view('load_info');
 });
 
 // 后台路由
@@ -36,11 +51,16 @@ Route::group(['namespace' => 'Admin'], function () {
 	Route::get('/admin/addInfo', 'InfoController@addInfo');
 	Route::get('/admin/infoList', 'InfoController@infoList');
 	Route::get('/admin/common', 'InfoController@common');
-	Route::get('/admin/commonPage', 'InfoController@commonPage');
+	Route::post('/admin/commonAdd', 'InfoController@commonAdd');
+	Route::post('/admin/fileUpload','InfoController@fileUpload');
+	Route::post('/admin/addInfoHandle','InfoController@addInfoHandle');
 });
 
 // 前台
 Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/custome/login', 'UserController@login');
+	Route::post('/custome/loadlist', 'LoadListController@loadlist');
+	Route::post('/custome/detail', 'LoadListController@detail');
+	Route::get('/custome/forum', 'ForumController@ForumList');
 	
 });

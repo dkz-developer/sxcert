@@ -11,7 +11,7 @@ a<!DOCTYPE html>
 	<meta name="description" content="">
 
     <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="style/css/load.css" rel="stylesheet">
+    <link href="style/css/feedback.css" rel="stylesheet">
 </head>
 <body>
 	<nav class="clearfix">
@@ -30,57 +30,143 @@ a<!DOCTYPE html>
 					<li><a class="active" href="/load">首页</a></li>
 					<li><a href="">讨论区</a></li>
 					<li><a href="">充值</a></li>
+					<li><a href="/feedback">意见反馈</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
 	<div class="box-container" id="app" data-value="{{ csrf_token() }}">
-	
-		<div class="logo">
-			<a href="/load"><img src="images/logo.png" alt=""></a>
-		</div>
-
-		<div class="search">
-			<input class="form-control" type="text" placeholder="输入机型或版本号(至少3个字符)">
-			<button @click="search">JUST搜搜</button>
-		</div>
-
-		<div class="main-content">
-			
-			<div class="hotRec">
-				<h3 class="title">热门推荐</h3>
-				<div class="header">
-					<div class="row-01">标签</div>
-                    <div class="row-02">品牌</div>
-                    <div class="row-03">区域 / 国家</div>
-                    <div class="row-04">型号</div>
-                    <div class="row-05">版本号</div>
-                    <div class="row-06">Android OS</div>
-                    <div class="row-07">资料类型</div>
-                    <div class="row-08">价格(金币)</div>
-                    <div class="row-09">更新日期</div>
-                    <div class="row-10">查看</div>
-                    <div class="row-11">下载</div>
-                    <div class="row-12">下载链接</div>
+		<div class="inner">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					意见反馈
 				</div>
+				<div class="panel-body">
+					<div class="hot">
+						<h3>被顶起来的评论</h3>
+						<div class="content">
+							<div class="listItem clearfix">
+								<div class="photo">
+									<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">
+								</div>
+								<div class="info">
+									<h4 class="nickname">宣州是爷</h4>
+									<p>我总共充了40块钱，就下了一次，150金币的，现在又想下载ROM，怎么又提示我充值呢？ ​​​​</p>
+									<div class="bottom">
+										<span>2017-03-31</span>
+									</div>
 
-	
-				<div class="list-item" v-cloak v-for="(item,index) in list">
-					<ul>
-						<li class="row-01"><a :href="['/search?keyword='+item.tag ]">@{{item.tag}}</a></li>
-						<li class="row-02"><a :href="['/search?keyword='+item.brand]">@{{item.brand}}</a></li>
-						<li class="row-03"><a :href="['/search?keyword='+item.country]">@{{item.country}}/ALL</a></li>
-						<li class="row-04"><a :href="['/search?keyword='+item.model]">@{{item.model}}</a></li>
-						<li class="row-05"><a :href="['/search?keyword='+item.version]">@{{item.version}}</a></li>
-						<li class="row-06"><a :href="['/search?keyword='+item.os]">@{{item.os}}</a></li>
-						<li class="row-07"><a :href="['/search?keyword='+item.type]">@{{item.type}}</a></li>
-						<li class="row-08">@{{item.price}}</li>
-						<li class="row-09">@{{item.updated_at}}</li>
-						<li class="row-10">@{{item.view_num}}</li>
-						<li class="row-11">@{{item.download_num}}</li>
-						<li class="row-12"><a :href="['/info?keyword='+item.id]" class="btn btn-info">下载</a></li>
-					</ul>
+								</div>
+							</div>
+							<div class="listItem clearfix">
+								<div class="photo">
+									<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">
+								</div>
+								<div class="info">
+									<h4 class="nickname">宣州是爷</h4>
+									<p>我总共充了40块钱，就下了一次，150金币的，现在又想下载ROM，怎么又提示我充值呢？ ​​​​</p>
+									<div class="bottom">
+										<span>2017-03-31</span>
+									</div>
+
+								</div>
+							</div>
+							<div class="listItem clearfix">
+								<div class="photo">
+									<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">
+								</div>
+								<div class="info">
+									<h4 class="nickname">宣州是爷</h4>
+									<p>我总共充了40块钱，就下了一次，150金币的，现在又想下载ROM，怎么又提示我充值呢？ ​​​​</p>
+									<div class="bottom">
+										<span>2017-03-31</span>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="total">
+						<button><em>571</em>条评论</button>
+						<div class="options">
+							<span class="active">最新</span>
+							<span>最早</span>
+							<span>最热</span>
+						</div>
+					</div>
+					<div class="total-content">
+						<div class="listItem clearfix">
+							<div class="photo">
+								<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">
+							</div>
+							<div class="info">
+								<h4 class="nickname">宣州是爷</h4>
+								<p>我总共充了40块钱，就下了一次，150金币的，现在又想下载ROM，怎么又提示我充值呢？ ​​​​</p>
+								<div class="bottom">
+									<span>2017-03-31</span>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="listItem clearfix">
+							<div class="photo">
+								<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">
+							</div>
+							<div class="info">
+								<h4 class="nickname">宣州是爷</h4>
+								<p>我总共充了40块钱，就下了一次，150金币的，现在又想下载ROM，怎么又提示我充值呢？ ​​​​</p>
+								<div class="bottom">
+									<span>2017-03-31</span>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="listItem clearfix">
+							<div class="photo">
+								<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">
+							</div>
+							<div class="info">
+								<h4 class="nickname">宣州是爷</h4>
+								<p>我总共充了40块钱，就下了一次，150金币的，现在又想下载ROM，怎么又提示我充值呢？ ​​​​</p>
+								<div class="bottom">
+									<span>2017-03-31</span>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="listItem clearfix">
+							<div class="photo">
+								<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">
+							</div>
+							<div class="info">
+								<h4 class="nickname">宣州是爷</h4>
+								<p>我总共充了40块钱，就下了一次，150金币的，现在又想下载ROM，怎么又提示我充值呢？ ​​​​</p>
+								<div class="bottom">
+									<span>2017-03-31</span>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="listItem clearfix">
+							<div class="photo">
+								<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">
+							</div>
+							<div class="info">
+								<h4 class="nickname">宣州是爷</h4>
+								<p>我总共充了40块钱，就下了一次，150金币的，现在又想下载ROM，怎么又提示我充值呢？ ​​​​</p>
+								<div class="bottom">
+									<span>2017-03-31</span>
+								</div>
+
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

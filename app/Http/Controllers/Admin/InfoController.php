@@ -35,7 +35,7 @@ class InfoController extends Controller
 		$ids = explode(',', $ids);
 		if(empty($ids))
 			return response()->json(['code'=>'F','msg'=>'参数错误！']);
-		$result = Info::whereIn($ids)->delete();
+		$result = Info::whereIn('id',$ids)->delete();
 		if($result)
 			return response()->json(['code'=>'S','msg'=>'删除成功！']);
 		return response()->json(['code'=>'F','msg'=>'删除失败！']);
@@ -70,10 +70,23 @@ class InfoController extends Controller
 		return response()->json(['path'=>$path]);
 	}	
 
-	public function infoList()
+	public function infoList(Request $request)
 	{
-		$result = Info::paginate(15);
-		return view('admin.infoList',['list'=>$result]);
+		$stime = $request->input('start_time','');
+		$etime = $request->input('end_time','');
+		$index = $request->input('index','');
+		$keyword = $request->input('keyword','');
+		$indexArr = ['id','brand','model','country','os','type','tag','version'];
+		$where = [];
+		if(! empty($stime))
+			array_push($where, ['updated_at','>=',$stime]);
+		if(! empty($etime))
+			array_push($where, ['updated_at','<=',$etime]);
+		if(! empty($index) && ! empty($index) && ! empty($keyword))
+			array_push($where, [$indexArr [$index],'=',$keyword]);
+		$result = Info::where($where)->paginate(15);
+		$rows = Info::where($where)->count();
+		return view('admin.infoList',['list'=>$result,'rows'=>$rows]);
 	}
 
 	public function common()

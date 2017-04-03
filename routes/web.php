@@ -50,14 +50,14 @@ Route::get('/feedback', function () {
 	return view('feedback');
 });
 
+// 后台登录
+Route::get('/admin/login', 'Admin\UserController@login');
+Route::get('/admin/kit/captcha/{tmp}', 'Admin\UserController@captcha');
+Route::post('/admin/loginHandle', 'Admin\UserController@loginHandle');
 // 后台路由
-Route::group(['namespace' => 'Admin'], function () {
-	// 后台登录
-	Route::get('/admin/login', 'UserController@login');
-	Route::get('/admin/kit/captcha/{tmp}', 'UserController@captcha');
+Route::group(['namespace' => 'Admin','middleware'=>'adminauth'], function () {
 	Route::get('/admin/logout', 'UserController@logout');
 	Route::get('/admin/index', 'UserController@index');
-	Route::post('/admin/loginHandle', 'UserController@loginHandle');
 	Route::get('/admin/addInfo', 'InfoController@addInfo');
 	Route::get('/admin/infoList', 'InfoController@infoList');
 	Route::get('/admin/common', 'InfoController@common');

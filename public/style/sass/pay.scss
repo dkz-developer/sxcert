@@ -39,7 +39,7 @@ body {
 	.main {
 		width: 400px;
 		margin: 60px auto 0;
-		padding: 50px 50px 30px;
+		padding: 20px 50px 30px;
 		background-color: #fff;
 		border-radius: 4px;
 		box-shadow: 0 0 8px rgba(0,0,0,.1);
@@ -48,11 +48,20 @@ body {
 
 
 		.main-title {
-			margin: 0 auto 50px;
-			padding: 10px;
-			font-weight: 600;
-			font-size: 18px;
-		
+			margin: 0 auto 20px;
+			font-weight: 500;
+			font-size: 30px;
+			color: #ea6f5a;
+
+			em {
+				display: inline-block;
+				margin: 0 10px;
+				width: 4px;
+				height: 4px;
+				border-radius: 50%;
+				background: #969696;
+				vertical-align: middle;
+			}
 		}
 
 		.main-content {
@@ -68,21 +77,9 @@ body {
 						border: 1px solid #c8c8c8;
 						background-color: hsla(0,0%,71%,.1);
 						vertical-align: middle;
-
-						&.restyle {
-							border-bottom: none;
-						}
+						border-radius: 4px;
 					}
 
-					&:first-child {
-						input {
-							border-radius: 4px 4px 0 0;
-						}
-					}
-					
-					.lastIn {
-						border-radius: 0 0 4px 4px;
-					}
 
 					i {
 						position: absolute;
@@ -91,52 +88,24 @@ body {
 						font-size: 20px;
 						color: #969696;
 					}
+
 				}
 
-				.sendMessage {
-					position: absolute;
-					top: 8px;
-					right: 5px;
-				}
-
-				.findPassword {
+				.alert {
 					height: 30px;
-					line-height: 30px;
-					text-align: right;
-					margin: 10px 0;
-
-					a {
-						color: #666;
-						text-decoration: none;
-
-						&:hover {
-							color: #333;
-						}
-					}
+					line-height: 2px;
+					margin-top: 20px;
+					text-align: left;
 				}
+				
 
 				.submitBtn {
-					margin: 20px 0;
+					margin-top: 20px;
 					button {
 						width: 100%;
 					}
 				}
-
-				.back {
-					height: 30px;
-					line-height: 30px;
-					text-align: center;
-
-					a {
-						color: #555;
-						text-decoration: none;
-
-						&:hover {
-							color: #333;
-						}
-					}
-				}
-
+				
 				.error-info {
 					color: red;
 					text-align: center;
@@ -144,14 +113,6 @@ body {
 					line-height: 30px;
 					margin-top: 20px;
 				}
-
-				.vCode-img {
-					position: absolute;
-					top: 5px;
-					right: 10px;
-					cursor: pointer;
-				}
-
 			}
 		}
 	}

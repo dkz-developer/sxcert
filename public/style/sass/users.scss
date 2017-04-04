@@ -24,6 +24,181 @@ body {
 	margin: 0 auto;
 	margin-top: 65px;
 
+	.main-content {
+
+		width: 860px;
+		float: left;
+		background: #fff;
+		min-height: 500px;
+
+		.content {
+
+			.title {
+
+				height: 60px;
+				line-height: 60px;
+
+				button {
+					float: left;
+					margin: 13px 5px 0 14px;
+				}
+				
+				.item {
+					float: left;
+					span {
+						height: 40px;
+						line-height: 40px;
+						padding: 0 10px;
+						text-align: center;
+						display: inline-block;
+						color: #666;
+						cursor: pointer;
+
+						&.active {
+							color: #3fbad9;
+						}
+
+						&:hover {
+							color: #3fbad9;
+						}
+					}
+				 }
+
+			}
+
+			.inner {
+				.header{
+					height: 48px;
+					line-height: 48px;
+					color: #4c4f4f;
+
+					div{
+						text-align: center;
+						background: #f3f3f3;
+						font-size: 14px;
+						float: left;
+					}
+
+					.row-01{width: 60px;}
+					.row-02{width: 60px;}
+					.row-03{width: 60px;}
+					.row-04{width: 100px;}
+					.row-05{width: 100px;}
+					.row-06{width: 68px;}
+					.row-07{width: 90px;}
+					.row-08{width: 100px;}
+					.row-09{width: 70px;}
+					.row-10{width: 70px;}
+					.row-11{width: 80px;}
+				}
+
+				.list-item{
+
+					height: 68px;
+					line-height: 68px;
+					border-bottom: 1px #f2f2f2 solid;
+					color: #666;
+
+					&:nth-child(odd){
+						background: #fbfbfb;
+					}
+
+					li{
+						height: 68px;
+						line-height: 68px;
+						float: left;
+						text-align: center;
+						list-style: none;
+						overflow: hidden;
+
+						a {
+							text-decoration: none;
+						}
+					}
+					.row-01{width: 60px;}
+					.row-02{width: 60px;}
+					.row-03{width: 60px;}
+					.row-04{width: 100px;}
+					.row-05{width: 100px;}
+					.row-06{width: 68px;}
+					.row-07{width: 90px;}
+					.row-08{width: 100px;}
+					.row-09{width: 70px;}
+					.row-10{width: 70px;}
+					.row-11{width: 80px;}
+				}				
+			}
+
+
+		}
+	}
+
+	.per-info {
+		width: 280px;
+		float: left;
+		margin:0 30px;
+
+		.photo {
+			width: 200px;
+			height: 200px;
+			margin: 0 auto;
+
+			img {
+				width: 200px;
+				height: 200px;
+			}
+		}
+
+		.nickname {
+			height: 70px;
+			line-height: 70px;
+			color: #666;
+			font-size: 20px;
+			font-weight: 500;
+
+		}
+
+		.info {
+			padding-bottom: 15px;
+			li {
+				list-style: none;
+				width: 100%;
+				height: 40px;
+				line-height: 40px;
+				border-top: 1px solid #f2f2f2;
+				padding: 0 5px;
+
+				span {
+					width: 60px; 
+					float: left;
+					color: #333;
+					font-weight: 500;
+
+				}
+				em {
+					font-style: normal;
+					color: #777;
+
+				}
+
+				.mainColor {
+					color: #3fbad9;
+					font-weight: 500;
+					text-decoration: none;
+					cursor: pointer;
+					&:hover {
+						color: #2aa5c4;
+					}
+				}
+
+				button {
+					margin-top: 18px;
+				}
+			}
+		}
+	}
+
+
 	.nav {
 		border-bottom: none;
 	}

@@ -73,7 +73,7 @@
 								<td>{{$val->download_password}}</td>
 								<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>
 								<a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+								<a style="text-decoration:none" class="ml-5" onClick="article_del(this,{{$val->id}})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 						</tr>
 						@endforeach
 					</tbody>
@@ -119,20 +119,46 @@ function article_edit(title,url,id,w,h){
 }
 /*资讯-删除*/
 function article_del(obj,id){
-	layer.confirm('确认要删除吗？',function(index){
+	layer.confirm('确认要删除吗？',function(){
 		$.ajax({
+			headers: {
+	    		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	    	},
 			type: 'POST',
-			url: '',
+			url: '／admin/delInfo',
+			data: {'id',id},
 			dataType: 'json',
 			success: function(data){
 				$(obj).parents("tr").remove();
-				layer.msg('已删除!',{icon:1,time:1000});
+				// layer.msg('已删除!',{icon:1,time:1000});
 			},
 			error:function(data) {
 				console.log(data.msg);
 			},
 		});		
 	});
+}
+function datadel(){
+  	var ids = '';
+  	$('input[type=checkbox]:checked').each(function(){
+  		ids += $(this).val() + ',';
+  	})
+    ids = ids.substring(0,ids.length-1);
+    $.ajax({
+    	headers: {
+    		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    	},
+    	type: 'POST',
+    	url: '/admin/delInfo',
+		dataType: 'json',
+		data: {'ids':ids},
+		success: function(result){
+			if(result){
+				$('input[type=checkbox]:checked').parents('tr').remove();
+				layer.confirm(result.msg);
+			}
+		} 
+    });
 }
 
 /*资讯-审核*/

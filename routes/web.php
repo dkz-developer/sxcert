@@ -16,8 +16,8 @@ Route::get('/', function () {
 });
  
 // 登录注册页
-Route::get('/login', function () {
-	return view('login');
+Route::get('/enter', function () {
+	return view('enter');
 });
 
 // 找回密码页面

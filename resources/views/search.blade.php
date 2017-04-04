@@ -23,15 +23,16 @@
 				</div>
 
 				<div class="btnGroup">
-					<a class="login-btn" href="/login">登录</a>
-					<a class="register-btn" href="/register">注册</a>
+					<a class="login-btn" href="/enter?type=login">登录</a>
+					<a class="register-btn" href="/enter?type=register">注册</a>
 				</div>
 
 				<div class="items">
 					<ul>
-						<li><a class="active" href="/load">首页</a></li>
-						<li><a href="">讨论区</a></li>
-						<li><a href="">充值</a></li>
+						<li><a href="/load">首页</a></li>
+						<li><a href="/">讨论区</a></li>
+						<li><a href="/pay">充值</a></li>
+						<li><a href="/feedback">意见反馈</a></li>
 					</ul>
 				</div>
 			</div>

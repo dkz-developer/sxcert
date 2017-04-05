@@ -40,10 +40,7 @@ Route::get('/search', function () {
 	return view('search');
 });
 
-// 下载页 详情页
-Route::get('/info', function () {
-	return view('info');
-});
+
 
 // 个人 详情页
 Route::get('/users', function () {
@@ -81,5 +78,6 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::post('/custome/detail', 'LoadListController@detail');
 	Route::get('/custome/forum', 'ForumController@ForumList');
 	Route::get('/custome/register', 'UserController@register');
-	
+	// 下载页 详情页
+	Route::get('/info', 'LoadListController@detail');
 });

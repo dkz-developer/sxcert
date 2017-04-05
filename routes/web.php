@@ -72,7 +72,7 @@ Route::group(['namespace' => 'Admin','middleware'=>'adminauth'], function () {
 	Route::post('/admin/delInfo','InfoController@rmInfo');
 	Route::get('/admin/setHot','InfoController@setHot');
 });
-    Route::get('/custome/kit/captcha/{tmp}', 'Custome\UserController@captcha');
+Route::get('/custome/kit/captcha/{tmp}', 'Custome\UserController@captcha');
 // 前台
 Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/custome/login', 'UserController@login');

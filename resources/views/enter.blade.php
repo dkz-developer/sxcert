@@ -47,18 +47,18 @@
 				<div class="main-content">
 					<form action="" v-if="(isLogin == true)"  data-act="login">
 						<div class="input-prepend">
-							<input class="restyle" type="text" placeholder="请输入用户名或者手机号" id="userName"  v-on:blur="verification" data-error="用户名不能为空">
+							<input class="restyle" type="text" placeholder="请输入用户名或者手机号" id="username"  v-on:blur="verification" data-error="用户名不能为空">
 							<i class="fa fa-user"></i>
 						</div>
 
 						<div class="input-prepend">
-							<input  type="text" class="restyle" placeholder="请输入密码" id="passWord" v-on:blur="verification" data-error="密码不能为空">
+							<input  type="password" class="restyle" placeholder="请输入密码" id="password" v-on:blur="verification" data-error="密码不能为空">
 							<i class="fa fa-lock"></i>
 						</div>
 
 						<div class="input-prepend">
 							<input  type="text" placeholder="请输入验证码" class="lastIn" id="vcode" v-on:blur="verification" data-error="验证码不能为空">
-							<span class="vCode-img"><img src="http://121.42.147.197/admin/kit/captcha/1" alt=""></span>
+							<span class="vCode-img"><img :src="vcodeurl" alt="" @click="refreshcode"></span>
 						</div>
 
 						<div class="findPassword">
@@ -77,7 +77,7 @@
 					</form>
 					<form action="" v-if="(isLogin == false)" data-act="register">
 						<div class="input-prepend">
-							<input class="restyle" type="text" placeholder="请输入用户名" id="userName" v-on:blur="verification" data-error="用户名不能为空">
+							<input class="restyle" type="text" placeholder="请输入用户名" id="username" v-on:blur="verification" data-error="用户名不能为空">
 							<i class="fa fa-user"></i>
 						</div>
 
@@ -87,18 +87,24 @@
 						</div>
 
 						<div class="input-prepend">
-							<input class="restyle" type="password" placeholder="请输入密码" class="lastIn" id="passWord" v-on:blur="verification" data-error="密码不能为空">
+							<input class="restyle" type="text" placeholder="请输入短信验证码" id="mescode"  v-on:blur="verification" data-error="短信验证码不能为空">
+							<i class="fa fa-shield"></i>
+							<button type="button" class="btn btn-primary sendMessage" @click="sendMessage">发送验证码</button>
+						</div>
+
+						<div class="input-prepend">
+							<input class="restyle" type="password" placeholder="请输入密码" class="lastIn" id="password" v-on:blur="verification" data-error="密码不能为空">
 							<i class="fa fa-lock"></i>
 						</div>
 
 						<div class="input-prepend">
-							<input class="restyle" type="passwordAgain" placeholder="请再次输入密码"  id="passwordAgain" v-on:blur="verification" data-error="确认密码不能为空">
+							<input class="restyle" type="password" placeholder="请再次输入密码"  id="repassword" v-on:blur="verification" data-error="确认密码不能为空">
 							<i class="fa fa-lock"></i>
 						</div>
 
 						<div class="input-prepend">
 							<input  type="text" placeholder="请输入验证码" class="lastIn" id="vcode" v-on:blur="verification" data-error="验证码不能为空">
-							<span class="vCode-img"><img src="http://121.42.147.197/admin/kit/captcha/1" alt=""></span>
+							<span class="vCode-img"><img :src="vcodeurl" alt="" @click="refreshcode"></span>
 						</div>
 
 						<div class="submitBtn">

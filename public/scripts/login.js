@@ -10,6 +10,7 @@
 	    el: '#app',
 	    data: {
             isLogin: type && type == "login" ? true : false,
+            vcodeurl: "/custome/kit/captcha/"+$.mytools.GetRandomNum(10000, 99999),
 
 	    },
 	    methods: {
@@ -17,6 +18,7 @@
             nav: function(event) {
                 var type = $(event.currentTarget).attr("data-act");
                 vm.isLogin = type == "login" ? true: false;
+                vm.vcodeurl = "/custome/kit/captcha/"+$.mytools.GetRandomNum(10000, 99999);
             }, 
             verification: function(event) {
                 var obj = $(event.currentTarget);
@@ -25,7 +27,8 @@
             },
             login: login,
             register: register,
-
+            refreshcode: refreshcode,
+            sendMessage:sendMessage,
 	    },
 	});
 
@@ -44,19 +47,66 @@
         }
     }
 
+    // 验证
+    function refreshcode(event){
+        var obj = $(event.currentTarget);
+        obj.attr("src","/custome/kit/captcha/"+$.mytools.GetRandomNum(10000, 99999));  
+    }
+    // 发送验证码
+    function sendMessage(event) {
+
+        var obj = $(event.currentTarget);
+
+        var waitTime = 60;
+        function setCountdown(obj) {
+            if (waitTime == 0) {
+                obj.removeAttr("disabled");
+                obj.text("发送验证码");
+                waitTime = 60;
+            }else {
+                obj.attr("disabled", true);
+                obj.text("重新发送(" + waitTime + ")");
+                waitTime--;
+                setTimeout(function() {
+                        setCountdown(obj)
+                },
+                1000)
+            }
+        }
+
+        var flag = verification($("#mobile"), "手机号码不能为空");
+       var params = {
+            "mobile": $("#mobile").val(),
+            "_token": $("#app").attr("data-value"),
+        };
+
+        if(flag) {
+            $.post("/custome/smsre", params, function(backData) {
+                if(backData && backData.code === "S"){
+                    $(".main-content").find(".error-info > span").slideUp("slow");
+                    $(".main-content").find(".error-info").find("span").text("");
+                    clearTimeout(setCountdown);
+                    setCountdown($(obj));
+                }else{
+                    $(".main-content").find(".error-info > span").slideDown(300);
+                    $(".main-content").find(".error-info").find("span").text(backData.msg);
+                }
+            }, "json")           
+        }
+    }
     // 登录
     function login(event) {
 
         var loginBtn = $(event.currentTarget);
 
         // 验证
-        var flag = verification($("#userName"), "用户名不能为空") && verification($("#passWord"), "密码不能为空") && verification($("#vcode"), "验证码不能为空");
+        var flag = verification($("#username"), "用户名不能为空") && verification($("#password"), "密码不能为空") && verification($("#vcode"), "验证码不能为空");
 
         if(flag) {
             loginBtn.html('<i class="fa fa-spinner fa-pulse"></i>&nbsp;登录中...');
             var params = {
-                "userName": $("#userName").val(),
-                "passWord": $("#passWord").val(),
+                "username": $("#username").val(),
+                "password": $("#password").val(),
                 "_token": $("#app").attr("data-value"),
             };
 
@@ -76,15 +126,15 @@
 
         var registerBtn = $(event.currentTarget);
         // 验证
-        var flag = verification($("#userName"), "用户名不能为空") && verification($("#mobile"), "手机号不能为空") && verification($("#passWord"), "密码不能为空") && verification($("#passwordAgain"), "确认密码不能为空") && verification($("#vcode"), "验证码不能为空");
+        var flag = verification($("#username"), "用户名不能为空") && verification($("#mobile"), "手机号不能为空") && verification($("#password"), "密码不能为空") && verification($("#repassword"), "确认密码不能为空") && verification($("#vcode"), "验证码不能为空");
 
         if(flag) {
             registerBtn.html('<i class="fa fa-spinner fa-pulse"></i>&nbsp;注册提交中...');
             var params = {
-                "userName": $("#userName").val(),
+                "username": $("#username").val(),
                 "mobile": $("#mobile").val(),
-                "passWord": $("#passWord").val(),
-                "passwordAgain": $("#passwordAgain").val(),
+                "password": $("#password").val(),
+                "repassword": $("#repassword").val(),
                 "_token": $("#app").attr("data-value"),
             };
 

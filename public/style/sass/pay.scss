@@ -4,6 +4,8 @@
  * -------------------------------------------------
 */
 @import "./bootstrap.min.css";
+@import "./_topNav_index.scss";
+@import "./footer.scss";
 
 body {
 	background: #f1f1f1;
@@ -15,76 +17,6 @@ body {
 	padding: 0;
 	margin: 0;
 }
-
-nav {
-	height: 60px;
-	background: #333;
-	.inner {
-		width: 1200px;
-		height: 60px;
-		margin: 0 auto;
-		
-		.logo {
-			width: 100px;
-			height: 20px;
-			background: #fff;
-			float: left;
-			margin-top: 20px;
-		}
-
-		.items {
-			float: right;
-			margin-right: 10px;
-
-			li {
-				height: 60px;
-				line-height: 60px;
-				float: left;
-				text-align: center;
-				list-style: none;
-				margin-right: 15px;
-
-				a {
-					color: #fff;
-					text-decoration: none;
-
-					&:hover {
-						color: #03978b;
-					}
-				}
-
-
-			}
-		}
-
-		.search {
-			float: right;
-			margin-top: 15px;
-			position: relative;
-
-			input {
-				outline: none;
-				border: none;
-				width: 200px;
-				height: 30px;
-				padding-left: 30px;
-			}
-
-			span {
-				position: absolute;
-				left: 0;
-				top: 0;
-				width: 30px;
-				height: 30px;
-				line-height: 30px;
-				text-align: center;
-				cursor: pointer;
-				font-size: 18px;
-			}
-		}
-	}
-}
-
 
 .container {
 	position: relative;
@@ -156,9 +88,16 @@ nav {
 						font-size: 20px;
 						color: #969696;
 					}
+
 				}
 
-
+				.alert {
+					height: 30px;
+					line-height: 2px;
+					margin-top: 20px;
+					text-align: left;
+				}
+				
 
 				.submitBtn {
 					margin-top: 20px;
@@ -166,21 +105,16 @@ nav {
 						width: 100%;
 					}
 				}
-
+				
+				.error-info {
+					color: red;
+					text-align: center;
+					height: 30px;
+					line-height: 30px;
+					margin-top: 20px;
+				}
 			}
 		}
-	}
-}
-
-.footer {
-	width: 100%;
-	background: #444855;
-	height: 200px;
-
-	p {
-		color: #fff;
-		text-align: center;
-		padding-top: 50px;
 	}
 }
 

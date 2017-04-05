@@ -16,18 +16,20 @@ Route::get('/', function () {
 });
  
 // 登录注册页
-Route::get('/login', function () {
-	return view('login');
+Route::get('/enter', function () {
+	return view('enter');
 });
 
 // 找回密码页面
 Route::get('/findPassword', function () {
 	return view('findPassword');
 });
+
 // 支付页面
 Route::get('/pay', function () {
 	return view('pay');
 });
+
 // 下载页
 Route::get('/load', function () {
 	return view('load');
@@ -70,12 +72,14 @@ Route::group(['namespace' => 'Admin','middleware'=>'adminauth'], function () {
 	Route::post('/admin/delInfo','InfoController@rmInfo');
 	Route::get('/admin/setHot','InfoController@setHot');
 });
-
+    Route::get('/custome/kit/captcha/{tmp}', 'Custome\UserController@captcha');
 // 前台
 Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/custome/login', 'UserController@login');
+	Route::post('/custome/smsre', 'SmsController@SmsRegister');
 	Route::post('/custome/loadlist', 'LoadListController@loadlist');
 	Route::post('/custome/detail', 'LoadListController@detail');
 	Route::get('/custome/forum', 'ForumController@ForumList');
+	Route::get('/custome/register', 'UserController@register');
 	
 });

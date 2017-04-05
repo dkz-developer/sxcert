@@ -11,89 +11,77 @@
 	<meta name="description" content="">
 
     <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="style/css/login.css" rel="stylesheet">
+    <link href="style/css/pay.css" rel="stylesheet">
 </head>
 <body>
-	<nav class="clearfix">
-		<div class="inner">
-			<div class="logo">
-				<a href="https://cloud.baidu.com">logo暂定</a>
+	<div id="app" data-value="{{ csrf_token() }}">
+		<nav class="clearfix">
+			<div class="inner">
+				<div class="logo">
+					<a href="/"><img src="images/logo_main3.png" alt=""></a>
+				</div>
+				<div class="search">
+					<input type="text" placeholder="请输入...">	
+					<span class="fa fa-search"></span>
+				</div>
+				<div class="items clearfix">
+					<ul>
+						<li><a href="/load">下载站</a></li>
+						<li><a href="/pay">充值</a></li>
+						<li><a href="/service">客服</a></li>
+						<li><a href="/enter?type=login">登录</a></li>
+						<li><a href="/enter?type=register">注册</a></li>
+					</ul>
+				</div>
 			</div>
-			<div class="search">
-				<input type="text" placeholder="请输入...">	
-				<span class="fa fa-search"></span>
-			</div>
-			<div class="items clearfix">
-				<ul>
-					<li><a href="">下载站</a></li>
-					<li><a href="">充值</a></li>
-					<li><a href="">客服</a></li>
-					<li><a href="">登录</a></li>
-					<li><a href="">注册</a></li>.
-				</ul>
-			</div>
-		</div>
-	</nav>
+		</nav>
 
-	<div class="container">
-		<div class="logo">
-			<img src="" alt="">
-		</div>
+		<div class="container">
 
-		<div class="main">
-			<div class="main-title">
-				<span>充值</span>
-				
-			</div>
+			<div class="main">
+				<div class="main-title">充  值</div>
 
-			<div class="main-content">
-				<form action="" data-act="login">
-					<div class="input-prepend">
-						<input class="restyle" type="text" placeholder="请输入用户名">
-						<i class="fa fa-user"></i>
-					</div>
+				<div class="main-content">
+					<form action="" data-act="pay">
+						<div class="input-prepend">
+							<input class="restyle" id="pay" placeholder="请输入充值金额，最低1元" type="number" id="mobile" v-on:blur="verification" data-error="充值金额不能为空">
+							<i class="fa fa-rmb"></i>
+						</div>
 
-					<div class="input-prepend">
-						<input  type="text" placeholder="请输入密码">
-						<i class="fa fa-lock"></i>
-					</div>
+						<div class="alert alert-info">
+							支付宝充值：1元=10个金币
+						</div>	
 
-					<div class="findPassword">
-						<a href="/findPassword">忘记密码？</a>
-					</div>
+						<div class="submitBtn">
+							<button type="button" class="btn btn-info" @click="submit">立即充值</button>
+						</div>
+						<div class="error-info">
+							<span></span>
+						</div>
+					</form>
 
-					<div class="submitBtn">
-						<button class="btn btn-primary">登录</button>
-					</div>
-				</form>
-
-<!-- 				<form action="" data-act="register">
-					<div class="input-prepend">
-						<input class="restyle" type="text" placeholder="请输入用户名">
-						<i class="fa fa-user"></i>
-					</div>
-
-					<div class="input-prepend">
-						<input class="restyle" type="text" placeholder="请输入手机号">
-						<i class="fa fa-mobile"></i>
-					</div>
-
-					<div class="input-prepend">
-						<input  type="text" placeholder="请输入密码">
-						<i class="fa fa-lock"></i>
-					</div>
-
-					<div class="submitBtn">
-						<button class="btn btn-primary">注册</button>
-					</div>
-				</form> -->
+				</div>
 			</div>
 		</div>
+
+		<div class="footer">
+			<p>粤ICP备17024526号-1</p>
+		</div>		
 	</div>
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "https://hm.baidu.com/hm.js?b819a6a70904703dd1926e26ba9554f0";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
 
-	<div class="footer">
-		
-		<p>粤ICP备17024526号-1</p>
-	</div>
+		})();
+	</script>
+	<script src="scripts/lib/jquery/jquery.min.js"></script>
+	<script src="scripts/lib/vue/vue.min.js"></script>
+	<script src="scripts/public/tools.js"></script>
+	<script src="scripts/pay.js"></script>
+
 </body>
 </html>

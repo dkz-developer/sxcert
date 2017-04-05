@@ -177,6 +177,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         iscms\Alisms\AlidayuServiceProvider::class,//阿里大于
+        Latrell\Alipay\AlipayServiceProvider::class,//支付宝
 
     ],
 

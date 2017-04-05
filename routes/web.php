@@ -30,6 +30,10 @@ Route::get('/pay', function () {
 	return view('pay');
 });
 
+// 客服页面
+Route::get('/service', function () {
+	return view('service');
+});
 // 下载页
 Route::get('/load', function () {
 	return view('load');

@@ -68,6 +68,7 @@ Route::group(['namespace' => 'Admin','middleware'=>'adminauth'], function () {
 	Route::post('/admin/fileUpload','InfoController@fileUpload');
 	Route::post('/admin/addInfoHandle','InfoController@addInfoHandle');
 	Route::post('/admin/delInfo','InfoController@rmInfo');
+	Route::get('/admin/setHot','InfoController@setHot');
 });
 
 // 前台

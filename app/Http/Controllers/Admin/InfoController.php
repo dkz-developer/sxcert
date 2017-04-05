@@ -9,7 +9,24 @@ use App\Model\admin\Info;
 
 class InfoController extends Controller
 {
-	public function addInfo()
+	public function setHot(Request $request)
+	{
+		$id = $request->input('id');
+		$Model = Info::find($id);
+		if(1 == $Model->status)
+			$Model->status = 2;
+		else if(2 == $Model->status)
+			$Model->status = 1;
+		$result = $Model->save();
+		if($result && $Model->status == 2)
+			return response()->json(['code'=>'F','msg'=>'操作成功 !','data'=>'<i class="Hui-iconfont">&#xe65e;</i>']);
+		if($result && $Model->status == 1)
+			return response()->json(['code'=>'F','msg'=>'操作成功 !','data'=>'<i class="Hui-iconfont">&#xe688;</i>']);
+		else
+			return response()->json(['code'=>'F','msg'=>'操作失败']);
+	}
+
+	public function addInfo(Request $request)
 	{
 		$Model = new InfoCommon();
 		$brand = $Model->where('type',1)->get();
@@ -18,6 +35,7 @@ class InfoController extends Controller
 		$os = $Model->where('type',4)->get();
 		$type = $Model->where('type',5)->get();
 		$tag = $Model->where('type',6)->get();
+		$id = $request->input('id','');
 		$result = [
 			'brand'=>$brand,
 			'model'=>$model,
@@ -26,6 +44,10 @@ class InfoController extends Controller
 			'type'=>$type,
 			'tag'=>$tag,
 		];
+		if($id) {
+			$info = Info::where('id',$id)->first();
+			$result ['info'] = $info;
+		}
 		return view('admin.addInfo',$result);
 	}
 
@@ -43,12 +65,16 @@ class InfoController extends Controller
 
 	public function addInfoHandle(Request $request)
 	{
-		$Model = new Info();
+		if($request->has('id')) {
+			$Model = Info::find($request->input('id'));
+		}else {
+			$Model = new Info();
+		}
 		$Model->brand = $request->input('brand','');
 		$Model->model = $request->input('model','');
 		$Model->os = $request->input('os','');
 		$Model->type = $request->input('type','');
-		$Model->tag = $request->input('tag','');
+		//$Model->tag = $request->input('tag','');
 		$Model->price = $request->input('price',0);
 		$Model->remarks = $request->input('remarks','');
 		$Model->country = $request->input('country','');
@@ -56,17 +82,17 @@ class InfoController extends Controller
 		$Model->download_password = $request->input('download_password','');
 		$Model->sort = $request->input('sort','');
 		$Model->version = $request->input('version','');
-		$Model->cover = $request->input('cover','');
-		$Model->abstract = $request->input('abstract','');
+		//$Model->cover = $request->input('cover','');
+		$Model->abstract = $request->input('editorValue','');
 		$result = $Model->save();
 		if($result)
-			return response()->json(['code'=>'S','msg'=>'添加成功！']);
-		return response()->json(['code'=>'F','msg'=>'添加失败！']);
+			return response()->json(['code'=>'S','msg'=>'操作成功！']);
+		return response()->json(['code'=>'F','msg'=>'操作失败！']);
 	}
 
 	public function fileUpload(Request $request)
 	{
-		$path = $request->file('file')->store('avatars');
+		$path = $request->file('file')->store('public');
 		return response()->json(['path'=>$path]);
 	}	
 
@@ -76,7 +102,7 @@ class InfoController extends Controller
 		$etime = $request->input('end_time','');
 		$index = $request->input('index','');
 		$keyword = $request->input('keyword','');
-		$indexArr = ['id','brand','model','country','os','type','tag','version'];
+		$indexArr = [1=>'id','brand','model','country','os','type','tag','version'];
 		$where = [];
 		if(! empty($stime))
 			array_push($where, ['updated_at','>=',$stime]);

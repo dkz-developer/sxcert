@@ -2,7 +2,7 @@
 <html lang="zh-cmn-Hans">
 <head>
 	<meta charset="utf-8">
-	<title>  </title>
+	<title> {{$info->brand}}-{{$info->country}}-{{$info->model}}-{{$info->version}}-{{$info->os}}-GSMGOOD</title>
 
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
@@ -40,34 +40,34 @@
 		<div class="box-container" id="app" data-value="{{ csrf_token() }}">
 			<div class="account-info clearfix panel panel-default">
 				<div class="layoutLeft well well-sm">
-					ZHANG-XUAN-ZHOU
+					{{$info->model}}
 				</div>
 
 				<div class="layoutRight">
 					<h4 class="title">
-						三星/USC/SM-G900R4/G900R4VXS2CQC2 <em>6.0.1</em>
+						{{$info->brand}}/{{$info->country}}/{{$info->model}}/{{$info->version}}<em>{{$info->os}}</em>
 					</h4>
 
 					<div class="public">
-						<span>上传者：<a href="/users">张大大</a></span>
-						<span>点击量：666</span>
-						<span>下载量：666</span>
+						<span>上传者：<a href="/users">管理员</a></span>
+						<span>点击量：{{$info->view_num}}</span>
+						<span>下载量：{{$info->download_num}}</span>
 					</div>
 
 					<div class="info well well-sm clearfix">
 						<div class="left">
 							<ul>
-								<li>品牌：<a href="">三星</a></li>
-								<li>区域/国家：<a href="">全资料[五件套]</a></li>
-								<li>型号：<a href="">SM-G900R4</a></li>
-								<li>版本号码：<a href="">G900R4VXS2CQC2</a></li>
-								<li>系统版本：<a href="">6.0.1</a></li>
-								<li>更新时间：2017-03-31 </li>
+								<li>品牌：<a href="">{{$info->brand}}</a></li>
+								<li>区域/国家：<a href="">{{$info->country}}</a></li>
+								<li>型号：<a href="">{{$info->model}}</a></li>
+								<li>版本号码：<a href="">{{$info->version}}</a></li> 
+								<li>系统版本：<a href="">{{$info->os}}</a></li>
+								<li>更新时间：{{date('Y-m-d',strtotime($info->updated_at))}}</li>
 							</ul>
 						</div>
 						<div class="right">
-							<div class="money"><em>150.0</em>金币</div>
-							<div class="password alert alert-warning">密码: izep </div>
+							<div class="money"><em>{{number_format($info->price,2)}}</em>金币</div>
+							<div class="password alert alert-warning" id="copy-button" data-clipboard-text="{{$info->download_password}}">密码: {{$info->download_password}} </div>
 							<div class="loadBtn">
 								<a class="btn btn-info" href="">立即下载</a>
 							</div>
@@ -80,12 +80,12 @@
 
 				<div class="panel-heading panel-tabs">
 					<ul class="nav nav-tabs">
-					 	<li class="active"><a href="javascript:void(0);">评论</a></li>
-						<li><a href="javascript:void(0);">介绍</a></li>
+					 	<li class="active" id="nav_comment"><a href="javascript:void(0);" onclick="showContent('#nav_comment','#comment')">评论</a></li>
+						<li id="nav_abstract"><a href="javascript:void(0);" onclick="showContent('#nav_abstract','#abstract')">介绍</a></li>
 					</ul>
 				</div>
 					
-				<div class="content">
+				<div class="content" id="comment">
 					
 					<div class="content-discussion clearfix">
 						<div class="photo">
@@ -171,6 +171,9 @@
 						<a href="/" class="btn btn-info">登录以评论</a>
 					</div>
 				</div>
+				<div class="content" id="abstract" style="display: none;padding: 10px;">
+					{!! $info->abstract !!}
+				</div>
 			</div>
 		</div>
 
@@ -192,6 +195,32 @@
 	<script src="scripts/lib/vue/vue.min.js"></script>
 	<!-- <script src="scripts/lib/bootstrap/bootstrap.min.js"></script> -->
 	<script src="scripts/info.js"></script>
+	<script src="scripts/ZeroClipboard.min.js"></script>
+	<script type="text/javascript" src="/style/admin/lib/layer/2.4/layer.js"></script>
+	<script type="text/javascript">
+		function showContent(nav,obj)
+		{
+			$('#nav_abstract,#nav_comment').removeClass('active');
+			$(nav).addClass('active');
+			$('.content').hide();
+			$(obj).show();
+		}
+		var client = new ZeroClipboard( document.getElementById("copy-button") );
+
+		client.on( "ready", function( readyEvent ) {
+			// alert( "ZeroClipboard SWF is ready!" );
+			client.on( "aftercopy", function( event ) {
+				// `this` === `client`
+			    	// `event.target` === the element that was clicked
+			    	//event.target.style.display = "none";
+			    	//alert("Copied text to clipboard: " + event.data["text/plain"] );
+			    	layer.alert('复制成功！', {
+					icon: 1,
+					skin: 'layer-ext-moon' 
+				})
+			  } );
+		} );
+	</script>
 </body>
 </html>
 

@@ -11,7 +11,7 @@
 	<meta name="description" content="">
 
     <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="style/css/pay.css" rel="stylesheet">
+    <link href="style/css/service.css" rel="stylesheet">
 </head>
 <body>
 	<div id="app" data-value="{{ csrf_token() }}">
@@ -37,30 +37,24 @@
 		</nav>
 
 		<div class="container">
-
-			<div class="main">
-				<div class="main-title">充  值</div>
-
-				<div class="main-content">
-					<form action="" data-act="pay">
-						<div class="input-prepend">
-							<input class="restyle" id="pay" placeholder="请输入充值金额，最低1元" type="number" id="mobile" v-on:blur="verification" data-error="充值金额不能为空">
-							<i class="fa fa-rmb"></i>
-						</div>
-
-						<div class="alert alert-info">
-							支付宝充值：1元=10个金币
-						</div>	
-
-						<div class="submitBtn">
-							<button type="button" class="btn btn-info" @click="submit">立即充值</button>
-						</div>
-						<div class="error-info">
-							<span></span>
-						</div>
-					</form>
-
+			
+			<div class="help">
+				<h3 class="title"><a href="/">返回论坛主页面</a></h3>
+				<p>刷机客服工作时间段： 9：00 -- 22：00</p>
+				<div class="seperate"></div>
+				<div class="services">
+					<ul>
+						<li>客服一：503616985 <a href=""><img src="images/qq.png" alt="">k</a> 处理范围：三星刷机</li>
+						<li>客服一：503616985 <img src="" alt=""> 处理范围：三星刷机</li>
+						<li>客服一：503616985 <img src="" alt=""> 处理范围：三星刷机</li>
+						<li>客服一：503616985 <img src="" alt=""> 处理范围：三星刷机</li>
+						<li>客服一：503616985 <img src="" alt=""> 处理范围：三星刷机</li>
+					</ul>
 				</div>
+			</div>
+				
+			<div class="contact">
+				
 			</div>
 		</div>
 
@@ -81,7 +75,7 @@
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
 	<script src="scripts/public/tools.js"></script>
-	<script src="scripts/pay.js"></script>
+	<script src="scripts/service.js"></script>
 
 </body>
 </html>

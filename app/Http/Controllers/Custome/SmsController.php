@@ -1,18 +1,19 @@
 <?php
-
-namespace App\Http\Controllers\home;
+namespace App\Http\Controllers\Custome;
+//namespace App\Http\Controllers\home;
  use App\Http\Controllers\Controller;
  use Illuminate\Http\Request;
 // 引入阿里大鱼命名空间
 use iscms\Alisms\SendsmsPusher as Sms;
 use Session;
 use DB;
-class Sms extends Controller
+use App\Model\User;
+class SmsController extends Controller
 {
-    protected  $sms;
+    //protected  $sms;
     public function __construct(Sms $sms)
     {
-        $this->Sms = $sms;
+        $this->sms=$sms;
     }
 	/*
 	 * 注册发送短信  手机号验证放在中间件
@@ -20,7 +21,7 @@ class Sms extends Controller
 	 */
 	public function SmsRegister(Request $request){
 	    //判断当前手机号是否在数据库
-	    $phone = $request -> input ('phone');
+	    $phone = $request -> input ('mobile');
 	    $count = User::where('Mobile',$phone)->count();
 	    if($count){
 	        return response()->json(['code'=>'F','msg'=>'该手机号已经被注册了']);
@@ -31,15 +32,20 @@ class Sms extends Controller
 	        $lastTime = Session::get($phone);
 	    }
 	    
-	    if((time()-$lastTime) > 300){
+	    if((time()-$lastTime) > 3){
 	        //发送短信
 	        $vcode = rand(100000,999999);
 	        $name = '注册验证';
-	        $code = 'SMS_3166316'; // 短信模板id
-	        $res = $this->sms->send($phone, $name, array('vcode'=>$vcode), $code);
+	        $code = 'SMS_59950404'; // 短信模板id
+	       // $sendsms = new Sms();json_encode(['salename'=>COMREGSALENAME,'username'=>$userName]),
+	        $res = $this->sms->send($phone, $name,$vcode, $code);
+	        dd($res);
 	        if($res){
 	            Session::flash('vcode', $vcode);
 	        }else{
+	            //是不是得加一个日志
+	            
+	            Session::flash($phone, time());
 	            return response()->json(['code'=>'S','msg'=>'短信发送失败']);
 	        }
 	    }
@@ -69,7 +75,8 @@ class Sms extends Controller
 	        $vcode = rand(100000,999999);
 	        $name = '密码找回';
 	        $code = 'SMS_3166316'; // 短信模板id
-	        $res = $this->sms->send($phone, $name, array('vcode'=>$vcode), $code);
+	        $sms = New Sms();
+	        $res = $sms->send($phone, $name, array('vcode'=>$vcode), $code);
 	        if($res){
 	            Session::flash('resetcode', $vcode);
 	        }else{

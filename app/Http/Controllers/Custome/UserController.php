@@ -59,18 +59,24 @@ class UserController extends Controller
 	
 	//注册
 	public function register(Request $request){
+	    
 	    $vcode = $request->input('vcode');
-	    if (Session::get('vcode') != $vcode){
+	    if ((Session::get('vcode') != $vcode) || empty($vcode)){
 	        return response()->json(['code'=>'F','msg'=>'验证码错咯']);
 	    }
 	        
-	    $phone = $request->input('phone');
-	    if(Session::get('phone') != $phone){
+	    $phone = $request->input('mobile');
+	    if((Session::get('phone') != $phone) || empty($phone)){
 	        return response()->json(['code'=>'F','msg'=>'手机号与验证手机号不一致呀']);
 	    }	    
 	    $username = $request->input('username');
 	    $password = $request->input('password');
-	    $userInfo = User::where(['UserName',$username])->first();
+	    $repassword = $request->input('repassword');
+	    $userInfo = User::where('UserName',$username)->first();
+	    
+	    if($password != $repassword){
+	        return response()->json(['code'=>'F','msg'=>'两次密码不一致哦']);
+	    }
 	    
 	    if($userInfo){
 	        return response()->json(['code'=>'F','msg'=>'用户名已存在，换一个试试呗']);

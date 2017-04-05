@@ -34,6 +34,7 @@ Route::get('/pay', function () {
 Route::get('/service', function () {
 	return view('service');
 });
+
 // 下载页
 Route::get('/load', function () {
 	return view('load');
@@ -76,12 +77,17 @@ Route::group(['namespace' => 'Admin','middleware'=>'adminauth'], function () {
 Route::get('/custome/kit/captcha/{tmp}', 'Custome\UserController@captcha');
 // 前台
 Route::group(['namespace' => 'Custome'], function () {
-	Route::post('/custome/login', 'UserController@login');
+	Route::get('/custome/login', 'UserController@login');
 	Route::post('/custome/smsre', 'SmsController@SmsRegister');
 	Route::post('/custome/loadlist', 'LoadListController@loadlist');
 	Route::post('/custome/detail', 'LoadListController@detail');
 	Route::get('/custome/forum', 'ForumController@ForumList');
 	Route::get('/custome/register', 'UserController@register');
+<<<<<<< HEAD
+	// 下载页 详情页
+	Route::get('/info', 'LoadListController@detail');
+=======
 	Route::get('/info', 'LoadListController@detail');
 	Route::post('/custome/register', 'UserController@register');
+>>>>>>> f425a7e52ccf913438f23687f9f018a484944edb
 });

@@ -14,26 +14,35 @@
 </style>
    <article class="cl pd-20">
 			<div class="text-c">
-				<span class="select-box inline">
-				<select name="" class="select">
-					<option value="0">全部分类</option>
-					<option value="1">分类一</option>
-					<option value="2">分类二</option>
-				</select>
-				</span>
-				日期范围：
-				<input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}'})" id="logmin" class="input-text Wdate" style="width:120px;">
-				-
-				<input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d'})" id="logmax" class="input-text Wdate" style="width:120px;">
-				<input type="text" name="" id="" placeholder=" 资讯名称" style="width:250px" class="input-text">
-				<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜资讯</button>
+				<form action="/admin/infoList" method="get">
+					<span class="select-box inline">
+					<select name="index" class="select">
+					$indexArr = [1=>'id','brand','model','country','os','type','tag','version'];
+						<option value="0">全部</option>
+						<option value="1">ID</option>
+						<option value="2">品牌</option>
+						<option value="3">机型</option>
+						<option value="4">国家</option>
+						<option value="4">os</option>
+						<option value="4">类型</option>
+						<option value="4">标签</option>
+						<option value="4">版本</option>
+					</select>
+					</span>
+					日期范围：
+					<input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}'})" id="logmin" class="input-text Wdate" style="width:120px;" name="start_time">
+					-
+					<input type="text" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'logmin\')}',maxDate:'%y-%M-%d'})" id="logmax" class="input-text Wdate" style="width:120px;" name="end_time">
+					<input type="text" name="keyword" id="" placeholder=" 关键字" style="width:250px" class="input-text">
+					<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜资料</button>
+				</form>
 			</div>
 			<div class="cl pd-5 bg-1 bk-gray mt-20">
 				<span class="l">
 				<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
 				<a class="btn btn-primary radius" data-title="添加资讯" _href="article-add.html" onclick="article_add('添加资料','/admin/addInfo')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加资料</a>
 				</span>
-				<span class="r">共有数据：<strong>54</strong> 条</span>
+				<span class="r">共有数据：<strong>{{$rows}}</strong> 条</span>
 			</div>
 			<div class="mt-20">
 				<table class="table table-border table-bordered table-bg table-hover table-sort">
@@ -71,8 +80,14 @@
 								<td>{{$val->remarks}}</td>
 								<td>{{$val->download_url}}</td>
 								<td>{{$val->download_password}}</td>
-								<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+								<td class="f-14 td-manage"><a style="text-decoration:none" onClick="setHot(this,{{$val->id}})" href="javascript:;" title="是否热门">
+									@if(2 == $val->status)
+									<i class="Hui-iconfont">&#xe65e;</i>
+									@else (1 == $val->status)
+									<i class="Hui-iconfont">&#xe688;</i>
+									@endif
+								</a>
+								<a style="text-decoration:none" class="ml-5" onClick="article_edit('资料编辑','/admin/addInfo',{{$val->id}})" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe60c;</i></a>
 								<a style="text-decoration:none" class="ml-5" onClick="article_del(this,{{$val->id}})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 						</tr>
 						@endforeach
@@ -113,52 +128,64 @@ function article_edit(title,url,id,w,h){
 	var index = layer.open({
 		type: 2,
 		title: title,
-		content: url
+		content: url+'?id='+id
 	});
 	layer.full(index);
 }
 /*资讯-删除*/
 function article_del(obj,id){
 	layer.confirm('确认要删除吗？',function(){
-		$.ajax({
-			headers: {
-	    		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-	    	},
-			type: 'POST',
-			url: '／admin/delInfo',
-			data: {'id',id},
-			dataType: 'json',
-			success: function(data){
-				$(obj).parents("tr").remove();
-				// layer.msg('已删除!',{icon:1,time:1000});
-			},
-			error:function(data) {
-				console.log(data.msg);
-			},
-		});		
+		$.ajax(
+			{
+				headers: {
+		    			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		    		},
+				type: 'POST',
+				url: '/admin/delInfo',
+				data: {'ids':id},
+				dataType: 'json',
+				success: function(data){
+					if(data.code == 'S') {
+						$(obj).parents("tr").remove();
+						layer.msg(data.msg,{icon:1,time:2000});
+					}else {
+						layer.msg(data.msg,{icon:2,time:2000});
+					}
+				},
+				error:function(data) {
+					layer.msg('好抱歉，系统好像出错了，请联系网站管理员！',{icon:2,time:3000});
+				},
+			}
+		);		
 	});
 }
 function datadel(){
-  	var ids = '';
-  	$('input[type=checkbox]:checked').each(function(){
-  		ids += $(this).val() + ',';
-  	})
-    ids = ids.substring(0,ids.length-1);
-    $.ajax({
-    	headers: {
-    		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    	},
-    	type: 'POST',
-    	url: '/admin/delInfo',
-		dataType: 'json',
-		data: {'ids':ids},
-		success: function(result){
-			if(result){
-				$('input[type=checkbox]:checked').parents('tr').remove();
-				layer.confirm(result.msg);
+	layer.confirm('确认要删除吗？',function(){
+	  	var ids = '';
+	  	$('input[type=checkbox]:checked').each(function(){
+	  		ids += $(this).val() + ',';
+	  	})
+	  	ids = ids.substring(0,ids.length-1);
+	    	$.ajax(
+		    	{
+			    	headers: {
+			    		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			    	},
+			    	type: 'POST',
+			    	url: '/admin/delInfo',
+				dataType: 'json',
+				data: {'ids':ids},
+				success: function(result){
+					if(result.code='S'){
+						$('input[type=checkbox]:checked').parents('tr').remove();
+						layer.msg(result.msg,{icon:1,time:2000});
+					}else {
+						layer.msg(result.msg,{icon:2,time:2000});
+					}
+				} 
 			}
-		} 
-    });
+		);
+	});
 }
 
 /*资讯-审核*/
@@ -182,13 +209,23 @@ function article_shenhe(obj,id){
 	});	
 }
 /*资讯-下架*/
-function article_stop(obj,id){
-	layer.confirm('确认要下架吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="article_start(this,id)" href="javascript:;" title="发布"><i class="Hui-iconfont">&#xe603;</i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已下架</span>');
-		$(obj).remove();
-		layer.msg('已下架!',{icon: 5,time:1000});
-	});
+function setHot(obj,id){
+	$.ajax(
+	    	{
+		    	type: 'GET',
+		    	url: '/admin/setHot',
+			dataType: 'json',
+			data: {'id':id},
+			success: function(result){
+				if(result.code='S'){
+					$(obj).html(result.data);
+					layer.msg(result.msg,{icon:1,time:3000});
+				}else {
+					layer.msg(result.msg,{icon:2,time:3000});
+				}
+			} 
+		}
+	);
 }
 
 /*资讯-发布*/

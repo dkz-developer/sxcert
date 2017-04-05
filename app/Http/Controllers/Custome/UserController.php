@@ -19,17 +19,19 @@ class UserController extends Controller
 	}
 
 
-	public function loginHandle(Request $request)
+	public function login(Request $request)
 	{
-		$captcha = $request->input('captcha');
+		$captcha = $request->input('code');
 		if (Session::get('milkcaptcha') != $captcha) 
 			return response()->json(['code'=>'F','msg'=>'验证码错误']);
 		$userName = $request->input('username');
 		$password = $request->input('password');
 		$userInfo = User::where([['UserName',$userName],['Password',md5($password)]])->first();
+		
 		if(! $userInfo)
 			return response()->json(['code'=>'F','msg'=>'用户名或密码不正确']);
 		session(['userInfo'=>$userInfo->toArray()]);
+		
 		return response()->json(['code'=>'S','msg'=>'登录成功','url'=>'/index']);
 	}
 
@@ -59,18 +61,24 @@ class UserController extends Controller
 	
 	//注册
 	public function register(Request $request){
-	    $vcode = $request->input('vcode');
-	    if (Session::get('vcode') != $vcode){
-	        return response()->json(['code'=>'F','msg'=>'验证码错咯']);
+	   
+	    $vcode = $request->input('mescode');
+	    if ((Session::get('mescode') != $vcode) || empty($vcode)){
+	       return response()->json(['code'=>'F','msg'=>'验证码错咯']);
 	    }
 	        
-	    $phone = $request->input('phone');
-	    if(Session::get('phone') != $phone){
+	    $phone = $request->input('mobile');
+	    if((Session::get('phone') != $phone) || empty($phone)){
 	        return response()->json(['code'=>'F','msg'=>'手机号与验证手机号不一致呀']);
 	    }	    
 	    $username = $request->input('username');
 	    $password = $request->input('password');
-	    $userInfo = User::where(['UserName',$username])->first();
+	    $repassword = $request->input('repassword');
+	    $userInfo = User::where('UserName',$username)->first();
+	    
+	    if($password != $repassword){
+	        return response()->json(['code'=>'F','msg'=>'两次密码不一致哦']);
+	    }
 	    
 	    if($userInfo){
 	        return response()->json(['code'=>'F','msg'=>'用户名已存在，换一个试试呗']);
@@ -78,14 +86,14 @@ class UserController extends Controller
 	    $data = array(
 	        'Mobile' => $phone,
 	        'UserName' => $username,
-	        'Password' => $password,
+	        'Password' => md5($password),
 	        'CreateTime' => date('Y-m-d H:i:s'),
 	    );
 	    
 	    
 	    $res = User::insert($data);
 	    if($res){
-	        session(['userInfo'=>$userInfo->toArray()]);
+	        //session(['userInfo'=>$userInfo->toArray()]);
 	        return response()->json(['code'=>'S','msg'=>'注册成功','url'=>'/index']);
 	    }else{
 	        return response()->json(['code'=>'F','msg'=>'注册失败']);

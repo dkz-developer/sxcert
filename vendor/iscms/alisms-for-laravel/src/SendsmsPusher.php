@@ -60,6 +60,7 @@ class SendsmsPusher implements SendSmsApi
         $req->setSmsType("normal");
         $req->setSmsFreeSignName($data->name);
         $req->setSmsParam($data->content);
+        //$req->setSmsParam("{number:'123456'}");
         $req->setRecNum($data->phone);//参数为用户的手机号码
         $req->setSmsTemplateCode($data->code);
         $resp = $this->TopClient->execute($req);

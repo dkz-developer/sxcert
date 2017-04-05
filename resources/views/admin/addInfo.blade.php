@@ -37,7 +37,7 @@
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 				<select class="select" name="brand">
 					@foreach ($brand as $val)
-					 	<option value="{{$val->name}}">{{$val->name}}</option>
+					 	<option value="{{$val->name}}" @if(!empty($info) && $info->brand == $val->name)  selected="seletcted" @endif>{{$val->name}}</option>
 					@endforeach
 				</select>
 				</span> </div>
@@ -47,7 +47,7 @@
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 				<select class="select" name="model">
 					@foreach($model as $val)
-						<option value="{{$val->name}}">{{$val->name}}</option>
+						<option value="{{$val->name}}" @if(!empty($info) && $info->model == $val->name)  selected="seletcted" @endif >{{$val->name}}</option>
 					@endforeach
 				</select>
 				</span> </div>
@@ -57,7 +57,7 @@
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 				<select  class="select" name="os">
 					@foreach($os as $val)
-						<option value="{{$val->name}}">{{$val->name}}</option>
+						<option value="{{$val->name}}" @if(!empty($info) && $info->os == $val->name)  selected="seletcted" @endif>{{$val->name}}</option>
 					@endforeach
 				</select>
 				</span> </div>
@@ -67,7 +67,7 @@
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 				<select class="select" name="type">
 					@foreach($type as $val)
-						<option value="{{$val->name}}">{{$val->name}}</option>
+						<option value="{{$val->name}}" @if(!empty($info) && $info->type == $val->name)  selected="seletcted" @endif>{{$val->name}}</option>
 					@endforeach
 				</select>
 				</span> </div>
@@ -77,57 +77,62 @@
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 				<select  class="select" name="country">
 					@foreach($country as $val)
-						<option value="{{$val->name}}">{{$val->name}}</option>
+						<option value="{{$val->name}}" @if(!empty($info) && $info->country == $val->name)  selected="seletcted" @endif>{{$val->name}}</option>
 					@endforeach
 				</select>
 				</span> </div>
 		</div>
 		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>版本：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{{$info->version or ''}}" placeholder="" id="" name="version">
+			</div>
+		</div>
+		<!--<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>标签：</label>
 			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
 				<select  class="select" name="tag">
 					@foreach($tag as $val)
-						<option value="{{$val->name}}">{{$val->name}}</option>
+						<option value="{{$val->name}}" @if(!empty($info) && $info->tag == $val->name)  selected="seletcted" @endif>{{$val->name}}</option>
 					@endforeach
 				</select>
 				</span> </div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>单价(金币)：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="" name="price">
-			</div>
-		</div>
-		<div class="row cl">
+		</div>-->
+		
+		<!--<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">备注：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="" name="remarks">
+				<input type="text" class="input-text" value="{{$info->remarks or ''}}" placeholder="" id="" name="remarks">
 			</div>
-		</div>
+		</div>-->
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>下载地址：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="" name="download_url">
+				<input type="text" class="input-text" value="{{$info->download_url or ''}}" placeholder="" id="" name="download_url">
 			</div>
 		</div>
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>下载密码：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="" name="download_password">
+				<input type="text" class="input-text" value="{{$info->download_password or ''}}" placeholder="" id="" name="download_password">
 			</div>
 		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>版本：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="" placeholder="" id="" name="version">
-			</div>
-		</div>
+		
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">排序值：</label>
 			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" value="0" placeholder="" id="" name="sort">
+				<input type="text" class="input-text" value="{{$info->sort or 0}}" placeholder="" id="" name="sort">
 			</div>
 		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>单价(金币)：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{{$info->price or ''}}" placeholder="" id="" name="price">
+			</div>
+		</div>
+		@if(!empty($info) && $info->id)
+			<input type="hidden" name="id" value="{{$info->id}}">
+		@endif
 		<!--<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">图片上传：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -149,6 +154,14 @@
 				</div>
 			</div>
 		</div>-->
+		<!--@if(!empty($info) && $info->cover)
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">缩略图：</label>
+			<div class="formControls col-xs-8 col-sm-9" style="height: 150px;width: 200px">  
+				<img src="{{Storage::url($info->cover)}}" style="width: 100%;height: 100%">
+			</div>
+		</div>
+		@endif
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">缩略图：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -159,7 +172,7 @@
 				</div>
 			</div>
 		</div>
-		<input type="hidden" name="cover" id="cover">
+		<input type="hidden" name="cover" id="cover" value="{{$info->cover or ''}}">-->
 		<!--<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">封面：</label>
 			<div class="formControls col-xs-8 col-sm-9">
@@ -173,7 +186,7 @@
 		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-2">简介：</label>
 			<div class="formControls col-xs-8 col-sm-9"> 
-				<script id="abstract" type="text/plain" style="width:100%;height:400px;"></script> 
+				<script id="abstract" type="text/plain" style="width:100%;height:400px;">{!!$info->abstract or ''!!}</script> 
 			</div>
 		</div>
 		<div class="row cl">

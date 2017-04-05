@@ -37,11 +37,9 @@
     function verification(obj, errorInfo){
         var val = $(obj).val();
         if(val == null || val == undefined || val == ""){
-            $(".main-content").find(".error-info > span").slideDown(300);
             $(".main-content").find(".error-info").find("span").text(errorInfo);
             return false;
         }else{
-            $(".main-content").find(".error-info > span").slideUp("slow");
             $(".main-content").find(".error-info").find("span").text("");
             return true;
         }
@@ -74,21 +72,22 @@
             }
         }
 
-        var flag = verification($("#mobile"), "手机号码不能为空");
+        var flag = verification($("#mobile"), "手机号不能为空") && verification($("#vcode"), "验证码不能为空");
+
+
        var params = {
             "mobile": $("#mobile").val(),
+            "code": $("#vcode").val(),
             "_token": $("#app").attr("data-value"),
         };
 
         if(flag) {
             $.post("/custome/smsre", params, function(backData) {
                 if(backData && backData.code === "S"){
-                    $(".main-content").find(".error-info > span").slideUp("slow");
                     $(".main-content").find(".error-info").find("span").text("");
                     clearTimeout(setCountdown);
                     setCountdown($(obj));
                 }else{
-                    $(".main-content").find(".error-info > span").slideDown(300);
                     $(".main-content").find(".error-info").find("span").text(backData.msg);
                 }
             }, "json")           
@@ -96,7 +95,6 @@
     }
     // 登录
     function login(event) {
-
         var loginBtn = $(event.currentTarget);
 
         // 验证
@@ -107,13 +105,16 @@
             var params = {
                 "username": $("#username").val(),
                 "password": $("#password").val(),
+                "code": $("#vcode").val(),
                 "_token": $("#app").attr("data-value"),
             };
 
-            $.post('/custome/loadlist', params, function(backData) {
+            $.post('/custome/login', params, function(backData) {
                 if(backData && backData.code === "S") {
-                    window.location.href = "/";
+                    $(".main-content").find(".error-info").find("span").text("");
+                    // window.location.href = "/";
                 }else {
+                    $(".main-content").find(".error-info").find("span").text(backData.msg);
                     loginBtn.html("登录");
                 }
 
@@ -126,7 +127,7 @@
 
         var registerBtn = $(event.currentTarget);
         // 验证
-        var flag = verification($("#username"), "用户名不能为空") && verification($("#mobile"), "手机号不能为空") && verification($("#password"), "密码不能为空") && verification($("#repassword"), "确认密码不能为空") && verification($("#vcode"), "验证码不能为空");
+        var flag = verification($("#username"), "用户名不能为空") && verification($("#mobile"), "手机号不能为空") && verification($("#mescode"), "短信验证码不能为空") && verification($("#password"), "密码不能为空") && verification($("#repassword"), "确认密码不能为空") && verification($("#vcode"), "验证码不能为空");
 
         if(flag) {
             registerBtn.html('<i class="fa fa-spinner fa-pulse"></i>&nbsp;注册提交中...');
@@ -135,16 +136,19 @@
                 "mobile": $("#mobile").val(),
                 "password": $("#password").val(),
                 "repassword": $("#repassword").val(),
+                "mescode": $("#mescode").val(),
+                "code": $("#vcode").val(),
                 "_token": $("#app").attr("data-value"),
             };
 
             $.post('/custome/register', params, function(backData) {
 
                 if(backData && backData.code === "S") {
-
+                    $(".main-content").find(".error-info").find("span").text("");
+                    // window.location.href = "/";
                 }else {
-                    registerBtn.html("登录");
-
+                    $(".main-content").find(".error-info").find("span").text(backData.msg);
+                    registerBtn.html("注册");
                 }
             }, "json");             
         }

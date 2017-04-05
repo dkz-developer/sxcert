@@ -136,6 +136,7 @@
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
 	<script src="scripts/public/tools.js"></script>
+	<script src="scripts/public/kolDialog.js"></script>
 	<script src="scripts/login.js"></script>
 </body>
 </html>

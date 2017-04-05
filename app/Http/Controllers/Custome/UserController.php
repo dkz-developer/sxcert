@@ -30,9 +30,10 @@ class UserController extends Controller
 		
 		if(! $userInfo)
 			return response()->json(['code'=>'F','msg'=>'用户名或密码不正确']);
+		unset($userInfo ['Password']);
 		session(['userInfo'=>$userInfo->toArray()]);
 		
-		return response()->json(['code'=>'S','msg'=>'登录成功','url'=>'/index']);
+		return response()->json(['code'=>'S','msg'=>'登录成功']);
 	}
 
 	public function logout(Request $request)

@@ -75,11 +75,11 @@ Route::group(['namespace' => 'Admin','middleware'=>'adminauth'], function () {
 Route::get('/custome/kit/captcha/{tmp}', 'Custome\UserController@captcha');
 // 前台
 Route::group(['namespace' => 'Custome'], function () {
-	Route::get('/custome/login', 'UserController@login');
+	Route::post('/custome/login', 'UserController@login');
 	Route::post('/custome/smsre', 'SmsController@SmsRegister');
 	Route::post('/custome/loadlist', 'LoadListController@loadlist');
 	Route::post('/custome/detail', 'LoadListController@detail');
 	Route::get('/custome/forum', 'ForumController@ForumList');
-	Route::get('/custome/register', 'UserController@register');
+	Route::post('/custome/register', 'UserController@register');
 	
 });

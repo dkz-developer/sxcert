@@ -21,6 +21,7 @@ class SmsController extends Controller
 	 */
 	public function SmsRegister(Request $request){
 	    //判断当前手机号是否在数据库
+	    $code = $request -> input ('code');
 	    $phone = $request -> input ('mobile');
 	    $count = User::where('Mobile',$phone)->count();
 	    if($count){
@@ -32,16 +33,17 @@ class SmsController extends Controller
 	        $lastTime = Session::get($phone);
 	    }
 	    
-	    if((time()-$lastTime) > 3){
+	    if((time()-$lastTime) > 300){
 	        //发送短信
 	        $vcode = rand(100000,999999);
-	        $name = '注册验证';
+	        $name = 'GSM玩机网';
 	        $code = 'SMS_59950404'; // 短信模板id
 	       // $sendsms = new Sms();json_encode(['salename'=>COMREGSALENAME,'username'=>$userName]),
-	        $res = $this->sms->send($phone, $name,$vcode, $code);
-	        dd($res);
+	        //$vcode =json_encode(['number'=>"$vcode"]);
+	        $res = $this->sms->send($phone, $name,json_encode(['number'=>"$vcode"]), $code);
 	        if($res){
-	            Session::flash('vcode', $vcode);
+	            Session::flash('mescode', $vcode);
+	            Session::flash('phone', $phone);
 	        }else{
 	            //是不是得加一个日志
 	            

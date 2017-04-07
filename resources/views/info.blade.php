@@ -2,8 +2,8 @@
 <html lang="zh-cmn-Hans">
 <head>
 	<meta charset="utf-8">
-	<title> {{$info->brand}}-{{$info->country}}-{{$info->model}}-{{$info->version}}-{{$info->os}}-GSMGOOD</title>
-
+	<!-- <title> {{$info->brand}}-{{$info->country}}-{{$info->model}}-{{$info->version}}-{{$info->os}}-GSMGOOD</title> -->
+	<title><?php $brand = explode('/',$info->brand);echo trim($brand [0]);?>-<?php $country = explode('/',$info->country);echo $country [1];?>-{{$info->model}}-{{$info->version}}-{{$info->os}}-GSMGOOD</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
 	<meta name="viewport" contant="width=device-width, initial-scale=1">
@@ -45,7 +45,7 @@
 
 				<div class="layoutRight">
 					<h4 class="title">
-						{{$info->brand}}/{{$info->country}}/{{$info->model}}/{{$info->version}}<em>{{$info->os}}</em>
+						<?php $brand = explode('/',$info->brand);echo trim($brand [0]);?>/<?php $country = explode('/',$info->country);echo $country [1];?>/{{$info->model}}/{{$info->version}}<em>{{$info->os}}</em>
 					</h4>
 
 					<div class="public">
@@ -57,8 +57,8 @@
 					<div class="info well well-sm clearfix">
 						<div class="left">
 							<ul>
-								<li>品牌：<a href="">{{$info->brand}}</a></li>
-								<li>区域/国家：<a href="">{{$info->country}}</a></li>
+								<li>品牌：<a href=""><?php $brand = explode('/',$info->brand);echo $brand [0];?></a></li>
+								<li>区域/国家：<a href=""><?php $country = explode('/',$info->country);echo $country [0];?></a></li>
 								<li>型号：<a href="">{{$info->model}}</a></li>
 								<li>版本号码：<a href="">{{$info->version}}</a></li> 
 								<li>系统版本：<a href="">{{$info->os}}</a></li>
@@ -86,7 +86,18 @@
 				</div>
 					
 				<div class="content" id="comment">
-					
+					<div class="info-comment aaaa" style="width: 100%;height: 150px;padding-top: 20px;">
+						<div class="face-ico" style="width: 10%;height: 50px;float: left;margin:0 10px 0 20px;text-align: right;">
+							<img src="http://static.duoshuo.com/images/noavatar_default.png" style="width: 50px;height: 100%;border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);">	
+						</div>
+						<div class="info-con" style="float: left;width: 80%;background: #fff url('//static.duoshuo.com/images/bg_sprites.png') repeat-x scroll 0 -90px;border-color: #ccc #ccc currentcolor;border-style: solid solid none;border-width: 1px 1px medium;border-top-left-radius: 3px; border-top-right-radius: 3px;">
+							<textarea name="content" style="background: rgba(0, 0, 0, 0);height: 70px;color: #999;border: medium none;width: 100%;resize:none;padding: 5px;"placeholder="说点什么吧..."></textarea>
+							<div style="width: 100%;border: 1px solid #ccc;border-left:none;border-right:none;text-align:right;height: 30px;border-bottom-left-radius: 3px;border-bottom-right-radius: 3px;background: rgba(0, 0, 0, 0) url('//static.duoshuo.com/images/bg_sprites.png') repeat-x scroll 0 -60px;">
+								<button type="submit" style="height: 100%;border:none; width: 100px;text-align: center;border-left:1px solid #ccc;">发布</button>
+							</div>
+						</div>
+					</div>	
 					<div class="content-discussion clearfix">
 						<div class="photo">
 							<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">
@@ -214,10 +225,7 @@
 			    	// `event.target` === the element that was clicked
 			    	//event.target.style.display = "none";
 			    	//alert("Copied text to clipboard: " + event.data["text/plain"] );
-			    	layer.alert('复制成功！', {
-					icon: 1,
-					skin: 'layer-ext-moon' 
-				})
+			    	layer.msg('复制成功 ！',{icon:1,time:3000});
 			  } );
 		} );
 	</script>

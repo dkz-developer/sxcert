@@ -86,11 +86,6 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::post('/custome/detail', 'LoadListController@detail');
 	Route::get('/custome/forum', 'ForumController@ForumList');
 	Route::get('/custome/register', 'UserController@register');
-<<<<<<< HEAD
-	// 下载页 详情页
-	Route::get('/info', 'LoadListController@detail');
-=======
 	Route::get('/info', 'LoadListController@detail');
 	Route::post('/custome/register', 'UserController@register');
->>>>>>> f425a7e52ccf913438f23687f9f018a484944edb
 });

@@ -9,9 +9,8 @@
 	<meta name="viewport" contant="width=device-width, initial-scale=1">
 	<meta name="keywords" content="">
 	<meta name="description" content="">
-
-    <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="style/css/info.css" rel="stylesheet">
+	<link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="style/css/info.css" rel="stylesheet">
 </head>
 <body>
 	<div id="app" data-value="{{ csrf_token() }}">
@@ -84,9 +83,9 @@
 						<li id="nav_abstract"><a href="javascript:void(0);" onclick="showContent('#nav_abstract','#abstract')">介绍</a></li>
 					</ul>
 				</div>
-					
+				
 				<div class="content" id="comment">
-					<div class="info-comment aaaa" style="width: 100%;height: 150px;padding-top: 20px;">
+					<div class="info-comment" style="width: 100%;height: 150px;padding-top: 20px;">
 						<div class="face-ico" style="width: 10%;height: 50px;float: left;margin:0 10px 0 20px;text-align: right;">
 							<img src="http://static.duoshuo.com/images/noavatar_default.png" style="width: 50px;height: 100%;border-radius: 3px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);">	

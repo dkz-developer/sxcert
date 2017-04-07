@@ -56,18 +56,17 @@ body {
 					float: left;
 				}
 
-				.row-01{width: 80px;}
-				.row-02{width: 110px;}
-				.row-03{width: 100px;}
-				.row-04{width: 100px;}
-				.row-05{width: 118px;}
-				.row-06{width: 100px;}
-				.row-07{width: 130px;}
-				.row-08{width: 90px;}
-				.row-09{width: 120px;}
-				.row-10{width: 80px;}
-				.row-11{width: 80px;}
-				.row-12{width: 90px;}
+				.row-02{width: 120px; text-align: left;  padding: 0 10px;}
+				.row-03{width: 163px; text-align: left;  padding: 0 10px;}
+				.row-04{width: 130px; text-align: left;  padding: 0 10px;}
+				.row-05{width: 160px; text-align: left;  padding: 0 10px;}
+				.row-06{width: 75px; text-align: left;  padding: 0 10px;}
+				.row-07{width: 150px; text-align: left;  padding: 0 10px;}
+				.row-08{width: 75px;}
+				.row-09{width: 100px;}
+				.row-10{width: 75px;}
+				.row-11{width: 75px;}
+				.row-12{width: 75px;}
 			}
 
 			.list-item{
@@ -91,20 +90,21 @@ body {
 
 					a {
 						text-decoration: none;
+						text-overflow: ellipsis;
+						white-space: nowrap;
 					}
 				}
-				.row-01{width: 80px;}
-				.row-02{width: 110px;}
-				.row-03{width: 100px;}
-				.row-04{width: 100px;}
-				.row-05{width: 118px;}
-				.row-06{width: 100px;}
-				.row-07{width: 130px;}
-				.row-08{width: 90px;}
-				.row-09{width: 120px;}
-				.row-10{width: 80px;}
-				.row-11{width: 80px;}
-				.row-12{width: 90px;}
+				.row-02{width: 120px; text-align: left;  padding: 0 10px;}
+				.row-03{width: 163px; text-align: left;  padding: 0 10px;}
+				.row-04{width: 130px; text-align: left;  padding: 0 10px;}
+				.row-05{width: 160px; text-align: left;  padding: 0 10px;}
+				.row-06{width: 75px; text-align: left;  padding: 0 10px;}
+				.row-07{width: 150px; text-align: left;  padding: 0 10px;}
+				.row-08{width: 75px;}
+				.row-09{width: 100px;}
+				.row-10{width: 75px;}
+				.row-11{width: 75px;}
+				.row-12{width: 75px;}
 			}
 		}
 	}

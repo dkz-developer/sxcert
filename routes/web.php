@@ -45,7 +45,10 @@ Route::get('/search', function () {
 	return view('search');
 });
 
-
+//   修改个人信息
+Route::get('/personInfo', function () {
+	return view('personInfo');
+});
 
 // 个人 详情页
 Route::get('/users', function () {

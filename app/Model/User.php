@@ -13,4 +13,9 @@ class User extends Model
 	 */
 	protected $table = 'User';
 	
+	/**
+	 * 与模型相关联的主键
+	 * @var integer
+	 */
+	protected $primaryKey = 'UserId';
 }

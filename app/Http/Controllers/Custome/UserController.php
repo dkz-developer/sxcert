@@ -18,12 +18,11 @@ class UserController extends Controller
 	 */
 	public function userCenter(Request $request)
 	{
-		$id = $request->input('id');
-		if(!$id)
-			return redirect('/load');
-		$userInfo = User::where('UserId',$id)->first();
+		if(empty(session('userInfo')))
+			return redirect('/enter?type=login');
+		$userInfo = User::find(session('userInfo.UserId'));
 		if(empty($userInfo))
-			return redirect('/load');
+			return redirect('/enter?type=register');
 		return view('users',['userInfo'=>$userInfo]);
 	}
 

@@ -11,6 +11,15 @@ use Session;
 use DB;
 class LoadListController extends Controller
 {
+	public function download(Request $request)
+	{
+		if( empty(session('userInfo')) ) 
+			return response()->json(['code'=>'F','msg'=>'请先登录！']);
+		$id = $request->input('info_id');
+		if(! is_numeric($id))
+			return response()->json(['code'=>'F','msg'=>'参数错误']);
+	}
+
 	public function detail(Request $request)
 	{
 		$id = $request->input('keyword','');

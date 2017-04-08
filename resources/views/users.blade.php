@@ -22,8 +22,13 @@ a<!DOCTYPE html>
 				</div>
 
 				<div class="btnGroup">
-					<a class="login-btn" href="/enter?type=login">登录</a>
-					<a class="register-btn" href="/enter?type=register">注册</a>
+					@if(empty(session('userInfo')))
+						<a class="login-btn" href="/enter?type=login">登录</a>
+						<a class="register-btn" href="/enter?type=register">注册</a>
+					@else
+						<a class="login-btn" href="/users">{{session('userInfo.UserName')}}</a>
+						<a class="register-btn" href='/custome/logout'>退出</a>
+					@endif
 				</div>
 
 				<div class="items">
@@ -157,31 +162,35 @@ a<!DOCTYPE html>
 			<div class="per-info panel panel-default panel">
 				<div class="panel-body text-center">
 					<div class="photo">
-						<img src="http://bbs.romup.com/uc_server/avatar.php?uid=11077&size=big" alt="">
+						<img src="{{$userInfo->FaceIco or 'http://bbs.romup.com/uc_server/avatar.php?uid=11077&size=big'}}" alt="">
 					</div>
-					<div class="nickname">张三丰</div>
+					<div class="nickname">{{$userInfo->UserName}}</div>
 
 					<div class="info">
 						<ul>
 							<li>
 								<span>登录名</span>
-								<em>张三丰</em>
+								<em>{{$userInfo->UserName}}</em>
 							</li>
-							<li>
+							<!-- <li>
 								<span>电子邮箱</span>
-								<em><a class="mainColor" href="mailto:lqhorochi@163.com">lqhorochi@163.com</a></em>
+								<em><a class="mainColor" @if($userInfo->UserEmail) href="mailto:{{$userInfo->UserEmail}}" @else href="javascript:void(0)" @endif>{{$userInfo->UserEmail or '未设置'}}</a></em>
+							</li> -->
+							 <li>
+								<span>号码</span>
+								<em><a class="mainColor" href="javascript:void(0)">{{$userInfo->Mobile}}</a></em>
 							</li>
 							<li>
 								<span>财富值</span>
-								<em class="mainColor">323741.0</em>
+								<em class="mainColor">{{$userInfo->Balance or 0.00}}</em>
 							</li>
 							<li>
 								<span>注册时间</span>
-								<em>2014-04-11 20:37:14</em>
+								<em>{{$userInfo->CreateTime}}</em>
 							</li>
 							<li>
-								<button class="btn btn-danger">立即充值</button>
-								<button class="btn btn-primary">修改资料</button>
+								<button class="btn btn-danger" onclick="window.location.href='/pay'">立即充值</button>
+								<button class="btn btn-primary" onclick="window.location.href='/personInfo'">修改资料</button>
 							</li>
 						</ul>
 					</div>

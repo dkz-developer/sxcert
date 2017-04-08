@@ -22,8 +22,13 @@ a<!DOCTYPE html>
 				</div>
 
 				<div class="btnGroup">
-					<a class="login-btn" href="/enter?type=login">登录</a>
-					<a class="register-btn" href="/enter?type=register">注册</a>
+					@if(empty(session('userInfo')))
+						<a class="login-btn" href="/enter?type=login">登录</a>
+						<a class="register-btn" href="/enter?type=register">注册</a>
+					@else
+						<a class="login-btn" href="/users?id={{session('userInfo.UserId')}}">{{session('userInfo.UserName')}}</a>
+						<a class="register-btn" href='/custome/logout'>退出</a>
+					@endif
 				</div>
 
 				<div class="items">

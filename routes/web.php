@@ -50,11 +50,6 @@ Route::get('/personInfo', function () {
 	return view('personInfo');
 });
 
-// 个人 详情页
-Route::get('/users', function () {
-	return view('users');
-});
-
 // 意见反馈页面
 Route::get('/feedback', function () {
 	return view('feedback');
@@ -80,7 +75,7 @@ Route::group(['namespace' => 'Admin','middleware'=>'adminauth'], function () {
 Route::get('/custome/kit/captcha/{tmp}', 'Custome\UserController@captcha');
 // 前台
 Route::group(['namespace' => 'Custome'], function () {
-	Route::get('/custome/login', 'UserController@login');
+	Route::post('/custome/login', 'UserController@login');
 	Route::post('/custome/smsre', 'SmsController@SmsRegister');
 	Route::post('/custome/loadlist', 'LoadListController@loadlist');
 	Route::post('/custome/detail', 'LoadListController@detail');
@@ -88,4 +83,7 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/custome/register', 'UserController@register');
 	Route::get('/info', 'LoadListController@detail');
 	Route::post('/custome/register', 'UserController@register');
+	Route::get('/custome/logout', 'UserController@logout');
+	// 个人 详情页
+	Route::get('/users','UserController@userCenter');
 });

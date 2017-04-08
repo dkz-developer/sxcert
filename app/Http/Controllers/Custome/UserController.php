@@ -12,6 +12,21 @@ use Session;
 use DB;
 class UserController extends Controller
 {
+	/**
+	 * [userCenter 用户中心]
+	 * @return [type] [description]
+	 */
+	public function userCenter(Request $request)
+	{
+		$id = $request->input('id');
+		if(!$id)
+			return redirect('/load');
+		$userInfo = User::where('UserId',$id)->first();
+		if(empty($userInfo))
+			return redirect('/load');
+		return view('users',['userInfo'=>$userInfo]);
+	}
+
 	public function index()
 	{
 		
@@ -32,7 +47,6 @@ class UserController extends Controller
 			return response()->json(['code'=>'F','msg'=>'用户名或密码不正确']);
 		unset($userInfo ['Password']);
 		session(['userInfo'=>$userInfo->toArray()]);
-		
 		return response()->json(['code'=>'S','msg'=>'登录成功']);
 	}
 
@@ -62,46 +76,6 @@ class UserController extends Controller
 	
 	//注册
 	public function register(Request $request){
-<<<<<<< HEAD
-		
-		$vcode = $request->input('vcode');
-		if ((Session::get('vcode') != $vcode) || empty($vcode)){
-			return response()->json(['code'=>'F','msg'=>'验证码错咯']);
-		}
-			
-		$phone = $request->input('mobile');
-		if((Session::get('phone') != $phone) || empty($phone)){
-			return response()->json(['code'=>'F','msg'=>'手机号与验证手机号不一致呀']);
-		}	    
-		$username = $request->input('username');
-		$password = $request->input('password');
-		$repassword = $request->input('repassword');
-		$userInfo = User::where('UserName',$username)->first();
-		
-		if($password != $repassword){
-			return response()->json(['code'=>'F','msg'=>'两次密码不一致哦']);
-		}
-		
-		if($userInfo){
-			return response()->json(['code'=>'F','msg'=>'用户名已存在，换一个试试呗']);
-		}
-		$data = array(
-			'Mobile' => $phone,
-			'UserName' => $username,
-			'Password' => $password,
-			'CreateTime' => date('Y-m-d H:i:s'),
-		);
-		
-		
-		$res = User::insert($data);
-		if($res){
-			session(['userInfo'=>$userInfo->toArray()]);
-			return response()->json(['code'=>'S','msg'=>'注册成功','url'=>'/index']);
-		}else{
-			return response()->json(['code'=>'F','msg'=>'注册失败']);
-		}
-=======
-	   
 	    $vcode = $request->input('mescode');
 	    if ((Session::get('mescode') != $vcode) || empty($vcode)){
 	       return response()->json(['code'=>'F','msg'=>'验证码错咯']);
@@ -138,7 +112,6 @@ class UserController extends Controller
 	    }else{
 	        return response()->json(['code'=>'F','msg'=>'注册失败']);
 	    }
->>>>>>> 9073f29edb02dd89fb4cee91ef22608e07ff719f
 	}
 	
 	//修改密码

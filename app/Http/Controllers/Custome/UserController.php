@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Model\User;
 //引用对应的命名空间
 use Gregwar\Captcha\CaptchaBuilder;
+use App\Model\BuyRecord;
 use Session;
 use DB;
 class UserController extends Controller
@@ -23,7 +24,8 @@ class UserController extends Controller
 		$userInfo = User::find(session('userInfo.UserId'));
 		if(empty($userInfo))
 			return redirect('/enter?type=register');
-		return view('users',['userInfo'=>$userInfo]);
+		 $buyRecord = BuyRecord::where('user_id',session('userInfo.UserId'))->get();
+		return view('users',['userInfo'=>$userInfo,'buyRecord'=>$buyRecord]);
 	}
 
 	public function index()

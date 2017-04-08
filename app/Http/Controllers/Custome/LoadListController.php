@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Info;
 use App\Model\InfoComment;
+use App\Model\User;
+use App\Model\BuyRecord;
 use Session;
 use DB;
 class LoadListController extends Controller
@@ -14,10 +16,31 @@ class LoadListController extends Controller
 	public function download(Request $request)
 	{
 		if( empty(session('userInfo')) ) 
-			return response()->json(['code'=>'F','msg'=>'请先登录！']);
+			return response()->json(['code'=>'F','msg'=>'','url'=>'/enter?type=login']);
 		$id = $request->input('info_id');
 		if(! is_numeric($id))
 			return response()->json(['code'=>'F','msg'=>'参数错误']);
+		$userInfo = User::find(session('userInfo.UserId'));
+		$info = Info::find($id);
+		$record= BuyRecord::where([['user_id',session('userInfo.UserId')],['info_id',$id]])->first();
+		if(! empty($record))
+			return response()->json(['code'=>'S','msg'=>'','url'=>$info->download_url,'new_open'=>true]);
+		if($userInfo->Balance < $info->price)
+			return response()->json(['code'=>'F','msg'=>'余额不足，请先充值！','url'=>'/pay']);
+		DB::beginTransaction();
+		$userInfo->Balance -= $info->price;
+		$u_result = $userInfo->save();
+		$BuyRecord = new BuyRecord();
+		$BuyRecord->user_id = session('userInfo.UserId');
+		$BuyRecord->info_id = $id;
+		$BuyRecord->consume = $info->price;
+		$b_result = $BuyRecord->save();
+		if($b_result && $u_result){
+			DB::commit();
+			return response()->json(['code'=>'S','msg'=>'','url'=>$info->download_url,'new_open'=>true]);
+		}
+		DB::rollBack();
+		return response()->json(['code'=>'F','msg'=>'操作失败！']);
 	}
 
 	public function detail(Request $request)

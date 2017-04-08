@@ -50,6 +50,11 @@ Route::get('/personInfo', function () {
 	return view('personInfo');
 });
 
+//   上传rom页面
+Route::get('/rom', function () {
+	return view('rom');
+});
+
 // 意见反馈页面
 Route::get('/feedback', function () {
 	return view('feedback');
@@ -86,4 +91,5 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/custome/logout', 'UserController@logout');
 	// 个人 详情页
 	Route::get('/users','UserController@userCenter');
+	Route::post('/add/InfoComment','LoadListController@addInfoComment');
 });

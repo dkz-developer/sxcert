@@ -75,7 +75,7 @@ a<!DOCTYPE html>
 						<ul>
 							<!-- <li class="row-01"><a :href="['/search?keyword='+item.tag ]">@{{item.tag}}</a></li> -->
 							<li class="row-02"><a :href="['/search?keyword='+item.brand]">@{{item.brand}}</a></li>
-							<li class="row-03"><a :href="['/search?keyword='+item.country]">@{{item.country}}/ALL</a></li>
+							<li class="row-03"><a :href="['/search?keyword='+item.country]">@{{item.country}}</a></li>
 							<li class="row-04"><a :href="['/search?keyword='+item.model]">@{{item.model}}</a></li>
 							<li class="row-05"><a :href="['/search?keyword='+item.version]">@{{item.version}}</a></li>
 							<li class="row-06"><a :href="['/search?keyword='+item.os]">@{{item.os}}</a></li>

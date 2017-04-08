@@ -50,6 +50,11 @@ Route::get('/personInfo', function () {
 	return view('personInfo');
 });
 
+//   上传rom页面
+Route::get('/rom', function () {
+	return view('rom');
+});
+
 // 意见反馈页面
 Route::get('/feedback', function () {
 	return view('feedback');

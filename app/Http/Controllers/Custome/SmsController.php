@@ -20,39 +20,6 @@ class SmsController extends Controller
 	 * phone
 	 */
 	public function SmsRegister(Request $request){
-<<<<<<< HEAD
-		//判断当前手机号是否在数据库
-		$phone = $request -> input ('mobile');
-		$count = User::where('Mobile',$phone)->count();
-		if($count){
-			return response()->json(['code'=>'F','msg'=>'该手机号已经被注册了']);
-		}
-		$lastTime = 0;
-		//判断当前用户是否之前发送过短信
-		if(session::has($phone)){
-			$lastTime = Session::get($phone);
-		}
-		
-		if((time()-$lastTime) > 3){
-			//发送短信
-			$vcode = rand(100000,999999);
-			$name = '注册验证';
-			$code = 'SMS_59950404'; // 短信模板id
-		  	 // $sendsms = new Sms();json_encode(['salename'=>COMREGSALENAME,'username'=>$userName]),
-			$res = $this->sms->send($phone, $name,$vcode, $code);
-			dd($res);
-			if($res){
-				Session::flash('vcode', $vcode);
-			}else{
-				//是不是得加一个日志
-				Session::flash($phone, time());
-				return response()->json(['code'=>'S','msg'=>'短信发送失败']);
-			}
-		}
-		//不发送短信  直接提示发送成功
-		return response()->json(['code'=>'S','msg'=>'短信发送成功']);
-		
-=======
 	    //判断当前手机号是否在数据库
 	    $code = $request -> input ('code');
 	    $phone = $request -> input ('mobile');
@@ -86,8 +53,6 @@ class SmsController extends Controller
 	    }
         //不发送短信  直接提示发送成功
         return response()->json(['code'=>'S','msg'=>'短信发送成功']);
-	    
->>>>>>> 9073f29edb02dd89fb4cee91ef22608e07ff719f
 	}
 	
 	/*

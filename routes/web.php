@@ -86,4 +86,5 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/custome/logout', 'UserController@logout');
 	// 个人 详情页
 	Route::get('/users','UserController@userCenter');
+	Route::post('/add/InfoComment','LoadListController@addInfoComment');
 });

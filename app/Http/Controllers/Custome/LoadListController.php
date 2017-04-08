@@ -6,7 +6,7 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Info;
-
+use App\Model\InfoComment;
 use Session;
 use DB;
 class LoadListController extends Controller
@@ -17,7 +17,27 @@ class LoadListController extends Controller
 		$result = Info::find(intval($id));
 		$result->view_num += 1;
 		$result->save();
-		return view('info',['info'=>$result]);
+		$infoComment = InfoComment::where('info_id',$id)->get();
+		return view('info',['info'=>$result,'infoComment'=>$infoComment]);
+	}
+
+	public function addInfoComment(Request $request)
+	{
+		if( empty(session('userInfo')) ) 
+			return response()->json(['code'=>'F','msg'=>'请先登录！']);
+		$content = $request->input('content');
+		$info_id = $request->input('info_id');
+		if(! $content || ! $info_id) 
+			return response()->json(['code'=>'F','msg'=>'参数错误！']);
+		$InfoComment = new InfoComment();
+		$InfoComment->user_id = session('userInfo.UserId');
+		$InfoComment->info_id = $info_id;
+		$InfoComment->content = $content;
+		$InfoComment->user_name = session('userInfo.UserName');
+		$result = $InfoComment->save();
+		if($result)
+			return  response()->json(['code'=>'S','msg'=>'操作成功！','data'=>$InfoComment]);
+		return  response()->json(['code'=>'F','msg'=>'操作失败！']);
 	}
 
 	public function index()

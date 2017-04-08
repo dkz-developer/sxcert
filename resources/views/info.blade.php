@@ -90,30 +90,20 @@
 				</div>
 				
 				<div class="content"  v-if="(navShift == '1')">
+					@foreach($infoComment as $val)
 					<div class="content-discussion clearfix">
 						<div class="photo">
 							<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">
 						</div>
 						<div class="discussion-info">
-							<h4 class="nickname">宣州是爷</h4>
-							<p>我在物质上的最高奢望就是，在一个和平的世界上，有一个健康的身体，过一种小康的日子。—— by 邓云华 ​​​​</p>
-							<div class="opts">
-								<span>2015年2月4日</span>
+							<h4 class="nickname">{{$val->user_name}}</h4>
+							<p>{{$val->content}}</p>
+							<div class="left">
+								<span>{{$val->created_at}}</span>
 							</div>
 						</div>
 					</div>
-
-					<div class="content-discussion clearfix">
-						<div class="photo">
-							<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">
-						</div>
-						<div class="discussion-info">
-							<h4 class="nickname">宣州是爷</h4>
-							<p>我在物质上的最高奢望就是，在一个和平的世界上，有一个健康的身体，过一种小康的日子。—— by 邓云华 ​​​​</p>
-							<div class="left">2017-03-31</div>
-						</div>
-					</div>
-
+					@endforeach
 					@if(empty(session('userInfo')))
 						<div class="alert alert-info">
 							<a href="/enter?type=login" class="btn btn-info">登录以评论</a>
@@ -123,13 +113,16 @@
 							<div class="photo">
 								<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">
 							</div>
-							<div class="mes-content">
-								<textarea class="form-control" id="message" placeholder="吐槽下吧呗，您的神回复将名留青史！"></textarea>
-							</div>
+							<form action="javascript:void(0)" id="info-comment">
+								<div class="mes-content">
+									<textarea class="form-control" id="message" placeholder="吐槽下吧呗，您的神回复将名留青史！" name="content"></textarea>
+									<input type="hidden" name="info_id" value="{{$info->id}}">
+								</div>
 
-							<div class="message-submit">
-								<button class="btn btn-info">提交评论</button>
-							</div>
+								<div class="message-submit">
+									<button class="btn btn-info" type="submit">提交评论</button>
+								</div>
+							</form>
 						</div>
 					@endif
 				</div>
@@ -144,7 +137,11 @@
 			<p>粤ICP备17024526号-1</p>
 		</div>		
 	</div>
-
+	<script src="scripts/lib/jquery/jquery.min.js"></script>
+	<script src="scripts/lib/vue/vue.min.js"></script>
+	<script src="scripts/ZeroClipboard.min.js"></script>
+	<script src="/style/admin/lib/layer/2.4/layer.js"></script>
+	<script src="scripts/info.js"></script>
 	<script>
 		var _hmt = _hmt || [];
 		(function() {
@@ -153,13 +150,44 @@
 		  var s = document.getElementsByTagName("script")[0]; 
 		  s.parentNode.insertBefore(hm, s);
 		})();
-	</script>
-	<script src="scripts/lib/jquery/jquery.min.js"></script>
-	<script src="scripts/lib/vue/vue.min.js"></script>
-	<script src="scripts/ZeroClipboard.min.js"></script>
-	<script src="/style/admin/lib/layer/2.4/layer.js"></script>
-	<script src="scripts/info.js"></script>
 
+		/**
+		 *  添加评论
+		 */
+		$('#info-comment').submit(function(){
+			var param = $(this).serialize();
+			$.ajax({
+			    	headers: {
+			    		'X-CSRF-TOKEN': $('#app').attr('data-value')
+			    	},
+			    	type: 'POST',
+			    	url: '/add/InfoComment',
+				dataType: 'json',
+				data: param,
+				success: function(result){
+					if(result.code='S'){
+						var html = '<div class="content-discussion clearfix">';
+						html += '<div class="photo">';
+						html += '<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">'
+						html += '</div>';
+						html += '<div class="discussion-info">';
+						html += '<h4 class="nickname">'+result.data.user_name+'</h4>';
+						html += '<p>'+result.data.content+'</p>';
+						html += '<div class="left">';
+						html += '<span>'+result.data.created_at+'</span>';
+						html += '</div>';
+						html += '</div>';
+						html += '</div>';
+						$('.mesBoard').before(html);
+						layer.msg(result.msg,{icon:1,time:2000});
+					}else {
+						layer.msg(result.msg,{icon:2,time:2000});
+					}
+				} 
+			});
+			return false;
+ 		});
+	</script>
 </body>
 </html>
 

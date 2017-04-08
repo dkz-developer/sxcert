@@ -28,6 +28,8 @@ class LoadListController extends Controller
 		if($userInfo->Balance < $info->price)
 			return response()->json(['code'=>'F','msg'=>'余额不足，请先充值！','url'=>'/pay']);
 		DB::beginTransaction();
+		$info->download_num += 1;
+		$i_result = $info->save();
 		$userInfo->Balance -= $info->price;
 		$u_result = $userInfo->save();
 		$BuyRecord = new BuyRecord();
@@ -35,7 +37,7 @@ class LoadListController extends Controller
 		$BuyRecord->info_id = $id;
 		$BuyRecord->consume = $info->price;
 		$b_result = $BuyRecord->save();
-		if($b_result && $u_result){
+		if($b_result && $u_result && $i_result){
 			DB::commit();
 			return response()->json(['code'=>'S','msg'=>'','url'=>$info->download_url,'new_open'=>true]);
 		}

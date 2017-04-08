@@ -22,8 +22,13 @@ a<!DOCTYPE html>
 				</div>
 
 				<div class="btnGroup">
-					<a class="login-btn" href="/enter?type=login">登录</a>
-					<a class="register-btn" href="/enter?type=register">注册</a>
+					@if(empty(session('userInfo')))
+						<a class="login-btn" href="/enter?type=login">登录</a>
+						<a class="register-btn" href="/enter?type=register">注册</a>
+					@else
+						<a class="login-btn" href="/users?id={{session('userInfo.UserId')}}">{{session('userInfo.UserName')}}</a>
+						<a class="register-btn" href='/custome/logout'>退出</a>
+					@endif
 				</div>
 
 				<div class="items">
@@ -51,12 +56,12 @@ a<!DOCTYPE html>
 				<div class="hotRec">
 					<h3 class="title">热门推荐</h3>
 					<div class="header">
-						<div class="row-01">标签</div>
+						<!-- <div class="row-01">标签</div> -->
 	                    <div class="row-02">品牌</div>
 	                    <div class="row-03">区域 / 国家</div>
 	                    <div class="row-04">型号</div>
 	                    <div class="row-05">版本号</div>
-	                    <div class="row-06">Android OS</div>
+	                    <div class="row-06">OS</div>
 	                    <div class="row-07">资料类型</div>
 	                    <div class="row-08">价格(金币)</div>
 	                    <div class="row-09">更新日期</div>
@@ -68,7 +73,7 @@ a<!DOCTYPE html>
 		
 					<div class="list-item" v-cloak v-for="(item,index) in list">
 						<ul>
-							<li class="row-01"><a :href="['/search?keyword='+item.tag ]">@{{item.tag}}</a></li>
+							<!-- <li class="row-01"><a :href="['/search?keyword='+item.tag ]">@{{item.tag}}</a></li> -->
 							<li class="row-02"><a :href="['/search?keyword='+item.brand]">@{{item.brand}}</a></li>
 							<li class="row-03"><a :href="['/search?keyword='+item.country]">@{{item.country}}/ALL</a></li>
 							<li class="row-04"><a :href="['/search?keyword='+item.model]">@{{item.model}}</a></li>

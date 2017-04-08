@@ -89,6 +89,8 @@
                     setCountdown($(obj));
                 }else{
                     $(".main-content").find(".error-info").find("span").text(backData.msg);
+                    $(".vCode-img").find("img").attr("src","/custome/kit/captcha/"+$.mytools.GetRandomNum(10000, 99999));  
+
                 }
             }, "json")           
         }
@@ -112,10 +114,11 @@
             $.post('/custome/login', params, function(backData) {
                 if(backData && backData.code === "S") {
                     $(".main-content").find(".error-info").find("span").text("");
-                    // window.location.href = "/";
+                    window.location.href = "/load";
                 }else {
                     $(".main-content").find(".error-info").find("span").text(backData.msg);
                     loginBtn.html("登录");
+                    $(".vCode-img").find("img").attr("src","/custome/kit/captcha/"+$.mytools.GetRandomNum(10000, 99999));  
                 }
 
             }, "json");             
@@ -145,7 +148,7 @@
 
                 if(backData && backData.code === "S") {
                     $(".main-content").find(".error-info").find("span").text("");
-                    // window.location.href = "/";
+                    window.location.href = "/load";
                 }else {
                     $(".main-content").find(".error-info").find("span").text(backData.msg);
                     registerBtn.html("注册");

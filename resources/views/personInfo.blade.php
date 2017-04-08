@@ -41,35 +41,35 @@
 		</nav>
 
 		<div class="container">
-			<div class="logo">
-				<img src="" alt="">
-			</div>
-
 			<div class="main">
 				<div class="main-title">
-					基本资料
+					基本资料修改
 				</div> 
 
 				<div class="main-content">
 					<form action="" data-act="login">
 						<div class="input-prepend">
-							<input class="restyle" type="text" placeholder="昵称" id="mobile"  v-on:blur="verification" data-error="短信验证码不能为空">
+							<input class="restyle" type="text" placeholder="昵称" id="username"  v-on:blur="verification" data-error="昵称不能为空">
+							<i class="fa fa-user"></i>
+						</div>
+
+						<div class="input-prepend">
+							<input class="restyle" type="text" placeholder="手机号码" id="mobile"  v-on:blur="verification" data-error="手机号码不能为空">
 							<i class="fa fa-mobile"></i>
 						</div>
 
-
 						<div class="input-prepend">
-							<input class="restyle" type="text" placeholder="密码（留空则不更改）" id="password"  v-on:blur="verification">
+							<input class="restyle" type="text" placeholder="密码（留空则不更改）" id="password"  >
 							<i class="fa fa-lock"></i>
 						</div>
 
 						<div class="input-prepend">
-							<input class="restyle" type="text" placeholder="密码确认（留空则不更改）" id="passwordAgain"  v-on:blur="verification">
+							<input type="text" class="lastIn"  placeholder="密码确认（留空则不更改）" id="repassword">
 							<i class="fa fa-lock"></i>
 						</div>
 						
 						<div class="submitBtn">
-							<button type="button" class="btn btn-primary" @click="resetPaswrd">确认修改</button>
+							<button type="button" class="btn btn-primary" @click="resetInfo">确认修改</button>
 						</div>
 
 						<div class="error-info">
@@ -99,7 +99,7 @@
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
 	<script src="scripts/public/tools.js"></script>
-	<script src="scripts/findpassword.js"></script>
+	<script src="scripts/personInfo.js"></script>
 
 </body>
 </html>

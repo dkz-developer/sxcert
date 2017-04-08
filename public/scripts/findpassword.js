@@ -30,11 +30,9 @@
     function verification(obj, errorInfo){
         var val = $(obj).val();
         if(val == null || val == undefined || val == ""){
-            $(".main-content").find(".error-info > span").slideDown(300);
             $(".main-content").find(".error-info").find("span").text(errorInfo);
             return false;
         }else{
-            $(".main-content").find(".error-info > span").slideUp("slow");
             $(".main-content").find(".error-info").find("span").text("");
             return true;
         }
@@ -51,8 +49,11 @@
         if(flag) {
             resetBtn.html('<i class="fa fa-spinner fa-pulse"></i>&nbsp;密码重置中...');
             var params = {
-                "userName": $("#userName").val(),
-                "passWord": $("#passWord").val(),
+                "mobile": $("#mobile").val(),
+                "mescode": $("#mescode").val(),
+                "password": $("#password").val(),
+                "repassword": $("#repassword").val(),
+                "code": $("#vcode").val(),
                 "_token": $("#app").attr("data-value"),
             };
 
@@ -61,6 +62,8 @@
                     window.location.href = "/";
                 }else {
                     resetBtn.html("重置密码");
+                     $(".main-content").find(".error-info").find("span").text(backData.msg);
+                    $(".vCode-img").find("img").attr("src","/custome/kit/captcha/"+$.mytools.GetRandomNum(10000, 99999));  
                 }
 
             }, "json");             
@@ -96,17 +99,17 @@
         };
 
         if(flag) {
-            $.post("", params, function(backData) {
+            $.post("/custome/smsre", params, function(backData) {
                 if(backData && backData.code === "S"){
-                    $(".main-content").find(".error-info > span").slideUp("slow");
                     $(".main-content").find(".error-info").find("span").text("");
                     clearTimeout(setCountdown);
                     setCountdown($(obj));
                 }else{
-                    $(".main-content").find(".error-info > span").slideDown(300);
                     $(".main-content").find(".error-info").find("span").text(backData.msg);
+                    $(".vCode-img").find("img").attr("src","/custome/kit/captcha/"+$.mytools.GetRandomNum(10000, 99999));  
+
                 }
-            }, "json")           
+            }, "json")         
         }
     }
 

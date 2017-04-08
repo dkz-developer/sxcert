@@ -152,6 +152,7 @@
                 }else {
                     $(".main-content").find(".error-info").find("span").text(backData.msg);
                     registerBtn.html("注册");
+                    $(".vCode-img").find("img").attr("src","/custome/kit/captcha/"+$.mytools.GetRandomNum(10000, 99999));  
                 }
             }, "json");             
         }

@@ -42,26 +42,26 @@ a<!DOCTYPE html>
 			</div>
 		</nav>
 
-		<div class="box-container clearfix" id="app" data-value="{{ csrf_token() }}">
+		<div class="box-container clearfix">
 			<div class="main-content panel panel-default panel-notice">
 				<div class="panel-heading panel-tabs">
 					<ul class="nav nav-tabs">
-					 	<li class="active"><a href="javascript:void(0);">我的ROM</a></li>
-						<li><a href="javascript:void(0);">充值记录</a></li>
-						<li><a href="javascript:void(0);">消费记录</a></li>
+					 	<li class="active" data-shift="1" @click="navShiftEvent"><a href="javascript:void(0);">我的ROM</a></li>
+						<li data-shift="2" @click="navShiftEvent"><a href="javascript:void(0);">充值记录</a></li>
+						<li data-shift="3" @click="navShiftEvent"><a href="javascript:void(0);">消费记录</a></li>
 					</ul>
 				</div>
 
-				<div class="content">
+				<div class="content" v-cloak v-if="(navShift == '1')">
 					<div class="title">
 						<button class="btn btn-info"><i class="fa fa-add"></i>上传ROM</button>
 						<div class="item">
-							<span class="active">全部<small>(13947)</small></span>
-							<span>已发布<small>(13947)</small></span>
-							<span>未审核<small>(13947)</small></span>
+							<span data-type="1" @click="itemShiftEvent" class="active">全部<small>(13947)</small></span>
+							<span data-type="1" @click="itemShiftEvent">已发布<small>(13947)</small></span>
+							<span data-type="1" @click="itemShiftEvent">未审核<small>(13947)</small></span>
 						</div>
 					</div>
-					<div class="inner">
+					<div class="inner inner-nav1">
 						<div class="header">
 							<div class="row-01">状态</div>
 							<div class="row-02">品牌</div>
@@ -88,71 +88,77 @@ a<!DOCTYPE html>
 								<li class="row-08">全资料[五件套]</li>
 								<li class="row-09">150.0</li>
 								<li class="row-10">6666</li>
-								<li class="row-11"><a :href="['/info?keyword='+item.id]" class="btn btn-info">下载</a></li>
+								<li class="row-11"><a href="['/info?keyword='+item.id]" class="btn btn-info">下载</a></li>
 							</ul>
 						</div>
+					</div>
+				</div>
 
+				<div class="content" v-cloak v-if="(navShift == '2')">
+					<div class="title">
+						<div class="item">
+							<span data-type="1" class="active" @click="itemShiftEvent">全部<small>(13947)</small></span>
+							<span data-type="1" @click="itemShiftEvent">新充值<small>(13947)</small></span>
+							<span data-type="1" @click="itemShiftEvent">充值中<small>(13947)</small></span>
+							<span data-type="1" @click="itemShiftEvent">充值完毕<small>(13947)</small></span>
+						</div>
+					</div>
+					<div class="inner inner-nav2"> 	 	 	 	
+						<div class="header">
+							<div class="row-01">主题</div>
+							<div class="row-02">渠道</div>
+							<div class="row-03">金额</div>
+							<div class="row-04">状态</div>
+							<div class="row-05">日期</div>
+						</div>
 						<div class="list-item">
 							<ul>
-								<li class="row-01">已发布</li>
-								<li class="row-02">三星</li>
-								<li class="row-03">中国</li>
-								<li class="row-04">SM-G935A </li>
-								<li class="row-05">G935AUCS4BQC2</li>
-								<li class="row-06">7.0</li>
-								<li class="row-07">2017-04-03</li>
-								<li class="row-08">全资料[五件套]</li>
-								<li class="row-09">150.0</li>
-								<li class="row-10">6666</li>
-								<li class="row-11"><a :href="['/info?keyword='+item.id]" class="btn btn-info">下载</a></li>
+								<li class="row-01">登录奖励</li>
+								<li class="row-02">login</li>
+								<li class="row-03">666</li>
+								<li class="row-04">创建</li>
+								<li class="row-05">2016-02-20 17:24:19 </li>
 							</ul>
 						</div>
-
 						<div class="list-item">
 							<ul>
-								<li class="row-01">已发布</li>
-								<li class="row-02">三星</li>
-								<li class="row-03">中国</li>
-								<li class="row-04">SM-G935A </li>
-								<li class="row-05">G935AUCS4BQC2</li>
-								<li class="row-06">7.0</li>
-								<li class="row-07">2017-04-03</li>
-								<li class="row-08">全资料[五件套]</li>
-								<li class="row-09">150.0</li>
-								<li class="row-10">6666</li>
-								<li class="row-11"><a :href="['/info?keyword='+item.id]" class="btn btn-info">下载</a></li>
+								<li class="row-01">登录奖励</li>
+								<li class="row-02">login</li>
+								<li class="row-03">666</li>
+								<li class="row-04">创建</li>
+								<li class="row-05">2016-02-20 17:24:19 </li>
 							</ul>
 						</div>
+					</div>
+				</div>
 
-						<div class="list-item">
-							<ul>
-								<li class="row-01">已发布</li>
-								<li class="row-02">三星</li>
-								<li class="row-03">中国</li>
-								<li class="row-04">SM-G935A </li>
-								<li class="row-05">G935AUCS4BQC2</li>
-								<li class="row-06">7.0</li>
-								<li class="row-07">2017-04-03</li>
-								<li class="row-08">全资料[五件套]</li>
-								<li class="row-09">150.0</li>
-								<li class="row-10">6666</li>
-								<li class="row-11"><a :href="['/info?keyword='+item.id]" class="btn btn-info">下载</a></li>
-							</ul>
+				<div class="content" v-cloak v-if="(navShift == '3')"> 
+					<div class="title">
+						<div class="item">
+							<span data-type="1" class="active" @click="itemShiftEvent">全部<small>(13947)</small></span>
+							<span data-type="1" @click="itemShiftEvent">交易完毕<small>(13947)</small></span>
+							<span data-type="1" @click="itemShiftEvent">未发货<small>(13947)</small></span>
+							<span data-type="1" @click="itemShiftEvent">退款<small>(13947)</small></span>
+						</div>
+					</div>
+					<div class="inner inner-nav3"> 	 	 	 	 
+						<div class="header">  	 	 	 	 	
+							<div class="row-01">方式</div>
+							<div class="row-02">商品类型</div>
+							<div class="row-03">商品</div>
+							<div class="row-04">消费</div>
+							<div class="row-05">状态</div>
+							<div class="row-06">日期</div>
 						</div>
 
-						<div class="list-item">
+						<div class="list-item">  	 	 	 	 	
 							<ul>
-								<li class="row-01">已发布</li>
-								<li class="row-02">三星</li>
-								<li class="row-03">中国</li>
-								<li class="row-04">SM-G935A </li>
-								<li class="row-05">G935AUCS4BQC2</li>
-								<li class="row-06">7.0</li>
-								<li class="row-07">2017-04-03</li>
-								<li class="row-08">全资料[五件套]</li>
-								<li class="row-09">150.0</li>
-								<li class="row-10">6666</li>
-								<li class="row-11"><a :href="['/info?keyword='+item.id]" class="btn btn-info">下载</a></li>
+								<li class="row-01">download</li>
+								<li class="row-02">rom</li>
+								<li class="row-03">11346</li>
+								<li class="row-04">150.0</li>
+								<li class="row-05">finished</li>
+								<li class="row-06">2016-02-20 17:24:19 </li>
 							</ul>
 						</div>
 					</div>

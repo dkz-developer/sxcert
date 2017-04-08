@@ -21,8 +21,13 @@
 				</div>
 
 				<div class="btnGroup">
-					<a class="login-btn" href="/enter?type=login">登录</a>
-					<a class="register-btn" href="/enter?type=register">注册</a>
+					@if(empty(session('userInfo')))
+						<a class="login-btn" href="/enter?type=login">登录</a>
+						<a class="register-btn" href="/enter?type=register">注册</a>
+					@else
+						<a class="login-btn" href="/users?id={{session('userInfo.UserId')}}">{{session('userInfo.UserName')}}</a>
+						<a class="register-btn" href='/custome/logout'>退出</a>
+					@endif
 				</div>
 
 				<div class="items">
@@ -36,7 +41,7 @@
 			</div>
 		</nav>
 
-		<div class="box-container" id="app" data-value="{{ csrf_token() }}">
+		<div class="box-container">
 			<div class="account-info clearfix panel panel-default">
 				<div class="layoutLeft well well-sm">
 					{{$info->model}}
@@ -79,24 +84,12 @@
 
 				<div class="panel-heading panel-tabs">
 					<ul class="nav nav-tabs">
-					 	<li class="active" id="nav_comment"><a href="javascript:void(0);" onclick="showContent('#nav_comment','#comment')">评论</a></li>
-						<li id="nav_abstract"><a href="javascript:void(0);" onclick="showContent('#nav_abstract','#abstract')">介绍</a></li>
+					 	<li class="active" data-shift="1" @click="navShiftEvent"><a href="javascript:void(0);">评论</a></li>
+						<li data-shift="2" @click="navShiftEvent"><a href="javascript:void(0);">介绍</a></li>
 					</ul>
 				</div>
 				
-				<div class="content" id="comment">
-					<div class="info-comment" style="width: 100%;height: 150px;padding-top: 20px;">
-						<div class="face-ico" style="width: 10%;height: 50px;float: left;margin:0 10px 0 20px;text-align: right;">
-							<img src="http://static.duoshuo.com/images/noavatar_default.png" style="width: 50px;height: 100%;border-radius: 3px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);">	
-						</div>
-						<div class="info-con" style="float: left;width: 80%;background: #fff url('//static.duoshuo.com/images/bg_sprites.png') repeat-x scroll 0 -90px;border-color: #ccc #ccc currentcolor;border-style: solid solid none;border-width: 1px 1px medium;border-top-left-radius: 3px; border-top-right-radius: 3px;">
-							<textarea name="content" style="background: rgba(0, 0, 0, 0);height: 70px;color: #999;border: medium none;width: 100%;resize:none;padding: 5px;"placeholder="说点什么吧..."></textarea>
-							<div style="width: 100%;border: 1px solid #ccc;border-left:none;border-right:none;text-align:right;height: 30px;border-bottom-left-radius: 3px;border-bottom-right-radius: 3px;background: rgba(0, 0, 0, 0) url('//static.duoshuo.com/images/bg_sprites.png') repeat-x scroll 0 -60px;">
-								<button type="submit" style="height: 100%;border:none; width: 100px;text-align: center;border-left:1px solid #ccc;">发布</button>
-							</div>
-						</div>
-					</div>	
+				<div class="content"  v-if="(navShift == '1')">
 					<div class="content-discussion clearfix">
 						<div class="photo">
 							<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">
@@ -106,7 +99,6 @@
 							<p>我在物质上的最高奢望就是，在一个和平的世界上，有一个健康的身体，过一种小康的日子。—— by 邓云华 ​​​​</p>
 							<div class="opts">
 								<span>2015年2月4日</span>
-								<span><i class="fa fa-reply"></i>回复</span>
 							</div>
 						</div>
 					</div>
@@ -122,66 +114,27 @@
 						</div>
 					</div>
 
-					<div class="content-discussion clearfix">
-						<div class="photo">
-							<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">
+					@if(empty(session('userInfo')))
+						<div class="alert alert-info">
+							<a href="/enter?type=login" class="btn btn-info">登录以评论</a>
 						</div>
-						<div class="discussion-info">
-							<h4 class="nickname">宣州是爷</h4>
-							<p>我在物质上的最高奢望就是，在一个和平的世界上，有一个健康的身体，过一种小康的日子。—— by 邓云华 ​​​​</p>
-							<div class="left">2017-03-31</div>
-						</div>
-					</div>
+					@else
+						<div class="mesBoard">
+							<div class="photo">
+								<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">
+							</div>
+							<div class="mes-content">
+								<textarea class="form-control" id="message" placeholder="吐槽下吧呗，您的神回复将名留青史！"></textarea>
+							</div>
 
-					<div class="content-discussion clearfix">
-						<div class="photo">
-							<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">
+							<div class="message-submit">
+								<button class="btn btn-info">提交评论</button>
+							</div>
 						</div>
-						<div class="discussion-info">
-							<h4 class="nickname">宣州是爷</h4>
-							<p>我在物质上的最高奢望就是，在一个和平的世界上，有一个健康的身体，过一种小康的日子。—— by 邓云华 ​​​​</p>
-							<div class="left">2017-03-31</div>
-						</div>
-					</div>
-
-					<div class="content-discussion clearfix">
-						<div class="photo">
-							<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">
-						</div>
-						<div class="discussion-info">
-							<h4 class="nickname">宣州是爷</h4>
-							<p>我在物质上的最高奢望就是，在一个和平的世界上，有一个健康的身体，过一种小康的日子。—— by 邓云华 ​​​​</p>
-							<div class="left">2017-03-31</div>
-						</div>
-					</div>
-
-					<div class="content-discussion clearfix">
-						<div class="photo">
-							<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">
-						</div>
-						<div class="discussion-info">
-							<h4 class="nickname">宣州是爷</h4>
-							<p>我在物质上的最高奢望就是，在一个和平的世界上，有一个健康的身体，过一种小康的日子。—— by 邓云华 ​​​​</p>
-							<div class="left">2017-03-31</div>
-						</div>
-					</div>
-
-					<div class="content-discussion clearfix">
-						<div class="photo">
-							<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">
-						</div>
-						<div class="discussion-info">
-							<h4 class="nickname">宣州是爷</h4>
-							<p>我在物质上的最高奢望就是，在一个和平的世界上，有一个健康的身体，过一种小康的日子。—— by 邓云华 ​​​​</p>
-							<div class="left">2017-03-31</div>
-						</div>
-					</div>
-
-					<div class="alert alert-info">
-						<a href="/" class="btn btn-info">登录以评论</a>
-					</div>
+					@endif
 				</div>
-				<div class="content" id="abstract" style="display: none;padding: 10px;">
+
+				<div class="content" v-if="(navShift == '2')">
 					{!! $info->abstract !!}
 				</div>
 			</div>
@@ -203,31 +156,10 @@
 	</script>
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
-	<!-- <script src="scripts/lib/bootstrap/bootstrap.min.js"></script> -->
-	<script src="scripts/info.js"></script>
 	<script src="scripts/ZeroClipboard.min.js"></script>
-	<script type="text/javascript" src="/style/admin/lib/layer/2.4/layer.js"></script>
-	<script type="text/javascript">
-		function showContent(nav,obj)
-		{
-			$('#nav_abstract,#nav_comment').removeClass('active');
-			$(nav).addClass('active');
-			$('.content').hide();
-			$(obj).show();
-		}
-		var client = new ZeroClipboard( document.getElementById("copy-button") );
+	<script src="/style/admin/lib/layer/2.4/layer.js"></script>
+	<script src="scripts/info.js"></script>
 
-		client.on( "ready", function( readyEvent ) {
-			// alert( "ZeroClipboard SWF is ready!" );
-			client.on( "aftercopy", function( event ) {
-				// `this` === `client`
-			    	// `event.target` === the element that was clicked
-			    	//event.target.style.display = "none";
-			    	//alert("Copied text to clipboard: " + event.data["text/plain"] );
-			    	layer.msg('复制成功 ！',{icon:1,time:3000});
-			  } );
-		} );
-	</script>
 </body>
 </html>
 

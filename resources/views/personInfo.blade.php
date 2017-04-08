@@ -43,46 +43,35 @@ k
 
 			<div class="main">
 				<div class="main-title">
-					用手机号重置密码
+					基本资料
 				</div> 
 
 				<div class="main-content">
 					<form action="" data-act="login">
 						<div class="input-prepend">
-							<input class="restyle" type="text" placeholder="请输入手机号码" id="mobile"  v-on:blur="verification" data-error="短信验证码不能为空">
+							<input class="restyle" type="text" placeholder="昵称" id="mobile"  v-on:blur="verification" data-error="短信验证码不能为空">
 							<i class="fa fa-mobile"></i>
 						</div>
 
-						<div class="input-prepend">
-							<input class="restyle" type="text" placeholder="请输入短信验证码" id="mescode"  v-on:blur="verification" data-error="短信验证码不能为空">
-							<i class="fa fa-shield"></i>
-							<button type="button" class="btn btn-primary sendMessage" @click="sendMessage">发送验证码</button>
-						</div>
 
 						<div class="input-prepend">
-							<input class="restyle" type="text" placeholder="请输入新密码" id="password"  v-on:blur="verification" data-error="新密码不能为空">
+							<input class="restyle" type="text" placeholder="密码（留空则不更改）" id="password"  v-on:blur="verification">
 							<i class="fa fa-lock"></i>
 						</div>
 
 						<div class="input-prepend">
-							<input class="restyle" type="text" placeholder="请再次输入新密码" id="passwordAgain"  v-on:blur="verification" data-error="确认密码不能为空">
+							<input class="restyle" type="text" placeholder="密码确认（留空则不更改）" id="passwordAgain"  v-on:blur="verification">
 							<i class="fa fa-lock"></i>
 						</div>
-						<div class="input-prepend">
-							<input  type="text" placeholder="请输入验证码" class="lastIn" id="vcode" v-on:blur="verification" data-error="验证码不能为空" id="vcode"  v-on:blur="verification" data-error="手机号不能为空">
-							<span class="vCode-img"><img @click="refreshVcode" src="http://121.42.147.197/admin/kit/captcha/1" alt=""></span>
-						</div>
+						
 						<div class="submitBtn">
-							<button type="button" class="btn btn-primary" @click="resetPaswrd">重置密码</button>
+							<button type="button" class="btn btn-primary" @click="resetPaswrd">确认修改</button>
 						</div>
 
 						<div class="error-info">
 							<span></span>
 						</div>						
 
-						<div class="back">
-							<a href="/enter?type=login"><i class="fa fa-mail-reply"></i> 返回登录注册页</a>
-						</div>
 					</form>
 				</div>
 			</div>

@@ -89,46 +89,50 @@
 					</ul>
 				</div>
 				
-				<div class="content"  v-if="(navShift == '1')">
-					@foreach($infoComment as $val)
-					<div class="content-discussion clearfix">
-						<div class="photo">
-							<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">
-						</div>
-						<div class="discussion-info">
-							<h4 class="nickname">{{$val->user_name}}</h4>
-							<p>{{$val->content}}</p>
-							<div class="left">
-								<span>{{$val->created_at}}</span>
-							</div>
-						</div>
-					</div>
-					@endforeach
-					@if(empty(session('userInfo')))
-						<div class="alert alert-info">
-							<a href="/enter?type=login" class="btn btn-info">登录以评论</a>
-						</div>
-					@else
-						<div class="mesBoard">
+				<div class="inner" v-show="(navShift == '1')">
+					<div class="content">
+						@foreach($infoComment as $val)
+						<div class="content-discussion clearfix">
 							<div class="photo">
 								<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">
 							</div>
-							<form action="javascript:void(0)" id="info-comment">
-								<div class="mes-content">
-									<textarea class="form-control" id="message" placeholder="吐槽下吧呗，您的神回复将名留青史！" name="content"></textarea>
-									<input type="hidden" name="info_id" value="{{$info->id}}">
+							<div class="discussion-info">
+								<h4 class="nickname">{{$val->user_name}}</h4>
+								<p>{{$val->content}}</p>
+								<div class="left">
+									<span>{{$val->created_at}}</span>
 								</div>
-
-								<div class="message-submit">
-									<button class="btn btn-info" type="submit">提交评论</button>
-								</div>
-							</form>
+							</div>
 						</div>
-					@endif
+						@endforeach
+						@if(empty(session('userInfo')))
+							<div class="alert alert-info">
+								<a href="/enter?type=login" class="btn btn-info">登录以评论</a>
+							</div>
+						@else
+							<div class="mesBoard">
+								<div class="photo">
+									<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">
+								</div>
+								<form action="javascript:void(0)" id="info-comment">
+									<div class="mes-content">
+										<textarea class="form-control" id="message" placeholder="吐槽下吧呗，您的神回复将名留青史！" name="content"></textarea>
+										<input type="hidden" name="info_id" value="{{$info->id}}">
+									</div>
+
+									<div class="message-submit">
+										<button class="btn btn-info" type="submit">提交评论</button>
+									</div>
+								</form>
+							</div>
+						@endif
+					</div>					
 				</div>
 
-				<div class="content" v-if="(navShift == '2')">
-					{!! $info->abstract !!}
+				<div class="inner" v-show="(navShift == '2')">
+					<div class="content">
+						{!! $info->abstract !!}
+					</div>					
 				</div>
 			</div>
 		</div>
@@ -142,52 +146,6 @@
 	<script src="scripts/ZeroClipboard.min.js"></script>
 	<script src="/style/admin/lib/layer/2.4/layer.js"></script>
 	<script src="scripts/info.js"></script>
-	<script>
-		var _hmt = _hmt || [];
-		(function() {
-		  var hm = document.createElement("script");
-		  hm.src = "https://hm.baidu.com/hm.js?b819a6a70904703dd1926e26ba9554f0";
-		  var s = document.getElementsByTagName("script")[0]; 
-		  s.parentNode.insertBefore(hm, s);
-		})();
-
-		/**
-		 *  添加评论
-		 */
-		$('#info-comment').submit(function(){
-			var param = $(this).serialize();
-			$.ajax({
-			    	headers: {
-			    		'X-CSRF-TOKEN': $('#app').attr('data-value')
-			    	},
-			    	type: 'POST',
-			    	url: '/add/InfoComment',
-				dataType: 'json',
-				data: param,
-				success: function(result){
-					if(result.code='S'){
-						var html = '<div class="content-discussion clearfix">';
-						html += '<div class="photo">';
-						html += '<img src="http://bbs.romup.com/uc_server/avatar.php?uid=572434&size=thumbnail" alt="">'
-						html += '</div>';
-						html += '<div class="discussion-info">';
-						html += '<h4 class="nickname">'+result.data.user_name+'</h4>';
-						html += '<p>'+result.data.content+'</p>';
-						html += '<div class="left">';
-						html += '<span>'+result.data.created_at+'</span>';
-						html += '</div>';
-						html += '</div>';
-						html += '</div>';
-						$('.mesBoard').before(html);
-						layer.msg(result.msg,{icon:1,time:2000});
-					}else {
-						layer.msg(result.msg,{icon:2,time:2000});
-					}
-				} 
-			});
-			return false;
- 		});
-	</script>
 </body>
 </html>
 

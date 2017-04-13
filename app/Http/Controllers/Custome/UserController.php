@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Model\User;
 //引用对应的命名空间
 use Gregwar\Captcha\CaptchaBuilder;
+use App\Model\BuyRecord;
 use Session;
 use DB;
 class UserController extends Controller
@@ -18,13 +19,13 @@ class UserController extends Controller
 	 */
 	public function userCenter(Request $request)
 	{
-		$id = $request->input('id');
-		if(!$id)
-			return redirect('/load');
-		$userInfo = User::where('UserId',$id)->first();
+		if(empty(session('userInfo')))
+			return redirect('/enter?type=login');
+		$userInfo = User::find(session('userInfo.UserId'));
 		if(empty($userInfo))
-			return redirect('/load');
-		return view('users',['userInfo'=>$userInfo]);
+			return redirect('/enter?type=register');
+		 $buyRecord = BuyRecord::where('user_id',session('userInfo.UserId'))->get();
+		return view('users',['userInfo'=>$userInfo,'buyRecord'=>$buyRecord]);
 	}
 
 	public function index()

@@ -92,4 +92,5 @@ Route::group(['namespace' => 'Custome'], function () {
 	// 个人 详情页
 	Route::get('/users','UserController@userCenter');
 	Route::post('/add/InfoComment','LoadListController@addInfoComment');
+	Route::post('/buyInfo','LoadListController@download');
 });

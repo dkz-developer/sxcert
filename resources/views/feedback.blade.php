@@ -22,8 +22,13 @@ a<!DOCTYPE html>
 				</div>
 
 				<div class="btnGroup">
-					<a class="login-btn" href="/enter?type=login">登录</a>
-					<a class="register-btn" href="/enter?type=register">注册</a>
+					@if(empty(session('userInfo')))
+						<a class="login-btn" href="/enter?type=login">登录</a>
+						<a class="register-btn" href="/enter?type=register">注册</a>
+					@else
+						<a href="/users" class="login-btn">{{session('userInfo.UserName')}}</a>
+						<a href='/custome/logout' class="register-btn">退出</a>
+					@endif
 				</div>
 
 				<div class="items">
@@ -44,7 +49,7 @@ a<!DOCTYPE html>
 						意见反馈
 					</div>
 					<div class="panel-body">
-						<div class="hot">
+						<!-- <div class="hot">
 							<h3>被顶起来的评论</h3>
 							<div class="content">
 								<div class="listItem clearfix">
@@ -167,7 +172,17 @@ a<!DOCTYPE html>
 
 								</div>
 							</div>
-						</div>
+						</div> -->
+						<!--PC版-->
+						<div id="SOHUCS" sid="feedback"></div>
+						<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+						<script type="text/javascript">
+							window.changyan.api.config({
+							appid: 'cysVLAUAq',
+							conf: 'prod_38b26b42c655f8694aaa3a9dd605a250'
+							});
+						</script>
+
 					</div>
 				</div>
 			</div>

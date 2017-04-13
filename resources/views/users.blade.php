@@ -133,14 +133,14 @@ a<!DOCTYPE html>
 				</div>
 
 				<div class="content" v-cloak v-if="(navShift == '3')"> 
-					<div class="title">
+				<!-- 	<div class="title">
 						<div class="item">
 							<span data-type="1" class="active" @click="itemShiftEvent">全部<small>(13947)</small></span>
 							<span data-type="1" @click="itemShiftEvent">交易完毕<small>(13947)</small></span>
 							<span data-type="1" @click="itemShiftEvent">未发货<small>(13947)</small></span>
 							<span data-type="1" @click="itemShiftEvent">退款<small>(13947)</small></span>
 						</div>
-					</div>
+					</div> -->
 					<div class="inner inner-nav3"> 	 	 	 	 
 						<div class="header">  	 	 	 	 	
 							<div class="row-01">方式</div>
@@ -151,15 +151,17 @@ a<!DOCTYPE html>
 							<div class="row-06">日期</div>
 						</div>
 
-						<div class="list-item">  	 	 	 	 	
+						<div class="list-item">  	
+							@foreach($buyRecord as $val) 	 	 	 	
 							<ul>
 								<li class="row-01">download</li>
 								<li class="row-02">rom</li>
-								<li class="row-03">11346</li>
-								<li class="row-04">150.0</li>
+								<li class="row-03">{{$val->info_id}}</li>
+								<li class="row-04">{{$val->consume}}</li>
 								<li class="row-05">finished</li>
-								<li class="row-06">2016-02-20 17:24:19 </li>
+								<li class="row-06">{{$val->created_at}} </li>
 							</ul>
+							@endforeach
 						</div>
 					</div>
 				</div>

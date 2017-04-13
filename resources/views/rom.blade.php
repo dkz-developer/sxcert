@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+a<!DOCTYPE html>
 <html lang="zh-cmn-Hans">
 <head>
 	<meta charset="utf-8">
@@ -11,59 +11,58 @@
 	<meta name="description" content="">
 
     <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="style/css/rom.css" rel="stylesheet">
+    <link href="style/css/load.css" rel="stylesheet">
 </head>
 <body>
 	<div id="app" data-value="{{ csrf_token() }}">
 		<nav class="clearfix">
 			<div class="inner">
 				<div class="logo">
-					<a href="/"><img src="images/logo_main3.png" alt=""></a>
+					<a href="/">GSMGOOD</a>
 				</div>
-				<div class="search">
-					<input type="text" placeholder="请输入...">	
-					<span class="fa fa-search"></span>
+
+				<div class="btnGroup">
+					@if(empty(session('userInfo')))
+						<a class="login-btn" href="/enter?type=login">登录</a>
+						<a class="register-btn" href="/enter?type=register">注册</a>
+					@else
+						<a class="login-btn" href="/users?id={{session('userInfo.UserId')}}">{{session('userInfo.UserName')}}</a>
+						<a class="register-btn" href='/custome/logout'>退出</a>
+					@endif
 				</div>
-				<div class="items clearfix">
+
+				<div class="items">
 					<ul>
-						<li><a href="/load">下载站</a></li>
+						<li><a href="/load">首页</a></li>
+						<li><a href="/">讨论区</a></li>
 						<li><a href="/pay">充值</a></li>
-						<li><a href="/service">客服</a></li>
-						@if(empty(session('userInfo')))
-							<li><a href="/enter?type=login">登录</a></li>
-							<li><a href="/enter?type=register">注册</a></li>
-						@else
-							<li><a href="/users?id={{session('userInfo.UserId')}}">{{session('userInfo.UserName')}}</a></li>
-							<li><a href='/custome/logout'>退出</a></li>
-						@endif
+						<li><a href="/feedback">意见反馈</a></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
 
-		<div class="container">
+		
 
-			
-		</div>
+
+
+
+
+
+
+		
 
 		<div class="footer">
 			<p>粤ICP备17024526号-1</p>
-		</div>		
+		</div>
 	</div>
-	<script>
-		var _hmt = _hmt || [];
-		(function() {
-		  var hm = document.createElement("script");
-		  hm.src = "https://hm.baidu.com/hm.js?b819a6a70904703dd1926e26ba9554f0";
-		  var s = document.getElementsByTagName("script")[0]; 
-		  s.parentNode.insertBefore(hm, s);
 
-		})();
-	</script>
+	
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
-	<script src="scripts/public/tools.js"></script>
-	<script src="scripts/rom.js"></script>
-
+	<script src="scripts/load.js"></script>
 </body>
 </html>
+
+
+

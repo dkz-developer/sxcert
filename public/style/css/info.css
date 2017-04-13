@@ -1,1 +1,247 @@
-@import url(./bootstrap.min.css);nav{width:100%;height:60px;background:#fff;box-shadow:1px 1px 10px #ccc;position:fixed;top:0;left:0;z-index:1000}nav .inner{width:1200px;height:60px;margin:0 auto}nav .inner .logo{width:100px;height:60px;line-height:60px;float:left;text-align:center}nav .inner .logo a{color:#3fbad9;font-size:26px;font-weight:700;text-decoration:none}nav .inner .items{float:right;margin-right:20px}nav .inner .items li{height:60px;line-height:60px;float:left;text-align:center;list-style:none;padding:0 15px}nav .inner .items li a{color:#3fbad9;text-decoration:none;transition:all 0.3s ease 0s;font-size:16px}nav .inner .items li a:hover{color:#2aa5c4}nav .inner .btnGroup{float:right;height:60px;line-height:60px}nav .inner .btnGroup .login-btn{display:inline-block;width:60px;height:25px;line-height:23px;text-align:center;border-radius:4px;margin-left:10px;text-decoration:none;border:1px solid #3fbad9;color:#3fbad9;transition:all 0.3s ease 0s}nav .inner .btnGroup .login-btn:hover{color:#2aa5c4;border-color:#2aa5c4}nav .inner .btnGroup .register-btn{display:inline-block;width:60px;height:25px;line-height:23px;text-align:center;border-radius:4px;margin-left:10px;text-decoration:none;border:1px #3fbad9 solid;color:#fff;transition:all 0.3s ease 0s;background:#3fbad9}nav .inner .btnGroup .register-btn:hover{background:#2aa5c4;border-color:#2aa5c4}.footer{width:100%;background:#444855;height:150px;margin-top:50px}.footer p{color:#fff;text-align:center;padding-top:100px}body{background:#f3f3f3;font-smoothing:grayscale;-moz-osx-font-smoothing:grayscale}*,ul,ol,li,dl,dd{padding:0;margin:0}.box-container{width:1200px;margin:0 auto;margin-top:90px}.box-container .account-info .layoutLeft{width:240px;padding:5px;border:1px solid #ccc;border-radius:4px;margin:39px;float:left;height:311px;line-height:311px;color:#666;font-weight:600;text-align:center;font-size:18px}.box-container .account-info .layoutRight{margin-top:42px;float:right;width:875px}.box-container .account-info .layoutRight .title{color:#444}.box-container .account-info .layoutRight .title em{font-size:14px;color:#666;margin-left:5px;font-style:normal}.box-container .account-info .layoutRight .public span{color:#444;margin-right:10px;font-size:12px}.box-container .account-info .layoutRight .info{margin-top:10px;width:830px;height:238px;padding-top:15px}.box-container .account-info .layoutRight .info .left{width:310px;float:left}.box-container .account-info .layoutRight .info .left li{list-style:none;margin-bottom:17px}.box-container .account-info .layoutRight .info .left li a{text-decoration:none;color:#198bad}.box-container .account-info .layoutRight .info .left li a:hover{color:#027496}.box-container .account-info .layoutRight .info .right{width:320px;float:right}.box-container .account-info .layoutRight .info .right .money{height:60px;height:60px;font-size:20px;font-weight:600;color:#777;margin-top:10px}.box-container .account-info .layoutRight .info .right .money em{font-size:36px;color:#3fbad9;font-style:normal;margin-right:7px}.box-container .account-info .layoutRight .info .right .password{width:200px;margin:12px 0 30px 0}.box-container .account-info .layoutRight .info .right .loadBtn a{width:200px}.box-container .main-info{min-height:300px;border:1px solid #e3e3e3;border-radius:4px;background:#fff}.box-container .main-info .nav{border-bottom:none}.box-container .main-info .panel-tabs{padding-bottom:0;border-bottom:none}.box-container .main-info .content-discussion{border-bottom:1px dashed #ccc;padding:25px}.box-container .main-info .content-discussion .photo{float:left;height:60px;margin-right:15px;position:relative;width:60px}.box-container .main-info .content-discussion .photo img{border-radius:50%;height:60px;width:60px}.box-container .main-info .content-discussion .discussion-info{float:left;width:1066px}.box-container .main-info .content-discussion .discussion-info .title{color:#333;font-size:17px;font-weight:600}.box-container .main-info .content-discussion .discussion-info p{line-height:25px;margin:10px 0;max-width:1100px}.box-container .main-info .content-discussion .discussion-info .left{color:#a5a5a5;float:left}.box-container .main-info .alert-info{margin:0 25px 25px}.box-container .main-info .mesBoard{height:250px;padding:25px}.box-container .main-info .mesBoard .photo{width:60px;height:60px;float:left;margin-right:15px}.box-container .main-info .mesBoard .photo img{width:60px;height:60px;border-radius:50%}.box-container .main-info .mesBoard .mes-content{float:left;width:1060px;height:150px}.box-container .main-info .mesBoard .mes-content textarea{width:100%;height:100%;resize:none}.box-container .main-info .mesBoard .message-submit{line-height:75px;text-align:center}#kkpager{height:50px;line-height:50px}#kkpager .pageBtnWrap{margin-top:20px}
+/* -------------------------------------------------
+ * 
+ * -------------------------------------------------
+*/
+@import url(./bootstrap.min.css);
+/* -------------------------------------------------
+ * 
+ * -------------------------------------------------
+*/
+nav {
+  width: 100%;
+  height: 60px;
+  background: #fff;
+  box-shadow: 1px 1px 10px #ccc;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000; }
+  nav .inner {
+    width: 1200px;
+    height: 60px;
+    margin: 0 auto; }
+    nav .inner .logo {
+      width: 100px;
+      height: 60px;
+      line-height: 60px;
+      float: left;
+      text-align: center; }
+      nav .inner .logo a {
+        color: #3fbad9;
+        font-size: 26px;
+        font-weight: 700;
+        text-decoration: none; }
+    nav .inner .items {
+      float: right;
+      margin-right: 20px; }
+      nav .inner .items li {
+        height: 60px;
+        line-height: 60px;
+        float: left;
+        text-align: center;
+        list-style: none;
+        padding: 0 15px; }
+        nav .inner .items li a {
+          color: #3fbad9;
+          text-decoration: none;
+          transition: all 0.3s ease 0s;
+          font-size: 16px; }
+          nav .inner .items li a:hover {
+            color: #2aa5c4; }
+    nav .inner .btnGroup {
+      float: right;
+      height: 60px;
+      line-height: 60px; }
+      nav .inner .btnGroup .login-btn {
+        display: inline-block;
+        width: 60px;
+        height: 25px;
+        line-height: 23px;
+        text-align: center;
+        border-radius: 4px;
+        margin-left: 10px;
+        text-decoration: none;
+        border: 1px solid #3fbad9;
+        color: #3fbad9;
+        transition: all 0.3s ease 0s; }
+        nav .inner .btnGroup .login-btn:hover {
+          color: #2aa5c4;
+          border-color: #2aa5c4; }
+      nav .inner .btnGroup .register-btn {
+        display: inline-block;
+        width: 60px;
+        height: 25px;
+        line-height: 23px;
+        text-align: center;
+        border-radius: 4px;
+        margin-left: 10px;
+        text-decoration: none;
+        border: 1px #3fbad9 solid;
+        color: #fff;
+        transition: all 0.3s ease 0s;
+        background: #3fbad9; }
+        nav .inner .btnGroup .register-btn:hover {
+          background: #2aa5c4;
+          border-color: #2aa5c4; }
+
+/* -------------------------------------------------
+ * 
+ * -------------------------------------------------
+*/
+.footer {
+  width: 100%;
+  background: #444855;
+  height: 150px;
+  margin-top: 50px; }
+  .footer p {
+    color: #fff;
+    text-align: center;
+    padding-top: 100px; }
+
+body {
+  background: #f3f3f3;
+  font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale; }
+
+*, ul, ol, li, dl, dd {
+  padding: 0;
+  margin: 0; }
+
+.box-container {
+  width: 1200px;
+  margin: 0 auto;
+  margin-top: 90px; }
+  .box-container .account-info .layoutLeft {
+    width: 240px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 39px;
+    float: left;
+    height: 311px;
+    line-height: 311px;
+    color: #666;
+    font-weight: 600;
+    text-align: center;
+    font-size: 18px; }
+  .box-container .account-info .layoutRight {
+    margin-top: 42px;
+    float: right;
+    width: 875px; }
+    .box-container .account-info .layoutRight .title {
+      color: #444; }
+      .box-container .account-info .layoutRight .title em {
+        font-size: 14px;
+        color: #666;
+        margin-left: 5px;
+        font-style: normal; }
+    .box-container .account-info .layoutRight .public span {
+      color: #444;
+      margin-right: 10px;
+      font-size: 12px; }
+    .box-container .account-info .layoutRight .info {
+      margin-top: 10px;
+      width: 830px;
+      height: 238px;
+      padding-top: 15px; }
+      .box-container .account-info .layoutRight .info .left {
+        width: 310px;
+        float: left; }
+        .box-container .account-info .layoutRight .info .left li {
+          list-style: none;
+          margin-bottom: 17px; }
+          .box-container .account-info .layoutRight .info .left li a {
+            text-decoration: none;
+            color: #198bad; }
+            .box-container .account-info .layoutRight .info .left li a:hover {
+              color: #027496; }
+      .box-container .account-info .layoutRight .info .right {
+        width: 320px;
+        float: right; }
+        .box-container .account-info .layoutRight .info .right .money {
+          height: 60px;
+          height: 60px;
+          font-size: 20px;
+          font-weight: 600;
+          color: #777;
+          margin-top: 10px; }
+          .box-container .account-info .layoutRight .info .right .money em {
+            font-size: 36px;
+            color: #3fbad9;
+            font-style: normal;
+            margin-right: 7px; }
+        .box-container .account-info .layoutRight .info .right .password {
+          width: 200px;
+          margin: 12px 0 30px 0; }
+        .box-container .account-info .layoutRight .info .right .loadBtn a {
+          width: 200px; }
+  .box-container .main-info {
+    min-height: 300px;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    background: #fff; }
+    .box-container .main-info .nav {
+      border-bottom: none; }
+    .box-container .main-info .panel-tabs {
+      padding-bottom: 0;
+      border-bottom: none; }
+    .box-container .main-info .content-discussion {
+      border-bottom: 1px dashed #ccc;
+      padding: 25px; }
+      .box-container .main-info .content-discussion .photo {
+        float: left;
+        height: 60px;
+        margin-right: 15px;
+        position: relative;
+        width: 60px; }
+        .box-container .main-info .content-discussion .photo img {
+          border-radius: 50%;
+          height: 60px;
+          width: 60px; }
+      .box-container .main-info .content-discussion .discussion-info {
+        float: left;
+        width: 1066px; }
+        .box-container .main-info .content-discussion .discussion-info .title {
+          color: #333;
+          font-size: 17px;
+          font-weight: 600; }
+        .box-container .main-info .content-discussion .discussion-info p {
+          line-height: 25px;
+          margin: 10px 0;
+          max-width: 1100px; }
+        .box-container .main-info .content-discussion .discussion-info .left {
+          color: #a5a5a5;
+          float: left; }
+    .box-container .main-info .alert-info {
+      margin: 0 25px 25px; }
+    .box-container .main-info .mesBoard {
+      height: 250px;
+      padding: 25px; }
+      .box-container .main-info .mesBoard .photo {
+        width: 60px;
+        height: 60px;
+        float: left;
+        margin-right: 15px; }
+        .box-container .main-info .mesBoard .photo img {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%; }
+      .box-container .main-info .mesBoard .mes-content {
+        float: left;
+        width: 1060px;
+        height: 150px; }
+        .box-container .main-info .mesBoard .mes-content textarea {
+          width: 100%;
+          height: 100%;
+          resize: none; }
+      .box-container .main-info .mesBoard .message-submit {
+        line-height: 75px;
+        text-align: center; }
+
+#kkpager {
+  height: 50px;
+  line-height: 50px; }
+  #kkpager .pageBtnWrap {
+    margin-top: 20px; }
+
+/*# sourceMappingURL=info.css.map */

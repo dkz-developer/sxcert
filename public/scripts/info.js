@@ -2,6 +2,9 @@
 
 (function($) {
 
+    var id = $.mytools.GetQueryString("keyword");    // 资料ID
+
+
 
 	// 实例化vue
 	var vm = new Vue({
@@ -16,7 +19,8 @@
                 $(".nav-tabs").find("li").removeClass("active");
                 $(obj).addClass("active");
                 vm.navShift = obj.attr("data-shift");
-            },            
+            },   
+            load:load,         
 	    }
 	});
 
@@ -81,6 +85,7 @@
             return false;
         });      
     }
+
     // 默认事件
     function  bindEvents() {
         // 复制
@@ -89,7 +94,41 @@
             client.on( "aftercopy", function(event) {
                     layer.msg('复制成功 ！',{icon:1,time:3000});
             });
-        });        
+        });  
+
+        $(".loadBtn a").mouseover(function() {
+            layer.tips('请点击并复制黄色区中的下载密码', '.loadBtn a',{ tips: [1, '#333'],time: 5000});     
+        })
+
+    }
+
+    function load() {
+
+        var params = {
+            "info_id": id,
+             "_token": $("#app").attr("data-value")
+        };
+
+        var newWin = window.open('about:blank');
+
+        $.post('/buyInfo', params, function(backData) {
+
+            if(backData && backData.code === "S") {
+
+                newWin.location.href = backData.url;
+
+            }else {
+
+                if(backData && backData.msg !== "") {
+                    layer.alert(backData.msg,{icon:2,time:3000});
+                }
+
+                if(backData && backData.url) {
+                     window.location.href = backData.url;
+                }
+            }
+
+        }, "json"); 
     }
 
     $(function() {

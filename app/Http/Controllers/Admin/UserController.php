@@ -10,8 +10,16 @@ use App\Model\AdminUser;
 use Gregwar\Captcha\CaptchaBuilder;
 use Session;
 use DB;
+namespace App\Model\User;
 class UserController extends Controller
 {
+	public function userList()
+	{
+		 $count = User::count();
+		 $list = User::paginate(15);
+		 return view('admin.userList',['count'=>$count,'list'=>$list]);
+	}
+
 	public function index()
 	{
 		return view('admin.index');

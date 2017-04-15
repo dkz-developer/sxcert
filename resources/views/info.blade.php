@@ -9,7 +9,7 @@
 	<meta name="viewport" contant="width=device-width, initial-scale=1">
 	<meta name="keywords" content="">
 	<meta name="description" content="">
-	<link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="scripts/lib/popover/jquery.webui-popover.min.css" rel="stylesheet">
 	<link href="style/css/info.css" rel="stylesheet">
 </head>
 <body>
@@ -106,8 +106,8 @@
 						</div>
 						@endforeach
 						@if(empty(session('userInfo')))
-							<div class="alert alert-info">
-								<a href="/enter?type=login" class="btn btn-info">登录以评论</a>
+							<div class="alert alert-info" style="margin-top: 25px;">
+								<a href="/enter?type=login" class="btn btn-danger">登录以评论</a>
 							</div>
 						@else
 							<div class="mesBoard">
@@ -144,8 +144,9 @@
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
 	<script src="scripts/public/tools.js"></script>
+	<script src="scripts/lib/popover/jquery.webui-popover.min.js"></script>
 	<script src="scripts/ZeroClipboard.min.js"></script>
-	<script src="/style/admin/lib/layer/2.4/layer.js"></script>
+	<script src="/style/lib/layer/layer.js"></script>
 	<script src="scripts/info.js"></script>
 </body>
 </html>

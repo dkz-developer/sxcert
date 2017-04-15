@@ -72,10 +72,6 @@
 							<button type="button" class="btn btn-primary" @click="resetInfo">确认修改</button>
 						</div>
 
-						<div class="error-info">
-							<span></span>
-						</div>						
-
 					</form>
 				</div>
 			</div>
@@ -98,6 +94,7 @@
 	</script>
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
+	<script src="/style/admin/lib/layer/2.4/layer.js"></script>
 	<script src="scripts/public/tools.js"></script>
 	<script src="scripts/personInfo.js"></script>
 

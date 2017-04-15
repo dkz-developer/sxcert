@@ -96,9 +96,19 @@
             });
         });  
 
-        $(".loadBtn a").mouseover(function() {
-            layer.tips('请点击并复制黄色区中的下载密码', '.loadBtn a',{ tips: [1, '#333'],time: 5000});     
-        })
+        // 微博KBI指数说明
+        var tipsContent = [];
+        tipsContent.push('<div class="tips" style="text-align: center;">');
+        tipsContent.push(' <p>请复制黄色区中的下载密码</p>');
+        tipsContent.push('</div>');
+        $(".loadBtn a").webuiPopover({
+            content: tipsContent.join(""),
+            trigger: 'hover',
+            placement: 'top',
+            style:'inverse',
+            width: 170,
+            padding: false
+        });
 
     }
 

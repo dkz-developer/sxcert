@@ -78,8 +78,8 @@ a<!DOCTYPE html>
 
 						<div class="list-item">
 							<ul>
-								<li class="row-01">已发布</li>
-								<li class="row-02">三星</li>
+								<li class="row-01">还没调接口</li>
+								<li class="row-02">还没调接口</li>
 								<li class="row-03">中国</li>
 								<li class="row-04">SM-G935A </li>
 								<li class="row-05">G935AUCS4BQC2</li>

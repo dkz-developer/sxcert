@@ -76,7 +76,7 @@
                         html += '</div>';
                         html += '</div>';
                         $('.mesBoard').before(html);
-                        layer.msg(result.msg,{icon:1,time:2000});
+                        $("#message").val("");
                     }else {
                         layer.msg(result.msg,{icon:2,time:2000});
                     }

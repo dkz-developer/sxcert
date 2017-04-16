@@ -51,6 +51,7 @@
                 if(backData && backData.code === "S") {
 
                 }else {
+                    layer.msg(backData.msg);
                     submitBtn.html("立即充值");
                 }
 

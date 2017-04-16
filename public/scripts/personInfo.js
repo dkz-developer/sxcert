@@ -56,6 +56,7 @@
                 if(backData && backData.code === "S") {
                     window.location.href = "/load";
                 }else {
+                    layer.msg(backData.msg);
                     resetBtn.html("重置密码");
                 }
 

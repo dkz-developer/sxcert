@@ -87,7 +87,7 @@
                     clearTimeout(setCountdown);
                     setCountdown($(obj));
                 }else{
-                    $(".main-content").find(".error-info").find("span").text(backData.msg);
+                    layer.msg(backData.msg);
                     $(".vCode-img").find("img").attr("src","/custome/kit/captcha/"+$.mytools.GetRandomNum(10000, 99999));  
 
                 }
@@ -115,7 +115,7 @@
                     $(".main-content").find(".error-info").find("span").text("");
                     window.location.href = "/load";
                 }else {
-                    $(".main-content").find(".error-info").find("span").text(backData.msg);
+                   layer.msg(backData.msg);
                     loginBtn.html("登录");
                     $(".vCode-img").find("img").attr("src","/custome/kit/captcha/"+$.mytools.GetRandomNum(10000, 99999));  
                 }
@@ -149,7 +149,7 @@
                     $(".main-content").find(".error-info").find("span").text("");
                     window.location.href = "/load";
                 }else {
-                    $(".main-content").find(".error-info").find("span").text(backData.msg);
+                   layer.msg(backData.msg);
                     registerBtn.html("注册");
                     $(".vCode-img").find("img").attr("src","/custome/kit/captcha/"+$.mytools.GetRandomNum(10000, 99999));  
                 }

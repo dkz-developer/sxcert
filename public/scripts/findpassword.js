@@ -61,7 +61,7 @@
                     window.location.href = "/";
                 }else {
                     resetBtn.html("重置密码");
-                     $(".main-content").find(".error-info").find("span").text(backData.msg);
+                     layer.msg(backData.msg);
                     $(".vCode-img").find("img").attr("src","/custome/kit/captcha/"+$.mytools.GetRandomNum(10000, 99999));  
                 }
 
@@ -104,7 +104,7 @@
                     clearTimeout(setCountdown);
                     setCountdown($(obj));
                 }else{
-                    $(".main-content").find(".error-info").find("span").text(backData.msg);
+                    layer.msg(backData.msg);
                     $(".vCode-img").find("img").attr("src","/custome/kit/captcha/"+$.mytools.GetRandomNum(10000, 99999));  
 
                 }

@@ -66,14 +66,10 @@
 						</div>
 
 
-
 						<div class="submitBtn">
 							<button type="button" class="btn btn-primary" @click="login">登录</button>
 						</div>
 
-						<div class="error-info">
-							<span></span>
-						</div>
 					</form>
 					<form action="" v-if="(isLogin == false)" data-act="register">
 						<div class="input-prepend">

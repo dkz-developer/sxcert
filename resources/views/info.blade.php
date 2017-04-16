@@ -146,7 +146,7 @@
 	<script src="scripts/public/tools.js"></script>
 	<script src="scripts/lib/popover/jquery.webui-popover.min.js"></script>
 	<script src="scripts/ZeroClipboard.min.js"></script>
-	<script src="/style/lib/layer/layer.js"></script>
+	<script src="/style/admin/lib/layer/2.4/layer.js"></script>
 	<script src="scripts/info.js"></script>
 </body>
 </html>

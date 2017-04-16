@@ -54,7 +54,7 @@ a<!DOCTYPE html>
 
 				<div class="content" v-cloak v-if="(navShift == '1')">
 					<div class="title">
-						<button class="btn btn-info"><i class="fa fa-add"></i>上传ROM</button>
+						<a href="/rom" class="btn btn-info"><i class="fa fa-add" ></i>上传ROM</a>
 						<div class="item">
 							<span data-type="1" @click="itemShiftEvent" class="active">全部<small>(13947)</small></span>
 							<span data-type="1" @click="itemShiftEvent">已发布<small>(13947)</small></span>
@@ -97,10 +97,10 @@ a<!DOCTYPE html>
 				<div class="content" v-cloak v-if="(navShift == '2')">
 					<div class="title">
 						<div class="item">
-							<span data-type="1" class="active" @click="itemShiftEvent">全部<small>(13947)</small></span>
+							<!-- <span data-type="1" class="active" @click="itemShiftEvent">全部<small>(13947)</small></span>
 							<span data-type="1" @click="itemShiftEvent">新充值<small>(13947)</small></span>
 							<span data-type="1" @click="itemShiftEvent">充值中<small>(13947)</small></span>
-							<span data-type="1" @click="itemShiftEvent">充值完毕<small>(13947)</small></span>
+							<span data-type="1" @click="itemShiftEvent">充值完毕<small>(13947)</small></span> -->
 						</div>
 					</div>
 					<div class="inner inner-nav2"> 	 	 	 	
@@ -111,36 +111,29 @@ a<!DOCTYPE html>
 							<div class="row-04">状态</div>
 							<div class="row-05">日期</div>
 						</div>
+						@foreach($rechargeRecord as $val)
 						<div class="list-item">
 							<ul>
-								<li class="row-01">登录奖励</li>
-								<li class="row-02">login</li>
-								<li class="row-03">666</li>
-								<li class="row-04">创建</li>
-								<li class="row-05">2016-02-20 17:24:19 </li>
+								<li class="row-01">金币</li>
+								<li class="row-02">@if($val->channel == 1) 系统 @elseif($val->channel == 2)支付宝 @endif</li>
+								<li class="row-03">{{$val->amount}}</li>
+								<li class="row-04">@if($val->status == 1) finished @elseif($val->satus == 2) fail @endif</li>
+								<li class="row-05">{{$val->created_at}} </li>
 							</ul>
 						</div>
-						<div class="list-item">
-							<ul>
-								<li class="row-01">登录奖励</li>
-								<li class="row-02">login</li>
-								<li class="row-03">666</li>
-								<li class="row-04">创建</li>
-								<li class="row-05">2016-02-20 17:24:19 </li>
-							</ul>
-						</div>
+						@endforeach
 					</div>
 				</div>
 
 				<div class="content" v-cloak v-if="(navShift == '3')"> 
-				<!-- 	<div class="title">
+					<div class="title">
 						<div class="item">
-							<span data-type="1" class="active" @click="itemShiftEvent">全部<small>(13947)</small></span>
+							<!-- <span data-type="1" class="active" @click="itemShiftEvent">全部<small>(13947)</small></span>
 							<span data-type="1" @click="itemShiftEvent">交易完毕<small>(13947)</small></span>
 							<span data-type="1" @click="itemShiftEvent">未发货<small>(13947)</small></span>
-							<span data-type="1" @click="itemShiftEvent">退款<small>(13947)</small></span>
+							<span data-type="1" @click="itemShiftEvent">退款<small>(13947)</small></span> -->
 						</div>
-					</div> -->
+					</div>
 					<div class="inner inner-nav3"> 	 	 	 	 
 						<div class="header">  	 	 	 	 	
 							<div class="row-01">方式</div>
@@ -213,18 +206,10 @@ a<!DOCTYPE html>
 		</div>		
 	</div>
 
-	<script>
-	var _hmt = _hmt || [];
-	(function() {
-	  var hm = document.createElement("script");
-	  hm.src = "https://hm.baidu.com/hm.js?b819a6a70904703dd1926e26ba9554f0";
-	  var s = document.getElementsByTagName("script")[0]; 
-	  s.parentNode.insertBefore(hm, s);
-
-	})();
-	</script>
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
+	<script src="scripts/public/tools.js"></script>
+	<script src="scripts/public/topNav.js"></script>
 	<script src="scripts/users.js"></script>
 </body>
 </html>

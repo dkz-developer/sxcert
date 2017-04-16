@@ -107,7 +107,7 @@
 						@endforeach
 						@if(empty(session('userInfo')))
 							<div class="alert alert-info" style="margin-top: 25px;">
-								<a href="/enter?type=login" class="btn btn-danger">登录以评论</a>
+								<a class="login-btn" href="/enter?type=login" class="btn btn-danger">登录以评论</a>
 							</div>
 						@else
 							<div class="mesBoard">
@@ -147,6 +147,8 @@
 	<script src="scripts/lib/popover/jquery.webui-popover.min.js"></script>
 	<script src="scripts/ZeroClipboard.min.js"></script>
 	<script src="/style/admin/lib/layer/2.4/layer.js"></script>
+	<script src="scripts/public/tools.js"></script>
+	<script src="scripts/public/topNav.js"></script>
 	<script src="scripts/info.js"></script>
 </body>
 </html>

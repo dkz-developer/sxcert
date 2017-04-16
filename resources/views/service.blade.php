@@ -85,19 +85,11 @@
 			<p>粤ICP备17024526号-1</p>
 		</div>		
 	</div>
-	<script>
-		var _hmt = _hmt || [];
-		(function() {
-		  var hm = document.createElement("script");
-		  hm.src = "https://hm.baidu.com/hm.js?b819a6a70904703dd1926e26ba9554f0";
-		  var s = document.getElementsByTagName("script")[0]; 
-		  s.parentNode.insertBefore(hm, s);
-
-		})();
-	</script>
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
 	<script src="scripts/public/tools.js"></script>
+	<script src="scripts/public/tools.js"></script>
+	<script src="scripts/public/topNav.js"></script>
 	<script src="scripts/service.js"></script>
 
 </body>

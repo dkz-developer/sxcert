@@ -26,7 +26,7 @@
 						<a class="login-btn" href="/enter?type=login">登录</a>
 						<a class="register-btn" href="/enter?type=register">注册</a>
 					@else
-						<a class="login-btn" href="/users?id={{session('userInfo.UserId')}}">{{session('userInfo.UserName')}}</a>
+						<a class="login-btn" href="/users">{{session('userInfo.UserName')}}</a>
 						<a class="register-btn" href='/custome/logout'>退出</a>
 					@endif
 				</div>
@@ -60,88 +60,70 @@
 						<div class="panel-body">
 							<form class="form-horizontal" role="form">
 								<div class="form-group">
-								  	<label for="basic" class="col-sm-2 control-label">品牌</label>
+								  	<label for="brand" class="col-sm-2 control-label">品牌</label>
 								  	<div class="col-sm-4">
-								    	<select id="basic" class="selectpicker show-tick form-control" data-live-search="true">
+								    	<select id="brand" class="selectpicker show-tick form-control" data-live-search="true">
 									    	<option disabled selected style='display:none;'>选择一个品牌</option>  
-											<option value="1">一星大棒子</option>
-											<option value="2">二星大棒子</option>
-											<option value="3">三星大棒子</option>
-											<option value="4">四星大棒子</option>
-											<option value="1">一星大棒子</option>
-											<option value="2">二星大棒子</option>
-											<option value="3">三星大棒子</option>
-											<option value="4">四星大棒子</option>
-											<option value="1">一星大棒子</option>
-											<option value="2">二星大棒子</option>
-											<option value="3">三星大棒子</option>
-											<option value="4">四星大棒子</option>
-											<option value="1">一星大棒子</option>
-											<option value="2">二星大棒子</option>
-											<option value="3">三星大棒子</option>
-											<option value="4">四星大棒子</option>
-
+									    	@foreach($brand as $val)
+											<option value="{{$val->name}}">{{$val->name}}</option>
+										@endforeach
 								    	</select>
 								  	</div>
 
-								  	<label for="basic" class="col-sm-2 control-label">机型</label>
+								  	<label for="model" class="col-sm-2 control-label">机型</label>
 								  	<div class="col-sm-4">
-								    	<select id="basic" class="selectpicker show-tick form-control" data-live-search="true">
-									    	<option disabled selected style='display:none;'>选择一个机型</option>  
-											<option value="1">一星大棒子</option>
-											<option value="2">二星大棒子</option>
-											<option value="3">三星大棒子</option>
-											<option value="4">四星大棒子</option>
+								    	<select id="model" class="selectpicker show-tick form-control" data-live-search="true">
+									    	<option disabled selected style='display:none;'>选择一个机型</option> 
+									    		@foreach ($model as $val)
+											<option value="{{$val->name}}">{{$val->name}}</option>
+											@endforeach
 								    	</select>
 								  	</div>
 								</div>
 
 								<div class="form-group">
-								  	<label for="basic" class="col-sm-2 control-label">国家</label>
+								  	<label for="country" class="col-sm-2 control-label">国家</label>
 								  	<div class="col-sm-4">
-								    	<select id="basic" class="selectpicker show-tick form-control" data-live-search="true">
+								    	<select id="country" class="selectpicker show-tick form-control" data-live-search="true">
 									    	<option disabled selected style='display:none;'>选择一个国家</option>  
-											<option value="1">一星大棒子</option>
-											<option value="2">二星大棒子</option>
-											<option value="3">三星大棒子</option>
-											<option value="4">四星大棒子</option>
+											@foreach ($country as $val)
+											<option value="{{$val->name}}">{{$val->name}}</option>
+											@endforeach
 								    	</select>
 								  	</div>
 
-								  	<label for="basic" class="col-sm-2 control-label">OS</label>
+								  	<label for="os" class="col-sm-2 control-label">OS</label>
 								  	<div class="col-sm-4">
-								    	<select id="basic" class="selectpicker show-tick form-control" data-live-search="true">
+								    	<select id="os" class="selectpicker show-tick form-control" data-live-search="true">
 									    	<option disabled selected style='display:none;'>选择一个版本</option>  
-											<option value="1">一星大棒子</option>
-											<option value="2">二星大棒子</option>
-											<option value="3">三星大棒子</option>
-											<option value="4">四星大棒子</option>
+											@foreach ($os as $val)
+											<option value="{{$val->name}}">{{$val->name}}</option>
+											@endforeach
 								    	</select>
 								  	</div>
 								</div>
 
 								<div class="form-group">
-								  	<label for="basic" class="col-sm-2 control-label">类型</label>
+								  	<label for="type" class="col-sm-2 control-label">类型</label>
 								  	<div class="col-sm-4">
-								    	<select id="basic" class="selectpicker show-tick form-control" data-live-search="true">
+								    	<select id="type" class="selectpicker show-tick form-control" data-live-search="true">
 									    	<option disabled selected style='display:none;'>选择一个类型</option>  
-											<option value="1">一星大棒子</option>
-											<option value="2">二星大棒子</option>
-											<option value="3">三星大棒子</option>
-											<option value="4">四星大棒子</option>
+											@foreach ($type as $val)
+											<option value="{{$val->name}}">{{$val->name}}</option>
+											@endforeach
 								    	</select>
 								  	</div>
 
 								  	 <label for="qq" class="col-sm-2 control-label">单价(金币)</label>
 						            <div class="col-sm-4">
-						                <input type="text" class="form-control" id="qq" value="" placeholder="请输入价格">
+						                <input type="text" class="form-control" id="price" value="" placeholder="请输入价格">
 						            </div>
 								</div>
 
 								<div class="form-group">
 						            <label for="qq" class="col-sm-2 control-label">版本</label>
 						            <div class="col-sm-10">
-						                <input type="text" class="form-control" id="qq" value="" placeholder="请输入版本号">
+						                <input type="text" class="form-control" id="version" value="" placeholder="请输入版本号">
 						            </div>
 						           
 						        </div>
@@ -150,20 +132,20 @@
 
 						        	<label for="qq" class="col-sm-2 control-label">下载地址</label>
 						            <div class="col-sm-10">
-						                <input type="text" class="form-control" id="qq" value="" placeholder="资源下载地址">
+						                <input type="text" class="form-control" id="url" value="" placeholder="资源下载地址">
 							        </div>
 						        </div>
 
 						        <div class="form-group">
 						            <label for="qq" class="col-sm-2 control-label">备注</label>
 						            <div class="col-sm-10">
-						                <input type="text" class="form-control" id="qq" value="" placeholder="下载密码/解压密码/注释框等">
+						                <input type="text" class="form-control" id="note" value="" placeholder="下载密码/解压密码/注释框等">
 						            </div>
 						        </div>
 
 								 <div class="form-group buttonRow">
 						            <div class="col-sm-offset-2 col-sm-10">
-						                <button type="submit" class="btn btn-info btn-block"><i class="fa fa-pencil"></i> &nbsp;提交</button>
+						                <button type="button" id="submitBtn" class="btn btn-info btn-block"><i class="fa fa-pencil"></i> &nbsp;提交</button>
 						            </div>
 						        </div>
 							</form>				
@@ -193,7 +175,11 @@
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/bootstrap/bootstrap.min.js"></script>
 	<script src="scripts/lib/bootstrap/bootstrap-select.min.js"></script>
-	<script src="scripts/lib/vue/vue.min.js"></script>
+	<script src="/style/admin/lib/layer/2.4/layer.js"></script>
+	<script src="scripts/public/tools_admin.js"></script>
+	<script src="scripts/public/topNav.js"></script>
+	<script src="scripts/public/tools.js"></script>
+	<script src="scripts/lib/is-js/is.min.js"></script>
 	<script src="scripts/rom.js"></script>
 </body>
 </html>

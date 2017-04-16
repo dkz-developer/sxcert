@@ -4,6 +4,7 @@
 
     var keyword = unescape($.mytools.GetQueryString("keyword"));    // 关键字
     var type = $.mytools.GetQueryString("type");   // 登录 注册
+    var backURL = $.mytools.getCookie("backURL") ? $.mytools.getCookie("backURL") : document.domain+"/load";
 
 	// 实例化vue
 	var vm = new Vue({
@@ -83,7 +84,6 @@
         if(flag) {
             $.post("/custome/smsre", params, function(backData) {
                 if(backData && backData.code === "S"){
-                    $(".main-content").find(".error-info").find("span").text("");
                     clearTimeout(setCountdown);
                     setCountdown($(obj));
                 }else{
@@ -112,8 +112,7 @@
 
             $.post('/custome/login', params, function(backData) {
                 if(backData && backData.code === "S") {
-                    $(".main-content").find(".error-info").find("span").text("");
-                    window.location.href = "/load";
+                    window.open(backURL, "_self");
                 }else {
                    layer.msg(backData.msg);
                     loginBtn.html("登录");
@@ -146,8 +145,7 @@
             $.post('/custome/register', params, function(backData) {
 
                 if(backData && backData.code === "S") {
-                    $(".main-content").find(".error-info").find("span").text("");
-                    window.location.href = "/load";
+                    window.open(backURL, "_self");
                 }else {
                    layer.msg(backData.msg);
                     registerBtn.html("注册");

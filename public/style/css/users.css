@@ -125,7 +125,7 @@ a {
     .box-container .main-content .content .title {
       height: 60px;
       line-height: 60px; }
-      .box-container .main-content .content .title button {
+      .box-container .main-content .content .title a {
         float: left;
         margin: 13px 5px 0 14px; }
       .box-container .main-content .content .title .item {

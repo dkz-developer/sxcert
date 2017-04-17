@@ -107,7 +107,7 @@
 						</div>
 
 						<div class="submitBtn">
-							<button type="button" class="btn btn-primary" @click="register">注册</button>
+							<button type="button" class="btn btn-primary" @click="register" id="embed-submit">注册</button>
 						</div>
 					</form>
 				</div>
@@ -169,14 +169,4 @@
 	</script>
 </body>
 </html>
-<script>
-	initGeetest({
-   	// 以下配置参数来自服务端 SDK
-   	gt: data.gt,
-   	challenge: data.challenge,
-   	offline: !data.success,
-   	new_captcha: data.new_captcha
-}, function (captchaObj) {
-   	// 这里可以调用验证实例 captchaObj 的实例方法
-})
-</script>
+

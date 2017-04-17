@@ -46,7 +46,6 @@ class LoadListController extends Controller
 		$InfoUser->price = $request->price;
 		$InfoUser->download_password = $request->download_password;
 		$InfoUser->download_url = $request->download_url;
-		$InfoUser->version = $request->version;
 		$InfoUser->user_id = $request->user_id;
 		$result = $InfoUser->save();
 		if($result)

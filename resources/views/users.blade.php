@@ -53,13 +53,9 @@ a<!DOCTYPE html>
 				</div>
 
 				<div class="content" v-cloak v-if="(navShift == '1')">
-<<<<<<< HEAD
-					<div class="title" onclick="window.location.href='/rom'">
-						<button class="btn btn-info"><i class="fa fa-add" ></i>上传ROM</button>
-=======
 					<div class="title">
 						<a href="/rom" class="btn btn-info"><i class="fa fa-add" ></i>上传ROM</a>
->>>>>>> 7e8239a5802f87a011ddd5e6abe04efd0bf0e83d
+
 						<div class="item">
 							<span data-type="1" @click="itemShiftEvent" class="active">全部<small>(13947)</small></span>
 							<span data-type="1" @click="itemShiftEvent">已发布<small>(13947)</small></span>

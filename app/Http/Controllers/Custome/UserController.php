@@ -31,7 +31,7 @@ class UserController extends Controller
 		return view('users',['userInfo'=>$userInfo,'buyRecord'=>$buyRecord,'rechargeRecord'=>$rechargeRecord]);
 	}
 
-	public function  captcha()
+	public function  captcha(Request $request)
 	{
 		$GtSdk = new GeetestLib('15cd6b42a2502c8c044d85ea0d957177', 'b604bf63fc3a3309118d3eab12695570');
 		$data = array(

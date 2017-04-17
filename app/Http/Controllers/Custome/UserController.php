@@ -9,6 +9,8 @@ use App\Model\User;
 //引用对应的命名空间
 use Gregwar\Captcha\CaptchaBuilder;
 use App\Model\BuyRecord;
+use App\Model\RechargeRecord;
+use App\Service\Gt\GeetestLib;
 use Session;
 use DB;
 class UserController extends Controller
@@ -24,8 +26,25 @@ class UserController extends Controller
 		$userInfo = User::find(session('userInfo.UserId'));
 		if(empty($userInfo))
 			return redirect('/enter?type=register');
-		 $buyRecord = BuyRecord::where('user_id',session('userInfo.UserId'))->get();
-		return view('users',['userInfo'=>$userInfo,'buyRecord'=>$buyRecord]);
+		$buyRecord = BuyRecord::where('user_id',session('userInfo.UserId'))->get();
+		$rechargeRecord = RechargeRecord::where('user_id',session('userInfo.UserId'))->get();
+		return view('users',['userInfo'=>$userInfo,'buyRecord'=>$buyRecord,'rechargeRecord'=>$rechargeRecord]);
+	}
+
+	public function  captcha()
+	{
+		$GtSdk = new GeetestLib('15cd6b42a2502c8c044d85ea0d957177', 'b604bf63fc3a3309118d3eab12695570');
+		$data = array(
+			"user_id" => "test", # 网站用户id
+			"client_type" => "web", #web:电脑上的浏览器；h5:手机上的浏览器，包括移动应用内完全内置的web_view；native：通过原生SDK植入APP应用的方式
+			"ip_address" => '127.0.0.1'# 请在此处传输用户请求验证时所携带的IP
+		);
+		$status = $GtSdk->pre_process($data, 1);
+		session(['gtserver'=>$status]);
+		session(['user_id'=>$data ['user_id']]);
+		//$_SESSION['gtserver'] = $status;
+		//$_SESSION['user_id'] = $user_id;
+		return  $GtSdk->get_response_str();
 	}
 
 	public function index()
@@ -58,21 +77,21 @@ class UserController extends Controller
 	}
 
 	// 验证码
-	public function captcha($tmp)
-	{
-		//生成验证码图片的Builder对象，配置相应属性
-		$builder = new CaptchaBuilder;
-		//可以设置图片宽高及字体
-		$builder->build($width = 100, $height = 40, $font = null);
-		//获取验证码的内容
-		$phrase = $builder->getPhrase();
-		//把内容存入session
-		Session::flash('milkcaptcha', $phrase);
-		//生成图片
-		header("Cache-Control: no-cache, must-revalidate");
-		header('Content-Type: image/jpeg');
-		$builder->output();
-	}
+	// public function captcha($tmp)
+	// {
+	// 	//生成验证码图片的Builder对象，配置相应属性
+	// 	$builder = new CaptchaBuilder;
+	// 	//可以设置图片宽高及字体
+	// 	$builder->build($width = 100, $height = 40, $font = null);
+	// 	//获取验证码的内容
+	// 	$phrase = $builder->getPhrase();
+	// 	//把内容存入session
+	// 	Session::flash('milkcaptcha', $phrase);
+	// 	//生成图片
+	// 	header("Cache-Control: no-cache, must-revalidate");
+	// 	header('Content-Type: image/jpeg');
+	// 	$builder->output();
+	// }
 	
 	
 	//注册

@@ -14,19 +14,13 @@
 </style>
    <article class="cl pd-20">
 			<div class="text-c">
-				<form action="/admin/infoList" method="get">
+				<form action="/admin/userList" method="get">
 					<span class="select-box inline">
 					<select name="index" class="select">
-					$indexArr = [1=>'id','brand','model','country','os','type','tag','version'];
 						<option value="0">全部</option>
 						<option value="1">ID</option>
-						<option value="2">品牌</option>
-						<option value="3">机型</option>
-						<option value="4">国家</option>
-						<option value="4">os</option>
-						<option value="4">类型</option>
-						<option value="4">标签</option>
-						<option value="4">版本</option>
+						<option value="2">用户名</option>
+						<option value="3">手机号</option>
 					</select>
 					</span>
 					日期范围：
@@ -39,68 +33,45 @@
 			</div>
 			<div class="cl pd-5 bg-1 bk-gray mt-20">
 				<span class="l">
-				<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-				<a class="btn btn-primary radius" data-title="添加资讯" _href="article-add.html" onclick="article_add('添加资料','/admin/addInfo')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加资料</a>
+				<!-- <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量修改金币</a> -->
+				<!-- <a class="btn btn-primary radius" data-title="添加资讯" _href="article-add.html" onclick="article_add('添加资料','/admin/addInfo')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加资料</a> -->
 				</span>
-				<span class="r">共有数据：<strong>{{$rows}}</strong> 条</span>
+				<span class="r">共有数据：<strong>{{$count}}</strong> 条</span>
 			</div>
 			<div class="mt-20">
 				<table class="table table-border table-bordered table-bg table-hover table-sort">
 					<thead>
 						<tr class="text-c">
-							<th width="25"><input type="checkbox" name="" value=""></th>
+							<!-- <th width="25"><input type="checkbox" name="" value=""></th> -->
 							<th width="50">ID</th>
-							<th width="60">品牌</th>
-							<th width="80">机型</th>
-							<th width="80">国家</th>
-							<th width="80">OS</th>
-							<th width="75">类型</th>
-							<!-- <th width="60">标签</th> -->
-							<th width="60">版本</th>
-							<th width="80">单价(金币)</th>
-							<!-- <th width="100">备注</th> -->
-							<th width="130">下载地址</th>
-							<th width="60">下载密码</th>
+							<th width="60">用户名</th>
+							<th width="80">手机号</th>
+							<th width="80">创建时间</th>
+							<th width="80">余额</th>
 							<th width="120">操作</th>
 						</tr>
 					</thead>
 					<tbody>
 						@foreach($list as $val)
 							<tr class="text-c">
-								<td><input type="checkbox" value="{{$val->id}}" name=""></td>
-								<td>{{$val->id}}</td>
-								<td>{{$val->brand}}</td>
-								<td >{{$val->model}}</td>
-								<td>{{$val->country}}</td>
-								<td>{{$val->os}}</td>
-								<td>{{$val->type}}</td>
-								<!-- <td>{{$val->tag}}</td> -->
-								<td>{{$val->version}}</td>
-								<td>{{$val->price}}</td>
-								<!-- <td>{{$val->remarks}}</td> -->
-								<td>{{$val->download_url}}</td>
-								<td>{{$val->download_password}}</td>
-								<td class="f-14 td-manage"><a style="text-decoration:none" onClick="setHot(this,{{$val->id}})" href="javascript:;" title="是否热门">
-									@if(2 == $val->status)
-									<i class="Hui-iconfont">&#xe65e;</i>
-									@else (1 == $val->status)
-									<i class="Hui-iconfont">&#xe688;</i>
-									@endif
-								</a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_edit('资料编辑','/admin/addInfo',{{$val->id}})" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe60c;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_del(this,{{$val->id}})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-						</tr>
+								<!-- <td><input type="checkbox" value="{{$val->id}}" name=""></td> -->
+								<td>{{$val->UserId}}</td>
+								<td>{{$val->UserName}}</td>
+								<td >{{$val->Mobile}}</td>
+								<td>{{$val->CreateTime}}</td>
+								<td id="blance{{$val->UserId}}">{{number_format($val->Balance)}}</td>
+								<td class="f-14 td-manage"><a style="text-decoration:none" onClick="change_money('修改金币',{{$val->UserId}})" title="是否热门">修改金币</a></td>
+							</tr>
 						@endforeach
 					</tbody>
 				</table>
 			</div>
 			{{$list->links()}}
 		</article>
-<footer class="footer">
-	<p>感谢jQuery、layer、laypage、Validform、UEditor、My97DatePicker、iconfont、Datatables、WebUploaded、icheck、highcharts、bootstrap-Switch<br> Copyright &copy;2015 H-ui.admin v3.0 All Rights Reserved.<br> 本后台系统由<a href="http://www.h-ui.net/" target="_blank" title="H-ui前端框架">H-ui前端框架</a>提供前端技术支持</p>
-</footer>
+<!-- <footer class="footer">
+	<p>感谢云华大大、艳周大大、宣州大大.<br> 本后台系统由<a href="http://www.h-ui.net/" target="_blank" title="H-ui前端框架">dkx团队</a>提供技术支持</p>
+</footer> -->
 @endsection
-
 <script type="text/javascript" src="/style/admin/lib/My97DatePicker/4.8/WdatePicker.js"></script>
 <script type="text/javascript" src="/style/admin/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="/style/admin/lib/laypage/1.2/laypage.js"></script>
@@ -114,133 +85,30 @@ $('.table-sort').dataTable({
 	]
 });
 
-/*资讯-添加*/
-function article_add(title,url,w,h){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url
-	});
-	layer.full(index);
-}
-/*资讯-编辑*/
-function article_edit(title,url,id,w,h){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url+'?id='+id
-	});
-	layer.full(index);
-}
-/*资讯-删除*/
-function article_del(obj,id){
-	layer.confirm('确认要删除吗？',function(){
-		$.ajax(
-			{
-				headers: {
-		    			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-		    		},
-				type: 'POST',
-				url: '/admin/delInfo',
-				data: {'ids':id},
-				dataType: 'json',
-				success: function(data){
-					if(data.code == 'S') {
-						$(obj).parents("tr").remove();
-						layer.msg(data.msg,{icon:1,time:2000});
-					}else {
-						layer.msg(data.msg,{icon:2,time:2000});
-					}
-				},
-				error:function(data) {
-					layer.msg('好抱歉，系统好像出错了，请联系网站管理员！',{icon:2,time:3000});
-				},
-			}
-		);		
-	});
-}
-function datadel(){
-	layer.confirm('确认要删除吗？',function(){
-	  	var ids = '';
-	  	$('input[type=checkbox]:checked').each(function(){
-	  		ids += $(this).val() + ',';
-	  	})
-	  	ids = ids.substring(0,ids.length-1);
-	    	$.ajax(
-		    	{
-			    	headers: {
-			    		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-			    	},
-			    	type: 'POST',
-			    	url: '/admin/delInfo',
-				dataType: 'json',
-				data: {'ids':ids},
-				success: function(result){
-					if(result.code='S'){
-						$('input[type=checkbox]:checked').parents('tr').remove();
-						layer.msg(result.msg,{icon:1,time:2000});
-					}else {
-						layer.msg(result.msg,{icon:2,time:2000});
-					}
-				} 
-			}
-		);
-	});
-}
-
-/*资讯-审核*/
-function article_shenhe(obj,id){
-	layer.confirm('审核文章？', {
-		btn: ['通过','不通过','取消'], 
-		shade: false,
-		closeBtn: 0
-	},
-	function(){
-		$(obj).parents("tr").find(".td-manage").prepend('<a class="c-primary" onClick="article_start(this,id)" href="javascript:;" title="申请上线">申请上线</a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
-		$(obj).remove();
-		layer.msg('已发布', {icon:6,time:1000});
-	},
-	function(){
-		$(obj).parents("tr").find(".td-manage").prepend('<a class="c-primary" onClick="article_shenqing(this,id)" href="javascript:;" title="申请上线">申请上线</a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-danger radius">未通过</span>');
-		$(obj).remove();
-    	layer.msg('未通过', {icon:5,time:1000});
-	});	
-}
-/*资讯-下架*/
-function setHot(obj,id){
-	$.ajax(
-	    	{
-		    	type: 'GET',
-		    	url: '/admin/setHot',
+function change_money(title,id){
+	layer.prompt({title: title, formType: 3}, function(balance, index) {
+	  	layer.close(index);
+	  	$.ajax({
+			headers: {
+	    			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	    		},
+			type: 'POST',
+			url: '/admin/changeMoney',
+			data: {'balance':balance,'id':id},
 			dataType: 'json',
-			data: {'id':id},
-			success: function(result){
-				if(result.code='S'){
-					$(obj).html(result.data);
-					layer.msg(result.msg,{icon:1,time:3000});
+			success: function(data){
+				if(data.code == 'S') {
+					$('#blance'+id).html(data.data);
+					layer.msg(data.msg,{icon:1,time:2000});
 				}else {
-					layer.msg(result.msg,{icon:2,time:3000});
+					layer.msg(data.msg,{icon:2,time:2000});
 				}
-			} 
-		}
-	);
-}
-
-/*资讯-发布*/
-function article_start(obj,id){
-	layer.confirm('确认要发布吗？',function(index){
-		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="article_stop(this,id)" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
-		$(obj).remove();
-		layer.msg('已发布!',{icon: 6,time:1000});
+			},
+			error:function(data) {
+				layer.msg('好抱歉，系统出错了，请联系网站管理员！',{icon:2,time:3000});
+			},
+		});		
 	});
 }
-/*资讯-申请上线*/
-function article_shenqing(obj,id){
-	$(obj).parents("tr").find(".td-status").html('<span class="label label-default radius">待审核</span>');
-	$(obj).parents("tr").find(".td-manage").html("");
-	layer.msg('已提交申请，耐心等待审核!', {icon: 1,time:2000});
-}
+
 </script>

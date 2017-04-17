@@ -10,14 +10,48 @@ use App\Model\AdminUser;
 use Gregwar\Captcha\CaptchaBuilder;
 use Session;
 use DB;
-namespace App\Model\User;
+use App\Model\User;
+use App\Model\RechargeRecord;
 class UserController extends Controller
 {
-	public function userList()
+	public function userList(Request $request)
 	{
-		 $count = User::count();
-		 $list = User::paginate(15);
-		 return view('admin.userList',['count'=>$count,'list'=>$list]);
+		$index = $request->input('index',0);
+		$stime = $request->input('start_time',false);
+		$etime = $request->input('end_time',false);
+		$keyword = $request->input('keyword',false);
+		$where = [];
+		if($index && $keyword) {
+			1 == $index  && array_push($where, ['UserId',intval($keyword)]);
+			2 == $index  && array_push($where, ['UserName',$keyword]);
+			3 == $index && array_push($where, ['Mobile',$keyword]);
+		}
+		if($stime || $etime) {
+			$stime && array_push($where, ['CreateTime','>=',$stime.' 00:00:00']);
+			$etime && array_push($where, ['CreateTime','<=',$etime.' 23:59:59']);
+		}
+		$count = User::where($where)->count();
+		$list = User::where($where)->paginate(15);
+		return view('admin.userList',['count'=>$count,'list'=>$list]);
+	}
+
+	public function changeMoney(Request $request)
+	{
+		$balance = $request->input('balance',0);
+		$id = $request->input('id',0);
+		$User = User::find($id);
+		$User->Balance += intval($balance);
+		$result = $User->save();
+		if($result) {
+			$record = new RechargeRecord();
+			$record->amount = $balance;
+			$record->status = 1;
+			$record->channel = 1;
+			$record->user_id = $id;
+			$record->save();
+			return response()->json(['code'=>'S','msg'=>'修改成功！','data'=>number_format($User->Balance)]);
+		}
+		return response()->json(['code'=>'F','msg'=>'修改失败！']);
 	}
 
 	public function index()

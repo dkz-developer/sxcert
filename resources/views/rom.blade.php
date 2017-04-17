@@ -26,7 +26,7 @@
 						<a class="login-btn" href="/enter?type=login">登录</a>
 						<a class="register-btn" href="/enter?type=register">注册</a>
 					@else
-						<a class="login-btn" href="/users?id={{session('userInfo.UserId')}}">{{session('userInfo.UserName')}}</a>
+						<a class="login-btn" href="/users">{{session('userInfo.UserName')}}</a>
 						<a class="register-btn" href='/custome/logout'>退出</a>
 					@endif
 				</div>
@@ -64,34 +64,19 @@
 								  	<div class="col-sm-4">
 								    	<select id="basic" class="selectpicker show-tick form-control" data-live-search="true">
 									    	<option disabled selected style='display:none;'>选择一个品牌</option>  
-											<option value="1">一星大棒子</option>
-											<option value="2">二星大棒子</option>
-											<option value="3">三星大棒子</option>
-											<option value="4">四星大棒子</option>
-											<option value="1">一星大棒子</option>
-											<option value="2">二星大棒子</option>
-											<option value="3">三星大棒子</option>
-											<option value="4">四星大棒子</option>
-											<option value="1">一星大棒子</option>
-											<option value="2">二星大棒子</option>
-											<option value="3">三星大棒子</option>
-											<option value="4">四星大棒子</option>
-											<option value="1">一星大棒子</option>
-											<option value="2">二星大棒子</option>
-											<option value="3">三星大棒子</option>
-											<option value="4">四星大棒子</option>
-
+									    	@foreach($brand as $val)
+											<option value="{{$val->name}}">{{$val->name}}</option>
+										@endforeach
 								    	</select>
 								  	</div>
 
 								  	<label for="basic" class="col-sm-2 control-label">机型</label>
 								  	<div class="col-sm-4">
 								    	<select id="basic" class="selectpicker show-tick form-control" data-live-search="true">
-									    	<option disabled selected style='display:none;'>选择一个机型</option>  
-											<option value="1">一星大棒子</option>
-											<option value="2">二星大棒子</option>
-											<option value="3">三星大棒子</option>
-											<option value="4">四星大棒子</option>
+									    	<option disabled selected style='display:none;'>选择一个机型</option> 
+									    		@foreach ($model as $val)
+											<option value="{{$val->name}}">{{$val->name}}</option>
+											@endforeach
 								    	</select>
 								  	</div>
 								</div>
@@ -101,10 +86,9 @@
 								  	<div class="col-sm-4">
 								    	<select id="basic" class="selectpicker show-tick form-control" data-live-search="true">
 									    	<option disabled selected style='display:none;'>选择一个国家</option>  
-											<option value="1">一星大棒子</option>
-											<option value="2">二星大棒子</option>
-											<option value="3">三星大棒子</option>
-											<option value="4">四星大棒子</option>
+											@foreach ($country as $val)
+											<option value="{{$val->name}}">{{$val->name}}</option>
+											@endforeach
 								    	</select>
 								  	</div>
 
@@ -112,10 +96,9 @@
 								  	<div class="col-sm-4">
 								    	<select id="basic" class="selectpicker show-tick form-control" data-live-search="true">
 									    	<option disabled selected style='display:none;'>选择一个版本</option>  
-											<option value="1">一星大棒子</option>
-											<option value="2">二星大棒子</option>
-											<option value="3">三星大棒子</option>
-											<option value="4">四星大棒子</option>
+											@foreach ($os as $val)
+											<option value="{{$val->name}}">{{$val->name}}</option>
+											@endforeach
 								    	</select>
 								  	</div>
 								</div>
@@ -125,10 +108,9 @@
 								  	<div class="col-sm-4">
 								    	<select id="basic" class="selectpicker show-tick form-control" data-live-search="true">
 									    	<option disabled selected style='display:none;'>选择一个类型</option>  
-											<option value="1">一星大棒子</option>
-											<option value="2">二星大棒子</option>
-											<option value="3">三星大棒子</option>
-											<option value="4">四星大棒子</option>
+											@foreach ($type as $val)
+											<option value="{{$val->name}}">{{$val->name}}</option>
+											@endforeach
 								    	</select>
 								  	</div>
 

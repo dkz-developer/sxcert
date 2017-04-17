@@ -51,9 +51,9 @@ Route::get('/personInfo', function () {
 });
 
 //   上传rom页面
-Route::get('/rom', function () {
-	return view('rom');
-});
+// Route::get('/rom', function () {
+// 	return view('rom');
+// });
 
 // 意见反馈页面
 Route::get('/feedback', function () {
@@ -77,6 +77,7 @@ Route::group(['namespace' => 'Admin','middleware'=>'adminauth'], function () {
 	Route::post('/admin/delInfo','InfoController@rmInfo');
 	Route::get('/admin/setHot','InfoController@setHot');
 	Route::get('/admin/userList','UserController@userList');
+	Route::post('/admin/changeMoney','UserController@changeMoney');
 });
 Route::get('/custome/kit/captcha/{tmp}', 'Custome\UserController@captcha');
 // 前台
@@ -94,4 +95,6 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/users','UserController@userCenter');
 	Route::post('/add/InfoComment','LoadListController@addInfoComment');
 	Route::post('/buyInfo','LoadListController@download');
+	Route::get('/rom','LoadListController@userRom');
+	Route::get('/gt_start','UserController@captcha');
 });

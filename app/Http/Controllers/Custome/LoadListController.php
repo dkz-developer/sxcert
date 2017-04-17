@@ -7,12 +7,30 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Info;
 use App\Model\InfoComment;
+use App\Model\admin\InfoCommon;
 use App\Model\User;
 use App\Model\BuyRecord;
 use Session;
 use DB;
 class LoadListController extends Controller
 {
+	public function userRom(Request $request)
+	{
+		$type = $request->input('type',0);
+		$keyword = $request->input('keyword',false);
+		$Common = new InfoCommon();
+		if($type && $keyword) {
+			$list = $Common->where([['type',$type],['name','like',"%{$keyword}%"]])->get();
+			return response()->json(['code'=>'S','msg'=>'操作成功','rows'=>$list]);
+		}
+		$brand = $Common->where('type',1)->get();
+		$model = $Common->where('type',2)->get();
+		$country = $Common->where('type',3)->get();
+		$os = $Common->where('type',4)->get();
+		$type = $Common->where('type',5)->get();
+		return view('rom',['brand'=>$brand,'model'=>$model,'country'=>$country,'os'=>$os,'type'=>$type]);
+	}
+
 	public function download(Request $request)
 	{
 		if( empty(session('userInfo')) ) 

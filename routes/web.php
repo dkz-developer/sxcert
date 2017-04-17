@@ -97,4 +97,5 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::post('/buyInfo','LoadListController@download');
 	Route::get('/rom','LoadListController@userRom');
 	Route::get('/gt_start','UserController@captcha');
+	Route::get('/addUserInfo','UserController@userRomAdd');
 });

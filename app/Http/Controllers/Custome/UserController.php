@@ -57,8 +57,8 @@ class UserController extends Controller
 	public function login(Request $request)
 	{
 		$captcha = $request->input('code');
-		if (Session::get('milkcaptcha') != $captcha) 
-			return response()->json(['code'=>'F','msg'=>'验证码错误']);
+		//if (Session::get('milkcaptcha') != $captcha) 
+		//	return response()->json(['code'=>'F','msg'=>'验证码错误']);
 		$userName = $request->input('username');
 		$password = $request->input('password');
 		$userInfo = User::where([['UserName',$userName],['Password',md5($password)]])->first();

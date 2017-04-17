@@ -66,14 +66,10 @@
 						</div>
 
 
-
 						<div class="submitBtn">
 							<button type="button" class="btn btn-primary" @click="login">登录</button>
 						</div>
 
-						<div class="error-info">
-							<span></span>
-						</div>
 					</form>
 					<form action="" v-if="(isLogin == false)" data-act="register">
 						<div class="input-prepend">
@@ -113,10 +109,6 @@
 						<div class="submitBtn">
 							<button type="button" class="btn btn-primary" @click="register">注册</button>
 						</div>
-
-						<div class="error-info">
-							<span></span>
-						</div>
 					</form>
 				</div>
 			</div>
@@ -126,18 +118,11 @@
 			<p>粤ICP备17024526号-1</p>
 		</div>		
 	</div>
-	<script>
-		var _hmt = _hmt || [];
-		(function() {
-		  var hm = document.createElement("script");
-		  hm.src = "https://hm.baidu.com/hm.js?b819a6a70904703dd1926e26ba9554f0";
-		  var s = document.getElementsByTagName("script")[0]; 
-		  s.parentNode.insertBefore(hm, s);
-
-		})();
-	</script>
+	
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
+	<script src="/style/admin/lib/layer/2.4/layer.js"></script>
+	<script src="//static.geetest.com/static/tools/gt.js"></script>
 	<script src="scripts/public/tools.js"></script>
 	<script src="scripts/public/kolDialog.js"></script>
 	<script src="scripts/login.js"></script>
@@ -184,3 +169,14 @@
 	</script>
 </body>
 </html>
+<script>
+	initGeetest({
+   	// 以下配置参数来自服务端 SDK
+   	gt: data.gt,
+   	challenge: data.challenge,
+   	offline: !data.success,
+   	new_captcha: data.new_captcha
+}, function (captchaObj) {
+   	// 这里可以调用验证实例 captchaObj 的实例方法
+})
+</script>

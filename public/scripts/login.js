@@ -4,6 +4,7 @@
 
     var keyword = unescape($.mytools.GetQueryString("keyword"));    // 关键字
     var type = $.mytools.GetQueryString("type");   // 登录 注册
+    var backURL = $.mytools.getCookie("backURL") ? $.mytools.getCookie("backURL") : document.domain+"/load";
 
 	// 实例化vue
 	var vm = new Vue({
@@ -37,10 +38,9 @@
     function verification(obj, errorInfo){
         var val = $(obj).val();
         if(val == null || val == undefined || val == ""){
-            $(".main-content").find(".error-info").find("span").text(errorInfo);
+            layer.tips(errorInfo, $(obj),{tips: [2, '#333'],time: 4000});
             return false;
         }else{
-            $(".main-content").find(".error-info").find("span").text("");
             return true;
         }
     }
@@ -84,11 +84,10 @@
         if(flag) {
             $.post("/custome/smsre", params, function(backData) {
                 if(backData && backData.code === "S"){
-                    $(".main-content").find(".error-info").find("span").text("");
                     clearTimeout(setCountdown);
                     setCountdown($(obj));
                 }else{
-                    $(".main-content").find(".error-info").find("span").text(backData.msg);
+                    layer.msg(backData.msg);
                     $(".vCode-img").find("img").attr("src","/custome/kit/captcha/"+$.mytools.GetRandomNum(10000, 99999));  
 
                 }
@@ -113,10 +112,9 @@
 
             $.post('/custome/login', params, function(backData) {
                 if(backData && backData.code === "S") {
-                    $(".main-content").find(".error-info").find("span").text("");
-                    window.location.href = "/load";
+                    window.open(backURL, "_self");
                 }else {
-                    $(".main-content").find(".error-info").find("span").text(backData.msg);
+                   layer.msg(backData.msg);
                     loginBtn.html("登录");
                     $(".vCode-img").find("img").attr("src","/custome/kit/captcha/"+$.mytools.GetRandomNum(10000, 99999));  
                 }
@@ -147,10 +145,9 @@
             $.post('/custome/register', params, function(backData) {
 
                 if(backData && backData.code === "S") {
-                    $(".main-content").find(".error-info").find("span").text("");
-                    window.location.href = "/load";
+                    window.open(backURL, "_self");
                 }else {
-                    $(".main-content").find(".error-info").find("span").text(backData.msg);
+                   layer.msg(backData.msg);
                     registerBtn.html("注册");
                     $(".vCode-img").find("img").attr("src","/custome/kit/captcha/"+$.mytools.GetRandomNum(10000, 99999));  
                 }

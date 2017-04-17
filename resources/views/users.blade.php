@@ -53,8 +53,13 @@ a<!DOCTYPE html>
 				</div>
 
 				<div class="content" v-cloak v-if="(navShift == '1')">
+<<<<<<< HEAD
 					<div class="title" onclick="window.location.href='/rom'">
 						<button class="btn btn-info"><i class="fa fa-add" ></i>上传ROM</button>
+=======
+					<div class="title">
+						<a href="/rom" class="btn btn-info"><i class="fa fa-add" ></i>上传ROM</a>
+>>>>>>> 7e8239a5802f87a011ddd5e6abe04efd0bf0e83d
 						<div class="item">
 							<span data-type="1" @click="itemShiftEvent" class="active">全部<small>(13947)</small></span>
 							<span data-type="1" @click="itemShiftEvent">已发布<small>(13947)</small></span>
@@ -78,8 +83,8 @@ a<!DOCTYPE html>
 
 						<div class="list-item">
 							<ul>
-								<li class="row-01">已发布</li>
-								<li class="row-02">三星</li>
+								<li class="row-01">还没调接口</li>
+								<li class="row-02">还没调接口</li>
 								<li class="row-03">中国</li>
 								<li class="row-04">SM-G935A </li>
 								<li class="row-05">G935AUCS4BQC2</li>
@@ -206,18 +211,10 @@ a<!DOCTYPE html>
 		</div>		
 	</div>
 
-	<script>
-	var _hmt = _hmt || [];
-	(function() {
-	  var hm = document.createElement("script");
-	  hm.src = "https://hm.baidu.com/hm.js?b819a6a70904703dd1926e26ba9554f0";
-	  var s = document.getElementsByTagName("script")[0]; 
-	  s.parentNode.insertBefore(hm, s);
-
-	})();
-	</script>
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
+	<script src="scripts/public/tools.js"></script>
+	<script src="scripts/public/topNav.js"></script>
 	<script src="scripts/users.js"></script>
 </body>
 </html>

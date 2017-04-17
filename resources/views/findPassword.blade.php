@@ -76,10 +76,6 @@
 							<button type="button" class="btn btn-primary" @click="resetPaswrd">重置密码</button>
 						</div>
 
-						<div class="error-info">
-							<span></span>
-						</div>						
-
 						<div class="back">
 							<a href="/enter?type=login"><i class="fa fa-mail-reply"></i> 返回登录注册页</a>
 						</div>
@@ -93,18 +89,9 @@
 		</div>		
   	</div>
 
-	<script>
-		var _hmt = _hmt || [];
-		(function() {
-		  var hm = document.createElement("script");
-		  hm.src = "https://hm.baidu.com/hm.js?b819a6a70904703dd1926e26ba9554f0";
-		  var s = document.getElementsByTagName("script")[0]; 
-		  s.parentNode.insertBefore(hm, s);
-
-		})();
-	</script>
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
+	<script src="/style/admin/lib/layer/2.4/layer.js"></script>
 	<script src="scripts/public/tools.js"></script>
 	<script src="scripts/findpassword.js"></script>
 

@@ -49,7 +49,7 @@ a<!DOCTYPE html>
 
 			<div class="search">
 				<input class="form-control" type="text" placeholder="输入机型或版本号(至少3个字符)">
-				<button @click="search">JUST搜搜</button>
+				<button @click="search">搜一下</button>
 			</div>
 
 			<div class="main-content">

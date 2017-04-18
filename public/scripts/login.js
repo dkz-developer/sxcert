@@ -65,12 +65,14 @@
             }
         }
 
-        var flag = verification($("#mobile"), "手机号不能为空") && verification($("#vcode"), "验证码不能为空");
+        var flag = verification($("#mobile"), "手机号不能为空");
 
-
+        if(!$.mytools.checkMobile($("#mobile").val())) {
+            layer.tips("手机号码格式不正确", $("#mobile"),{tips: [2, '#333'],time: 4000});
+            return false;
+        }
        var params = {
             "mobile": $("#mobile").val(),
-            "code": $("#vcode").val(),
             "_token": $("#app").attr("data-value"),
         };
 
@@ -159,7 +161,7 @@
     // 级验验证
     function vCode(obj) {
 
-        $(obj).parents("form").find("button").addClass("disabled");
+        $(obj).parents("form").find(".submitBtn button").addClass("disabled");
 
         var handlerEmbed = function (captchaObj) {
 

@@ -71,7 +71,7 @@
 						</div>
 						<div class="right">
 							<div class="money"><em>{{number_format($info->price,2)}}</em>金币</div>
-							<div class="password alert alert-warning" id="copy-button" data-clipboard-text="{{$info->download_password}}">密码: {{$info->download_password}} </div>
+							<div class="password alert alert-warning" id="copy-button" data-clipboard-text="{{$info->download_password}}" style="cursor: pointer;">密码: {{$info->download_password}} </div>
 							<div class="loadBtn">
 								<a class="btn btn-info" href="javascript:void(0);" @click="load">立即下载</a>
 							</div>

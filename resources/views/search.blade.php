@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+∂<!DOCTYPE html>
 <html lang="zh-cmn-Hans">
 <head>
 	<meta charset="utf-8">
@@ -25,6 +25,11 @@
 				<div class="btnGroup">
 					<a class="login-btn" href="/enter?type=login">登录</a>
 					<a class="register-btn" href="/enter?type=register">注册</a>
+				</div>
+
+				<div class="search">
+					<input class="form-control" type="text" placeholder="输入机型或版本号(至少3个字符)" @keyup.enter="search">
+					<button @click="search">搜一下</button>
 				</div>
 
 				<div class="items">

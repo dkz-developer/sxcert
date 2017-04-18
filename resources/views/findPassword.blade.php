@@ -65,12 +65,8 @@
 						</div>
 
 						<div class="input-prepend">
-							<input class="restyle" type="text" placeholder="请再次输入新密码" id="passwordAgain"  v-on:blur="verification" data-error="确认密码不能为空">
+							<input  type="text" class="lastIn" placeholder="请再次输入新密码" id="passwordAgain"  v-on:blur="verification" data-error="确认密码不能为空">
 							<i class="fa fa-lock"></i>
-						</div>
-						<div class="input-prepend">
-							<input  type="text" placeholder="请输入验证码" class="lastIn" id="vcode" v-on:blur="verification" data-error="验证码不能为空" id="vcode"  v-on:blur="verification" data-error="手机号不能为空">
-							<span class="vCode-img"><img @click="refreshVcode" src="http://121.42.147.197/admin/kit/captcha/1" alt=""></span>
 						</div>
 						<div class="submitBtn">
 							<button type="button" class="btn btn-primary" @click="resetPaswrd">重置密码</button>
@@ -92,6 +88,7 @@
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
 	<script src="/style/admin/lib/layer/2.4/layer.js"></script>
+	<script src="http://static.geetest.com/static/tools/gt.js"></script>
 	<script src="scripts/public/tools.js"></script>
 	<script src="scripts/findpassword.js"></script>
 

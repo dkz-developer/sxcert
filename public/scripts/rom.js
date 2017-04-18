@@ -11,8 +11,8 @@
 			type = $("#type"),	// 类型
 			price = $("#price"),	// 单价
 			version = $("#version"),	// 版本
-			url = $("#url"),	// 下载地址
-			note = $("#note");	// 备注
+			download_url = $("#url"),	// 下载地址
+			download_password = $("#note");	// 备注
 
 		var submitInfo = {};
 
@@ -65,21 +65,21 @@
 			submitInfo["version"] = version.val();
 		}
 
-		if(isNull(url.val())) {
+		if(isNull(download_url.val())) {
 			showErrorInfo(url,"下载地址不能为空");
 			return false;
-		}else if(is.not.url(url.val())) {
+		}else if(is.not.url(download_url.val())) {
 			showErrorInfo(url,"下载地址格式不正确");
 			return false;
 		}else {
-			submitInfo["url"] = url.val();
+			submitInfo["download_url"] = download_url.val();
 		}
 
-		if(isNull(note.val())) {
-			showErrorInfo(note,"备注不能为空");
+		if(isNull(download_password.val())) {
+			showErrorInfo(download_password,"备注不能为空");
 			return false;
 		}else {
-			submitInfo["note"] = note.val();
+			submitInfo["download_password"] = download_password.val();
 		}
 
 
@@ -103,9 +103,11 @@
 
 			if(submitInfo) {
 
+	            submitInfo["_token"] = $("#app").attr("data-value");
+
 				_this.html('<i class="fa fa-spinner fa-pulse"></i>&nbsp;提交中...');
 
-				$.get("/rom", submitInfo, function(backData) {
+				$.post("/addUserInfo", submitInfo, function(backData) {
 	                if(backData && backData.code === "S"){
 	                	window.location.href = "/load";
 	                }else{

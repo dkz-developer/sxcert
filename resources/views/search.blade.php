@@ -47,17 +47,17 @@
 			<div class="main-content">
 				<div class="listRec">
 					<div class="header">
-	                    <div class="row-02">品牌</div>
-	                    <div class="row-03">区域 / 国家</div>
-	                    <div class="row-04">型号</div>
-	                    <div class="row-05">版本号</div>
-	                    <div class="row-06">OS</div>
-	                    <div class="row-07">资料类型</div>
-	                    <div class="row-08">价格(金币)</div>
-	                    <div class="row-09">更新日期</div>
-	                    <div class="row-10">查看</div>
-	                    <div class="row-11">下载</div>
-	                    <div class="row-12">下载链接</div>
+				                    <div class="row-02">品牌</div>
+				                    <div class="row-03">区域 / 国家</div>
+				                    <div class="row-04">型号</div>
+				                    <div class="row-05">版本号</div>
+				                    <div class="row-06">OS</div>
+				                    <div class="row-07">资料类型</div>
+				                    <div class="row-08">价格(金币)</div>
+				                    <div class="row-09">更新日期</div>
+				                    <div class="row-10">查看</div>
+				                    <div class="row-11">下载</div>
+				                    <div class="row-12">下载链接</div>
 					</div>
 
 					<div class="list-item" v-cloak v-for="(item,index) in list">
@@ -91,7 +91,9 @@
 							<li class="row-12"><a target="_blank" :href="['/info?keyword='+item.id]" class="btn btn-info">下载</a></li>
 						</ul> -->
 					</div>
-					
+					<div style="float: right;margin-right: 5px;">
+						{{$list->links()}}
+					</div>
 				</div>
 			</div>
 

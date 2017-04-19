@@ -135,9 +135,9 @@ class LoadListController extends Controller
 		$arr = [1=>'brand','country','model','version','os','type'];
 		$where = [];
 		if(7 == $index) {
-			$list = Info::where('model','like',"%{$keyword}%")->orWhere('version','like',"%{$keyword}%")->orderBy('sort','desc')->paginate(20);
+			$list = Info::where('model','like',"%{$keyword}%")->orWhere('version','like',"%{$keyword}%")->orderBy('sort','desc')->paginate(1);
 		}else {
-			$list = Info::where($arr[$index],'like',"%{$keyword}%")->orderBy('sort','desc')->paginate(20);
+			$list = Info::where($arr[$index],'like',"%{$keyword}%")->orderBy('sort','desc')->paginate(1);
 		}
 		return view('search',['list'=>$list]);
 	}

@@ -44,7 +44,7 @@
 		<div class="container">
 			
 			<div class="help">
-				<h3 class="title"><a href="/">返回论坛主页面</a></h3>
+				<!-- <h3 class="title"><a href="/">返回论坛主页面</a></h3> -->
 				<p>刷机客服工作时间段： 9：00 -- 22：00</p>
 				<div class="seperate"></div>
 				<div class="services">

@@ -45,7 +45,7 @@
 				<div class="items">
 					<ul>
 						<li><a href="/load">首页</a></li>
-						<li><a href="/">讨论区</a></li>
+						<!-- <li><a href="/">讨论区</a></li> -->
 						<li><a href="/pay">充值</a></li>
 						<li><a href="/feedback">意见反馈</a></li>
 					</ul>

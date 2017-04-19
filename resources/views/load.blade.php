@@ -75,12 +75,12 @@ a<!DOCTYPE html>
 						@foreach($list as $val)
 						<ul>
 							<!-- <li class="row-01"><a :href="['/search?keyword='+item.tag ]">@{{item.tag}}</a></li> -->
-							<li class="row-02"><a target="_blank" :href="['/search?keyword='+item.brand]">{{$val->brand}}</a></li>
-							<li class="row-03"><a target="_blank" :href="['/search?keyword='+item.country]">{{$val->country}}</a></li>
-							<li class="row-04"><a target="_blank" :href="['/search?keyword='+item.model]">{{$val->model}}</a></li>
-							<li class="row-05"><a target="_blank" :href="['/search?keyword='+item.version]">{{$val->version}}</a></li>
-							<li class="row-06"><a target="_blank" :href="['/search?keyword='+item.os]">{{$val->os}}</a></li>
-							<li class="row-07"><a target="_blank" :href="['/search?keyword='+item.type]">{{$val->type}}</a></li>
+							<li class="row-02"><a target="_blank" href="/s/{{$val->brand}}">{{$val->brand}}</a></li>
+							<li class="row-03"><a target="_blank" href="/s/{{$val->country}}">{{$val->country}}</a></li>
+							<li class="row-04"><a target="_blank" href="/s/{{$val->model}}">{{$val->model}}</a></li>
+							<li class="row-05"><a target="_blank" href="/s/{{$val->version}}">{{$val->version}}</a></li>
+							<li class="row-06"><a target="_blank" href="/s/{{$val->os}}">{{$val->os}}</a></li>
+							<li class="row-07"><a target="_blank" href="/s/{{$val->type}}">{{$val->type}}</a></li>
 							<li class="row-08">{{$val->price}}</li>
 							<li class="row-09">{{$val->updated_at}}</li>
 							<li class="row-10">{{$val->view_num}}</li>

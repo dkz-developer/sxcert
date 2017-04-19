@@ -1,4 +1,4 @@
-a<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-cmn-Hans">
 <head>
 	<meta charset="utf-8">
@@ -11,7 +11,7 @@ a<!DOCTYPE html>
 	<meta name="description" content="">
 
     <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="style/css/load.css" rel="stylesheet">
+    <link href="/style/css/load.css" rel="stylesheet">
 </head>
 <body>
 	<div id="app" data-value="{{ csrf_token() }}">
@@ -48,8 +48,11 @@ a<!DOCTYPE html>
 			</div>
 
 			<div class="search">
-				<input class="form-control" type="text" placeholder="输入机型或版本号(至少3个字符)" @keyup.enter="search">
-				<button @click="search">搜一下</button>
+				<form action="javascript:void(0)" method="get" >
+					<input class="form-control" type="text" placeholder="输入机型或版本号(至少3个字符)" name="k" id="keyword">
+					<input class="form-control" type="hidden" name="i" value="7">
+					<button type="submit">搜一下</button>
+				</form>
 			</div>
 
 			<div class="main-content">
@@ -75,17 +78,17 @@ a<!DOCTYPE html>
 						@foreach($list as $val)
 						<ul>
 							<!-- <li class="row-01"><a :href="['/search?keyword='+item.tag ]">@{{item.tag}}</a></li> -->
-							<li class="row-02"><a target="_blank" href="/s/{{$val->brand}}">{{$val->brand}}</a></li>
-							<li class="row-03"><a target="_blank" href="/s/{{$val->country}}">{{$val->country}}</a></li>
-							<li class="row-04"><a target="_blank" href="/s/{{$val->model}}">{{$val->model}}</a></li>
-							<li class="row-05"><a target="_blank" href="/s/{{$val->version}}">{{$val->version}}</a></li>
-							<li class="row-06"><a target="_blank" href="/s/{{$val->os}}">{{$val->os}}</a></li>
-							<li class="row-07"><a target="_blank" href="/s/{{$val->type}}">{{$val->type}}</a></li>
+							<li class="row-02"><a target="_blank" href="/s?i=1&k={{urlencode($val->brand)}}">{{$val->brand}}</a></li>
+							<li class="row-03"><a target="_blank" href="/s?i=2&k={{urlencode($val->country)}}">{{$val->country}}</a></li>
+							<li class="row-04"><a target="_blank" href="/s?i=3&k={{urlencode($val->model)}}">{{$val->model}}</a></li>
+							<li class="row-05"><a target="_blank" href="/s?i=4&k={{urlencode($val->version)}}">{{$val->version}}</a></li>
+							<li class="row-06"><a target="_blank" href="/s?i=5&k={{urlencode($val->os)}}">{{$val->os}}</a></li>
+							<li class="row-07"><a target="_blank" href="/s?i=6&k={{urlencode($val->type)}}">{{$val->type}}</a></li>
 							<li class="row-08">{{$val->price}}</li>
 							<li class="row-09">{{$val->updated_at}}</li>
 							<li class="row-10">{{$val->view_num}}</li>
 							<li class="row-11">{{$val->download_num}}</li>
-							<li class="row-12"><a target="_blank" :href="['/i/'+item.id]" class="btn btn-info">下载</a></li>
+							<li class="row-12"><a target="_blank" href='/i/{{$val->id}}' class="btn btn-info">下载</a></li>
 						</ul>
 						@endforeach
 					</div>
@@ -99,9 +102,9 @@ a<!DOCTYPE html>
 	</div>
 	
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
-	<!-- <script src="scripts/lib/vue/vue.min.js"></script> -->
-	<!-- <script src="scripts/public/tools.js"></script> -->
-	<!-- <script src="scripts/public/topNav.js"></script> -->
+	<script src="scripts/lib/vue/vue.min.js"></script>
+	<script src="scripts/public/tools.js"></script>
+	<script src="scripts/public/topNav.js"></script>
 	<!-- <script src="scripts/load.js"></script> -->
 </body>
 </html>

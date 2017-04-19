@@ -61,7 +61,23 @@
 					</div>
 
 					<div class="list-item" v-cloak v-for="(item,index) in list">
+						@foreach($list as $val)
 						<ul>
+							<!-- <li class="row-01"><a :href="['/search?keyword='+item.tag ]">@{{item.tag}}</a></li> -->
+							<li class="row-02"><a target="_blank" href="/s?i=1&k={{urlencode($val->brand)}}">{{$val->brand}}</a></li>
+							<li class="row-03"><a target="_blank" href="/s?i=2&k={{urlencode($val->country)}}">{{$val->country}}</a></li>
+							<li class="row-04"><a target="_blank" href="/s?i=3&k={{urlencode($val->model)}}">{{$val->model}}</a></li>
+							<li class="row-05"><a target="_blank" href="/s?i=4&k={{urlencode($val->version)}}">{{$val->version}}</a></li>
+							<li class="row-06"><a target="_blank" href="/s?i=5&k={{urlencode($val->os)}}">{{$val->os}}</a></li>
+							<li class="row-07"><a target="_blank" href="/s?i=6&k={{urlencode($val->type)}}">{{$val->type}}</a></li>
+							<li class="row-08">{{$val->price}}</li>
+							<li class="row-09">{{$val->updated_at}}</li>
+							<li class="row-10">{{$val->view_num}}</li>
+							<li class="row-11">{{$val->download_num}}</li>
+							<li class="row-12"><a target="_blank" href='/i/{{$val->id}}' class="btn btn-info">下载</a></li>
+						</ul>
+						@endforeach
+						<!-- <ul>
 							<li class="row-02"><a target="_blank" :href="['/search?keyword='+item.brand]">@{{item.brand}}</a></li>
 							<li class="row-03"><a target="_blank" :href="['/search?keyword='+item.country | escape]">@{{item.country}}</a></li>
 							<li class="row-04"><a target="_blank" :href="['/search?keyword='+item.model]">@{{item.model}}</a></li>
@@ -73,7 +89,7 @@
 							<li class="row-10">@{{item.view_num}}</li>
 							<li class="row-11">@{{item.download_num}}</li>
 							<li class="row-12"><a target="_blank" :href="['/info?keyword='+item.id]" class="btn btn-info">下载</a></li>
-						</ul>
+						</ul> -->
 					</div>
 					
 				</div>
@@ -93,7 +109,7 @@
 	<script src="scripts/lib/kkpager/kkpager.min.js"></script>
 	<script src="scripts/public/tools.js"></script>
 	<script src="scripts/public/topNav.js"></script>
-	<script src="scripts/search.js"></script>
+	<!-- <script src="scripts/search.js"></script> -->
 </body>
 </html>
 

@@ -3,63 +3,63 @@
 (function($) {
 
 	//底部轮播图
-    var bottombannerEvent = function() {
-        $('.flickadd').flicker({dot_navigation: true});
-    };
+	var bottombannerEvent = function() {
+		$('.flickadd').flicker({dot_navigation: true});
+	};
 
 	// 实例化vue
 	var vm = new Vue({
-	    el: '#app',
-	    data: {
-	    	list: "",
-	    },
-	    methods: {
-	        search:search, // 按钮搜索
-	    },
+		el: '#app',
+		data: {
+			list: "",
+		},
+		methods: {
+			search:search, // 按钮搜索
+		},
 
-        // 过滤器 取整
-        filters: {
-            escape: function(value) {
-                return escape(value);
-            }
-        }
+		// 过滤器 取整
+		filters: {
+			escape: function(value) {
+				return escape(value);
+			}
+		}
 	});
 
 
-    // 请求接口加载列表数据
-    function requestInterface() {
-    	
-        var params = {
-             "_token": $("#app").attr("data-value")
-        };
+	// 请求接口加载列表数据
+	function requestInterface() {
+		
+		var params = {
+			 "_token": $("#app").attr("data-value")
+		};
 
-        $.post('/custome/loadlist', params, function(backData) {
+		$.post('/custome/loadlist', params, function(backData) {
 
-            if(backData && backData.code === "S") {
+			if(backData && backData.code === "S") {
 
-                vm.list = backData.msg;
-            }
+				vm.list = backData.msg;
+			}
 
-        }, "json"); 
-    };
+		}, "json"); 
+	};
 
-    // 按钮搜索
-    function search() {
+	// 按钮搜索
+	function search() {
 
-        var keyword =escape($(".search input").val()); // 关键字
+		var keyword =escape($(".search input").val()); // 关键字
 
-        if(keyword) {
-            window.location.href = '/search?keyword='+keyword;
-        }else {
-            return false;
-        }
-    }
+		if(keyword) {
+			window.location.href = '/search?keyword='+keyword;
+		}else {
+			return false;
+		}
+	}
 
-    $(function() {
+	$(function() {
 
 		// 请求接口加载列表数据
-	    requestInterface();
+		requestInterface();
 
-    });
+	});
 
 })(jQuery)

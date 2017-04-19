@@ -100,4 +100,5 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::post('/addUserInfo','LoadListController@userRomAdd');
 	// 下载页
 	Route::get('/load','LoadListController@loadlist');
+	Route::get('/s','LoadListController@search');
 });

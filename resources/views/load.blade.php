@@ -48,10 +48,10 @@
 			</div>
 
 			<div class="search">
-				<form action="javascript:void(0)" method="get" >
+				<form action="/s" method="get" >
 					<input class="form-control" type="text" placeholder="输入机型或版本号(至少3个字符)" name="k" id="keyword">
 					<input class="form-control" type="hidden" name="i" value="7">
-					<button type="submit">搜一下</button>
+					<button type="submit" id="searchBtn">搜一下</button>
 				</form>
 			</div>
 
@@ -73,9 +73,8 @@
 				                    <div class="row-12">下载链接</div>
 					</div>
 
-		
+					@foreach($list as $val)
 					<div class="list-item" v-cloak v-for="(item,index) in list">
-						@foreach($list as $val)
 						<ul>
 							<!-- <li class="row-01"><a :href="['/search?keyword='+item.tag ]">@{{item.tag}}</a></li> -->
 							<li class="row-02"><a target="_blank" href="/s?i=1&k={{urlencode($val->brand)}}">{{$val->brand}}</a></li>
@@ -90,8 +89,8 @@
 							<li class="row-11">{{$val->download_num}}</li>
 							<li class="row-12"><a target="_blank" href='/i/{{$val->id}}' class="btn btn-info">下载</a></li>
 						</ul>
-						@endforeach
 					</div>
+					@endforeach
 				</div>
 			</div>
 		</div>
@@ -108,6 +107,17 @@
 	<!-- <script src="scripts/load.js"></script> -->
 </body>
 </html>
+<script>
+	$(function() {
+		$("#searchBtn").click(function() {
+
+			var keyword = $("#keyword").val();
+
+			if(keyword.length <3 ) return false;
+
+		})
+	})
+</script>
 
 
 

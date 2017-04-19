@@ -28,9 +28,14 @@
 				</div>
 
 				<div class="search">
-					<input class="form-control" type="text" placeholder="输入机型或版本号(至少3个字符)" @keyup.enter="search">
-					<button @click="search">搜一下</button>
-				</div>
+				<form action="/s" method="get" >
+					<input class="form-control" type="text" placeholder="输入机型或版本号(至少3个字符)" name="k" id="keyword">
+					<input class="form-control" type="hidden" name="i" value="7">
+					<button type="submit" id="searchBtn">搜一下</button>
+				</form>
+			</div>
+
+
 
 				<div class="items">
 					<ul>
@@ -59,9 +64,9 @@
 				                    <div class="row-11">下载</div>
 				                    <div class="row-12">下载链接</div>
 					</div>
-
+					@foreach($list as $val)
 					<div class="list-item" v-cloak v-for="(item,index) in list">
-						@foreach($list as $val)
+						
 						<ul>
 							<!-- <li class="row-01"><a :href="['/search?keyword='+item.tag ]">@{{item.tag}}</a></li> -->
 							<li class="row-02"><a target="_blank" href="/s?i=1&k={{urlencode($val->brand)}}">{{$val->brand}}</a></li>
@@ -76,7 +81,6 @@
 							<li class="row-11">{{$val->download_num}}</li>
 							<li class="row-12"><a target="_blank" href='/i/{{$val->id}}' class="btn btn-info">下载</a></li>
 						</ul>
-						@endforeach
 						<!-- <ul>
 							<li class="row-02"><a target="_blank" :href="['/search?keyword='+item.brand]">@{{item.brand}}</a></li>
 							<li class="row-03"><a target="_blank" :href="['/search?keyword='+item.country | escape]">@{{item.country}}</a></li>
@@ -91,9 +95,10 @@
 							<li class="row-12"><a target="_blank" :href="['/info?keyword='+item.id]" class="btn btn-info">下载</a></li>
 						</ul> -->
 					</div>
-					<div style="float: right;margin-right: 5px;">
-						{{$list->links()}}
-					</div>
+					@endforeach
+				</div>
+				<div style="float: right;margin-right: 5px;">
+					{{$list->links()}}
 				</div>
 			</div>
 
@@ -114,6 +119,17 @@
 	<!-- <script src="scripts/search.js"></script> -->
 </body>
 </html>
+<script>
+	$(function() {
+		$("#searchBtn").click(function() {
+
+			var keyword = $("#keyword").val();
+
+			if(keyword.length <3 ) return false;
+
+		})
+	})
+</script>
 
 
 

@@ -26,7 +26,7 @@
 						<a class="login-btn" href="/enter?type=login">登录</a>
 						<a class="register-btn" href="/enter?type=register">注册</a>
 					@else
-						<a class="login-btn" href="/users?id={{session('userInfo.UserId')}}">{{session('userInfo.UserName')}}</a>
+						<a class="login-btn" href="/users">{{session('userInfo.UserName')}}</a>
 						<a class="register-btn" href='/custome/logout'>退出</a>
 					@endif
 				</div>

@@ -135,7 +135,7 @@ class LoadListController extends Controller
 		$keyword = substr($keyword, 0,-1);
 		$arr = [1=>'brand','country','model','version','os','type'];
 		$where = [];
-		if(! $index) {
+		if($index==7) {
 			$list = Info::where('model','like',"%{$keyword}%")->orWhere('version','like',"%{$keyword}%")->orderBy('sort','desc')->simplePaginate(20);
 		}else {
 			$list = Info::where($arr[$index],'like',"%{$keyword}%")->orderBy('sort','desc')->simplePaginate(20);

@@ -76,13 +76,13 @@ class UserController extends Controller
 			);
 
 		if (session('gtserver') == 1) {   //服务器正常
-				$result = $GtSdk->success_validate($request->geetest_challenge, $request->geetest_validate, $request->geetest_seccode, $data);
-				if (! $result) {
-					return response()->json(['code'=>'F','msg'=>'验证码错误，请重试！']);
+			$result = $GtSdk->success_validate($request->geetest_challenge, $request->geetest_validate, $request->geetest_seccode, $data);
+			if (! $result) {
+				return response()->json(['code'=>'F','msg'=>'验证码错误，请重试！']);
 			}
 		}else{  //服务器宕机,走failback模式
-				if (! $GtSdk->fail_validate($request->geetest_challenge,$request->geetest_validate,$request->geetest_seccode)) {
-					return response()->json(['code'=>'F','msg'=>'验证码错误，请重试！']);
+			if (! $GtSdk->fail_validate($request->geetest_challenge,$request->geetest_validate,$request->geetest_seccode)) {
+				return response()->json(['code'=>'F','msg'=>'验证码错误，请重试！']);
 			}
 		}
 		$userName = $request->input('username');
@@ -184,29 +184,8 @@ class UserController extends Controller
 		}
 	}
 	
-	//修改密码
-	public function restpwd(Request $request){
-		$username = $request -> input ('username');
-		if (Session::get('userInfo.UserName') != $username){  
-			return response()->json(['code'=>'F','msg'=>'操作失败']);
-		}
 
-		//判断密码是否正确
-		$userName = $request->input('username');
-		$password = $request->input('password');
-		$userInfo = User::where([['UserName',$userName],['Password',md5($password)]])->first();
-		if(!$userInfo){
-			return response()->json(['code'=>'F','msg'=>'旧密码错误']);
-		}
-		$newpassword = $request->input('newpassword'); //新密码一致性就靠前段来判断  后台就判断第一个密码
-		
-		$res = User::where('UserId',$userInfo['UserId'])->update(array('Password' => md5($newpassword) ));
-		if($res){
-			return response()->json(['code'=>'F','msg'=>'密码修改成功']);
-		}else{
-			return response()->json(['code'=>'F','msg'=>'密码修改失败']);
-		}
-	}
+	
 	
 	/*
 	 * 密码重置
@@ -214,28 +193,26 @@ class UserController extends Controller
 	 * $username 用户名
 	 * $newpassword 新密码
 	 */
-	public function findpwd(Request $request){
+	public function restpwd(Request $request)
+	{
 		$vcode = $request->input('resetcode');
 		if (Session::get('resetcode') != $vcode){
-			return response()->json(['code'=>'F','msg'=>'验证码错咯']);
+			return response()->json(['code'=>'F','msg'=>'验证码不正确！']);
 		}
-		$username = $request -> input ('username');
-		$newpassword = $request -> input ('newpassword');
-		$userInfo = User::where(['UserName',$username])->first();
-		if(!$userInfo){
-			return response()->json(['code'=>'F','msg'=>'请确认手机号或者用户名正确']);
-		}
-		$data = array(
-			'Password' => $newpassword
-		);
-		$res = User::where('UserId',$userInfo['UserId'])->update(array('Password' => md5($newpassword) ));
-		 
-		if($res){
-			Session::forget('resetcode');
-			return response()->json(['code'=>'F','msg'=>'密码修改成功']);
-		}else{
-			return response()->json(['code'=>'F','msg'=>'密码修改失败']);
-		}
+		$password = $request->input('password');
+		$repassword = $request->input('repassword');
+		$mobile = $request->input('mobile');
+		if($password != $repassword)
+			return response()->json(['code'=>'F','msg'=>'两次密码不一致！']);
+
+		$UserInfo = User::where('Mobile',$mobile)->first();
+		if(empty($UserInfo))
+			return response()->json(['code'=>'F','msg'=>'该手机号尚未注册！']);
+		$UserInfo->password = md5($password);
+		$result = $UserInfo->save();
+		if($result)
+			return response()->json(['code'=>'S','msg'=>'操作成功！']);
+		return response()->json(['code'=>'F','msg'=>'操作失败！']);
 	}
 
 	

@@ -46,7 +46,7 @@ class LoadListController extends Controller
 		$InfoUser->price = $request->price;
 		$InfoUser->download_password = $request->download_password;
 		$InfoUser->download_url = $request->download_url;
-		$InfoUser->user_id = $request->user_id;
+		$InfoUser->user_id = session('userInfo.UserId');
 		$result = $InfoUser->save();
 		if($result)
 			return response()->json(['code'=>'S','添加成功！等待管理员审核']);
@@ -70,6 +70,15 @@ class LoadListController extends Controller
 		DB::beginTransaction();
 		$info->download_num += 1;
 		$i_result = $info->save();
+		if(!empty($info->uinfo_id)) {
+			$InfoUser = InfoUser::find($info->uinfo_id);
+			$InfoUser->download_num += 1;
+			$InfoUser->save();
+			// $User = User::find($InfoUser->user_id);
+			// $amount = $info->price * 0.01;
+			// $User->Balance += $amount;
+			// $result = $User->save();
+		}
 		$userInfo->Balance -= $info->price;
 		$u_result = $userInfo->save();
 		$BuyRecord = new BuyRecord();
@@ -85,12 +94,17 @@ class LoadListController extends Controller
 		return response()->json(['code'=>'F','msg'=>'操作失败！']);
 	}
 
-	public function detail(Request $request)
+	public function detail(Request $request,$id)
 	{
-		$id = $request->input('keyword','');
+		//$id = $request->input('keyword','');
 		$result = Info::find(intval($id));
 		$result->view_num += 1;
 		$result->save();
+		if(!empty($result->uinfo_id)) {
+			$InfoUser = InfoUser::find($result->uinfo_id);
+			$InfoUser->view_num += 1;
+			$InfoUser->save();
+		}
 		$infoComment = InfoComment::where('info_id',$id)->get();
 		return view('info',['info'=>$result,'infoComment'=>$infoComment]);
 	}
@@ -126,58 +140,61 @@ class LoadListController extends Controller
 	 */
 	public function loadlist(Request $request)
 	{
-		$page = $request->input('page' , 1);
-		$total = 1;
-		$limit = 20;
-		$skip = ($page -1)*$limit ;
-		$keyword = $request->input('keyword',false);
-		$brand = $request->input('brand',false);
-		$model = $request->input('model',false);
-		$country = $request->input('country',false);
-		$version = $request->input('version',false);
-		$tag = $request->input('tag',false);
-		$type = $request->input('type',false);
+		$Info = new Info();
+		$list = $Info->where('status',2)->orderBy('updated_at','DESC')->paginate(20);
+		return view('load',['list'=>$list]);
+		// $page = $request->input('page' , 1);
+		// $total = 1;
+		// $limit = 20;
+		// $skip = ($page -1)*$limit ;
+		// $keyword = $request->input('keyword',false);
+		// $brand = $request->input('brand',false);
+		// $model = $request->input('model',false);
+		// $country = $request->input('country',false);
+		// $version = $request->input('version',false);
+		// $tag = $request->input('tag',false);
+		// $type = $request->input('type',false);
 		
-		if($brand){
-			$condition ['brand'] = $brand;
-		}
-		if($model){
-			$condition ['model'] = $model;
-		}
-		if($country){
-			$condition ['country'] = $country;
-		}
-		if($version){
-			$condition ['version'] = $version;
-		}
-		if($tag){
-			$condition ['tag'] = $tag;
-		}
-		if($type){
-			$condition ['type'] = $type;
-		}
+		// if($brand){
+		// 	$condition ['brand'] = $brand;
+		// }
+		// if($model){
+		// 	$condition ['model'] = $model;
+		// }
+		// if($country){
+		// 	$condition ['country'] = $country;
+		// }
+		// if($version){
+		// 	$condition ['version'] = $version;
+		// }
+		// if($tag){
+		// 	$condition ['tag'] = $tag;
+		// }
+		// if($type){
+		// 	$condition ['type'] = $type;
+		// }
 		
 		
-		if( $keyword){
-			$list = Info::where('model',$keyword)->orWhere('version',$keyword)->orderBy('updated_at' , 'desc')->skip($skip)->take($limit)->get();
-			$count = Info::where('model',$keyword)->orWhere('version',$keyword)->count();
-			$total = ceil($count/$limit) ;
+		// if( $keyword){
+		// 	$list = Info::where('model',$keyword)->orWhere('version',$keyword)->orderBy('updated_at' , 'desc')->skip($skip)->take($limit)->get();
+		// 	$count = Info::where('model',$keyword)->orWhere('version',$keyword)->count();
+		// 	$total = ceil($count/$limit) ;
 		   
 		   
-		}elseif(isset($condition)){
-			$list = Info::where($condition)->orderBy('updated_at' , 'desc')->skip($skip)->take($limit)->get();
-			$count = Info::where($condition)->count();
-			$total = ceil($count/$limit) ;
-		}else{
-			//$list = Info::where('status','2')->orderBy('sort' , 'desc')->lists('id','tag','brand','country','model','version','os','type','price','updated_at','view_num','download_num','download_url');
-			$list = Info::where('status','2')->orderBy('sort' , 'desc')->get();
-		}
+		// }elseif(isset($condition)){
+		// 	$list = Info::where($condition)->orderBy('updated_at' , 'desc')->skip($skip)->take($limit)->get();
+		// 	$count = Info::where($condition)->count();
+		// 	$total = ceil($count/$limit) ;
+		// }else{
+		// 	//$list = Info::where('status','2')->orderBy('sort' , 'desc')->lists('id','tag','brand','country','model','version','os','type','price','updated_at','view_num','download_num','download_url');
+		// 	$list = Info::where('status','2')->orderBy('sort' , 'desc')->get();
+		// }
 		
 		
-		if($list){
-			return response()->json(['code'=>'S','msg'=>$list,'page'=>$page,'total'=>$total ]);
-		}else{
-			return response()->json(['code'=>'F','msg'=>'没查询到']);
-		}
+		// if($list){
+		// 	return response()->json(['code'=>'S','msg'=>$list,'page'=>$page,'total'=>$total ]);
+		// }else{
+		// 	return response()->json(['code'=>'F','msg'=>'没查询到']);
+		// }
 	}
 }

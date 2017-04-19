@@ -86,6 +86,7 @@
 				<ul>
 					<li><a href="/admin/infoList" title="资讯管理">资料列表</a></li>
 					<li><a href="/admin/common" title="资讯管理">常用资料</a></li>
+					<li><a href="/admin/userInfo" title="资讯管理">用户资料</a></li>
 				</ul>
 			</dd>
 		</dl>

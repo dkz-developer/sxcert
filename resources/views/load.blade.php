@@ -57,35 +57,37 @@ a<!DOCTYPE html>
 					<h3 class="title">热门推荐</h3>
 					<div class="header">
 						<!-- <div class="row-01">标签</div> -->
-	                    <div class="row-02">品牌</div>
-	                    <div class="row-03">区域 / 国家</div>
-	                    <div class="row-04">型号</div>
-	                    <div class="row-05">版本号</div>
-	                    <div class="row-06">OS</div>
-	                    <div class="row-07">资料类型</div>
-	                    <div class="row-08">价格(金币)</div>
-	                    <div class="row-09">更新日期</div>
-	                    <div class="row-10">查看</div>
-	                    <div class="row-11">下载</div>
-	                    <div class="row-12">下载链接</div>
+				                    <div class="row-02">品牌</div>
+				                    <div class="row-03">区域 / 国家</div>
+				                    <div class="row-04">型号</div>
+				                    <div class="row-05">版本号</div>
+				                    <div class="row-06">OS</div>
+				                    <div class="row-07">资料类型</div>
+				                    <div class="row-08">价格(金币)</div>
+				                    <div class="row-09">更新日期</div>
+				                    <div class="row-10">查看</div>
+				                    <div class="row-11">下载</div>
+				                    <div class="row-12">下载链接</div>
 					</div>
 
 		
 					<div class="list-item" v-cloak v-for="(item,index) in list">
+						@foreach($list as $val)
 						<ul>
 							<!-- <li class="row-01"><a :href="['/search?keyword='+item.tag ]">@{{item.tag}}</a></li> -->
-							<li class="row-02"><a target="_blank" :href="['/search?keyword='+item.brand]">@{{item.brand}}</a></li>
-							<li class="row-03"><a target="_blank" :href="['/search?keyword='+item.country]">@{{item.country}}</a></li>
-							<li class="row-04"><a target="_blank" :href="['/search?keyword='+item.model]">@{{item.model}}</a></li>
-							<li class="row-05"><a target="_blank" :href="['/search?keyword='+item.version]">@{{item.version}}</a></li>
-							<li class="row-06"><a target="_blank" :href="['/search?keyword='+item.os]">@{{item.os}}</a></li>
-							<li class="row-07"><a target="_blank" :href="['/search?keyword='+item.type]">@{{item.type}}</a></li>
-							<li class="row-08">@{{item.price}}</li>
-							<li class="row-09">@{{item.updated_at}}</li>
-							<li class="row-10">@{{item.view_num}}</li>
-							<li class="row-11">@{{item.download_num}}</li>
-							<li class="row-12"><a target="_blank" :href="['/info?keyword='+item.id]" class="btn btn-info">下载</a></li>
+							<li class="row-02"><a target="_blank" :href="['/search?keyword='+item.brand]">{{$val->brand}}</a></li>
+							<li class="row-03"><a target="_blank" :href="['/search?keyword='+item.country]">{{$val->country}}</a></li>
+							<li class="row-04"><a target="_blank" :href="['/search?keyword='+item.model]">{{$val->model}}</a></li>
+							<li class="row-05"><a target="_blank" :href="['/search?keyword='+item.version]">{{$val->version}}</a></li>
+							<li class="row-06"><a target="_blank" :href="['/search?keyword='+item.os]">{{$val->os}}</a></li>
+							<li class="row-07"><a target="_blank" :href="['/search?keyword='+item.type]">{{$val->type}}</a></li>
+							<li class="row-08">{{$val->price}}</li>
+							<li class="row-09">{{$val->updated_at}}</li>
+							<li class="row-10">{{$val->view_num}}</li>
+							<li class="row-11">{{$val->download_num}}</li>
+							<li class="row-12"><a target="_blank" :href="['/i/'+item.id]" class="btn btn-info">下载</a></li>
 						</ul>
+						@endforeach
 					</div>
 				</div>
 			</div>
@@ -97,10 +99,10 @@ a<!DOCTYPE html>
 	</div>
 	
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
-	<script src="scripts/lib/vue/vue.min.js"></script>
-	<script src="scripts/public/tools.js"></script>
-	<script src="scripts/public/topNav.js"></script>
-	<script src="scripts/load.js"></script>
+	<!-- <script src="scripts/lib/vue/vue.min.js"></script> -->
+	<!-- <script src="scripts/public/tools.js"></script> -->
+	<!-- <script src="scripts/public/topNav.js"></script> -->
+	<!-- <script src="scripts/load.js"></script> -->
 </body>
 </html>
 

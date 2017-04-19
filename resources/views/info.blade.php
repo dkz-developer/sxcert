@@ -3,14 +3,20 @@
 <head>
 	<meta charset="utf-8">
 	<!-- <title> {{$info->brand}}-{{$info->country}}-{{$info->model}}-{{$info->version}}-{{$info->os}}-GSMGOOD</title> -->
-	<title><?php $brand = explode('/',$info->brand);echo trim($brand [0]);?>-<?php $country = explode('/',$info->country);echo $country [1];?>-{{$info->model}}-{{$info->version}}-{{$info->os}}-GSMGOOD</title>
+	<title>
+		<?php 
+			$brand = explode('/',$info->brand);
+			echo !empty($brand) ?  trim($brand [0]) : '';
+		?>-<?php 
+			$country = explode('/',$info->country);
+			echo !empty($country [1]) ?  $country [1] : '';?>-{{$info->model}}-{{$info->version}}-{{$info->os}}-GSMGOOD</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
 	<meta name="viewport" contant="width=device-width, initial-scale=1">
 	<meta name="keywords" content="">
 	<meta name="description" content="">
-	<link href="scripts/lib/popover/jquery.webui-popover.min.css" rel="stylesheet">
-	<link href="style/css/info.css" rel="stylesheet">
+	<link href="/scripts/lib/popover/jquery.webui-popover.min.css" rel="stylesheet">
+	<link href="/style/css/info.css" rel="stylesheet">
 </head>
 <body>
 	<div id="app" data-value="{{ csrf_token() }}">
@@ -49,7 +55,7 @@
 
 				<div class="layoutRight">
 					<h4 class="title">
-						<?php $brand = explode('/',$info->brand);echo trim($brand [0]);?>/<?php $country = explode('/',$info->country);echo $country [1];?>/{{$info->model}}/{{$info->version}}<em>{{$info->os}}</em>
+						<?php $brand = explode('/',$info->brand);echo !empty($brand) ? trim($brand [0]) : '';?>/<?php $country = explode('/',$info->country);echo !empty($country [1]) ? $country [1] : '';?>/{{$info->model}}/{{$info->version}}<em>{{$info->os}}</em>
 					</h4>
 
 					<div class="public">
@@ -141,15 +147,15 @@
 			<p>粤ICP备17024526号-1</p>
 		</div>		
 	</div>
-	<script src="scripts/lib/jquery/jquery.min.js"></script>
-	<script src="scripts/lib/vue/vue.min.js"></script>
-	<script src="scripts/public/tools.js"></script>
-	<script src="scripts/lib/popover/jquery.webui-popover.min.js"></script>
-	<script src="scripts/ZeroClipboard.min.js"></script>
+	<script src="/scripts/lib/jquery/jquery.min.js"></script>
+	<script src="/scripts/lib/vue/vue.min.js"></script>
+	<script src="/scripts/public/tools.js"></script>
+	<script src="/scripts/lib/popover/jquery.webui-popover.min.js"></script>
+	<script src="/scripts/ZeroClipboard.min.js"></script>
 	<script src="/style/admin/lib/layer/2.4/layer.js"></script>
-	<script src="scripts/public/tools.js"></script>
-	<script src="scripts/public/topNav.js"></script>
-	<script src="scripts/info.js"></script>
+	<script src="/scripts/public/tools.js"></script>
+	<script src="/scripts/public/topNav.js"></script>
+	<script src="/scripts/info.js"></script>
 </body>
 </html>
 

@@ -57,9 +57,9 @@ a<!DOCTYPE html>
 						<a href="/rom" class="btn btn-info"><i class="fa fa-add" ></i>上传ROM</a>
 
 						<div class="item">
-							<span data-type="1" @click="itemShiftEvent" class="active">全部<small>(13947)</small></span>
-							<span data-type="1" @click="itemShiftEvent">已发布<small>(13947)</small></span>
-							<span data-type="1" @click="itemShiftEvent">未审核<small>(13947)</small></span>
+							<span data-type="1" @click="itemShiftEvent" @if(empty($_GET['status'])) class="active" @endif onclick="window.location.href='/users'">全部<small>({{$allcount}})</small></span>
+							<span data-type="1" @click="itemShiftEvent" @if(! empty($_GET['status']) && 2 == $_GET['status']) class="active" @endif onclick="window.location.href='/users?status=2'">已发布<small>({{$scount}})</small></span>
+							<span data-type="1" @click="itemShiftEvent" onclick="window.location.href='/users?status=1'" @if(! empty($_GET['status']) && 1 == $_GET['status']) class="active" @endif>未审核<small>({{$fcount}})</small></span>
 						</div>
 					</div>
 					<div class="inner inner-nav1">
@@ -79,17 +79,23 @@ a<!DOCTYPE html>
 
 						<div class="list-item">
 							<ul>
-								<li class="row-01">还没调接口</li>
-								<li class="row-02">还没调接口</li>
-								<li class="row-03">中国</li>
-								<li class="row-04">SM-G935A </li>
-								<li class="row-05">G935AUCS4BQC2</li>
-								<li class="row-06">7.0</li>
-								<li class="row-07">2017-04-03</li>
-								<li class="row-08">全资料[五件套]</li>
-								<li class="row-09">150.0</li>
-								<li class="row-10">6666</li>
-								<li class="row-11"><a href="['/info?keyword='+item.id]" class="btn btn-info">下载</a></li>
+								@foreach($uinfoList as $val)
+								<li class="row-01">@if($val->status == 1) 审核中 @elseif(2 == $val->status) 发布中 @else 审核不通过 @endif</li>
+								<li class="row-02">{{$val->brand}}</li>
+								<li class="row-03">{{$val->country}}</li>
+								<li class="row-04">{{$val->model}}</li>
+								<li class="row-05">{{$val->version}}</li>
+								<li class="row-06">{{$val->os}}</li>
+								<li class="row-07">{{$val->updated_at}}</li>
+								<li class="row-08">{{$val->type}}</li>
+								<li class="row-09">{{$val->price}}</li>
+								<li class="row-10">{{$val->download_num}}</li>
+								@if(2 == $val->status)
+									<li class="row-11"><a href="/info?keyword={{$val->info_id}}" class="btn btn-info">下载</a></li>
+								@else 
+									<li class="row-11">-</li>
+								@endif
+								@endforeach
 							</ul>
 						</div>
 					</div>
@@ -116,7 +122,7 @@ a<!DOCTYPE html>
 						<div class="list-item">
 							<ul>
 								<li class="row-01">金币</li>
-								<li class="row-02">@if($val->channel == 1) 系统 @elseif($val->channel == 2)支付宝 @endif</li>
+								<li class="row-02">@if($val->channel == 1) 系统 @elseif($val->channel == 2)支付宝 @else 登录 @endif</li>
 								<li class="row-03">{{$val->amount}}</li>
 								<li class="row-04">@if($val->status == 1) finished @elseif($val->satus == 2) fail @endif</li>
 								<li class="row-05">{{$val->created_at}} </li>

@@ -6,6 +6,7 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\User;
+use App\Model\InfoUser;
 //引用对应的命名空间
 use Gregwar\Captcha\CaptchaBuilder;
 use App\Model\BuyRecord;
@@ -26,9 +27,19 @@ class UserController extends Controller
 		$userInfo = User::find(session('userInfo.UserId'));
 		if(empty($userInfo))
 			return redirect('/enter?type=register');
-		$buyRecord = BuyRecord::where('user_id',session('userInfo.UserId'))->get();
-		$rechargeRecord = RechargeRecord::where('user_id',session('userInfo.UserId'))->get();
-		return view('users',['userInfo'=>$userInfo,'buyRecord'=>$buyRecord,'rechargeRecord'=>$rechargeRecord]);
+		$buyRecord = BuyRecord::where('user_id',session('userInfo.UserId'))->orderBy('created_at','DESC')->get();
+		$rechargeRecord = RechargeRecord::where('user_id',session('userInfo.UserId'))->orderBy('created_at','DESC')->get();
+		$allcount = InfoUser::where('user_id',session('userInfo.UserId'))->count();
+		$scount = InfoUser::where([['user_id',session('userInfo.UserId')],['status',2]])->count();
+		$fcount = InfoUser::where([['user_id',session('userInfo.UserId')],['status',1]])->count();
+		if($request->has('status')) {
+			$status = $request->input('status');
+			$uinfoList = InfoUser::where([['user_id',session('userInfo.UserId')],['status',$status]])->orderBy('created_at','DESC')->get();
+		}else {
+			$uinfoList = InfoUser::where('user_id',session('userInfo.UserId'))->orderBy('created_at','DESC')->get();
+		}
+
+		return view('users',['userInfo'=>$userInfo,'buyRecord'=>$buyRecord,'rechargeRecord'=>$rechargeRecord,'allcount'=>$allcount,'scount'=>$scount,'fcount'=>$fcount,'uinfoList'=>$uinfoList]);
 	}
 
 	public function  captcha(Request $request)
@@ -82,6 +93,16 @@ class UserController extends Controller
 			return response()->json(['code'=>'F','msg'=>'用户名或密码不正确']);
 		unset($userInfo ['Password']);
 		session(['userInfo'=>$userInfo->toArray()]);
+		$userInfo->Balance += 5;
+		$result = $userInfo->save();
+		if($result) {
+			$Recharg = new RechargeRecord();
+			$Recharg->amount = 5;
+			$Recharg->status = 1;
+			$Recharg->channel = 3;
+			$Recharg->user_id = $userInfo->UserId;
+			$Recharg->save();
+		}
 		return response()->json(['code'=>'S','msg'=>'登录成功']);
 	}
 

@@ -6,9 +6,48 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\admin\InfoCommon;
 use App\Model\admin\Info;
+use App\Model\InfoUser;
 
 class InfoController extends Controller
 {
+	public function toExamine(Request $request)
+	{
+		$id = $request->input('ids',0);
+		$status = $request->input('status',false);
+		if(! $id || ! $status)
+			return response()->json(['code'=>'F','msg'=>'参数错误！']);
+		$InfoUser = InfoUser::find($id);
+		if( 3 == $status ) {
+			$InfoUser->status = 3;
+			$result = $InfoUser->save();
+			if($result) 
+				return response()->json(['code'=>'S','msg'=>'操作成功！']);
+			return response()->json(['code'=>'F','msg'=>'操作失败！']);
+		}
+		if( 2 == $status ) {
+			$Info = new Info();
+			$data['brand'] = $InfoUser->brand;
+			$data['model'] = $InfoUser->model;
+			$data['country'] = $InfoUser->country;
+			$data['os'] = $InfoUser->os;
+			$data['version'] = $InfoUser->version;
+			$data['download_url'] = $InfoUser->download_url;
+			$data['download_password']= $InfoUser->download_password;
+			$data['status']= 1;
+			$data['uinfo_id'] = $InfoUser->id;
+			$data['price'] = $InfoUser->price;
+			$result = $Info->insertGetId($data);
+			if($result)  {
+				$InfoUser->status = 2;
+				$InfoUser->info_id = $result;
+				$InfoUser->save();
+				return response()->json(['code'=>'S','msg'=>'操作成功！']);
+			}
+			return response()->json(['code'=>'F','msg'=>'操作失败！']);
+		}
+		return response()->json(['code'=>'F','msg'=>'参数错误！']);
+	}
+
 	public function setHot(Request $request)
 	{
 		$id = $request->input('id');
@@ -24,6 +63,14 @@ class InfoController extends Controller
 			return response()->json(['code'=>'F','msg'=>'操作成功 !','data'=>'<i class="Hui-iconfont">&#xe688;</i>']);
 		else
 			return response()->json(['code'=>'F','msg'=>'操作失败']);
+	}
+
+	public function userInfo()
+	{
+		$InfoUser = new InfoUser();
+		$list = $InfoUser->where('status',1)->paginate(15);
+		$rows = $InfoUser->where('status',1)->count();
+		return view('admin.userInfo',['list'=>$list,'rows'=>$rows]);
 	}
 
 	public function addInfo(Request $request)

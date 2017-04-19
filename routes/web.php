@@ -35,10 +35,7 @@ Route::get('/service', function () {
 	return view('service');
 });
 
-// 下载页
-Route::get('/load', function () {
-	return view('load');
-});
+
 
 // 下载页 search
 Route::get('/search', function () {
@@ -78,6 +75,8 @@ Route::group(['namespace' => 'Admin','middleware'=>'adminauth'], function () {
 	Route::get('/admin/setHot','InfoController@setHot');
 	Route::get('/admin/userList','UserController@userList');
 	Route::post('/admin/changeMoney','UserController@changeMoney');
+	Route::get('/admin/userInfo','InfoController@userInfo');
+	Route::post('/admin/toExamine','InfoController@toExamine');
 });
 Route::get('/custome/kit/captcha/{tmp}', 'Custome\UserController@captcha');
 // 前台
@@ -88,7 +87,8 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::post('/custome/detail', 'LoadListController@detail');
 	Route::get('/custome/forum', 'ForumController@ForumList');
 	Route::get('/custome/register', 'UserController@register');
-	Route::get('/info', 'LoadListController@detail');
+	//Route::get('/info', 'LoadListController@detail');
+	Route::get('/i/{id}', 'LoadListController@detail');
 	Route::post('/custome/register', 'UserController@register');
 	Route::get('/custome/logout', 'UserController@logout');
 	// 个人 详情页
@@ -97,5 +97,7 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::post('/buyInfo','LoadListController@download');
 	Route::get('/rom','LoadListController@userRom');
 	Route::get('/gt_start','UserController@captcha');
-	Route::post('/addUserInfo','UserController@userRomAdd');
+	Route::post('/addUserInfo','LoadListController@userRomAdd');
+	// 下载页
+	Route::get('/load','LoadListController@loadlist');
 });

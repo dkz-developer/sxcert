@@ -132,12 +132,13 @@ class LoadListController extends Controller
 	{
 		$keyword = $request->input('k',false);
 		$index = (int)substr($keyword, -1);
+		$keyword = substr($keyword, 0,-1);
 		$arr = [1=>'brand','country','model','version','os','type'];
 		$where = [];
 		if(! $index) {
-			$list = Info::where('model','like',"%{$keyword}%")->orWhere('version','like',"%{$keyword}%")->orderBy('sort','desc')->paginate(1);
+			$list = Info::where('model','like',"%{$keyword}%")->orWhere('version','like',"%{$keyword}%")->orderBy('sort','desc')->simplePaginate(1);
 		}else {
-			$list = Info::where($arr[$index],'like',"%{$keyword}%")->orderBy('sort','desc')->paginate(1);
+			$list = Info::where($arr[$index],'like',"%{$keyword}%")->orderBy('sort','desc')->simplePaginate(1);
 		}
 		return view('search',['list'=>$list]);
 	}
@@ -149,7 +150,7 @@ class LoadListController extends Controller
 	public function loadlist(Request $request)
 	{
 		$Info = new Info();
-		$list = $Info->where('status',2)->orderBy('sort' , 'desc')->paginate(20);
+		$list = $Info->where('status',2)->orderBy('sort' , 'desc')->simplePaginate(20);
 		return view('load',['list'=>$list]);
 	}
 }

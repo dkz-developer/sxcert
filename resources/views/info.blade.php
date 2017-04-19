@@ -65,13 +65,13 @@
 					</div>
 
 					<div class="info well well-sm clearfix">
-						<div class="left">
+						<div class="left"> 
 							<ul>
-								<li>品牌：<a href="/search?keyword=<?php $brand = explode('/',$info->brand);echo $brand[0];?>"><?php $brand = explode('/',$info->brand);echo $brand [0];?></a></li>
-								<li>区域/国家：<a href="/search?keyword=<?php $country = explode('/',$info->country);echo $country [0];?>"><?php $country = explode('/',$info->country);echo $country [0];?></a></li>
-								<li>型号：<a href="/search?keyword={{$info->model}}">{{$info->model}}</a></li>
-								<li>版本号码：<a href="/search?keyword={{$info->version}}">{{$info->version}}</a></li> 
-								<li>系统版本：<a href="/search?keyword={{$info->os}}">{{$info->os}}</a></li>
+								<li>品牌：<a href="/s?i=1&k=<?php $brand = explode('/',$info->brand);echo $brand[0];?>"><?php $brand = explode('/',$info->brand);echo $brand [0];?></a></li>
+								<li>区域/国家：<a href="/s?i=2&k=<?php $country = explode('/',$info->country);echo $country [0];?>"><?php $country = explode('/',$info->country);echo $country [0];?></a></li>
+								<li>型号：<a href="/s?i=3&k={{$info->model}}">{{$info->model}}</a></li>
+								<li>版本号码：<a href="/s?i=4&k={{$info->version}}">{{$info->version}}</a></li> 
+								<li>系统版本：<a href="/s?i=5&k={{$info->os}}">{{$info->os}}</a></li>
 								<li>更新时间：{{date('Y-m-d',strtotime($info->updated_at))}}</li>
 							</ul>
 						</div>

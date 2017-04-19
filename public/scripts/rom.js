@@ -109,7 +109,7 @@
 
 				$.post("/addUserInfo", submitInfo, function(backData) {
 	                if(backData && backData.code === "S"){
-	                	window.location.href = "/users";
+	                	window.location.href = "/load";
 	                }else{
 	                    layer.msg(backData.msg);
 	                    _this.html('<i class="fa fa-pencil"></i> 提交');

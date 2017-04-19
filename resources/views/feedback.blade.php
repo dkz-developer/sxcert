@@ -18,7 +18,7 @@ a<!DOCTYPE html>
 		<nav class="clearfix">
 			<div class="inner">
 				<div class="logo">
-					<a href="/">GSMGOOD</a>
+					<a href="/load">GSMGOOD</a>
 				</div>
 
 				<div class="btnGroup">

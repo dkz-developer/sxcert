@@ -18,7 +18,7 @@
 		<nav class="clearfix">
 			<div class="inner">
 				<div class="logo">
-					<a href="/"><img src="images/logo_main3.png" alt=""></a>
+					<a href="/load"><img src="images/logo_main3.png" alt=""></a>
 				</div>
 				<div class="search">
 					<input type="text" placeholder="请输入...">	
@@ -37,9 +37,6 @@
 		</nav>
 
 		<div class="container">
-			<div class="logo">
-				<img src="" alt="">
-			</div>
 
 			<div class="main">
 				<div class="main-title">
@@ -49,23 +46,23 @@
 				<div class="main-content">
 					<form action="" data-act="login">
 						<div class="input-prepend">
-							<input class="restyle" type="text" placeholder="请输入手机号码" id="mobile"  v-on:blur="verification" data-error="短信验证码不能为空">
+							<input class="restyle" type="text" placeholder="请输入手机号码" id="mobile"  v-on:blur="verification" data-error="手机号码不能为空">
 							<i class="fa fa-mobile"></i>
 						</div>
 
 						<div class="input-prepend">
-							<input class="restyle" type="text" placeholder="请输入短信验证码" id="mescode"  v-on:blur="verification" data-error="短信验证码不能为空">
+							<input class="restyle" type="text" placeholder="请输入短信验证码" id="resetcode"  v-on:blur="verification" data-error="短信验证码不能为空">
 							<i class="fa fa-shield"></i>
 							<button type="button" class="btn btn-primary sendMessage" @click="sendMessage">发送验证码</button>
 						</div>
 
 						<div class="input-prepend">
-							<input class="restyle" type="text" placeholder="请输入新密码" id="password"  v-on:blur="verification" data-error="新密码不能为空">
+							<input class="restyle" type="password" placeholder="请输入新密码" id="password"  v-on:blur="verification" data-error="新密码不能为空">
 							<i class="fa fa-lock"></i>
 						</div>
 
 						<div class="input-prepend">
-							<input  type="text" class="lastIn" placeholder="请再次输入新密码" id="passwordAgain"  v-on:blur="verification" data-error="确认密码不能为空">
+							<input  type="password" class="lastIn" placeholder="请再次输入新密码" id="repassword"  v-on:blur="verification" data-error="确认密码不能为空">
 							<i class="fa fa-lock"></i>
 						</div>
 						<div class="submitBtn">

@@ -18,7 +18,7 @@ a<!DOCTYPE html>
 		<nav class="clearfix">
 			<div class="inner">
 				<div class="logo">
-					<a href="/">GSMGOOD</a>
+					<a href="/load">GSMGOOD</a>
 				</div>
 
 				<div class="btnGroup">
@@ -197,8 +197,8 @@ a<!DOCTYPE html>
 								<em>{{$userInfo->CreateTime}}</em>
 							</li>
 							<li>
-								<button class="btn btn-danger" onclick="window.location.href='/pay'">立即充值</button>
-								<button class="btn btn-primary" onclick="window.location.href='/personInfo'">修改资料</button>
+								<button class="btn btn-danger btn-block" onclick="window.location.href='/pay'">立即充值</button>
+								<!-- <button class="btn btn-primary" onclick="window.location.href='/personInfo'">修改资料</button> -->
 							</li>
 						</ul>
 					</div>

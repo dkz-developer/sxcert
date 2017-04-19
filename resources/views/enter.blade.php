@@ -18,7 +18,7 @@
 		<nav class="clearfix">
 			<div class="inner">
 				<div class="logo">
-					<a href="/"><img src="images/logo_main3.png" alt=""></a>
+					<a href="/load"><img src="images/logo_main3.png" alt=""></a>
 				</div>
 				<div class="search">
 					<input type="text" placeholder="请输入...">	
@@ -45,7 +45,7 @@
 				</div>
 
 				<div class="main-content">
-					<form action="" v-show="(isLogin == true)"  data-act="login">
+					<form action="" v-show="(isLogin == true)"  data-act="login" id="login">
 						<div class="input-prepend">
 							<input class="restyle" type="text" placeholder="请输入用户名或者手机号" id="username"  v-on:blur="verification" data-error="用户名不能为空">
 							<i class="fa fa-user"></i>
@@ -72,7 +72,7 @@
 						</div>
 
 					</form>
-					<form action="" v-show="(isLogin == false)" data-act="register">
+					<form action="" v-show="(isLogin == false)" data-act="register" id="register" >
 						<div class="input-prepend">
 							<input class="restyle" type="text" placeholder="请输入用户名" id="username" v-on:blur="verification" data-error="用户名不能为空">
 							<i class="fa fa-user"></i>

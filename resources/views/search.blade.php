@@ -97,12 +97,11 @@
 					</div>
 					@endforeach
 				</div>
-				<div style="float: right;margin-right: 5px;">
+				<div id="pager">
 					{{$list->links()}}
 				</div>
 			</div>
-
-		 	<div id="kkpager"></div>
+		 	
 		</div>
 
 		<div class="footer">

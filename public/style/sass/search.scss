@@ -27,7 +27,7 @@ body {
 	.main-content {
 
 		width: 1200px;
-		min-height: 400px;
+		// min-height: 400px;
 		margin: 0 auto;
 		border-radius: 4px;
 		border: 1px solid #ccc;
@@ -119,6 +119,11 @@ body {
 	.pageBtnWrap{
 		margin-top: 20px;
 	}
+}
+
+#pager {
+	margin: 0 auto;
+	width: 170px;
 }
 
 

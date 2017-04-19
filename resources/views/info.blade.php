@@ -67,17 +67,17 @@
 					<div class="info well well-sm clearfix">
 						<div class="left">
 							<ul>
-								<li>品牌：<a href=""><?php $brand = explode('/',$info->brand);echo $brand [0];?></a></li>
-								<li>区域/国家：<a href=""><?php $country = explode('/',$info->country);echo $country [0];?></a></li>
-								<li>型号：<a href="">{{$info->model}}</a></li>
-								<li>版本号码：<a href="">{{$info->version}}</a></li> 
-								<li>系统版本：<a href="">{{$info->os}}</a></li>
+								<li>品牌：<a href="/search?keyword=<?php $brand = explode('/',$info->brand);echo $brand[0];?>"><?php $brand = explode('/',$info->brand);echo $brand [0];?></a></li>
+								<li>区域/国家：<a href="/search?keyword=<?php $country = explode('/',$info->country);echo $country [0];?>"><?php $country = explode('/',$info->country);echo $country [0];?></a></li>
+								<li>型号：<a href="/search?keyword={{$info->model}}">{{$info->model}}</a></li>
+								<li>版本号码：<a href="/search?keyword={{$info->version}}">{{$info->version}}</a></li> 
+								<li>系统版本：<a href="/search?keyword={{$info->os}}">{{$info->os}}</a></li>
 								<li>更新时间：{{date('Y-m-d',strtotime($info->updated_at))}}</li>
 							</ul>
 						</div>
 						<div class="right">
 							<div class="money"><em>{{number_format($info->price,2)}}</em>金币</div>
-							<div class="password alert alert-warning" id="copy-button" data-clipboard-text="{{$info->download_password}}">密码: {{$info->download_password}} </div>
+							<div class="password alert alert-warning" id="copy-button" data-clipboard-text="{{$info->download_password}}" style="cursor: pointer;">密码: {{$info->download_password}} </div>
 							<div class="loadBtn">
 								<a class="btn btn-info" href="javascript:void(0);" @click="load">立即下载</a>
 							</div>

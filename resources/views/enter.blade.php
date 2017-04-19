@@ -45,20 +45,21 @@
 				</div>
 
 				<div class="main-content">
-					<form action="" v-if="(isLogin == true)"  data-act="login">
+					<form action="" v-show="(isLogin == true)"  data-act="login">
 						<div class="input-prepend">
 							<input class="restyle" type="text" placeholder="请输入用户名或者手机号" id="username"  v-on:blur="verification" data-error="用户名不能为空">
 							<i class="fa fa-user"></i>
 						</div>
 
 						<div class="input-prepend">
-							<input  type="password" class="restyle" placeholder="请输入密码" id="password" v-on:blur="verification" data-error="密码不能为空">
+							<input  type="password" class="restyle"  placeholder="请输入密码" id="password" v-on:blur="verification" data-error="密码不能为空">
 							<i class="fa fa-lock"></i>
 						</div>
 
 						<div class="input-prepend">
-							<input  type="text" placeholder="请输入验证码" class="lastIn" id="vcode" v-on:blur="verification" data-error="验证码不能为空">
-							<span class="vCode-img"><img :src="vcodeurl" alt="" @click="refreshcode"></span>
+							<div id="loginForm"></div>
+							<p class="wait show">正在加载验证码......</p>
+							<p class="notice hide">请先完成验证</p>
 						</div>
 
 						<div class="findPassword">
@@ -71,7 +72,7 @@
 						</div>
 
 					</form>
-					<form action="" v-if="(isLogin == false)" data-act="register">
+					<form action="" v-show="(isLogin == false)" data-act="register">
 						<div class="input-prepend">
 							<input class="restyle" type="text" placeholder="请输入用户名" id="username" v-on:blur="verification" data-error="用户名不能为空">
 							<i class="fa fa-user"></i>
@@ -99,15 +100,14 @@
 						</div>
 
 						<div class="input-prepend">
-							<!-- <input  type="text" placeholder="请输入验证码" class="lastIn" id="vcode" v-on:blur="verification" data-error="验证码不能为空">
-							<span class="vCode-img"><img :src="vcodeurl" alt="" @click="refreshcode"></span> -->
-							<div id="embed-captcha"></div>
-							<p id="wait" class="show">正在加载验证码......</p>
-							<p id="notice" class="hide">请先完成验证</p>
+							
+							<div id="registerForm"></div>
+							<p class="wait show">正在加载验证码......</p>
+							<p class="notice hide">请先完成验证</p>
 						</div>
 
 						<div class="submitBtn">
-							<button type="button" class="btn btn-primary" @click="register" id="embed-submit">注册</button>
+							<button type="button" class="btn btn-primary" @click="register">注册</button>
 						</div>
 					</form>
 				</div>
@@ -122,51 +122,10 @@
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
 	<script src="/style/admin/lib/layer/2.4/layer.js"></script>
-	<script src="//static.geetest.com/static/tools/gt.js"></script>
+	<script src="http://static.geetest.com/static/tools/gt.js"></script>
 	<script src="scripts/public/tools.js"></script>
 	<script src="scripts/public/kolDialog.js"></script>
 	<script src="scripts/login.js"></script>
-	<script src="http://static.geetest.com/static/tools/gt.js"></script>
-	<script>
-		var handlerEmbed = function (captchaObj) {
-			$("#embed-submit").click(function (e) {
-				var validate = captchaObj.getValidate();
-				if (!validate) {
-					$("#notice")[0].className = "show";
-					setTimeout(function () {
-						$("#notice")[0].className = "hide";
-					}, 2000);
-					e.preventDefault();
-				}
-			});
-			// 将验证码加到id为captcha的元素里，同时会有三个input的值：geetest_challenge, geetest_validate, geetest_seccode
-			captchaObj.appendTo("#embed-captcha");
-			captchaObj.onReady(function () {
-				$("#wait")[0].className = "hide";
-			});
-			// 更多接口参考：http://www.geetest.com/install/sections/idx-client-sdk.html
-		};
-		$.ajax({
-			// 获取id，challenge，success（是否启用failback）
-			url: "/gt_start?t=" + (new Date()).getTime(), // 加随机数防止缓存
-			type: "get",
-			dataType: "json",
-			success: function (data) {
-				console.log(data);
-				// 使用initGeetest接口
-				// 参数1：配置参数
-				// 参数2：回调，回调的第一个参数验证码对象，之后可以使用它做appendTo之类的事件
-				initGeetest({
-					gt: data.gt,
-					challenge: data.challenge,
-					new_captcha: data.new_captcha,
-					product: "embed", // 产品形式，包括：float，embed，popup。注意只对PC版验证码有效
-					offline: !data.success // 表示用户后台检测极验服务器是否宕机，一般不需要关注
-					// 更多配置参数请参见：http://www.geetest.com/install/sections/idx-client-sdk.html#config
-				}, handlerEmbed);
-			}
-		});
-	</script>
 </body>
 </html>
 

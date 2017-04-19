@@ -97,13 +97,13 @@
         if(loginBtn.hasClass("disabled")) return false;
 
         // 验证
-        var flag = verification($("#username"), "用户名不能为空") && verification($("#password"), "密码不能为空");
+        var flag = verification($("#login").find("#username"), "用户名不能为空") && verification($("#login").find("#password"), "密码不能为空");
 
         if(flag) {
             loginBtn.html('<i class="fa fa-spinner fa-pulse"></i>&nbsp;登录中...');
             var params = {
-                "username": $("#username").val(),
-                "password": $("#password").val(),
+                "username": $("#login").find("#username").val(),
+                "password": $("#login").find("#password").val(),
                 "geetest_challenge": vm.login_geetest_challenge,
                 "geetest_validate": vm.login_geetest_validate,
                 "geetest_seccode": vm.login_geetest_seccode,
@@ -130,16 +130,16 @@
         if(registerBtn.hasClass("disabled")) return false;
         
         // 验证
-        var flag = verification($("#username"), "用户名不能为空") && verification($("#mobile"), "手机号不能为空") && verification($("#mescode"), "短信验证码不能为空") && verification($("#password"), "密码不能为空") && verification($("#repassword"), "确认密码不能为空");
+        var flag = verification($("#register").find("#username"), "用户名不能为空") && verification($("#register").find("#mobile"), "手机号不能为空") && verification($("#register").find("#mescode"), "短信验证码不能为空") && verification($("#register").find("#password"), "密码不能为空") && verification($("#register").find("#repassword"), "确认密码不能为空");
 
         if(flag) {
             registerBtn.html('<i class="fa fa-spinner fa-pulse"></i>&nbsp;注册提交中...');
             var params = {
-                "username": $("#username").val(),
-                "mobile": $("#mobile").val(),
-                "password": $("#password").val(),
-                "repassword": $("#repassword").val(),
-                "mescode": $("#mescode").val(),
+                "username": $("#register").find("#username").val(),
+                "mobile": $("#register").find("#mobile").val(),
+                "password": $("#register").find("#password").val(),
+                "repassword": $("#register").find("#repassword").val(),
+                "mescode": $("#register").find("#mescode").val(),
                 "geetest_challenge": vm.register_geetest_challenge,
                 "geetest_validate": vm.register_geetest_validate,
                 "geetest_seccode": vm.register_geetest_seccode,
@@ -149,7 +149,7 @@
             $.post('/custome/register', params, function(backData) {
 
                 if(backData && backData.code === "S") {
-                    window.open(backURL, "_self");
+                    window.location.href = "/enter?type=login";
                 }else {
                    layer.msg(backData.msg);
                     registerBtn.html("注册");

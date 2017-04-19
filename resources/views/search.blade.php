@@ -79,7 +79,7 @@
 							<li class="row-09">{{$val->updated_at}}</li>
 							<li class="row-10">{{$val->view_num}}</li>
 							<li class="row-11">{{$val->download_num}}</li>
-							<li class="row-12"><a target="_blank" href='/i/{{$val->id}}' class="btn btn-info">下载</a></li>
+							<li class="row-12"><a target="_blank" href='/a/{{$val->id}}' class="btn btn-info">下载</a></li>
 						</ul>
 						<!-- <ul>
 							<li class="row-02"><a target="_blank" :href="['/search?keyword='+item.brand]">@{{item.brand}}</a></li>

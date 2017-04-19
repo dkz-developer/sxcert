@@ -88,7 +88,7 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/custome/forum', 'ForumController@ForumList');
 	Route::get('/custome/register', 'UserController@register');
 	//Route::get('/info', 'LoadListController@detail');
-	Route::get('/i/{id}', 'LoadListController@detail');
+	Route::get('/a/{id}', 'LoadListController@detail');
 	Route::post('/custome/register', 'UserController@register');
 	Route::get('/custome/logout', 'UserController@logout');
 	// 个人 详情页

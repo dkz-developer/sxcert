@@ -130,11 +130,11 @@ class LoadListController extends Controller
 
 	public function search(Request $request)
 	{
-		$index = $request->input('i',false);
 		$keyword = $request->input('k',false);
+		$index = (int)substr($keyword, -1);
 		$arr = [1=>'brand','country','model','version','os','type'];
 		$where = [];
-		if(7 == $index) {
+		if(! $index) {
 			$list = Info::where('model','like',"%{$keyword}%")->orWhere('version','like',"%{$keyword}%")->orderBy('sort','desc')->paginate(1);
 		}else {
 			$list = Info::where($arr[$index],'like',"%{$keyword}%")->orderBy('sort','desc')->paginate(1);

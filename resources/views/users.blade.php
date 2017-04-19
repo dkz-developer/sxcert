@@ -91,7 +91,7 @@ a<!DOCTYPE html>
 								<li class="row-09">{{$val->price}}</li>
 								<li class="row-10">{{$val->download_num}}</li>
 								@if(2 == $val->status)
-									<li class="row-11"><a href="/info?keyword={{$val->info_id}}" class="btn btn-info">下载</a></li>
+									<li class="row-11"><a href="/a/{{$val->info_id}}" class="btn btn-info">下载</a></li>
 								@else 
 									<li class="row-11">-</li>
 								@endif

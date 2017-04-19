@@ -49,12 +49,12 @@
 				<div class="main-content">
 					<form action="" data-act="login">
 						<div class="input-prepend">
-							<input class="restyle" type="text" placeholder="昵称" id="username"  v-on:blur="verification" data-error="昵称不能为空">
+							<input class="restyle" type="text" placeholder="昵称" id="username"  v-on:blur="verification" data-error="昵称不能为空" value="{{session('userInfo.UserName')}}" readonly="readonly">
 							<i class="fa fa-user"></i>
 						</div>
 
 						<div class="input-prepend">
-							<input class="restyle" type="text" placeholder="手机号码" id="mobile"  v-on:blur="verification" data-error="手机号码不能为空">
+							<input class="restyle" type="text" placeholder="手机号码" id="mobile"  v-on:blur="verification" data-error="手机号码不能为空" value="{{session('userInfo.Mobile')}}" readonly="readonly">
 							<i class="fa fa-mobile"></i>
 						</div>
 

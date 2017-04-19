@@ -73,16 +73,16 @@ class UserController extends Controller
 			 "user_id" => session('user_id'), # 网站用户id
 			 "client_type" => "web", #web:电脑上的浏览器；h5:手机上的浏览器，包括移动应用内完全内置的web_view；native：通过原生SDK植入APP应用的方式
 			 "ip_address" => $request->ip() # 请在此处传输用户请求验证时所携带的IP
-	    	);
+			);
 
 		if (session('gtserver') == 1) {   //服务器正常
-    			$result = $GtSdk->success_validate($request->geetest_challenge, $request->geetest_validate, $request->geetest_seccode, $data);
-	    		if (! $result) {
-	    			return response()->json(['code'=>'F','msg'=>'验证码错误，请重试！']);
+				$result = $GtSdk->success_validate($request->geetest_challenge, $request->geetest_validate, $request->geetest_seccode, $data);
+				if (! $result) {
+					return response()->json(['code'=>'F','msg'=>'验证码错误，请重试！']);
 			}
 		}else{  //服务器宕机,走failback模式
-    			if (! $GtSdk->fail_validate($request->geetest_challenge,$request->geetest_validate,$request->geetest_seccode)) {
-	    			return response()->json(['code'=>'F','msg'=>'验证码错误，请重试！']);
+				if (! $GtSdk->fail_validate($request->geetest_challenge,$request->geetest_validate,$request->geetest_seccode)) {
+					return response()->json(['code'=>'F','msg'=>'验证码错误，请重试！']);
 			}
 		}
 		$userName = $request->input('username');
@@ -132,42 +132,56 @@ class UserController extends Controller
 	
 	//注册
 	public function register(Request $request){
-	    $vcode = $request->input('mescode');
-	    if ((Session::get('mescode') != $vcode) || empty($vcode)){
-	       return response()->json(['code'=>'F','msg'=>'验证码错咯']);
-	    }
-	        
-	    $phone = $request->input('mobile');
-	    if((Session::get('phone') != $phone) || empty($phone)){
-	        return response()->json(['code'=>'F','msg'=>'手机号与验证手机号不一致呀']);
-	    }	    
-	    $username = $request->input('username');
-	    $password = $request->input('password');
-	    $repassword = $request->input('repassword');
-	    $userInfo = User::where('UserName',$username)->first();
-	    
-	    if($password != $repassword){
-	        return response()->json(['code'=>'F','msg'=>'两次密码不一致哦']);
-	    }
-	    
-	    if($userInfo){
-	        return response()->json(['code'=>'F','msg'=>'用户名已存在，换一个试试呗']);
-	    }
-	    $data = array(
-	        'Mobile' => $phone,
-	        'UserName' => $username,
-	        'Password' => md5($password),
-	        'CreateTime' => date('Y-m-d H:i:s'),
-	    );
-	    
-	    
-	    $res = User::insert($data);
-	    if($res){
-	        //session(['userInfo'=>$userInfo->toArray()]);
-	        return response()->json(['code'=>'S','msg'=>'注册成功','url'=>'/index']);
-	    }else{
-	        return response()->json(['code'=>'F','msg'=>'注册失败']);
-	    }
+		 // $captcha = $request->input('code');
+		$GtSdk = new GeetestLib('15cd6b42a2502c8c044d85ea0d957177', 'b604bf63fc3a3309118d3eab12695570');
+		$data = array(
+			 "user_id" => session('user_id'), # 网站用户id
+			 "client_type" => "web", #web:电脑上的浏览器；h5:手机上的浏览器，包括移动应用内完全内置的web_view；native：通过原生SDK植入APP应用的方式
+			 "ip_address" => $request->ip() # 请在此处传输用户请求验证时所携带的IP
+			);
+
+		if (session('gtserver') == 1) {   //服务器正常
+			$result = $GtSdk->success_validate($request->geetest_challenge, $request->geetest_validate, $request->geetest_seccode, $data);
+			if (! $result) {
+				return response()->json(['code'=>'F','msg'=>'验证码错误，请重试！']);
+			}
+		}else{  //服务器宕机,走failback模式
+			if (! $GtSdk->fail_validate($request->geetest_challenge,$request->geetest_validate,$request->geetest_seccode)) {
+				return response()->json(['code'=>'F','msg'=>'验证码错误，请重试！']);
+			}
+		}
+			
+		$phone = $request->input('mobile');
+		if((Session::get('phone') != $phone) || empty($phone)){
+			return response()->json(['code'=>'F','msg'=>'手机号与验证手机号不一致呀']);
+		}	    
+		$username = $request->input('username');
+		$password = $request->input('password');
+		$repassword = $request->input('repassword');
+		$userInfo = User::where('UserName',$username)->first();
+		
+		if($password != $repassword){
+			return response()->json(['code'=>'F','msg'=>'两次密码不一致哦']);
+		}
+		
+		if($userInfo){
+			return response()->json(['code'=>'F','msg'=>'用户名已存在，换一个试试呗']);
+		}
+		$data = array(
+			'Mobile' => $phone,
+			'UserName' => $username,
+			'Password' => md5($password),
+			'CreateTime' => date('Y-m-d H:i:s'),
+		);
+		
+		
+		$res = User::insert($data);
+		if($res){
+			//session(['userInfo'=>$userInfo->toArray()]);
+			return response()->json(['code'=>'S','msg'=>'注册成功','url'=>'/index']);
+		}else{
+			return response()->json(['code'=>'F','msg'=>'注册失败']);
+		}
 	}
 	
 	//修改密码

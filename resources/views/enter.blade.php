@@ -18,7 +18,7 @@
 		<nav class="clearfix">
 			<div class="inner">
 				<div class="logo">
-					<a href="/"><img src="images/logo_main3.png" alt=""></a>
+					<a href="/load"><img src="images/logo_main3.png" alt=""></a>
 				</div>
 				<div class="search">
 					<input type="text" placeholder="请输入...">	
@@ -45,20 +45,21 @@
 				</div>
 
 				<div class="main-content">
-					<form action="" v-if="(isLogin == true)"  data-act="login">
+					<form action="" v-show="(isLogin == true)"  data-act="login" id="login">
 						<div class="input-prepend">
 							<input class="restyle" type="text" placeholder="请输入用户名或者手机号" id="username"  v-on:blur="verification" data-error="用户名不能为空">
 							<i class="fa fa-user"></i>
 						</div>
 
 						<div class="input-prepend">
-							<input  type="password" class="restyle" placeholder="请输入密码" id="password" v-on:blur="verification" data-error="密码不能为空">
+							<input  type="password" class="restyle"  placeholder="请输入密码" id="password" v-on:blur="verification" data-error="密码不能为空">
 							<i class="fa fa-lock"></i>
 						</div>
 
 						<div class="input-prepend">
-							<input  type="text" placeholder="请输入验证码" class="lastIn" id="vcode" v-on:blur="verification" data-error="验证码不能为空">
-							<span class="vCode-img"><img :src="vcodeurl" alt="" @click="refreshcode"></span>
+							<div id="loginForm"></div>
+							<p class="wait show">正在加载验证码......</p>
+							<p class="notice hide">请先完成验证</p>
 						</div>
 
 						<div class="findPassword">
@@ -66,16 +67,12 @@
 						</div>
 
 
-
 						<div class="submitBtn">
 							<button type="button" class="btn btn-primary" @click="login">登录</button>
 						</div>
 
-						<div class="error-info">
-							<span></span>
-						</div>
 					</form>
-					<form action="" v-if="(isLogin == false)" data-act="register">
+					<form action="" v-show="(isLogin == false)" data-act="register" id="register" >
 						<div class="input-prepend">
 							<input class="restyle" type="text" placeholder="请输入用户名" id="username" v-on:blur="verification" data-error="用户名不能为空">
 							<i class="fa fa-user"></i>
@@ -103,16 +100,14 @@
 						</div>
 
 						<div class="input-prepend">
-							<input  type="text" placeholder="请输入验证码" class="lastIn" id="vcode" v-on:blur="verification" data-error="验证码不能为空">
-							<span class="vCode-img"><img :src="vcodeurl" alt="" @click="refreshcode"></span>
+							
+							<div id="registerForm"></div>
+							<p class="wait show">正在加载验证码......</p>
+							<p class="notice hide">请先完成验证</p>
 						</div>
 
 						<div class="submitBtn">
 							<button type="button" class="btn btn-primary" @click="register">注册</button>
-						</div>
-
-						<div class="error-info">
-							<span></span>
 						</div>
 					</form>
 				</div>
@@ -123,20 +118,14 @@
 			<p>粤ICP备17024526号-1</p>
 		</div>		
 	</div>
-	<script>
-		var _hmt = _hmt || [];
-		(function() {
-		  var hm = document.createElement("script");
-		  hm.src = "https://hm.baidu.com/hm.js?b819a6a70904703dd1926e26ba9554f0";
-		  var s = document.getElementsByTagName("script")[0]; 
-		  s.parentNode.insertBefore(hm, s);
-
-		})();
-	</script>
+	
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
+	<script src="/style/admin/lib/layer/2.4/layer.js"></script>
+	<script src="http://static.geetest.com/static/tools/gt.js"></script>
 	<script src="scripts/public/tools.js"></script>
 	<script src="scripts/public/kolDialog.js"></script>
 	<script src="scripts/login.js"></script>
 </body>
 </html>
+

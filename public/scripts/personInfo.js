@@ -4,6 +4,8 @@
 
     var keyword = unescape($.mytools.GetQueryString("keyword"));    // 关键字
     var type = $.mytools.GetQueryString("type");   // 登录 注册
+    var backURL = $.mytools.getCookie("backURL") ? $.mytools.getCookie("backURL") : "/load";
+    
 
 	// 实例化vue
 	var vm = new Vue({
@@ -27,10 +29,9 @@
     function verification(obj, errorInfo){
         var val = $(obj).val();
         if(val == null || val == undefined || val == ""){
-            $(".main-content").find(".error-info").find("span").text(errorInfo);
+            layer.tips(errorInfo, $(obj),{tips: [2, '#333'],time: 4000});
             return false;
         }else{
-            $(".main-content").find(".error-info").find("span").text("");
             return true;
         }
     }
@@ -57,6 +58,7 @@
                 if(backData && backData.code === "S") {
                     window.location.href = "/load";
                 }else {
+                    layer.msg(backData.msg);
                     resetBtn.html("重置密码");
                 }
 

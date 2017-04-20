@@ -18,7 +18,7 @@
 		<nav class="clearfix">
 			<div class="inner">
 				<div class="logo">
-					<a href="/"><img src="images/logo_main3.png" alt=""></a>
+					<a href="/load"><img src="images/logo_main3.png" alt=""></a>
 				</div>
 				<div class="search">
 					<input type="text" placeholder="请输入...">	
@@ -44,7 +44,7 @@
 		<div class="container">
 			
 			<div class="help">
-				<h3 class="title"><a href="/">返回论坛主页面</a></h3>
+				<!-- <h3 class="title"><a href="/">返回论坛主页面</a></h3> -->
 				<p>刷机客服工作时间段： 9：00 -- 22：00</p>
 				<div class="seperate"></div>
 				<div class="services">
@@ -85,19 +85,11 @@
 			<p>粤ICP备17024526号-1</p>
 		</div>		
 	</div>
-	<script>
-		var _hmt = _hmt || [];
-		(function() {
-		  var hm = document.createElement("script");
-		  hm.src = "https://hm.baidu.com/hm.js?b819a6a70904703dd1926e26ba9554f0";
-		  var s = document.getElementsByTagName("script")[0]; 
-		  s.parentNode.insertBefore(hm, s);
-
-		})();
-	</script>
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
 	<script src="scripts/public/tools.js"></script>
+	<script src="scripts/public/tools.js"></script>
+	<script src="scripts/public/topNav.js"></script>
 	<script src="scripts/service.js"></script>
 
 </body>

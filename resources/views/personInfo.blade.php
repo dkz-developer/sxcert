@@ -17,7 +17,7 @@
 		<nav class="clearfix">
 			<div class="inner">
 				<div class="logo">
-					<a href="/"><img src="images/logo_main3.png" alt=""></a>
+					<a href="/load"><img src="images/logo_main3.png" alt=""></a>
 				</div>
 				<div class="search">
 					<input type="text" placeholder="请输入...">	
@@ -49,12 +49,12 @@
 				<div class="main-content">
 					<form action="" data-act="login">
 						<div class="input-prepend">
-							<input class="restyle" type="text" placeholder="昵称" id="username"  v-on:blur="verification" data-error="昵称不能为空">
+							<input class="restyle" type="text" placeholder="昵称" id="username"  v-on:blur="verification" data-error="昵称不能为空" value="{{session('userInfo.UserName')}}" readonly="readonly">
 							<i class="fa fa-user"></i>
 						</div>
 
 						<div class="input-prepend">
-							<input class="restyle" type="text" placeholder="手机号码" id="mobile"  v-on:blur="verification" data-error="手机号码不能为空">
+							<input class="restyle" type="text" placeholder="手机号码" id="mobile"  v-on:blur="verification" data-error="手机号码不能为空" value="{{session('userInfo.Mobile')}}" readonly="readonly">
 							<i class="fa fa-mobile"></i>
 						</div>
 
@@ -72,10 +72,6 @@
 							<button type="button" class="btn btn-primary" @click="resetInfo">确认修改</button>
 						</div>
 
-						<div class="error-info">
-							<span></span>
-						</div>						
-
 					</form>
 				</div>
 			</div>
@@ -86,19 +82,11 @@
 		</div>		
   	</div>
 
-	<script>
-		var _hmt = _hmt || [];
-		(function() {
-		  var hm = document.createElement("script");
-		  hm.src = "https://hm.baidu.com/hm.js?b819a6a70904703dd1926e26ba9554f0";
-		  var s = document.getElementsByTagName("script")[0]; 
-		  s.parentNode.insertBefore(hm, s);
-
-		})();
-	</script>
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
+	<script src="/style/admin/lib/layer/2.4/layer.js"></script>
 	<script src="scripts/public/tools.js"></script>
+	<script src="scripts/public/topNav.js"></script>
 	<script src="scripts/personInfo.js"></script>
 
 </body>

@@ -2,7 +2,7 @@
 
 (function($) {
 
-    var keyword = unescape($.mytools.GetQueryString("keyword"));    // 关键字
+    var keyword = $.mytools.GetQueryString("keyword");    // 关键字
 
 	// 实例化vue
 	var vm = new Vue({
@@ -78,9 +78,9 @@
     }
 
    //  关键字搜索
-    function search(event) {
+    function search(event) {a
 
-        var keyword = $(event.currentTarget).siblings("input").val();
+        var keyword = $(".search").find("input").val();
 
         if(keyword) {
             vm.keyword = keyword;

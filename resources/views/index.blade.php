@@ -19,7 +19,7 @@
 		<nav class="clearfix">
 			<div class="inner">
 				<div class="logo">
-					<a href="/"><img src="images/logo_main3.png" alt=""></a>
+					<a href="/load"><img src="images/logo_main3.png" alt=""></a>
 				</div>
 				<div class="search">
 					<input type="text" placeholder="请输入...">	
@@ -34,7 +34,7 @@
 							<li><a href="/enter?type=login">登录</a></li>
 							<li><a href="/enter?type=register">注册</a></li>
 						@else
-							<li><a href="/users?id={{session('userInfo.UserId')}}">{{session('userInfo.UserName')}}</a></li>
+							<li><a href="/users">{{session('userInfo.UserName')}}</a></li>
 							<li><a href='/custome/logout'>退出</a></li>
 						@endif
 					</ul>
@@ -212,19 +212,11 @@
 		</div>		
 	</div>
 
-	<script>
-	var _hmt = _hmt || [];
-	(function() {
-	  var hm = document.createElement("script");
-	  hm.src = "https://hm.baidu.com/hm.js?b819a6a70904703dd1926e26ba9554f0";
-	  var s = document.getElementsByTagName("script")[0]; 
-	  s.parentNode.insertBefore(hm, s);
-
-	})();
-	</script>
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
 	<script src="scripts/lib/flickerplate.min.js"></script>
+	<script src="scripts/public/tools.js"></script>
+	<script src="scripts/public/topNav.js"></script>
 	<script src="scripts/index.js"></script>
 </body>
 </html>

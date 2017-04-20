@@ -14,7 +14,7 @@
 </style>
    <article class="cl pd-20">
 			<div class="text-c">
-				<form action="/admin/infoList" method="get">
+				<!-- <form action="/admin/infoList" method="get">
 					<span class="select-box inline">
 					<select name="index" class="select">
 						<option value="0">全部</option>
@@ -35,19 +35,19 @@
 					<input type="text" name="keyword" id="" placeholder=" 关键字" style="width:250px" class="input-text">
 					<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜资料</button>
 				</form>
-			</div>
+			</div> -->
 			<div class="cl pd-5 bg-1 bk-gray mt-20">
-				<span class="l">
+				<!-- <span class="l">
 				<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
 				<a class="btn btn-primary radius" data-title="添加资讯" _href="article-add.html" onclick="article_add('添加资料','/admin/addInfo')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加资料</a>
-				</span>
+				</span> -->
 				<span class="r">共有数据：<strong>{{$rows}}</strong> 条</span>
 			</div>
 			<div class="mt-20">
 				<table class="table table-border table-bordered table-bg table-hover table-sort">
 					<thead>
 						<tr class="text-c">
-							<th width="25"><input type="checkbox" name="" value=""></th>
+							<!-- <th width="25"><input type="checkbox" name="" value=""></th> -->
 							<th width="50">ID</th>
 							<th width="60">品牌</th>
 							<th width="80">机型</th>
@@ -66,7 +66,7 @@
 					<tbody>
 						@foreach($list as $val)
 							<tr class="text-c">
-								<td><input type="checkbox" value="{{$val->id}}" name=""></td>
+								<!-- <td><input type="checkbox" value="{{$val->id}}" name=""></td> -->
 								<td>{{$val->id}}</td>
 								<td>{{$val->brand}}</td>
 								<td >{{$val->model}}</td>
@@ -79,15 +79,7 @@
 								<!-- <td>{{$val->remarks}}</td> -->
 								<td>{{$val->download_url}}</td>
 								<td>{{$val->download_password}}</td>
-								<td class="f-14 td-manage"><a style="text-decoration:none" onClick="setHot(this,{{$val->id}})" href="javascript:;" title="是否热门">
-									@if(2 == $val->status)
-									<i class="Hui-iconfont">&#xe65e;</i>
-									@else (1 == $val->status)
-									<i class="Hui-iconfont">&#xe688;</i>
-									@endif
-								</a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_edit('资料编辑','/admin/addInfo',{{$val->id}})" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe60c;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_del(this,{{$val->id}})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+								<td class="f-14 td-manage" style="cursor:pointer; " onclick="toExamine(this,{{$val->id}})">审核</td>
 						</tr>
 						@endforeach
 					</tbody>
@@ -113,35 +105,19 @@ $('.table-sort').dataTable({
 	]
 });
 
-/*资讯-添加*/
-function article_add(title,url,w,h){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url
-	});
-	layer.full(index);
-}
-/*资讯-编辑*/
-function article_edit(title,url,id,w,h){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url+'?id='+id
-	});
-	layer.full(index);
-}
 /*资讯-删除*/
-function article_del(obj,id){
-	layer.confirm('确认要删除吗？',function(){
+function toExamine(obj,id){
+	layer.confirm('请选择是否通过审核', {
+	  	btn: ['通过','不通过'] //按钮
+	}, function(){
 		$.ajax(
 			{
 				headers: {
 		    			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 		    		},
 				type: 'POST',
-				url: '/admin/delInfo',
-				data: {'ids':id},
+				url: '/admin/toExamine',
+				data: {'ids':id,'status':2},
 				dataType: 'json',
 				success: function(data){
 					if(data.code == 'S') {
@@ -155,58 +131,36 @@ function article_del(obj,id){
 					layer.msg('好抱歉，系统好像出错了，请联系网站管理员！',{icon:2,time:3000});
 				},
 			}
-		);		
-	});
-}
-function datadel(){
-	layer.confirm('确认要删除吗？',function(){
-	  	var ids = '';
-	  	$('input[type=checkbox]:checked').each(function(){
-	  		ids += $(this).val() + ',';
-	  	})
-	  	ids = ids.substring(0,ids.length-1);
-	    	$.ajax(
-		    	{
-			    	headers: {
-			    		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-			    	},
-			    	type: 'POST',
-			    	url: '/admin/delInfo',
+		);
+	}, function(){
+	 	$.ajax(
+			{
+				headers: {
+		    			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		    		},
+				type: 'POST',
+				url: '/admin/toExamine',
+				data: {'ids':id,'status':3},
 				dataType: 'json',
-				data: {'ids':ids},
-				success: function(result){
-					if(result.code='S'){
-						$('input[type=checkbox]:checked').parents('tr').remove();
-						layer.msg(result.msg,{icon:1,time:2000});
+				success: function(data){
+					if(data.code == 'S') {
+						$(obj).parents("tr").remove();
+						layer.msg(data.msg,{icon:1,time:2000});
 					}else {
-						layer.msg(result.msg,{icon:2,time:2000});
+						layer.msg(data.msg,{icon:2,time:2000});
 					}
-				} 
+				},
+				error:function(data) {
+					layer.msg('好抱歉，系统好像出错了，请联系网站管理员！',{icon:2,time:3000});
+				},
 			}
 		);
 	});
+				
+	
 }
 
-/*资讯-审核*/
-function article_shenhe(obj,id){
-	layer.confirm('审核文章？', {
-		btn: ['通过','不通过','取消'], 
-		shade: false,
-		closeBtn: 0
-	},
-	function(){
-		$(obj).parents("tr").find(".td-manage").prepend('<a class="c-primary" onClick="article_start(this,id)" href="javascript:;" title="申请上线">申请上线</a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
-		$(obj).remove();
-		layer.msg('已发布', {icon:6,time:1000});
-	},
-	function(){
-		$(obj).parents("tr").find(".td-manage").prepend('<a class="c-primary" onClick="article_shenqing(this,id)" href="javascript:;" title="申请上线">申请上线</a>');
-		$(obj).parents("tr").find(".td-status").html('<span class="label label-danger radius">未通过</span>');
-		$(obj).remove();
-    	layer.msg('未通过', {icon:5,time:1000});
-	});	
-}
+
 /*资讯-下架*/
 function setHot(obj,id){
 	$.ajax(

@@ -4,6 +4,7 @@
 
     var keyword = unescape($.mytools.GetQueryString("keyword"));    // 关键字
     var type = $.mytools.GetQueryString("type");   // 登录 注册
+    var backURL = "/load";
 
 	// 实例化vue
 	var vm = new Vue({
@@ -20,8 +21,6 @@
             },
             resetPaswrd:resetPaswrd,
             sendMessage:sendMessage,
-            refreshVcode:refreshVcode,
-
 	    },
 	});
 
@@ -30,10 +29,9 @@
     function verification(obj, errorInfo){
         var val = $(obj).val();
         if(val == null || val == undefined || val == ""){
-            $(".main-content").find(".error-info").find("span").text(errorInfo);
+            layer.tips(errorInfo, $(obj),{tips: [2, '#333'],time: 4000});
             return false;
         }else{
-            $(".main-content").find(".error-info").find("span").text("");
             return true;
         }
     }
@@ -44,26 +42,24 @@
         var resetBtn = $(event.currentTarget);
 
         // 验证
-        var flag = verification($("#mobile"), "手机号码不能为空") && verification($("#mescode"), "短信验证码不能为空") && verification($("#passWord"), "新密码不能为空") && verification($("#passwordAgain"), "确认密码不能为空") && verification($("#vcode"), "验证码不能为空");
+        var flag = verification($("#mobile"), "手机号码不能为空") && verification($("#resetcode"), "短信验证码不能为空") && verification($("#password"), "新密码不能为空") && verification($("#repassword"), "确认密码不能为空");
 
         if(flag) {
             resetBtn.html('<i class="fa fa-spinner fa-pulse"></i>&nbsp;密码重置中...');
             var params = {
                 "mobile": $("#mobile").val(),
-                "mescode": $("#mescode").val(),
+                "resetcode": $("#resetcode").val(),
                 "password": $("#password").val(),
                 "repassword": $("#repassword").val(),
-                "code": $("#vcode").val(),
                 "_token": $("#app").attr("data-value"),
             };
 
-            $.post('/custome/loadlist', params, function(backData) {
+            $.post('/restpwd', params, function(backData) {
                 if(backData && backData.code === "S") {
-                    window.location.href = "/";
+                   window.location.href = "/enter?type=login";
                 }else {
                     resetBtn.html("重置密码");
-                     $(".main-content").find(".error-info").find("span").text(backData.msg);
-                    $(".vCode-img").find("img").attr("src","/custome/kit/captcha/"+$.mytools.GetRandomNum(10000, 99999));  
+                    layer.msg(backData.msg);
                 }
 
             }, "json");             
@@ -93,35 +89,30 @@
         }
 
         var flag = verification($("#mobile"), "手机号码不能为空");
+
+        if(!$.mytools.checkMobile($("#mobile").val())) {
+            layer.tips("手机号码格式不正确", $("#mobile"),{tips: [2, '#333'],time: 4000});
+            return false;
+        }
+
        var params = {
             "mobile": $("#mobile").val(),
             "_token": $("#app").attr("data-value"),
         };
 
         if(flag) {
-            $.post("/custome/smsre", params, function(backData) {
+            $.post("/custome/findPassword", params, function(backData) {
                 if(backData && backData.code === "S"){
-                    $(".main-content").find(".error-info").find("span").text("");
                     clearTimeout(setCountdown);
                     setCountdown($(obj));
                 }else{
-                    $(".main-content").find(".error-info").find("span").text(backData.msg);
-                    $(".vCode-img").find("img").attr("src","/custome/kit/captcha/"+$.mytools.GetRandomNum(10000, 99999));  
-
+                    layer.msg(backData.msg);
                 }
             }, "json")         
         }
     }
 
-    // 刷新验证码
-    function refreshVcode(event) {
-         var obj = $(event.currentTarget);
-         obj.attr("src","/http://121.42.147.197/admin/kit/captcha/1");
-    }
-
-    
     $(function() {
-
 
     });
 

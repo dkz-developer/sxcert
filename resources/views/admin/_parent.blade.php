@@ -86,15 +86,16 @@
 				<ul>
 					<li><a href="/admin/infoList" title="资讯管理">资料列表</a></li>
 					<li><a href="/admin/common" title="资讯管理">常用资料</a></li>
+					<li><a href="/admin/userInfo" title="资讯管理">用户资料</a></li>
 				</ul>
 			</dd>
 		</dl>
 		<dl id="menu-picture">
-			<dt><i class="Hui-iconfont">&#xe613;</i> 图片管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe613;</i> 会员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a href="picture-list.html" title="图片管理">图片管理</a></li>
-		</ul>
+					<li><a href="/admin/userList" title="图片管理">会员列表</a></li>
+			</ul>
 	</dd>
 </dl>
 		<dl id="menu-product">

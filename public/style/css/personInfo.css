@@ -97,25 +97,17 @@ body {
   .container .main {
     width: 400px;
     margin: 60px auto 0;
-    padding: 20px 50px 30px;
+    padding: 50px 50px 30px;
     background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
     vertical-align: middle;
     display: inline-block; }
     .container .main .main-title {
-      margin: 0 auto 20px;
-      font-weight: 500;
-      font-size: 30px;
-      color: #ea6f5a; }
-      .container .main .main-title em {
-        display: inline-block;
-        margin: 0 10px;
-        width: 4px;
-        height: 4px;
-        border-radius: 50%;
-        background: #969696;
-        vertical-align: middle; }
+      margin: 0 auto 50px;
+      padding: 10px;
+      font-weight: 600;
+      font-size: 18px; }
     .container .main .main-content form .input-prepend {
       position: relative;
       width: 100%; }
@@ -126,28 +118,56 @@ body {
         padding: 4px 12px 4px 38px;
         border: 1px solid #c8c8c8;
         background-color: rgba(181, 181, 181, 0.1);
-        vertical-align: middle;
-        border-radius: 4px; }
+        vertical-align: middle; }
+        .container .main .main-content form .input-prepend input.restyle {
+          border-bottom: none; }
+      .container .main .main-content form .input-prepend:first-child input {
+        border-radius: 4px 4px 0 0; }
+      .container .main .main-content form .input-prepend .lastIn {
+        border-radius: 0 0 4px 4px; }
       .container .main .main-content form .input-prepend i {
         position: absolute;
         top: 15px;
         left: 12px;
         font-size: 20px;
         color: #969696; }
-    .container .main .main-content form .alert {
+    .container .main .main-content form .sendMessage {
+      position: absolute;
+      top: 8px;
+      right: 5px; }
+    .container .main .main-content form .findPassword {
       height: 30px;
-      line-height: 2px;
-      margin-top: 20px;
-      text-align: left; }
+      line-height: 30px;
+      text-align: right;
+      margin: 10px 0; }
+      .container .main .main-content form .findPassword a {
+        color: #666;
+        text-decoration: none; }
+        .container .main .main-content form .findPassword a:hover {
+          color: #333; }
     .container .main .main-content form .submitBtn {
-      margin-top: 20px; }
+      margin: 20px 0; }
       .container .main .main-content form .submitBtn button {
         width: 100%; }
+    .container .main .main-content form .back {
+      height: 30px;
+      line-height: 30px;
+      text-align: center; }
+      .container .main .main-content form .back a {
+        color: #555;
+        text-decoration: none; }
+        .container .main .main-content form .back a:hover {
+          color: #333; }
     .container .main .main-content form .error-info {
       color: red;
       text-align: center;
       height: 30px;
       line-height: 30px;
       margin-top: 20px; }
+    .container .main .main-content form .vCode-img {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      cursor: pointer; }
 
-/*# sourceMappingURL=pay.css.map */
+/*# sourceMappingURL=personInfo.css.map */

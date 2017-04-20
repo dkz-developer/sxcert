@@ -18,7 +18,7 @@ a<!DOCTYPE html>
 		<nav class="clearfix">
 			<div class="inner">
 				<div class="logo">
-					<a href="/">GSMGOOD</a>
+					<a href="/load">GSMGOOD</a>
 				</div>
 
 				<div class="btnGroup">
@@ -34,7 +34,7 @@ a<!DOCTYPE html>
 				<div class="items">
 					<ul>
 						<li><a href="/load">首页</a></li>
-						<li><a href="/">讨论区</a></li>
+						<!-- <li><a href="/">讨论区</a></li> -->
 						<li><a href="/pay">充值</a></li>
 						<li><a href="/feedback">意见反馈</a></li>
 					</ul>
@@ -54,11 +54,12 @@ a<!DOCTYPE html>
 
 				<div class="content" v-cloak v-if="(navShift == '1')">
 					<div class="title">
-						<button class="btn btn-info"><i class="fa fa-add"></i>上传ROM</button>
+						<a href="/rom" class="btn btn-info"><i class="fa fa-add" ></i>上传ROM</a>
+
 						<div class="item">
-							<span data-type="1" @click="itemShiftEvent" class="active">全部<small>(13947)</small></span>
-							<span data-type="1" @click="itemShiftEvent">已发布<small>(13947)</small></span>
-							<span data-type="1" @click="itemShiftEvent">未审核<small>(13947)</small></span>
+							<span data-type="1" @click="itemShiftEvent" @if(empty($_GET['status'])) class="active" @endif onclick="window.location.href='/users'">全部<small>({{$allcount}})</small></span>
+							<span data-type="1" @click="itemShiftEvent" @if(! empty($_GET['status']) && 2 == $_GET['status']) class="active" @endif onclick="window.location.href='/users?status=2'">已发布<small>({{$scount}})</small></span>
+							<span data-type="1" @click="itemShiftEvent" onclick="window.location.href='/users?status=1'" @if(! empty($_GET['status']) && 1 == $_GET['status']) class="active" @endif>未审核<small>({{$fcount}})</small></span>
 						</div>
 					</div>
 					<div class="inner inner-nav1">
@@ -78,17 +79,23 @@ a<!DOCTYPE html>
 
 						<div class="list-item">
 							<ul>
-								<li class="row-01">已发布</li>
-								<li class="row-02">三星</li>
-								<li class="row-03">中国</li>
-								<li class="row-04">SM-G935A </li>
-								<li class="row-05">G935AUCS4BQC2</li>
-								<li class="row-06">7.0</li>
-								<li class="row-07">2017-04-03</li>
-								<li class="row-08">全资料[五件套]</li>
-								<li class="row-09">150.0</li>
-								<li class="row-10">6666</li>
-								<li class="row-11"><a href="['/info?keyword='+item.id]" class="btn btn-info">下载</a></li>
+								@foreach($uinfoList as $val)
+								<li class="row-01">@if($val->status == 1) 审核中 @elseif(2 == $val->status) 发布中 @else 审核不通过 @endif</li>
+								<li class="row-02">{{$val->brand}}</li>
+								<li class="row-03">{{$val->country}}</li>
+								<li class="row-04">{{$val->model}}</li>
+								<li class="row-05">{{$val->version}}</li>
+								<li class="row-06">{{$val->os}}</li>
+								<li class="row-07">{{$val->updated_at}}</li>
+								<li class="row-08">{{$val->type}}</li>
+								<li class="row-09">{{$val->price}}</li>
+								<li class="row-10">{{$val->download_num}}</li>
+								@if(2 == $val->status)
+									<li class="row-11"><a href="/a/{{$val->info_id}}" class="btn btn-info">下载</a></li>
+								@else 
+									<li class="row-11">-</li>
+								@endif
+								@endforeach
 							</ul>
 						</div>
 					</div>
@@ -97,10 +104,10 @@ a<!DOCTYPE html>
 				<div class="content" v-cloak v-if="(navShift == '2')">
 					<div class="title">
 						<div class="item">
-							<span data-type="1" class="active" @click="itemShiftEvent">全部<small>(13947)</small></span>
+							<!-- <span data-type="1" class="active" @click="itemShiftEvent">全部<small>(13947)</small></span>
 							<span data-type="1" @click="itemShiftEvent">新充值<small>(13947)</small></span>
 							<span data-type="1" @click="itemShiftEvent">充值中<small>(13947)</small></span>
-							<span data-type="1" @click="itemShiftEvent">充值完毕<small>(13947)</small></span>
+							<span data-type="1" @click="itemShiftEvent">充值完毕<small>(13947)</small></span> -->
 						</div>
 					</div>
 					<div class="inner inner-nav2"> 	 	 	 	
@@ -111,34 +118,27 @@ a<!DOCTYPE html>
 							<div class="row-04">状态</div>
 							<div class="row-05">日期</div>
 						</div>
+						@foreach($rechargeRecord as $val)
 						<div class="list-item">
 							<ul>
-								<li class="row-01">登录奖励</li>
-								<li class="row-02">login</li>
-								<li class="row-03">666</li>
-								<li class="row-04">创建</li>
-								<li class="row-05">2016-02-20 17:24:19 </li>
+								<li class="row-01">金币</li>
+								<li class="row-02">@if($val->channel == 1) 系统 @elseif($val->channel == 2)支付宝 @else 登录 @endif</li>
+								<li class="row-03">{{$val->amount}}</li>
+								<li class="row-04">@if($val->status == 1) finished @elseif($val->satus == 2) fail @endif</li>
+								<li class="row-05">{{$val->created_at}} </li>
 							</ul>
 						</div>
-						<div class="list-item">
-							<ul>
-								<li class="row-01">登录奖励</li>
-								<li class="row-02">login</li>
-								<li class="row-03">666</li>
-								<li class="row-04">创建</li>
-								<li class="row-05">2016-02-20 17:24:19 </li>
-							</ul>
-						</div>
+						@endforeach
 					</div>
 				</div>
 
 				<div class="content" v-cloak v-if="(navShift == '3')"> 
 					<div class="title">
 						<div class="item">
-							<span data-type="1" class="active" @click="itemShiftEvent">全部<small>(13947)</small></span>
+							<!-- <span data-type="1" class="active" @click="itemShiftEvent">全部<small>(13947)</small></span>
 							<span data-type="1" @click="itemShiftEvent">交易完毕<small>(13947)</small></span>
 							<span data-type="1" @click="itemShiftEvent">未发货<small>(13947)</small></span>
-							<span data-type="1" @click="itemShiftEvent">退款<small>(13947)</small></span>
+							<span data-type="1" @click="itemShiftEvent">退款<small>(13947)</small></span> -->
 						</div>
 					</div>
 					<div class="inner inner-nav3"> 	 	 	 	 
@@ -151,15 +151,17 @@ a<!DOCTYPE html>
 							<div class="row-06">日期</div>
 						</div>
 
-						<div class="list-item">  	 	 	 	 	
+						<div class="list-item">  	
+							@foreach($buyRecord as $val) 	 	 	 	
 							<ul>
 								<li class="row-01">download</li>
 								<li class="row-02">rom</li>
-								<li class="row-03">11346</li>
-								<li class="row-04">150.0</li>
+								<li class="row-03">{{$val->info_id}}</li>
+								<li class="row-04">{{$val->consume}}</li>
 								<li class="row-05">finished</li>
-								<li class="row-06">2016-02-20 17:24:19 </li>
+								<li class="row-06">{{$val->created_at}} </li>
 							</ul>
+							@endforeach
 						</div>
 					</div>
 				</div>
@@ -195,8 +197,8 @@ a<!DOCTYPE html>
 								<em>{{$userInfo->CreateTime}}</em>
 							</li>
 							<li>
-								<button class="btn btn-danger" onclick="window.location.href='/pay'">立即充值</button>
-								<button class="btn btn-primary" onclick="window.location.href='/personInfo'">修改资料</button>
+								<button class="btn btn-danger btn-block" onclick="window.location.href='/pay'">立即充值</button>
+								<!-- <button class="btn btn-primary" onclick="window.location.href='/personInfo'">修改资料</button> -->
 							</li>
 						</ul>
 					</div>
@@ -211,18 +213,10 @@ a<!DOCTYPE html>
 		</div>		
 	</div>
 
-	<script>
-	var _hmt = _hmt || [];
-	(function() {
-	  var hm = document.createElement("script");
-	  hm.src = "https://hm.baidu.com/hm.js?b819a6a70904703dd1926e26ba9554f0";
-	  var s = document.getElementsByTagName("script")[0]; 
-	  s.parentNode.insertBefore(hm, s);
-
-	})();
-	</script>
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
+	<script src="scripts/public/tools.js"></script>
+	<script src="scripts/public/topNav.js"></script>
 	<script src="scripts/users.js"></script>
 </body>
 </html>

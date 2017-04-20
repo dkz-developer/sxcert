@@ -59,14 +59,16 @@ class SmsController extends Controller
 	 * 密码找回
 	 * 
 	 */
-	public function SmsFindPwd(Request $request){
-		$username = $request -> input ('username');
-		$userInfo = User::where(['UserName',$username])->first();
-		if(!$userInfo || !$userInfo ['Mobile']){
-			return response()->json(['code'=>'F','msg'=>'用户名有误']);
+	public function SmsFindPwd(Request $request)
+	{
+		$mobile = $request -> input ('mobile');
+		$userInfo = User::where('Mobile',$mobile)->first();
+		if(empty($userInfo)){
+			return response()->json(['code'=>'F','msg'=>'该账号不存在！']);
 		}
 		//判断当前用户是否之前发送过短信
 		$phone = $userInfo ['Mobile'];
+		$lastTime = 0;
 		if(session::has($phone)){
 			$lastTime = Session::get($phone);
 		}
@@ -74,18 +76,18 @@ class SmsController extends Controller
 		if((time()-$lastTime) > 300){
 			//发送短信
 			$vcode = rand(100000,999999);
-			$name = '密码找回';
-			$code = 'SMS_3166316'; // 短信模板id
-			$sms = New Sms();
-			$res = $sms->send($phone, $name, array('vcode'=>$vcode), $code);
+			$name = 'GSM玩机网';
+	       		$code = 'SMS_59950404'; // 短信模板id
+			$res = $this->sms->send($phone, $name, json_encode(array('number'=>"$vcode")), $code);
 			if($res){
 				Session::flash('resetcode', $vcode);
+				return response()->json(['code'=>'S','msg'=>'短信发送成功！']);
 			}else{
-				return response()->json(['code'=>'S','msg'>'短信发送失败']);
+				return response()->json(['code'=>'S','msg'>'短信发送失败！']);
 			}
 		}
 		//不发送短信  直接提示发送成功
-		return response()->json(['code'=>'S','msg'=>'短信发送成功']);
+		return response()->json(['code'=>'S','msg'=>'短信发送成功！']);
 		
 	}
 	

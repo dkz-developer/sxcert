@@ -48,7 +48,7 @@
 			</div>
 
 			<div class="search">
-				<form action="/s" method="get" >
+				<form action="/h" method="get" >
 					<input class="form-control" type="text" placeholder="输入机型或版本号(至少3个字符)" name="k" id="keyword">
 					<!-- <input class="form-control" type="hidden" name="i" value="7"> -->
 					<button type="submit" id="searchBtn">搜一下</button>
@@ -77,12 +77,12 @@
 					<div class="list-item" v-cloak v-for="(item,index) in list">
 						<ul>
 							<!-- <li class="row-01"><a :href="['/search?keyword='+item.tag ]">@{{item.tag}}</a></li> -->
-							<li class="row-02"><a target="_blank" href="/s?k={{urlencode($val->brand)}}1">{{$val->brand}}</a></li>
-							<li class="row-03"><a target="_blank" href="/s?k={{urlencode($val->country)}}2">{{$val->country}}</a></li>
-							<li class="row-04"><a target="_blank" href="/s?k={{urlencode($val->model)}}3">{{$val->model}}</a></li>
-							<li class="row-05"><a target="_blank" href="/s?k={{urlencode($val->version)}}4">{{$val->version}}</a></li>
-							<li class="row-06"><a target="_blank" href="/s?k={{urlencode($val->os)}}5">{{$val->os}}</a></li>
-							<li class="row-07"><a target="_blank" href="/s?k={{urlencode($val->type)}}6">{{$val->type}}</a></li>
+							<li class="row-02"><a target="_blank" href="/b?k={{urlencode($val->brand)}}">{{$val->brand}}</a></li>
+							<li class="row-03"><a target="_blank" href="/c?k={{urlencode($val->country)}}">{{$val->country}}</a></li>
+							<li class="row-04"><a target="_blank" href="/d?k={{urlencode($val->model)}}">{{$val->model}}</a></li>
+							<li class="row-05"><a target="_blank" href="/e?k={{urlencode($val->version)}}">{{$val->version}}</a></li>
+							<li class="row-06"><a target="_blank" href="/f?k={{urlencode($val->os)}}">{{$val->os}}</a></li>
+							<li class="row-07"><a target="_blank" href="/g?k={{urlencode($val->type)}}">{{$val->type}}</a></li>
 							<li class="row-08">{{$val->price}}</li>
 							<li class="row-09">{{$val->updated_at}}</li>
 							<li class="row-10">{{$val->view_num}}</li>

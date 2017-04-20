@@ -162,20 +162,20 @@ class InfoController extends Controller
 		return view('admin.infoList',['list'=>$result,'rows'=>$rows]);
 	}
 
-	public function common()
+	public function common(Request $request)
 	{
 		$Model = new InfoCommon();
-		$brand = $Model->where('type',1)->paginate(10);
+		$brand = $Model->where('type',1)->paginate(10,['*'],'bpage');
 		$brandCount = $Model->where('type',1)->count();
-		$model = $Model->where('type',2)->paginate(10);
+		$model = $Model->where('type',2)->paginate(10,['*'],'mpage');
 		$modelCount = $Model->where('type',2)->count();
-		$country = $Model->where('type',3)->paginate(10);
+		$country = $Model->where('type',3)->paginate(10,['*'],'cpage');
 		$countryCount = $Model->where('type',3)->count();
-		$os = $Model->where('type',4)->paginate(10);
+		$os = $Model->where('type',4)->paginate(10,['*'],'lpage');
 		$osCount = $Model->where('type',4)->count();
-		$type = $Model->where('type',5)->paginate(10);
+		$type = $Model->where('type',5)->paginate(10,['*'],'tpage');
 		$typeCount = $Model->where('type',5)->count();
-		$tag = $Model->where('type',6)->paginate(10);
+		$tag = $Model->where('type',6)->paginate(10,['*'],'gpage');
 		$tagCount = $Model->where('type',6)->count();
 		$result = [
 			'brand'=>$brand,

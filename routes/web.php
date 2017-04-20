@@ -102,5 +102,11 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::post('/addUserInfo','LoadListController@userRomAdd');
 	// 下载页
 	Route::get('/load','LoadListController@loadlist');
-	Route::get('/s','LoadListController@search');
+	Route::get('/b','LoadListController@searchBrand');
+	Route::get('/c','LoadListController@searchCountry');
+	Route::get('/d','LoadListController@searchModel');
+	Route::get('/e','LoadListController@searchVersion');
+	Route::get('/f','LoadListController@searchOs');
+	Route::get('/g','LoadListController@searchType');
+	Route::get('/h','LoadListController@searchKeyword');
 });

@@ -128,11 +128,60 @@ class LoadListController extends Controller
 		return  response()->json(['code'=>'F','msg'=>'操作失败！']);
 	}
 
-	public function search(Request $request)
+	public function searchBrand(Request $request)
 	{
-		$keyword = $request->input('k',false);
+		$keyword = $request->input('k');
+		$list = $this->_search($keyword,1);
+		return view('search',['list'=>$list]);
+	}
+
+	public function searchCountry(Request $request)
+	{
+		$keyword = $request->input('k');
+		$list = $this->_search($keyword,2);
+		return view('search',['list'=>$list]);
+	}
+
+	public function searchModel(Request $request)
+	{
+		$keyword = $request->input('k');
+		$list = $this->_search($keyword,3);
+		return view('search',['list'=>$list]);
+	}
+
+	public function searchVersion(Request $request)
+	{
+		$keyword = $request->input('k');
+		$list = $this->_search($keyword,4);
+		return view('search',['list'=>$list]);
+	}
+
+	public function searchOs(Request $request)
+	{
+		$keyword = $request->input('k');
+		$list = $this->_search($keyword,5);
+		return view('search',['list'=>$list]);
+	}
+
+	public function searchType(Request $request)
+	{
+		$keyword = $request->input('k');
+		$list = $this->_search($keyword,6);
+		return view('search',['list'=>$list]);
+	}
+
+	public function searchKeyword(Request $request)
+	{
+		$keyword = $request->input('k');
+		$list = $this->_search($keyword,7);
+		return view('search',['list'=>$list]);
+	}
+
+	private function _search($keyword,$index)
+	{
+		/*$keyword = $request->input('k',false);
 		$index = (int)substr($keyword, -1);
-		$keyword = substr($keyword, 0,-1);
+		$keyword = substr($keyword, 0,-1);*/
 		$arr = [1=>'brand','country','model','version','os','type'];
 		$where = [];
 		if($index==7) {
@@ -140,7 +189,8 @@ class LoadListController extends Controller
 		}else {
 			$list = Info::where($arr[$index],'like',"%{$keyword}%")->orderBy('sort','desc')->simplePaginate(20);
 		}
-		return view('search',['list'=>$list]);
+		return $list;
+		//return view('search',['list'=>$list]);
 	}
 
 	/*

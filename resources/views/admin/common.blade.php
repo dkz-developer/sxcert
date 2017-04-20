@@ -32,7 +32,7 @@
 			</div>
 			<div class="cl pd-5 bg-1 bk-gray mt-20">
 				<span class="l">
-				<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+				<!-- <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> -->
 				</span>
 				<span class="r">共有数据：<strong>{{$brandCount}}</strong> 条</span>
 			</div>
@@ -40,7 +40,7 @@
 				<table class="table table-border table-bordered table-bg table-hover table-sort">
 					<thead>
 						<tr class="text-c">
-							<th width="25"><input type="checkbox" name="" value=""></th>
+							<!-- <th width="25"><input type="checkbox" name="" value=""></th> -->
 							<th width="80">ID</th>
 							<th>品牌名</th>
 							<th width="120">操作</th>
@@ -49,12 +49,11 @@
 					<tbody>
 					@foreach ($brand as $val)
 						<tr class="text-c">
-							<td><input type="checkbox" value="" name=""></td>
+							<!-- <td><input type="checkbox" value="" name=""></td> -->
 							<td>{{$val->id}}</td>
 							<td>{{$val->name}}</td>
-							<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+							<td class="f-14 td-manage">
+								<a style="text-decoration:none" class="ml-5" onClick="del_common(this,{{$val->id}},1)" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 						</tr>
 					@endforeach
 					</tbody>
@@ -71,7 +70,7 @@
 			</div>
 			<div class="cl pd-5 bg-1 bk-gray mt-20">
 				<span class="l">
-				<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+				<!-- <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> -->
 				</span>
 				<span class="r">共有数据：<strong>{{$modelCount}}</strong> 条</span>
 			</div>
@@ -79,7 +78,7 @@
 				<table class="table table-border table-bordered table-bg table-hover table-sort">
 					<thead>
 						<tr class="text-c">
-							<th width="25"><input type="checkbox" name="" value=""></th>
+							<!-- <th width="25"><input type="checkbox" name="" value=""></th> -->
 							<th width="80">ID</th>
 							<th>机型</th>
 							<th width="120">操作</th>
@@ -88,12 +87,11 @@
 					<tbody>
 						@foreach ($model as $val)
 						<tr class="text-c">
-							<td><input type="checkbox" value="" name=""></td>
+							<!-- <td><input type="checkbox" value="" name=""></td> -->
 							<td>{{$val->id}}</td>
 							<td>{{$val->name}}</td>
-							<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+							<td class="f-14 td-manage">
+								<a style="text-decoration:none" class="ml-5" onClick="del_common(this,{{$val->id}},2)" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 						</tr>
 					@endforeach
 					</tbody>
@@ -110,7 +108,7 @@
 			</div>
 			<div class="cl pd-5 bg-1 bk-gray mt-20">
 				<span class="l">
-				<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+				<!-- <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> -->
 				</span>
 				<span class="r">共有数据：<strong>{{$countryCount}}</strong> 条</span>
 			</div>
@@ -118,7 +116,7 @@
 				<table class="table table-border table-bordered table-bg table-hover table-sort">
 					<thead>
 						<tr class="text-c">
-							<th width="25"><input type="checkbox" name="" value=""></th>
+							<!-- <th width="25"><input type="checkbox" name="" value=""></th> -->
 							<th width="80">ID</th>
 							<th>国家</th>
 							<th width="120">操作</th>
@@ -127,12 +125,11 @@
 					<tbody>
 						@foreach ($country as $val)
 						<tr class="text-c">
-							<td><input type="checkbox" value="" name=""></td>
+							<!-- <td><input type="checkbox" value="" name=""></td> -->
 							<td>{{$val->id}}</td>
 							<td>{{$val->name}}</td>
-							<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+							<td class="f-14 td-manage">
+								<a style="text-decoration:none" class="ml-5" onClick="del_common(this,{{$val->id}},3)" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 						</tr>
 					@endforeach
 					</tbody>
@@ -149,7 +146,7 @@
 			</div>
 			<div class="cl pd-5 bg-1 bk-gray mt-20">
 				<span class="l">
-				<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+				<!-- <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> -->
 				</span>
 				<span class="r">共有数据：<strong>{{$osCount}}</strong> 条</span>
 			</div>
@@ -157,7 +154,7 @@
 				<table class="table table-border table-bordered table-bg table-hover table-sort">
 					<thead>
 						<tr class="text-c">
-							<th width="25"><input type="checkbox" name="" value=""></th>
+							<!-- <th width="25"><input type="checkbox" name="" value=""></th> -->
 							<th width="80">ID</th>
 							<th>OS</th>
 							<th width="120">操作</th>
@@ -166,12 +163,11 @@
 					<tbody>
 						@foreach ($os as $val)
 						<tr class="text-c">
-							<td><input type="checkbox" value="" name=""></td>
+							<!-- <td><input type="checkbox" value="" name=""></td> -->
 							<td>{{$val->id}}</td>
 							<td>{{$val->name}}</td>
-							<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+							<td class="f-14 td-manage">
+								<a style="text-decoration:none" class="ml-5" onClick="del_common(this,{{$val->id}},4)" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 						</tr>
 					@endforeach
 					</tbody>
@@ -188,7 +184,7 @@
 			</div>
 			<div class="cl pd-5 bg-1 bk-gray mt-20">
 				<span class="l">
-				<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+				<!-- <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> -->
 				</span>
 				<span class="r">共有数据：<strong>{{$typeCount}}</strong> 条</span>
 			</div>
@@ -196,7 +192,7 @@
 				<table class="table table-border table-bordered table-bg table-hover table-sort">
 					<thead>
 						<tr class="text-c">
-							<th width="25"><input type="checkbox" name="" value=""></th>
+							<!-- <th width="25"><input type="checkbox" name="" value=""></th> -->
 							<th width="80">ID</th>
 							<th>类型</th>
 							<th width="120">操作</th>
@@ -205,12 +201,11 @@
 					<tbody>
 						@foreach ($type as $val)
 						<tr class="text-c">
-							<td><input type="checkbox" value="" name=""></td>
+							<!-- <td><input type="checkbox" value="" name=""></td> -->
 							<td>{{$val->id}}</td>
 							<td>{{$val->name}}</td>
-							<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+							<td class="f-14 td-manage">
+								<a style="text-decoration:none" class="ml-5" onClick="del_common(this,{{$val->id}},5)" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 						</tr>
 					@endforeach
 					</tbody>
@@ -227,7 +222,7 @@
 			</div>
 			<div class="cl pd-5 bg-1 bk-gray mt-20">
 				<span class="l">
-				<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+				<!-- <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> -->
 				</span>
 				<span class="r">共有数据：<strong>{{$tagCount}}</strong> 条</span>
 			</div>
@@ -235,7 +230,7 @@
 				<table class="table table-border table-bordered table-bg table-hover table-sort">
 					<thead>
 						<tr class="text-c">
-							<th width="25"><input type="checkbox" name="" value=""></th>
+							<!-- <th width="25"><input type="checkbox" name="" value=""></th> -->
 							<th width="80">ID</th>
 							<th>标签</th>
 							<th width="120">操作</th>
@@ -244,12 +239,11 @@
 					<tbody>
 						@foreach ($tag as $val)
 						<tr class="text-c">
-							<td><input type="checkbox" value="" name=""></td>
+							<!-- <td><input type="checkbox" value="" name=""></td> -->
 							<td>{{$val->id}}</td>
 							<td>{{$val->name}}</td>
-							<td class="f-14 td-manage"><a style="text-decoration:none" onClick="article_stop(this,'10001')" href="javascript:;" title="下架"><i class="Hui-iconfont">&#xe6de;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_edit('资讯编辑','article-add.html','10001')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_del(this,'10001')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+							<td class="f-14 td-manage">
+								<a style="text-decoration:none" class="ml-5" onClick="del_common(this,{{$val->id}},6)" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 						</tr>
 					@endforeach
 					</tbody>
@@ -257,9 +251,9 @@
 				{{ $tag->links() }}
 			</div>
 		</article>
-<footer class="footer">
+<!-- <footer class="footer">
 	<p>感谢jQuery、layer、laypage、Validform、UEditor、My97DatePicker、iconfont、Datatables、WebUploaded、icheck、highcharts、bootstrap-Switch<br> Copyright &copy;2015 H-ui.admin v3.0 All Rights Reserved.<br> 本后台系统由<a href="http://www.h-ui.net/" target="_blank" title="H-ui前端框架">H-ui前端框架</a>提供前端技术支持</p>
-</footer>
+</footer> -->
 @endsection
 
 <script type="text/javascript" src="/style/admin/lib/My97DatePicker/4.8/WdatePicker.js"></script>
@@ -274,7 +268,31 @@ $('.table-sort').dataTable({
 		{"orderable":false,"aTargets":[0,8]}// 不参与排序的列
 	]
 });
-function add_common(obj) {
+function del_common(obj,id,type)
+{
+	layer.confirm('确认要删除吗？',function(){
+	    	$.ajax({
+		    	headers: {
+		    		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		    	},
+		    	type: 'POST',
+		    	url: '/admin/commonDelete',
+			dataType: 'json',
+			data: {'id':id,'type':type},
+			success: function(result){
+				if(result.code='S'){
+					$(obj).parents('tr').remove();
+					layer.msg(result.msg,{icon:1,time:2000});
+				}else {
+					layer.msg(result.msg,{icon:2,time:2000});
+				}
+			} 
+		});
+	});
+}
+
+function add_common(obj) 
+{
 	var param = $(obj).serialize();
 	$.ajaxSetup(
 		{

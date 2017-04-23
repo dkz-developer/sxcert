@@ -36,6 +36,7 @@ class InfoController extends Controller
 			$data['status']= 1;
 			$data['uinfo_id'] = $InfoUser->id;
 			$data['price'] = $InfoUser->price;
+			$data ['type'] = $InfoUser->type;
 			$result = $Info->insertGetId($data);
 			if($result)  {
 				$InfoUser->status = 2;

@@ -150,7 +150,7 @@
             $.post('/custome/register', params, function(backData) {
 
                 if(backData && backData.code === "S") {
-                    window.location.href = "/enter?type=login";
+                    window.location.href = "/login";
                 }else {
                    layer.msg(backData.msg);
                     registerBtn.html("注册");

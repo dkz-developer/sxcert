@@ -54,7 +54,7 @@
 
             $.post('/custome/loadlist', params, function(backData) {
                 if(backData && backData.code === "S") {
-                    window.location.href = "/load";
+                    window.location.href = "/rom";
                 }else {
                     layer.msg(backData.msg);
                     resetBtn.html("重置密码");

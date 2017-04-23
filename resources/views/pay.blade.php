@@ -18,7 +18,7 @@
 		<nav class="clearfix">
 			<div class="inner">
 				<div class="logo">
-					<a href="/"><img src="images/logo_main3.png" alt=""></a>
+					<a href="/rom"><img src="images/logo_main3.png" alt=""></a>
 				</div>
 				<div class="search">
 					<input type="text" placeholder="请输入...">	
@@ -26,7 +26,7 @@
 				</div>
 				<div class="items clearfix">
 					<ul>
-						<li><a href="/load">下载站</a></li>
+						<li><a href="/rom">下载站</a></li>
 						<li><a href="/pay">充值</a></li>
 						<li><a href="/service">客服</a></li>
 						@if(empty(session('userInfo')))

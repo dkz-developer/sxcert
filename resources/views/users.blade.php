@@ -54,7 +54,7 @@ a<!DOCTYPE html>
 
 				<div class="content" v-cloak v-if="(navShift == '1')">
 					<div class="title">
-						<a href="/rom" class="btn btn-info"><i class="fa fa-add" ></i>上传ROM</a>
+						<a href="/firmware" class="btn btn-info"><i class="fa fa-add" ></i>上传ROM</a>
 
 						<div class="item">
 							<span data-type="1" @click="itemShiftEvent" @if(empty($_GET['status'])) class="active" @endif onclick="window.location.href='/users'">全部<small>({{$allcount}})</small></span>

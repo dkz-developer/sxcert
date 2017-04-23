@@ -3,12 +3,8 @@
 (function($) {
 
     var keyword = unescape($.mytools.GetQueryString("keyword"));    // 关键字
-    // var type = $.mytools.GetQueryString("type");   // 登录 注册
     var backURL = $.mytools.getCookie("backURL") ? $.mytools.getCookie("backURL") : "/load";
-
     var type = location.pathname.split("/")[1]; // 登录 注册
-
-    var locationURL = window.location.host;
 
 	// 实例化vue
 	var vm = new Vue({
@@ -81,7 +77,7 @@
         };
 
         if(flag) {
-            $.post(locationURL+"/custome/smsre", params, function(backData) {
+            $.post("/custome/smsre", params, function(backData) {
                 if(backData && backData.code === "S"){
                     clearTimeout(setCountdown);
                     setCountdown($(obj));
@@ -114,7 +110,7 @@
                 "_token": $("#app").attr("data-value"),
             };
 
-            $.post(locationURL+'/custome/login', params, function(backData) {
+            $.post('/custome/login', params, function(backData) {
                 if(backData && backData.code === "S") {
                     window.open(backURL, "_self");
                 }else {
@@ -151,7 +147,7 @@
                 "_token": $("#app").attr("data-value"),
             };
 
-            $.post(locationURL+'/custome/register', params, function(backData) {
+            $.post('/custome/register', params, function(backData) {
 
                 if(backData && backData.code === "S") {
                     window.location.href = "/enter?type=login";

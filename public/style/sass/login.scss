@@ -4,8 +4,6 @@
  * -------------------------------------------------
 */
 @import "./bootstrap.min.css";
-@import "./_topNav_index.scss";
-@import "./footer.scss";
 
 body {
 	background: #f1f1f1;
@@ -16,6 +14,75 @@ body {
 * {
 	padding: 0;
 	margin: 0;
+}
+
+nav {
+	height: 60px;
+	background: #333;
+	.inner {
+		width: 1200px;
+		height: 60px;
+		margin: 0 auto;
+		
+		.logo {
+			width: 100px;
+			height: 20px;
+			background: #fff;
+			float: left;
+			margin-top: 20px;
+		}
+
+		.items {
+			float: right;
+			margin-right: 10px;
+
+			li {
+				height: 60px;
+				line-height: 60px;
+				float: left;
+				text-align: center;
+				list-style: none;
+				margin-right: 15px;
+
+				a {
+					color: #fff;
+					text-decoration: none;
+
+					&:hover {
+						color: #03978b;
+					}
+				}
+
+
+			}
+		}
+
+		.search {
+			float: right;
+			margin-top: 15px;
+			position: relative;
+
+			input {
+				outline: none;
+				border: none;
+				width: 200px;
+				height: 30px;
+				padding-left: 30px;
+			}
+
+			span {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 30px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				cursor: pointer;
+				font-size: 18px;
+			}
+		}
+	}
 }
 
 
@@ -59,15 +126,10 @@ body {
 				padding: 10px;
 				color: #969696;
 				font-weight: 500;
-				cursor: pointer;
 
 				&.active {
 					font-weight: 700;
 					color: #ea6f5a;
-					border-bottom: 2px solid #ea6f5a;
-				}
-
-				&:hover {
 					border-bottom: 2px solid #ea6f5a;
 				}
 			}
@@ -96,20 +158,14 @@ body {
 						border: 1px solid #c8c8c8;
 						background-color: hsla(0,0%,71%,.1);
 						vertical-align: middle;
-						
+						border-radius:0 0 4px 4px;
+
 						&.restyle {
-							border-bottom: none;
-						}
-					}
-
-					&:first-child {
-						input {
 							border-radius: 4px 4px 0 0;
-						}
-					}
+							border-bottom: none;
 
-					.lastIn {
-						border-radius: 0 0 4px 4px;
+						}
+
 					}
 
 					i {
@@ -121,52 +177,27 @@ body {
 					}
 				}
 
-				.sendMessage {
-					position: absolute;
-					top: 8px;
-					right: 5px;
-				}
-
-				.findPassword {
-					height: 20px;
-					line-height: 30px;
-					text-align: right;
-					margin-top: 10px;
-
-					a {
-						color: #666;
-						text-decoration: none;
-
-						&:hover {
-							color: #333;
-						}
-					}
-				}
-
 				.submitBtn {
 					button {
-						margin-top: 20px;
 						width: 100%;
+						margin-top: 20px;
 					}
-				}
-
-				.error-info {
-					color: red;
-					text-align: center;
-					height: 30px;
-					line-height: 30px;
-					margin-top: 20px;
-				}
-
-				.vCode-img {
-					position: absolute;
-					top: 5px;
-					right: 10px;
-					cursor: pointer;
 				}
 
 			}
 		}
+	}
+}
+
+.footer {
+	width: 100%;
+	background: #444855;
+	height: 200px;
+
+	p {
+		color: #fff;
+		text-align: center;
+		padding-top: 50px;
 	}
 }
 

@@ -18,7 +18,7 @@ class ForumController extends Controller
                     ->leftJoin('BBSTopic', 'BBSsession.SId', '=', 'BBSTopic.SId')
                     ->leftJoin('BBSReply', 'BBSReply.TId', '=', 'BBSTopic.TId')
                     ->groupBy('BBSsession.SId')
-                    ->select('BBSsession.SId','BBSsession.SName',count('BBSTopic.SId'))
+                    ->select('BBSsession.SId','BBSsession.SName',"count('BBSTopic.SId') as TCount")
                     //->select('BBSsession.SId','BBSsession.SName',"count('BBSTopic.SId') as TCount",'count(.BBSReply.TId.) as RCount','max(BBSsession.UpdateTime)')
                     ->get();
             

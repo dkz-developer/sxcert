@@ -18,7 +18,7 @@
 		<nav class="clearfix">
 			<div class="inner">
 				<div class="logo">
-					<a href="/load"><img src="images/logo_main3.png" alt=""></a>
+					<a href="/"><img src="images/logo_main3.png" alt=""></a>
 				</div>
 				<div class="search">
 					<input type="text" placeholder="请输入...">	

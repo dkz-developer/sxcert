@@ -3,8 +3,12 @@
 (function($) {
 
     var keyword = unescape($.mytools.GetQueryString("keyword"));    // 关键字
-    var type = $.mytools.GetQueryString("type");   // 登录 注册
+    // var type = $.mytools.GetQueryString("type");   // 登录 注册
     var backURL = $.mytools.getCookie("backURL") ? $.mytools.getCookie("backURL") : "/load";
+
+    var type = location.pathname.split("/")[1];
+
+    alert(type)
 
 	// 实例化vue
 	var vm = new Vue({
@@ -116,6 +120,7 @@
                 }else {
                    layer.msg(backData.msg);
                     loginBtn.html("登录");
+                    vm.login_captchaObj.reset();
                 }
 
             }, "json");             
@@ -153,6 +158,8 @@
                 }else {
                    layer.msg(backData.msg);
                     registerBtn.html("注册");
+                    vm.register_captchaObj.reset();
+                    
                 }
             }, "json");             
         }
@@ -183,10 +190,14 @@
                     vm.login_geetest_challenge = result.geetest_challenge;
                     vm.login_geetest_validate = result.geetest_validate;
                     vm.login_geetest_seccode = result.geetest_seccode;
+
+                    vm.login_captchaObj = captchaObj;
                  }else {
                     vm.register_geetest_challenge = result.geetest_challenge;
                     vm.register_geetest_validate = result.geetest_validate;
                     vm.register_geetest_seccode = result.geetest_seccode;
+
+                    vm.register_captchaObj = captchaObj;
                  }
 
              });

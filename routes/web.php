@@ -12,7 +12,7 @@
 */
 // 首页
 Route::get('/', function () {
-	return view('index');
+	return view('load');
 });
  
 // 登录注册页
@@ -102,6 +102,7 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/gt_start','UserController@captcha');
 	Route::post('/addUserInfo','LoadListController@userRomAdd');
 	// 下载页
+	Route::get('/','LoadListController@loadlist');
 	Route::get('/load','LoadListController@loadlist');
 	Route::get('/b','LoadListController@searchBrand');
 	Route::get('/c','LoadListController@searchCountry');

@@ -72,11 +72,7 @@
 
 								  	<label for="model" class="col-sm-2 control-label">机型</label>
 								  	<div class="col-sm-4">
-<<<<<<< HEAD
-								    	<select id="basic" class="selectpicker show-tick form-control" data-live-search="true">
-=======
 								    	<select id="model" class="selectpicker show-tick form-control" data-live-search="true">
->>>>>>> 7e8239a5802f87a011ddd5e6abe04efd0bf0e83d
 									    	<option disabled selected style='display:none;'>选择一个机型</option> 
 									    		@foreach ($model as $val)
 											<option value="{{$val->name}}">{{$val->name}}</option>

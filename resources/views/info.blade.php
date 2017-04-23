@@ -113,7 +113,7 @@
 						@endforeach
 						@if(empty(session('userInfo')))
 							<div class="alert alert-info" style="margin-top: 25px;">
-								<a href="/enter?type=login" class="btn login-btn btn-danger">登录以评论</a>
+								<a href="/login" class="btn login-btn btn-danger">登录以评论</a>
 							</div>
 						@else
 							<div class="mesBoard">

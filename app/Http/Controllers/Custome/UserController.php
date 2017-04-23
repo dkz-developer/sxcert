@@ -76,13 +76,13 @@ class UserController extends Controller
 			);
 
 		if (session('gtserver') == 1) {   //服务器正常
-			$result = $GtSdk->success_validate($request->geetest_challenge, $request->geetest_validate, $request->geetest_seccode, $data);
-			if (! $result) {
-				return response()->json(['code'=>'F','msg'=>'验证码错误，请重试！']);
+				$result = $GtSdk->success_validate($request->geetest_challenge, $request->geetest_validate, $request->geetest_seccode, $data);
+				if (! $result) {
+					return response()->json(['code'=>'F','msg'=>'验证码错误，请重试！']);
 			}
 		}else{  //服务器宕机,走failback模式
-			if (! $GtSdk->fail_validate($request->geetest_challenge,$request->geetest_validate,$request->geetest_seccode)) {
-				return response()->json(['code'=>'F','msg'=>'验证码错误，请重试！']);
+				if (! $GtSdk->fail_validate($request->geetest_challenge,$request->geetest_validate,$request->geetest_seccode)) {
+					return response()->json(['code'=>'F','msg'=>'验证码错误，请重试！']);
 			}
 		}
 		$userName = $request->input('username');

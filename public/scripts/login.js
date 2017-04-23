@@ -3,12 +3,10 @@
 (function($) {
 
     var keyword = unescape($.mytools.GetQueryString("keyword"));    // 关键字
-    // var type = $.mytools.GetQueryString("type");   // 登录 注册
+    var type = $.mytools.GetQueryString("type");   // 登录 注册
     var backURL = $.mytools.getCookie("backURL") ? $.mytools.getCookie("backURL") : "/load";
 
-    var type = location.pathname.split("/")[1];
-
-    alert(type)
+    // var type = location.pathname.split("/")[1];
 
 	// 实例化vue
 	var vm = new Vue({

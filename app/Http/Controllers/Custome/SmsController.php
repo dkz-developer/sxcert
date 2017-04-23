@@ -73,7 +73,7 @@ class SmsController extends Controller
 			$lastTime = Session::get($phone);
 		}
 		
-		if((time()-$lastTime) > 300){
+		//if((time()-$lastTime) > 300){
 			//发送短信
 			$vcode = rand(100000,999999);
 			$name = 'GSM玩机网';
@@ -85,9 +85,9 @@ class SmsController extends Controller
 			}else{
 				return response()->json(['code'=>'S','msg'>'短信发送失败！']);
 			}
-		}
+		//}
 		//不发送短信  直接提示发送成功
-		return response()->json(['code'=>'S','msg'=>'短信发送成功！']);
+		//return response()->json(['code'=>'S','msg'=>'短信发送成功！']);
 		
 	}
 	

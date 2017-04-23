@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
  
 // 登录注册页
-Route::get('/login', function () {
+Route::get('/enter', function () {
 	return view('enter');
 });
 

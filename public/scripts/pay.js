@@ -4,7 +4,6 @@
 
     var keyword = unescape($.mytools.GetQueryString("keyword"));    // 关键字
     var type = $.mytools.GetQueryString("type");   // 登录 注册
-     var backURL = $.mytools.getCookie("backURL") ? $.mytools.getCookie("backURL") : document.domain+"/load";
 
 	// 实例化vue
 	var vm = new Vue({
@@ -50,7 +49,7 @@
 
             $.post('/custome/loadlist', params, function(backData) {
                 if(backData && backData.code === "S") {
-                    window.open(backURL, "_self");
+
                 }else {
                     layer.msg(backData.msg);
                     submitBtn.html("立即充值");

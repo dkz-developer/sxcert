@@ -16,7 +16,11 @@ Route::get('/', function () {
 });
  
 // 登录注册页
-Route::get('/enter', function () {
+Route::get('/login', function () {
+	return view('enter');
+});
+
+Route::get('/register', function () {
 	return view('enter');
 });
 
@@ -98,17 +102,17 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/users','UserController@userCenter');
 	Route::post('/add/InfoComment','LoadListController@addInfoComment');
 	Route::post('/buyInfo','LoadListController@download');
-	Route::get('/rom','LoadListController@userRom');
+	Route::get('/firmware','LoadListController@userRom');
 	Route::get('/gt_start','UserController@captcha');
 	Route::post('/addUserInfo','LoadListController@userRomAdd');
 	// 下载页
 	Route::get('/','LoadListController@loadlist');
-	Route::get('/load','LoadListController@loadlist');
+	Route::get('/rom','LoadListController@loadlist');
 	Route::get('/b','LoadListController@searchBrand');
 	Route::get('/c','LoadListController@searchCountry');
 	Route::get('/d','LoadListController@searchModel');
 	Route::get('/e','LoadListController@searchVersion');
 	Route::get('/f','LoadListController@searchOs');
-	Route::get('/g','LoadListController@searchType');
+	Route::get('/g','·ListController@searchType');
 	Route::get('/h','LoadListController@searchKeyword');
 });

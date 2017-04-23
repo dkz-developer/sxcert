@@ -4,7 +4,10 @@
  * -------------------------------------------------
 */
 @import "./bootstrap.min.css";
-@import "./slider.css";
+@import "./flickerplate.css";
+@import "./_topNav_index.scss";
+@import "./footer.scss";
+
 
 body {
 	background: #f3f3f3;
@@ -17,74 +20,7 @@ body {
 	margin: 0;
 }
 
-nav {
-	height: 60px;
-	background: #333;
-	.inner {
-		width: 1200px;
-		height: 60px;
-		margin: 0 auto;
-		
-		.logo {
-			width: 100px;
-			height: 20px;
-			background: #fff;
-			float: left;
-			margin-top: 20px;
-		}
 
-		.items {
-			float: right;
-			margin-right: 10px;
-
-			li {
-				height: 60px;
-				line-height: 60px;
-				float: left;
-				text-align: center;
-				list-style: none;
-				margin-right: 15px;
-
-				a {
-					color: #fff;
-					text-decoration: none;
-
-					&:hover {
-						color: #03978b;
-					}
-				}
-
-
-			}
-		}
-
-		.search {
-			float: right;
-			margin-top: 15px;
-			position: relative;
-
-			input {
-				outline: none;
-				border: none;
-				width: 200px;
-				height: 30px;
-				padding-left: 30px;
-			}
-
-			span {
-				position: absolute;
-				left: 0;
-				top: 0;
-				width: 30px;
-				height: 30px;
-				line-height: 30px;
-				text-align: center;
-				cursor: pointer;
-				font-size: 18px;
-			}
-		}
-	}
-}
 
 .container {
 	width: 1200px;
@@ -94,9 +30,9 @@ nav {
 	.hot-post {
 
 		.layout-left {
-			padding: 0 23px;
 			width: 533px;
 			float: left;
+			height: 330px;
 
 		}
 
@@ -379,18 +315,6 @@ nav {
 			    }
 			}
 		}
-	}
-}
-
-.footer {
-	width: 100%;
-	background: #444855;
-	height: 200px;
-
-	p {
-		color: #fff;
-		text-align: center;
-		padding-top: 50px;
 	}
 }
 

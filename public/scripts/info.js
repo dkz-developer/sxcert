@@ -5,7 +5,6 @@
     var id = location.pathname.split("/")[2]; //  资料ID
 
 
-
 	// 实例化vue
 	var vm = new Vue({
 	    el: '#app',

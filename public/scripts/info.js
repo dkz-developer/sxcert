@@ -2,7 +2,7 @@
 
 (function($) {
 
-    var id = $.mytools.GetQueryString("keyword");    // 资料ID
+    var id = location.pathname.split("/")[2]; //  资料ID
 
 
 

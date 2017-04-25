@@ -210,7 +210,7 @@ class InfoController extends Controller
 	}
 	
 	
-	public function commonDelete(Request $request)
+	public function commonDelete(Request $request) 
 	{
 	    $type = $request->input('type');
 	    $id = $request->input('id');

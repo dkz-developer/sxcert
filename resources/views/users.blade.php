@@ -74,12 +74,11 @@ a<!DOCTYPE html>
 							<div class="row-08">类型</div>
 							<div class="row-09">价格</div>
 							<div class="row-10">下载量</div>
-							<div class="row-11">操作</div>
 						</div>
 
+						@foreach($uinfoList as $val)
 						<div class="list-item">
 							<ul>
-								@foreach($uinfoList as $val)
 								<li class="row-01">@if($val->status == 1) 审核中 @elseif(2 == $val->status) 发布中 @else 审核不通过 @endif</li>
 								<li class="row-02">{{$val->brand}}</li>
 								<li class="row-03">{{$val->country}}</li>
@@ -90,14 +89,9 @@ a<!DOCTYPE html>
 								<li class="row-08">{{$val->type}}</li>
 								<li class="row-09">{{$val->price}}</li>
 								<li class="row-10">{{$val->download_num}}</li>
-								@if(2 == $val->status)
-									<li class="row-11"><a href="/a/{{$val->info_id}}" class="btn btn-info">下载</a></li>
-								@else 
-									<li class="row-11">-</li>
-								@endif
-								@endforeach
 							</ul>
 						</div>
+						@endforeach
 					</div>
 				</div>
 

@@ -44,7 +44,7 @@
 
 		<div class="box-container">
 			<div class="logo">
-				<a href="/load"><img src="images/logo.png" alt=""></a>
+				<img src="images/logo.png" alt="">
 			</div>
 
 			<div class="search">

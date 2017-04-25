@@ -211,4 +211,21 @@ class InfoController extends Controller
 			return response()->json(['code'=>'S','msg'=>'添加成功']);
 		return response()->json(['code'=>'F','msg'=>'添加失败']);
 	}
+	
+	public function commonDelete(Request $request) 
+	{
+	    $type = $request->input('type');
+	    $id = $request->input('id');
+	    
+	    if(! $type || ! $id)
+	        return response()->json(['code'=>'F','msg'=>'参数错误']);
+	    
+	    $Model = new InfoCommon();
+	    
+	    $result = $Model->where('type',$type)->where('id',$id)->delete();
+	    if($result)
+	        return response()->json(['code'=>'S','msg'=>'操作成功']);
+	    return response()->json(['code'=>'F','msg'=>'操作失败']);
+	}
+
 }

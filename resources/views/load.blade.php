@@ -77,7 +77,7 @@
 					<div class="list-item" v-cloak v-for="(item,index) in list">
 						<ul>
 							<!-- <li class="row-01"><a :href="['/search?keyword='+item.tag ]">@{{item.tag}}</a></li> -->
-							<li class="row-02"><a target="_blank" href="/b?k={{urlencode($val->brand)}}">{{$val->brand}}</a></li>
+							<li class="row-02"><a target="_blank" href="/b?k=<?php $keyword = explode('/',$val->brand); echo urldecode($keyword [1])?>">{{$val->brand}}</a></li>
 							<li class="row-03"><a target="_blank" href="/c?k=<?php $keyword = explode('/',$val->country); echo urldecode($keyword [1])?>">{{$val->country}}</a></li>
 							<li class="row-04"><a target="_blank" href="/d?k={{urlencode($val->model)}}">{{$val->model}}</a></li>
 							<li class="row-05"><a target="_blank" href="/e?k={{urlencode($val->version)}}">{{$val->version}}</a></li>

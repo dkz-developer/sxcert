@@ -35,7 +35,7 @@ class LoadListController extends Controller
 	public function userRomAdd(Request $request)
 	{
 		if(empty(session('userInfo')))
-			return response()->json(['code'=>'F','msg'=>'请先登录！','url'=>'/enter?type=login']);
+			return response()->json(['code'=>'F','msg'=>'请先登录！','url'=>'/login']);
 		$InfoUser = new InfoUser();
 		$InfoUser->brand = $request->brand;
 		$InfoUser->model = $request->model;
@@ -56,7 +56,7 @@ class LoadListController extends Controller
 	public function download(Request $request)
 	{
 		if( empty(session('userInfo')) ) 
-			return response()->json(['code'=>'F','msg'=>'','url'=>'/enter?type=login']);
+			return response()->json(['code'=>'F','msg'=>'','url'=>'/login']);
 		$id = $request->input('info_id');
 		if(! is_numeric($id))
 			return response()->json(['code'=>'F','msg'=>'参数错误']);
@@ -185,9 +185,9 @@ class LoadListController extends Controller
 		$arr = [1=>'brand','country','model','version','os','type'];
 		$where = [];
 		if($index==7) {
-			$list = Info::where('model','like',"%{$keyword}%")->orWhere('version','like',"%{$keyword}%")->orderBy('sort','desc')->simplePaginate(20);
+			$list = Info::where('model','like',"%{$keyword}%")->orWhere('version','like',"%{$keyword}%")->orderBy('updated_at','desc')->simplePaginate(20);
 		}else {
-			$list = Info::where($arr[$index],'like',"%{$keyword}%")->orderBy('sort','desc')->simplePaginate(20);
+			$list = Info::where($arr[$index],'like',"%{$keyword}%")->orderBy('updated_at','desc')->simplePaginate(20);
 		}
 		return $list;
 		//return view('search',['list'=>$list]);
@@ -200,7 +200,7 @@ class LoadListController extends Controller
 	public function loadlist(Request $request)
 	{
 		$Info = new Info();
-		$list = $Info->where('status',2)->orderBy('sort' , 'desc')->simplePaginate(20);
+		$list = $Info->where('status',2)->orderBy('updated_at' , 'desc')->simplePaginate(20);
 		return view('load',['list'=>$list]);
 	}
 }

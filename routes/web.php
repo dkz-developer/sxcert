@@ -113,6 +113,6 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/d','LoadListController@searchModel');
 	Route::get('/e','LoadListController@searchVersion');
 	Route::get('/f','LoadListController@searchOs');
-	Route::get('/g','·ListController@searchType');
+	Route::get('/g','LoadListController@searchType');
 	Route::get('/h','LoadListController@searchKeyword');
 });

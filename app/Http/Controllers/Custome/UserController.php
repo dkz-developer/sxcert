@@ -23,10 +23,10 @@ class UserController extends Controller
 	public function userCenter(Request $request)
 	{
 		if(empty(session('userInfo')))
-			return redirect('/enter?type=login');
+			return redirect('/login');
 		$userInfo = User::find(session('userInfo.UserId'));
 		if(empty($userInfo))
-			return redirect('/enter?type=register');
+			return redirect('/register');
 		$buyRecord = BuyRecord::where('user_id',session('userInfo.UserId'))->orderBy('created_at','DESC')->get();
 		$rechargeRecord = RechargeRecord::where('user_id',session('userInfo.UserId'))->orderBy('created_at','DESC')->get();
 		$allcount = InfoUser::where('user_id',session('userInfo.UserId'))->count();

@@ -9,12 +9,14 @@
 			echo !empty($brand) ?  trim($brand [0]) : '';
 		?>-<?php 
 			$country = explode('/',$info->country);
-			echo !empty($country [1]) ?  $country [1] : '';?>-{{$info->model}}-{{$info->version}}-{{$info->os}}-GSMGOOD</title>
+			echo !empty($country [1]) ?  $country [1] : '';?>-{{$info->model}}-{{$info->version}}-{{$info->os}}-下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
 	<meta name="viewport" contant="width=device-width, initial-scale=1">
-	<meta name="keywords" content="">
-	<meta name="description" content="">
+	<meta name="keywords" content="下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源">
+	<meta name="description" content="下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源">
+	<link href="/images/favicon.ico" rel="icon" type="image/icon">
+	
 	<link href="/scripts/lib/popover/jquery.webui-popover.min.css" rel="stylesheet">
 	<link href="/style/css/info.css" rel="stylesheet">
 </head>
@@ -23,13 +25,13 @@
 		<nav class="clearfix">
 			<div class="inner">
 				<div class="logo">
-					<a href="/load">GSMGOOD</a>
+					<a href="/rom">GSMGOOD</a>
 				</div>
 
 				<div class="btnGroup">
 					@if(empty(session('userInfo')))
-						<a class="login-btn" href="/enter?type=login">登录</a>
-						<a class="register-btn" href="/enter?type=register">注册</a>
+						<a class="login-btn" href="/login">登录</a>
+						<a class="register-btn" href="/register">注册</a>
 					@else
 						<a class="login-btn" href="/users">{{session('userInfo.UserName')}}</a>
 						<a class="register-btn" href='/custome/logout'>退出</a>
@@ -38,7 +40,7 @@
 
 				<div class="items">
 					<ul>
-						<li><a href="/load">首页</a></li>
+						<li><a href="/rom">首页</a></li>
 						<!-- <li><a href="/">讨论区</a></li> -->
 						<li><a href="/pay">充值</a></li>
 						<li><a href="/feedback">意见反馈</a></li>
@@ -69,6 +71,7 @@
 							<ul>
 								<li>品牌：<a href="/b?k={{$info->brand}}"><?php $brand = explode('/',$info->brand);echo $brand [0];?></a></li>
 								<li>区域/国家：<a href="/c?k={{$info->country}}"><?php $country = explode('/',$info->country);echo $country [0];?></a></li>
+								<li>资料类型：<a  href="/g?k=<?php  $keyword = explode('/', $info->type); if(isset($keyword [1])) echo urlencode($keyword [1]);?>">{{$info->type}}</a></li>
 								<li>型号：<a href="/d?k={{$info->model}}">{{$info->model}}</a></li>
 								<li>版本号码：<a href="/e?k={{$info->version}}">{{$info->version}}</a></li> 
 								<li>系统版本：<a href="/f?k={{$info->os}}">{{$info->os}}</a></li>
@@ -113,7 +116,7 @@
 						@endforeach
 						@if(empty(session('userInfo')))
 							<div class="alert alert-info" style="margin-top: 25px;">
-								<a href="/enter?type=login" class="btn login-btn btn-danger">登录以评论</a>
+								<a href="/login" class="btn login-btn btn-danger">登录以评论</a>
 							</div>
 						@else
 							<div class="mesBoard">

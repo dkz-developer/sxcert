@@ -3,8 +3,8 @@
 (function($) {
 
     var keyword = unescape($.mytools.GetQueryString("keyword"));    // 关键字
-    var type = $.mytools.GetQueryString("type");   // 登录 注册
-    var backURL = $.mytools.getCookie("backURL") ? $.mytools.getCookie("backURL") : "/load";
+    var backURL = $.mytools.getCookie("backURL") ? $.mytools.getCookie("backURL") : "/rom";
+    var type = location.pathname.split("/")[1]; // 登录 注册
 
 	// 实例化vue
 	var vm = new Vue({
@@ -116,6 +116,7 @@
                 }else {
                    layer.msg(backData.msg);
                     loginBtn.html("登录");
+                    vm.login_captchaObj.reset();
                 }
 
             }, "json");             
@@ -149,10 +150,12 @@
             $.post('/custome/register', params, function(backData) {
 
                 if(backData && backData.code === "S") {
-                    window.location.href = "/enter?type=login";
+                    window.location.href = "/login";
                 }else {
                    layer.msg(backData.msg);
                     registerBtn.html("注册");
+                    vm.register_captchaObj.reset();
+                    
                 }
             }, "json");             
         }
@@ -183,10 +186,14 @@
                     vm.login_geetest_challenge = result.geetest_challenge;
                     vm.login_geetest_validate = result.geetest_validate;
                     vm.login_geetest_seccode = result.geetest_seccode;
+
+                    vm.login_captchaObj = captchaObj;
                  }else {
                     vm.register_geetest_challenge = result.geetest_challenge;
                     vm.register_geetest_validate = result.geetest_validate;
                     vm.register_geetest_seccode = result.geetest_seccode;
+
+                    vm.register_captchaObj = captchaObj;
                  }
 
              });

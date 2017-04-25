@@ -78,7 +78,7 @@
     }
 
    //  关键字搜索
-    function search(event) {a
+    function search(event) {
 
         var keyword = $(".search").find("input").val();
 

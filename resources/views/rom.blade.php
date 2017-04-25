@@ -2,13 +2,14 @@
 <html lang="zh-cmn-Hans">
 <head>
 	<meta charset="utf-8">
-	<title>  </title>
-
+	<title>下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
 	<meta name="viewport" contant="width=device-width, initial-scale=1">
-	<meta name="keywords" content="">
-	<meta name="description" content="">
+	<meta name="keywords" content="下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源">
+	<meta name="description" content="下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源">
+	<link href="/images/favicon.ico" rel="icon" type="image/icon">
+	
     <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
 	 <link rel="stylesheet" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
     <link href="style/css/rom.css" rel="stylesheet">
@@ -18,13 +19,13 @@
 		<nav class="clearfix">
 			<div class="inner">
 				<div class="logo">
-					<a href="/load">GSMGOOD</a>
+					<a href="/rom">GSMGOOD</a>
 				</div>
 
 				<div class="btnGroup">
 					@if(empty(session('userInfo')))
-						<a class="login-btn" href="/enter?type=login">登录</a>
-						<a class="register-btn" href="/enter?type=register">注册</a>
+						<a class="login-btn" href="/login">登录</a>
+						<a class="register-btn" href="/register">注册</a>
 					@else
 						<a class="login-btn" href="/users">{{session('userInfo.UserName')}}</a>
 						<a class="register-btn" href='/custome/logout'>退出</a>
@@ -33,7 +34,7 @@
 
 				<div class="items">
 					<ul>
-						<li><a href="/load">首页</a></li>
+						<li><a href="/rom">首页</a></li>
 						<!-- <li><a href="/">讨论区</a></li> -->
 						<li><a href="/pay">充值</a></li>
 						<li><a href="/feedback">意见反馈</a></li>

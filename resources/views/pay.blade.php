@@ -2,13 +2,13 @@
 <html lang="zh-cmn-Hans">
 <head>
 	<meta charset="utf-8">
-	<title>  </title>
-
+	<title>下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
 	<meta name="viewport" contant="width=device-width, initial-scale=1">
-	<meta name="keywords" content="">
-	<meta name="description" content="">
+	<meta name="keywords" content="下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源">
+	<meta name="description" content="下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源">
+	<link href="/images/favicon.ico" rel="icon" type="image/icon">
 
     <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="style/css/pay.css" rel="stylesheet">
@@ -18,7 +18,7 @@
 		<nav class="clearfix">
 			<div class="inner">
 				<div class="logo">
-					<a href="/load"><img src="images/logo_main3.png" alt=""></a>
+					<a href="/rom"><img src="images/logo_main3.png" alt=""></a>
 				</div>
 				<div class="search">
 					<input type="text" placeholder="请输入...">	
@@ -26,12 +26,12 @@
 				</div>
 				<div class="items clearfix">
 					<ul>
-						<li><a href="/load">下载站</a></li>
+						<li><a href="/rom">下载站</a></li>
 						<li><a href="/pay">充值</a></li>
 						<li><a href="/service">客服</a></li>
 						@if(empty(session('userInfo')))
-							<li><a href="/enter?type=login">登录</a></li>
-							<li><a href="/enter?type=register">注册</a></li>
+							<li><a href="/login">登录</a></li>
+							<li><a href="/register">注册</a></li>
 						@else
 							<li><a href="/users">{{session('userInfo.UserName')}}</a></li>
 							<li><a href='/custome/logout'>退出</a></li>

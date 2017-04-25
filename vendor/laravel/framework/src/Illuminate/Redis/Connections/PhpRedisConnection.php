@@ -111,6 +111,36 @@ class PhpRedisConnection extends Connection
     }
 
     /**
+     * Execute commands in a pipeline.
+     *
+     * @param  callable  $callback
+     * @return array|\Redis
+     */
+    public function pipeline(callable $callback = null)
+    {
+        $pipeline = $this->client()->pipeline();
+
+        return is_null($callback)
+            ? $pipeline
+            : tap($pipeline, $callback)->exec();
+    }
+
+    /**
+     * Execute commands in a transaction.
+     *
+     * @param  callable  $callback
+     * @return array|\Redis
+     */
+    public function transaction(callable $callback = null)
+    {
+        $transaction = $this->client()->multi();
+
+        return is_null($callback)
+            ? $transaction
+            : tap($transaction, $callback)->exec();
+    }
+
+    /**
      * Evaluate a LUA script serverside, from the SHA1 hash of the script instead of the script itself.
      *
      * @param  string  $script
@@ -182,6 +212,27 @@ class PhpRedisConnection extends Connection
     }
 
     /**
+     * Execute a raw command.
+     *
+     * @param  array  $parameters
+     * @return mixed
+     */
+    public function executeRaw(array $parameters)
+    {
+        return $this->command('rawCommand', $parameters);
+    }
+
+    /**
+     * Disconnects from the Redis instance.
+     *
+     * @return void
+     */
+    public function disconnect()
+    {
+        $this->client->close();
+    }
+
+    /**
      * Pass other method calls down to the underlying client.
      *
      * @param  string  $method
@@ -190,8 +241,16 @@ class PhpRedisConnection extends Connection
      */
     public function __call($method, $parameters)
     {
+        $method = strtolower($method);
+
         if ($method == 'eval') {
             return $this->proxyToEval($parameters);
+        }
+
+        if ($method == 'zrangebyscore' || $method == 'zrevrangebyscore') {
+            $parameters = array_map(function ($parameter) {
+                return is_array($parameter) ? array_change_key_case($parameter) : $parameter;
+            }, $parameters);
         }
 
         return parent::__call($method, $parameters);

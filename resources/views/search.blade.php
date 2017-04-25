@@ -2,13 +2,13 @@
 <html lang="zh-cmn-Hans">
 <head>
 	<meta charset="utf-8">
-	<title>  </title>
-
+	<title>下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
 	<meta name="viewport" contant="width=device-width, initial-scale=1">
-	<meta name="keywords" content="">
-	<meta name="description" content="">
+	<meta name="keywords" content="下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源">
+	<meta name="description" content="下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源">
+	<link href="/images/favicon.ico" rel="icon" type="image/icon">
 
     <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
      <link href="scripts/lib/kkpager/kkpager_blue.css" rel="stylesheet">
@@ -19,13 +19,13 @@
 		<nav class="clearfix">
 			<div class="inner">
 				<div class="logo">
-					<a href="/load">GSMGOOD</a>
+					<a href="/rom">GSMGOOD</a>
 				</div>
 
 				<div class="btnGroup">
 					@if(empty(session('userInfo')))
-						<a class="login-btn" href="/enter?type=login">登录</a>
-						<a class="register-btn" href="/enter?type=register">注册</a>
+						<a class="login-btn" href="/login">登录</a>
+						<a class="register-btn" href="/register">注册</a>
 					@else
 						<a class="login-btn" href="/users?id={{session('userInfo.UserId')}}">{{session('userInfo.UserName')}}</a>
 						<a class="register-btn" href='/custome/logout'>退出</a>
@@ -44,7 +44,7 @@
 
 				<div class="items">
 					<ul>
-						<li><a href="/load">首页</a></li>
+						<li><a href="/rom">首页</a></li>
 						<!-- <li><a href="/">讨论区</a></li> -->
 						<li><a href="/pay">充值</a></li>
 						<li><a href="/feedback">意见反馈</a></li>
@@ -75,11 +75,11 @@
 						<ul>
 							<!-- <li class="row-01"><a :href="['/search?keyword='+item.tag ]">@{{item.tag}}</a></li> -->
 							<li class="row-02"><a target="_blank" href="/b?k={{urlencode($val->brand)}}">{{$val->brand}}</a></li>
-							<li class="row-03"><a target="_blank" href="/c?k={{urlencode($val->country)}}">{{$val->country}}</a></li>
+							<li class="row-03"><a target="_blank" href="/c?k=<?php $keyword = explode('/',$val->country); echo urldecode($keyword [1])?>">{{$val->country}}</a></li>
 							<li class="row-04"><a target="_blank" href="/d?k={{urlencode($val->model)}}">{{$val->model}}</a></li>
 							<li class="row-05"><a target="_blank" href="/e?k={{urlencode($val->version)}}">{{$val->version}}</a></li>
 							<li class="row-06"><a target="_blank" href="/f?k={{urlencode($val->os)}}">{{$val->os}}</a></li>
-							<li class="row-07"><a target="_blank" href="/g?k={{urlencode($val->type)}}">{{$val->type}}</a></li>
+							<li class="row-07"><a target="_blank" href="/g?k=<?php  $keyword = explode('/', $val->type); if(isset($keyword [1])) echo urlencode($keyword [1]);?>">{{$val->type}}</a></li>
 							<li class="row-08">{{$val->price}}</li>
 							<li class="row-09">{{$val->updated_at}}</li>
 							<li class="row-10">{{$val->view_num}}</li>

@@ -36,6 +36,9 @@ class InfoController extends Controller
 			$data['status']= 1;
 			$data['uinfo_id'] = $InfoUser->id;
 			$data['price'] = $InfoUser->price;
+			$data ['type'] = $InfoUser->type;
+			$data ['created_at'] = $InfoUser->created_at;
+			$data ['updated_at'] = $InfoUser->updated_at;
 			$result = $Info->insertGetId($data);
 			if($result)  {
 				$InfoUser->status = 2;
@@ -209,7 +212,6 @@ class InfoController extends Controller
 		return response()->json(['code'=>'F','msg'=>'添加失败']);
 	}
 	
-	
 	public function commonDelete(Request $request) 
 	{
 	    $type = $request->input('type');
@@ -225,4 +227,5 @@ class InfoController extends Controller
 	        return response()->json(['code'=>'S','msg'=>'操作成功']);
 	    return response()->json(['code'=>'F','msg'=>'操作失败']);
 	}
+
 }

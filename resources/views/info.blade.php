@@ -69,8 +69,8 @@
 					<div class="info well well-sm clearfix">
 						<div class="left"> 
 							<ul>
-								<li>品牌：<a href="/b?k={{$info->brand}}"><?php $brand = explode('/',$info->brand);echo $brand [0];?></a></li>
-								<li>区域/国家：<a href="/c?k={{$info->country}}"><?php $country = explode('/',$info->country);echo $country [0];?></a></li>
+								<li>品牌：<a href="/b?k=<?php $keyword = explode('/',$info->brand); echo urldecode($keyword [1])?>" ><?php $brand = explode('/',$info->brand);echo $brand [0];?></a></li>
+								<li>区域/国家：<a href="/c?k=<?php $keyword = explode('/',$info->country); echo urldecode($keyword [1])?>"><?php $country = explode('/',$info->country);echo $country [0];?></a></li>
 								<li>资料类型：<a  href="/g?k=<?php  $keyword = explode('/', $info->type); if(isset($keyword [1])) echo urlencode($keyword [1]);?>">{{$info->type}}</a></li>
 								<li>型号：<a href="/d?k={{$info->model}}">{{$info->model}}</a></li>
 								<li>版本号码：<a href="/e?k={{$info->version}}">{{$info->version}}</a></li> 

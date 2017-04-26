@@ -109,7 +109,13 @@
 
 				$.post("/addUserInfo", submitInfo, function(backData) {
 	                if(backData && backData.code === "S"){
-	                	window.location.href = "/rom";
+
+						// layer.alert("添加成功！等待管理员审核", {skin: 'layui-layer-molv',closeBtn: 0}, function(){
+						  	
+						// });
+
+						window.location.reload();
+
 	                }else{
 	                    layer.msg(backData.msg);
 	                    _this.html('<i class="fa fa-pencil"></i> 提交');

@@ -125,13 +125,18 @@
 </html>
 <script>
 	$(function() {
+
+		var keyword = $.mytools.GetQueryString("k");    // 关键字
+
 		$("#searchBtn").click(function() {
 
 			var keyword = $("#keyword").val();
 
-			if(keyword.length <3 ) return false;
+			if(keyword.length < 3) return false;
 
 		})
+
+		$("#keyword").val(keyword);
 	})
 </script>
 

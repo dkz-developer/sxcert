@@ -4,7 +4,6 @@
 
     var keyword = unescape($.mytools.GetQueryString("keyword"));    // 关键字
     var type = $.mytools.GetQueryString("type");   // 登录 注册
-    var backURL = "/load";
 
 	// 实例化vue
 	var vm = new Vue({
@@ -56,7 +55,7 @@
 
             $.post('/restpwd', params, function(backData) {
                 if(backData && backData.code === "S") {
-                   window.location.href = "/enter?type=login";
+                   window.location.href = "/login";
                 }else {
                     resetBtn.html("重置密码");
                     layer.msg(backData.msg);

@@ -48,6 +48,33 @@ nav {
           font-size: 16px; }
           nav .inner .items li a:hover {
             color: #2aa5c4; }
+    nav .inner .search {
+      height: 35px;
+      float: left;
+      margin: 14px 0 0 60px; }
+      nav .inner .search input {
+        float: left;
+        height: 35px;
+        outline: none;
+        width: 350px;
+        padding-left: 20px;
+        border-radius: 4px 0 0 4px;
+        float: left; }
+      nav .inner .search button {
+        width: 80px;
+        height: 35px;
+        line-height: 35px;
+        text-align: center;
+        background: #3fbad9;
+        color: #fff;
+        font-weight: 600;
+        float: left;
+        border: none;
+        outline: none;
+        border-radius: 0 4px 4px 0;
+        transition: all 0.3s ease 0s; }
+        nav .inner .search button:hover {
+          background: #2aa5c4; }
     nav .inner .btnGroup {
       float: right;
       height: 60px;
@@ -169,15 +196,15 @@ a {
         .box-container .main-content .content .inner .list-item li a {
           text-decoration: none; }
     .box-container .main-content .content .inner-nav1 .row-01 {
-      width: 60px; }
+      width: 70px; }
     .box-container .main-content .content .inner-nav1 .row-02 {
-      width: 60px; }
+      width: 70px; }
     .box-container .main-content .content .inner-nav1 .row-03 {
-      width: 60px; }
+      width: 70px; }
     .box-container .main-content .content .inner-nav1 .row-04 {
       width: 100px; }
     .box-container .main-content .content .inner-nav1 .row-05 {
-      width: 100px; }
+      width: 148px; }
     .box-container .main-content .content .inner-nav1 .row-06 {
       width: 68px; }
     .box-container .main-content .content .inner-nav1 .row-07 {
@@ -188,8 +215,6 @@ a {
       width: 70px; }
     .box-container .main-content .content .inner-nav1 .row-10 {
       width: 70px; }
-    .box-container .main-content .content .inner-nav1 .row-11 {
-      width: 80px; }
     .box-container .main-content .content .inner-nav2 .row-01 {
       width: 160px; }
     .box-container .main-content .content .inner-nav2 .row-02 {

@@ -2,7 +2,8 @@
 
 (function($) {
 
-    var keyword = $.mytools.GetQueryString("keyword");    // 关键字
+    var keyword = $.mytools.GetQueryString("k");    // 关键字
+
 
 	// 实例化vue
 	var vm = new Vue({
@@ -91,8 +92,10 @@
 
     $(function() {
 
+        $("#keyword")val(keyword);
+
 		// 请求接口加载列表数据
-	    requestInterface();
+	    // requestInterface();
 
     });
 

@@ -118,16 +118,13 @@
              "_token": $("#app").attr("data-value")
         };
 
-        var newWin = window.open('about:blank');
 
         $.post('/buyInfo', params, function(backData) {
 
             if(backData && backData.code === "S") {
-
+                var newWin = window.open('about:blank');
                 newWin.location.href = backData.url;
-
             }else {
-
                 if(backData && backData.msg !== "") {
                     layer.alert(backData.msg,{icon:2,time:3000});
                 }

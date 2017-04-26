@@ -39,15 +39,19 @@
         if(val == null || val == undefined || val == ""){
             layer.tips(errorInfo, $(obj),{tips: [2, '#333'],time: 4000});
             return false;
-        }else if(obj.attr("id") == "username") {
+        }
+        else if(obj.attr("id") == "username") {
             if($.mytools.isHasChinese(val)) {
                  layer.tips("格式不正确，不能包含中文", $(obj),{tips: [2, '#333'],time: 4000});
                 return false;
             }else if(val.length < 6 ||  val.length > 20){
                 layer.tips("格式不正确，字符为6-20位", $(obj),{tips: [2, '#333'],time: 4000});
                 return false;
+            }else {
+                return true;
             }
-        }else{
+        }
+        else{
             return true;
         }
     }

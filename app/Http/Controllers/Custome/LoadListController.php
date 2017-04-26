@@ -98,6 +98,8 @@ class LoadListController extends Controller
 	{
 		//$id = $request->input('keyword','');
 		$result = Info::find(intval($id));
+		if(empty($result))
+			return redirect('/');
 		$result->view_num += 1;
 		$result->save();
 		if(!empty($result->uinfo_id)) {
@@ -185,9 +187,9 @@ class LoadListController extends Controller
 		$arr = [1=>'brand','country','model','version','os','type'];
 		$where = [];
 		if($index==7) {
-			$list = Info::where('model','like',"%{$keyword}%")->orWhere('version','like',"%{$keyword}%")->orderBy('updated_at','desc')->simplePaginate(20);
+			$list = Info::where('model','like',"%{$keyword}%")->orWhere('version','like',"%{$keyword}%")->orderBy('created_at','desc')->simplePaginate(20);
 		}else {
-			$list = Info::where($arr[$index],'like',"%{$keyword}%")->orderBy('updated_at','desc')->simplePaginate(20);
+			$list = Info::where($arr[$index],'like',"%{$keyword}%")->orderBy('created_at','desc')->simplePaginate(20);
 		}
 		return $list;
 		//return view('search',['list'=>$list]);
@@ -200,7 +202,7 @@ class LoadListController extends Controller
 	public function loadlist(Request $request)
 	{
 		$Info = new Info();
-		$list = $Info->where('status',2)->orderBy('updated_at' , 'desc')->simplePaginate(20);
+		$list = $Info->where('status',2)->orderBy('created_at' , 'desc')->simplePaginate(20);
 		return view('load',['list'=>$list]);
 	}
 }

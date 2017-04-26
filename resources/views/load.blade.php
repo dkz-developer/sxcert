@@ -84,7 +84,7 @@
 							<li class="row-06"><a target="_blank" href="/f?k={{urlencode($val->os)}}">{{$val->os}}</a></li>
 							<li class="row-07"><a target="_blank" href="/g?k=<?php  $keyword = explode('/', $val->type); if(isset($keyword [1])) echo urlencode($keyword [1]);?>">{{$val->type}}</a></li>
 							<li class="row-08">{{$val->price}}</li>
-							<li class="row-09">{{$val->updated_at}}</li>
+							<li class="row-09">{{$val->created_at}}</li>
 							<li class="row-10">{{$val->view_num}}</li>
 							<li class="row-11">{{$val->download_num}}</li>
 							<li class="row-12"><a target="_blank" href='/a/{{$val->id}}' class="btn btn-info">下载</a></li>

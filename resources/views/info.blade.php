@@ -75,7 +75,7 @@
 								<li>型号：<a href="/d?k={{$info->model}}">{{$info->model}}</a></li>
 								<li>版本号码：<a href="/e?k={{$info->version}}">{{$info->version}}</a></li> 
 								<li>系统版本：<a href="/f?k={{$info->os}}">{{$info->os}}</a></li>
-								<li>更新时间：{{date('Y-m-d',strtotime($info->updated_at))}}</li>
+								<li>更新时间：{{date('Y-m-d',strtotime($info->created_at))}}</li>
 							</ul>
 						</div>
 						<div class="right">

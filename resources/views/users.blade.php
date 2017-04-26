@@ -86,7 +86,7 @@ a<!DOCTYPE html>
 								<li class="row-04">{{$val->model}}</li>
 								<li class="row-05">{{$val->version}}</li>
 								<li class="row-06">{{$val->os}}</li>
-								<li class="row-07">{{$val->updated_at}}</li>
+								<li class="row-07">{{$val->created_at}}</li>
 								<li class="row-08">{{$val->type}}</li>
 								<li class="row-09">{{$val->price}}</li>
 								<li class="row-10">{{$val->download_num}}</li>

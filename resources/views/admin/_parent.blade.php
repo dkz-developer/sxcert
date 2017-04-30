@@ -50,12 +50,11 @@
 	</nav>
 			<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
 				<ul class="cl">
-					<li>超级管理员</li>
+					<li>{{session('adminInfo.user_name')}}</li>
 					<li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
 						<ul class="dropDown-menu menu radius box-shadow">
 							<li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
-							<li><a href="#">切换账户</a></li>
-							<li><a href="#">退出</a></li>
+							<li><a href="/admin/logout">退出</a></li>
 				</ul>
 			</li>
 					<li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
@@ -99,12 +98,12 @@
 	</dd>
 </dl>
 		<dl id="menu-product">
-			<dt><i class="Hui-iconfont">&#xe620;</i> 产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dt><i class="Hui-iconfont">&#xe620;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a href="product-brand.html" title="品牌管理">品牌管理</a></li>
-					<li><a href="product-category.html" title="分类管理">分类管理</a></li>
-					<li><a href="product-list.html" title="产品管理">产品管理</a></li>
+					<li><a href="/admin/adminList" title="品牌管理">管理员列表</a></li>
+					<!-- <li><a href="product-category.html" title="分类管理">分类管理</a></li>
+					<li><a href="product-list.html" title="产品管理">产品管理</a></li> -->
 		</ul>
 	</dd>
 </dl>

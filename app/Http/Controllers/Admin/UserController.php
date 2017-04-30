@@ -64,6 +64,54 @@ class UserController extends Controller
 		return view('admin.login');
 	}
 
+	public function adminList()
+	{
+		$list = AdminUser::simplePaginate(20);
+		return view('admin.adminList',['list'=>$list]);
+	}
+
+	public function  mpass(Request $request)
+	{
+		$id = $request->input('id');
+		$password = $request->input('password');
+		if(strlen($password) < 6)
+			return response()->json(['code'=>'F','msg'=>'密码格式不正确！']);
+
+		$AdminUser = AdminUser::find($id);
+		$AdminUser->password = md5($password);
+		$result = $AdminUser->save();
+		if($result)
+			return response()->json(['code'=>'S','msg'=>'操作成功!']);
+		else 
+			return response()->json(['code'=>'F','msg'=>'操作失败!']);
+	}
+
+	public function rmAdmin(Request $request)
+	{
+		$id = $request->input('id');
+		$result = AdminUser::where('id',$id)->delete();
+		if($result)
+			return response()->json(['code'=>'S','msg'=>'操作成功!']);
+		else 
+			return response()->json(['code'=>'F','msg'=>'操作失败!']);
+	}
+
+	public function addAdmins(Request $request)
+	{
+		$AdminUser = new AdminUser();
+		$userName = $request->input('userName');
+		$password = $request->input('password');
+		if(strlen($userName) < 6 || strlen($password) < 6) 
+			return response()->json(['code'=>'F','msg'=>'用户名或密码格式不正确!']);
+		$AdminUser->user_name = $userName;
+		$AdminUser->password = md5($password);
+		$result = $AdminUser->save();
+		if($result)
+			return response()->json(['code'=>'S','msg'=>'操作成功!']);
+		else 
+			return response()->json(['code'=>'F','msg'=>'操作失败!']);
+	}
+
 	public function loginHandle(Request $request)
 	{
 		$captcha = $request->input('captcha');

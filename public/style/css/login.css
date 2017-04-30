@@ -157,13 +157,16 @@ body {
     .container .main .main-content form .findPassword {
       height: 20px;
       line-height: 30px;
-      text-align: right;
       margin-top: 10px; }
       .container .main .main-content form .findPassword a {
         color: #666;
-        text-decoration: none; }
+        text-decoration: none;
+        float: right; }
         .container .main .main-content form .findPassword a:hover {
           color: #333; }
+      .container .main .main-content form .findPassword .remember {
+        float: left;
+        color: #666; }
     .container .main .main-content form .submitBtn button {
       margin-top: 20px;
       width: 100%; }

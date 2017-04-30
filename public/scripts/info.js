@@ -118,23 +118,21 @@
              "_token": $("#app").attr("data-value")
         };
 
-
-        $.post('/buyInfo', params, function(backData) {
-
+        $.ajax({
+            url: '/buyInfo',
+            type: 'POST',
+            dataType: 'json',
+            async: false,
+            data: params,
+        })
+        .done(function(backData) {
             if(backData && backData.code === "S") {
                 var newWin = window.open('about:blank');
                 newWin.location.href = backData.url;
             }else {
-                if(backData && backData.msg !== "") {
-                    layer.alert(backData.msg,{icon:2,time:3000});
-                }
-
-                if(backData && backData.url) {
-                     window.location.href = backData.url;
-                }
+                window.location.href = backData.url;
             }
-
-        }, "json"); 
+        })
     }
 
     $(function() {

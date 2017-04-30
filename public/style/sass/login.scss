@@ -130,16 +130,21 @@ body {
 				.findPassword {
 					height: 20px;
 					line-height: 30px;
-					text-align: right;
 					margin-top: 10px;
 
 					a {
 						color: #666;
 						text-decoration: none;
+						float: right;
 
 						&:hover {
 							color: #333;
 						}
+					}
+
+					.remember {
+						float: left;
+						color: #666;
 					}
 				}
 

@@ -63,6 +63,9 @@
 						</div>
 
 						<div class="findPassword">
+							<div class="remember">
+								<input type="checkbox"> 记住密码
+							</div>
 							<a href="/findPassword">忘记密码？</a>
 						</div>
 

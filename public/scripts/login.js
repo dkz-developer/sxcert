@@ -125,6 +125,7 @@
 
             $.post('/custome/login', params, function(backData) {
                 if(backData && backData.code === "S") {
+                    remember();
                     window.open(backURL, "_self");
                 }else {
                    layer.msg(backData.msg);
@@ -225,11 +226,48 @@
         }, "json");     
     }
 
+    // 记住密码
+    function remember() {
+        var $username = $("#username");
+        var $password = $("#password");
+        var $rememberBtn = $(".remember").find("input");
+           
+        loUser = localStorage.getItem("user") || "";
+        loPass = localStorage.getItem("pass") || "";
+
+        
+
+        if($rememberBtn.attr("checked")){
+            alert(1)
+            localStorage.setItem("user",$username.val());
+            localStorage.setItem("pass",$password.val());
+        }else{
+            localStorage.setItem("user","");
+            localStorage.setItem("pass","");
+        }
+    }
     
     $(function() {
 
+        var $username = $("#username"),
+            $password = $("#password"),
+            loUser = localStorage.getItem("user") || "",
+            loPass = localStorage.getItem("pass") || "",
+            $rememberBtn = $(".remember").find("input");
+
+            if(loUser !== "" && loPass !== ""){
+                $rememberBtn.attr("checked");
+            }
+
+            alert(loUser)
+
+        $username.val(loUser);
+        $password.val(loPass);
+
         vCode("#loginForm");
         vCode("#registerForm");
+
+        
     });
 
 })(jQuery)

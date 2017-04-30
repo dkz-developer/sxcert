@@ -125,6 +125,7 @@
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
 	<script src="/style/admin/lib/layer/2.4/layer.js"></script>
+	<script src="/scripts/lib/is-js/is.min.js"></script>
 	<script src="http://static.geetest.com/static/tools/gt.js"></script>
 	<script src="scripts/public/tools.js"></script>
 	<script src="scripts/public/kolDialog.js"></script>

@@ -235,10 +235,8 @@
         loUser = localStorage.getItem("user") || "";
         loPass = localStorage.getItem("pass") || "";
 
-        
 
-        if($rememberBtn.attr("checked")){
-            alert(1)
+        if($rememberBtn.is(":checked")){
             localStorage.setItem("user",$username.val());
             localStorage.setItem("pass",$password.val());
         }else{
@@ -256,10 +254,8 @@
             $rememberBtn = $(".remember").find("input");
 
             if(loUser !== "" && loPass !== ""){
-                $rememberBtn.attr("checked");
+                $rememberBtn.attr("checked",true);
             }
-
-            alert(loUser)
 
         $username.val(loUser);
         $password.val(loPass);

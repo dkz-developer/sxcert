@@ -27,16 +27,16 @@ class UserController extends Controller
 		$userInfo = User::find(session('userInfo.UserId'));
 		if(empty($userInfo))
 			return redirect('/register');
-		$buyRecord = BuyRecord::where('user_id',session('userInfo.UserId'))->orderBy('created_at','DESC')->get();
-		$rechargeRecord = RechargeRecord::where('user_id',session('userInfo.UserId'))->orderBy('created_at','DESC')->get();
+		$buyRecord = BuyRecord::where('user_id',session('userInfo.UserId'))->orderBy('created_at','DESC')->simplePaginate(20);
+		$rechargeRecord = RechargeRecord::where('user_id',session('userInfo.UserId'))->orderBy('created_at','DESC')->simplePaginate(20);
 		$allcount = InfoUser::where('user_id',session('userInfo.UserId'))->count();
 		$scount = InfoUser::where([['user_id',session('userInfo.UserId')],['status',2]])->count();
 		$fcount = InfoUser::where([['user_id',session('userInfo.UserId')],['status',1]])->count();
 		if($request->has('status')) {
 			$status = $request->input('status');
-			$uinfoList = InfoUser::where([['user_id',session('userInfo.UserId')],['status',$status]])->orderBy('created_at','DESC')->get();
+			$uinfoList = InfoUser::where([['user_id',session('userInfo.UserId')],['status',$status]])->orderBy('created_at','DESC')->simplePaginate(20);
 		}else {
-			$uinfoList = InfoUser::where('user_id',session('userInfo.UserId'))->orderBy('created_at','DESC')->get();
+			$uinfoList = InfoUser::where('user_id',session('userInfo.UserId'))->orderBy('created_at','DESC')->simplePaginate(20);
 		}
 
 		return view('users',['userInfo'=>$userInfo,'buyRecord'=>$buyRecord,'rechargeRecord'=>$rechargeRecord,'allcount'=>$allcount,'scount'=>$scount,'fcount'=>$fcount,'uinfoList'=>$uinfoList]);
@@ -87,7 +87,14 @@ class UserController extends Controller
 		}
 		$userName = $request->input('username');
 		$password = $request->input('password');
-		$userInfo = User::where([['UserName',$userName],['Password',md5($password)]])->first();
+		$where = [];
+		if(is_numeric($userName) && strlen($userName) == 11){
+			array_push($where, ['Mobile',$userName]);
+		}else{
+			array_push($where, ['UserName',$userName]);
+		}
+		array_push($where, ['Password',md5($password)]);
+		$userInfo = User::where($where)->first();
 		
 		if(! $userInfo)
 			return response()->json(['code'=>'F','msg'=>'用户名或密码不正确']);

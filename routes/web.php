@@ -68,6 +68,13 @@ Route::post('/admin/loginHandle', 'Admin\UserController@loginHandle');
 // 后台路由
 Route::group(['namespace' => 'Admin','middleware'=>'adminauth'], function () {
 	Route::get('/admin/logout', 'UserController@logout');
+	Route::get('/admin/adda', function(){
+		return view('admin.addAdmin');
+	});
+	Route::post('/admin/mpass', 'UserController@mpass');
+	Route::post('/admin/dlAdmin', 'UserController@rmAdmin');
+	Route::post('/admin/addAdmins', 'UserController@addAdmins');
+	Route::get('/admin/adminList', 'UserController@adminList');
 	Route::get('/admin/index', 'UserController@index');
 	Route::get('/admin/addInfo', 'InfoController@addInfo');
 	Route::get('/admin/infoList', 'InfoController@infoList');
@@ -115,4 +122,5 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/f','LoadListController@searchOs');
 	Route::get('/g','LoadListController@searchType');
 	Route::get('/h','LoadListController@searchKeyword');
+	Route::get('/x','LoadListController@getAllList');
 });

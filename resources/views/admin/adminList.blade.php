@@ -13,19 +13,14 @@
 	}
 </style>
    <article class="cl pd-20">
-			<div class="text-c">
+			<!-- <div class="text-c">
 				<form action="/admin/infoList" method="get">
 					<span class="select-box inline">
 					<select name="index" class="select">
-						<option value="0">全部</option>
 						<option value="1">ID</option>
-						<option value="2">品牌</option>
-						<option value="3">机型</option>
-						<option value="4">国家</option>
-						<option value="4">os</option>
-						<option value="4">类型</option>
-						<option value="4">标签</option>
-						<option value="4">版本</option>
+						<option value="2">用户名</option>
+						<option value="3">创建时间</option>
+						<option value="4">更新时间</option>
 					</select>
 					</span>
 					日期范围：
@@ -35,59 +30,41 @@
 					<input type="text" name="keyword" id="" placeholder=" 关键字" style="width:250px" class="input-text">
 					<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜资料</button>
 				</form>
-			</div>
+			</div> -->
 			<div class="cl pd-5 bg-1 bk-gray mt-20">
-				<span class="l">
-				<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-				<a class="btn btn-primary radius" data-title="添加资讯" _href="article-add.html" onclick="article_add('添加资料','/admin/addInfo')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加资料</a>
+				<!-- <span class="l"> -->
+				<!-- <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> -->
+				 <a class="btn btn-primary radius" data-title="添加资讯" _href="article-add.html" onclick="article_add('添加资料','/admin/adda',400,300)" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加管理员</a>
 				</span>
-				<span class="r">共有数据：<strong>{{$rows}}</strong> 条</span>
 			</div>
 			<div class="mt-20">
 				<table class="table table-border table-bordered table-bg table-hover table-sort">
 					<thead>
 						<tr class="text-c">
-							<th width="25"><input type="checkbox" name="" value=""></th>
+							<!-- <th width="25"><input type="checkbox" name="" value=""></th> -->
 							<th width="50">ID</th>
-							<th width="60">品牌</th>
-							<th width="80">机型</th>
-							<th width="80">国家</th>
-							<th width="80">OS</th>
-							<th width="75">类型</th>
-							<!-- <th width="60">标签</th> -->
-							<th width="60">版本</th>
-							<th width="80">单价(金币)</th>
-							<!-- <th width="100">备注</th> -->
-							<th width="130">下载地址</th>
-							<th width="60">下载密码</th>
-							<th width="120">操作</th>
+							<th width="60">用户名</th>
+							<th width="80">创建时间</th>
+							<th width="80">更新时间</th>
+							<th width="80">操作</th>
 						</tr>
 					</thead>
 					<tbody>
 						@foreach($list as $val)
 							<tr class="text-c">
-								<td><input type="checkbox" value="{{$val->id}}" name=""></td>
+								<!-- <td><input type="checkbox" value="{{$val->id}}" name=""></td> -->
 								<td>{{$val->id}}</td>
-								<td>{{$val->brand}}</td>
-								<td >{{$val->model}}</td>
-								<td>{{$val->country}}</td>
-								<td>{{$val->os}}</td>
-								<td>{{$val->type}}</td>
-								<!-- <td>{{$val->tag}}</td> -->
-								<td>{{$val->version}}</td>
-								<td>{{$val->price}}</td>
-								<!-- <td>{{$val->remarks}}</td> -->
-								<td>{{$val->download_url}}</td>
-								<td>{{$val->download_password}}</td>
-								<td class="f-14 td-manage"><a style="text-decoration:none" onClick="setHot(this,{{$val->id}})" href="javascript:;" title="是否热门">
-									@if(2 == $val->status)
-									<i class="Hui-iconfont">&#xe65e;</i>
-									@else (1 == $val->status)
-									<i class="Hui-iconfont">&#xe688;</i>
-									@endif
+								<td>{{$val->user_name}}</td>
+								<td >{{$val->created_at}}</td>
+								<td>{{$val->updated_at}}</td>
+								<td class="f-14 td-manage">
+								<a style="text-decoration:none" onClick="modifyPassword(this,{{$val->id}})" href="javascript:;" >
+									修改密码
 								</a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_edit('资料编辑','/admin/addInfo',{{$val->id}})" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe60c;</i></a>
-								<a style="text-decoration:none" class="ml-5" onClick="article_del(this,{{$val->id}})" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+								<a style="text-decoration:none" onClick="article_del(this,{{$val->id}})" href="javascript:;" >
+									删除
+								</a>
+								</td>
 						</tr>
 						@endforeach
 					</tbody>
@@ -118,9 +95,10 @@ function article_add(title,url,w,h){
 	var index = layer.open({
 		type: 2,
 		title: title,
-		content: url
+		content: url,
+		 area: ['800px', '400px']
 	});
-	layer.full(index);
+	//layer.full(index);
 }
 /*资讯-编辑*/
 function article_edit(title,url,id,w,h){
@@ -140,8 +118,8 @@ function article_del(obj,id){
 		    			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 		    		},
 				type: 'POST',
-				url: '/admin/delInfo',
-				data: {'ids':id},
+				url: '/admin/dlAdmin',
+				data: {'id':id},
 				dataType: 'json',
 				success: function(data){
 					if(data.code == 'S') {
@@ -208,23 +186,30 @@ function article_shenhe(obj,id){
 	});	
 }
 /*资讯-下架*/
-function setHot(obj,id){
-	$.ajax(
-	    	{
-		    	type: 'GET',
-		    	url: '/admin/setHot',
+function modifyPassword(obj,id){
+	layer.prompt({title: '修改密码', formType: 3}, function(password, index) {
+	  	layer.close(index);
+	  	$.ajax({
+			headers: {
+	    			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	    		},
+			type: 'POST',
+			url: '/admin/mpass',
+			data: {'password':password,'id':id},
 			dataType: 'json',
-			data: {'id':id},
-			success: function(result){
-				if(result.code='S'){
-					$(obj).html(result.data);
-					layer.msg(result.msg,{icon:1,time:3000});
+			success: function(data){
+				if(data.code == 'S') {
+					$(obj).remove();
+					layer.msg(data.msg,{icon:1,time:2000});
 				}else {
-					layer.msg(result.msg,{icon:2,time:3000});
+					layer.msg(data.msg,{icon:2,time:2000});
 				}
-			} 
-		}
-	);
+			},
+			error:function(data) {
+				layer.msg('好抱歉，系统出错了，请联系网站管理员！',{icon:2,time:3000});
+			},
+		});		
+	});
 }
 
 /*资讯-发布*/

@@ -168,17 +168,17 @@ class InfoController extends Controller
 	public function common(Request $request)
 	{
 		$Model = new InfoCommon();
-		$brand = $Model->where('type',1)->orderBy('created_at','desc')->paginate(10,['*'],'bpage');
+		$brand = $Model->where('type',1)->paginate(10,['*'],'bpage');
 		$brandCount = $Model->where('type',1)->count();
-		$model = $Model->where('type',2)->orderBy('created_at','desc')->paginate(10,['*'],'mpage');
+		$model = $Model->where('type',2)->paginate(10,['*'],'mpage');
 		$modelCount = $Model->where('type',2)->count();
-		$country = $Model->where('type',3)->orderBy('created_at','desc')->paginate(10,['*'],'cpage');
+		$country = $Model->where('type',3)->paginate(10,['*'],'cpage');
 		$countryCount = $Model->where('type',3)->count();
-		$os = $Model->where('type',4)->orderBy('created_at','desc')->paginate(10,['*'],'lpage');
+		$os = $Model->where('type',4)->paginate(10,['*'],'lpage');
 		$osCount = $Model->where('type',4)->count();
-		$type = $Model->where('type',5)->orderBy('created_at','desc')->paginate(10,['*'],'tpage');
+		$type = $Model->where('type',5)->paginate(10,['*'],'tpage');
 		$typeCount = $Model->where('type',5)->count();
-		$tag = $Model->where('type',6)->orderBy('created_at','desc')->paginate(10,['*'],'gpage');
+		$tag = $Model->where('type',6)->paginate(10,['*'],'gpage');
 		$tagCount = $Model->where('type',6)->count();
 		$result = [
 			'brand'=>$brand,

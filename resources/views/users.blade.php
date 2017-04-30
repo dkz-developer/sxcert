@@ -85,13 +85,16 @@ a<!DOCTYPE html>
 								<li class="row-04">{{$val->model}}</li>
 								<li class="row-05">{{$val->version}}</li>
 								<li class="row-06">{{$val->os}}</li>
-								<li class="row-07">{{$val->created_at}}</li>
+								<li class="row-07">{{date('Y-m-d',strtotime($val->created_at))}}</li>
 								<li class="row-08">{{$val->type}}</li>
 								<li class="row-09">{{$val->price}}</li>
 								<li class="row-10">{{$val->download_num}}</li>
 							</ul>
 						</div>
 						@endforeach
+						<div style="text-align: center;overflow: hidden;">
+							{{$uinfoList->links()}}
+						</div>
 					</div>
 				</div>
 
@@ -119,10 +122,13 @@ a<!DOCTYPE html>
 								<li class="row-02">@if($val->channel == 1) 系统 @elseif($val->channel == 2)支付宝 @else 登录 @endif</li>
 								<li class="row-03">{{$val->amount}}</li>
 								<li class="row-04">@if($val->status == 1) finished @elseif($val->satus == 2) fail @endif</li>
-								<li class="row-05">{{$val->created_at}} </li>
+								<li class="row-05">{{date('Y-m-d',strtotime($val->created_at))}} </li>
 							</ul>
 						</div>
 						@endforeach
+						<div style="text-align: center;overflow: hidden;">
+							{{$rechargeRecord->links()}}
+						</div>
 					</div>
 				</div>
 
@@ -153,9 +159,12 @@ a<!DOCTYPE html>
 								<li class="row-03">{{$val->info_id}}</li>
 								<li class="row-04">{{$val->consume}}</li>
 								<li class="row-05">finished</li>
-								<li class="row-06">{{$val->created_at}} </li>
+								<li class="row-06">{{date('Y-m-d',strtotime($val->created_at))}} </li>
 							</ul>
 							@endforeach
+						</div>
+						<div style="text-align: center;overflow: hidden;">
+							{{$buyRecord->links()}}
 						</div>
 					</div>
 				</div>

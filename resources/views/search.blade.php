@@ -105,7 +105,7 @@
 				<div id="pager">
 					@if(!empty($act) && $act == 'x')
 						{{$list->links()}}
-			           	 @else
+			           	 @elseif(count($list) == 20)
 			           	 <ul class="pagination">
 			                    		<li class="disabled"><span>« 上一页</span></li>
 			                    		<li><a href="/x?page=1" rel="next">下一页 »</a></li>

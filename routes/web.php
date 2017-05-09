@@ -123,4 +123,7 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/g','LoadListController@searchType');
 	Route::get('/h','LoadListController@searchKeyword');
 	Route::get('/x','LoadListController@getAllList');
+	Route::get('/alpay','PayController@index');
+	Route::any('webreturn','PayController@webReturn');
+	Route::post('webnotify','PayController@alpayNotify');
 });

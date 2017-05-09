@@ -121,7 +121,7 @@ a<!DOCTYPE html>
 								<li class="row-01">金币</li>
 								<li class="row-02">@if($val->channel == 1) 系统 @elseif($val->channel == 2)支付宝 @else 登录 @endif</li>
 								<li class="row-03">{{$val->amount}}</li>
-								<li class="row-04">@if($val->status == 1) finished @elseif($val->satus == 2) fail @endif</li>
+								<li class="row-04">@if($val->status == 1) finished @elseif($val->status == 2) fail @endif</li>
 								<li class="row-05">{{date('Y-m-d',strtotime($val->created_at))}} </li>
 							</ul>
 						</div>

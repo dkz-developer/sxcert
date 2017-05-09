@@ -100,15 +100,18 @@ class UserController extends Controller
 			return response()->json(['code'=>'F','msg'=>'用户名或密码不正确']);
 		unset($userInfo ['Password']);
 		session(['userInfo'=>$userInfo->toArray()]);
-		$userInfo->Balance += 5;
-		$result = $userInfo->save();
-		if($result) {
-			$Recharg = new RechargeRecord();
-			$Recharg->amount = 5;
-			$Recharg->status = 1;
-			$Recharg->channel = 3;
-			$Recharg->user_id = $userInfo->UserId;
-			$Recharg->save();
+		if(date('d',$userInfo->lastLoginTime)  != date('d')) {
+			$userInfo->Balance += 5;
+			$userInfo->lastLoginTime = time();
+			$result = $userInfo->save();
+			if($result) {
+				$Recharg = new RechargeRecord();
+				$Recharg->amount = 5;
+				$Recharg->status = 1;
+				$Recharg->channel = 3;
+				$Recharg->user_id = $userInfo->UserId;
+				$Recharg->save();
+			}
 		}
 		return response()->json(['code'=>'S','msg'=>'登录成功']);
 	}

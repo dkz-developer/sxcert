@@ -47,9 +47,9 @@
 				<div class="main-title">充  值</div>
 
 				<div class="main-content">
-					<form action="" data-act="pay">
+					<form action="javascript:void(0)" data-act="pay" method="get" id="pays">
 						<div class="input-prepend">
-							<input class="restyle" id="pay" placeholder="请输入充值金额，最低1元" type="number" id="mobile" v-on:blur="verification" data-error="充值金额不能为空">
+							<input class="restyle" id="pay" placeholder="请输入充值金额，最低1元" type="number" id="mobile" v-on:blur="verification" data-error="充值金额不能为空" name="amount">
 							<i class="fa fa-rmb"></i>
 						</div>
 
@@ -58,7 +58,7 @@
 						</div>	
 
 						<div class="submitBtn">
-							<button type="button" class="btn btn-info" @click="submit">立即充值</button>
+							<button type="submit" class="btn btn-info" @click="submit">立即充值</button>
 						</div>
 					</form>
 				</div>
@@ -73,8 +73,25 @@
 	<script src="scripts/lib/jquery/jquery.min.js"></script>
 	<script src="scripts/lib/vue/vue.min.js"></script>
 	<script src="/style/admin/lib/layer/2.4/layer.js"></script>
-	<script src="scripts/public/tools.js"></script>
-	<script src="scripts/pay.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#pays').submit(function (){
+				var amount = parseInt($('#pay').val());
+				if(amount < 1)
+					return false;
+				var data  = $(this).serialize();
+				$.get('/alpay',data,function(data){
+					if(data.url)
+						window.location.href=data.url;
+					else 
+						layer.msg(data.msg,{icon:2,time:2000});
+				});
+			})
+			return false;
+		});
+	</script>
+	<!-- <script src="scripts/public/tools.js"></script> -->
+	<!-- <script src="scripts/pay.js"></script> -->
 
 </body>
 </html>

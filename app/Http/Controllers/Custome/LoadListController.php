@@ -179,11 +179,11 @@ class LoadListController extends Controller
 		return view('search',['list'=>$list]);
 	}
 
-	public function getAllList()
-	{
-		$allList = Info::simplePaginate(20);
-		return view('search',['list'=>$allList,'act'=>'x']);
-	}
+	// public function getAllList()
+	// {
+	// 	$allList = Info::simplePaginate(20);
+	// 	return view('search',['list'=>$allList,'act'=>'x']);
+	// }
 
 	private function _search($keyword,$index)
 	{

@@ -173,15 +173,17 @@
 	</div>
 
 	
-	<script src="scripts/lib/jquery/jquery.min.js"></script>
-	<script src="scripts/lib/bootstrap/bootstrap.min.js"></script>
-	<script src="scripts/lib/bootstrap/bootstrap-select.min.js"></script>
+	<script src="/scripts/lib/jquery/jquery.min.js"></script>
+	<script src="/scripts/lib/bootstrap/bootstrap.min.js"></script>
+	<script src="/scripts/lib/bootstrap/bootstrap-select.min.js"></script>
 	<script src="/style/admin/lib/layer/2.4/layer.js"></script>
-	<script src="scripts/public/tools_admin.js"></script>
-	<script src="scripts/public/topNav.js"></script>
-	<script src="scripts/public/tools.js"></script>
-	<script src="scripts/lib/is-js/is.min.js"></script>
-	<script src="scripts/rom.js"></script>
+	<script src="/scripts/public/tools_admin.js"></script>
+	<script src="/scripts/public/topNav.js"></script>
+	<script src="/scripts/public/tools.js"></script>
+	<script src="/scripts/lib/is-js/is.min.js"></script>
+	<script src="/scripts/rom.js"></script>
+	<script src="/scripts/public/SideTop.js"></script>
+	
 </body>
 </html>
 

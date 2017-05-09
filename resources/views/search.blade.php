@@ -121,12 +121,14 @@
 		</div>		
 	</div>
 	
-	<script src="scripts/lib/jquery/jquery.min.js"></script>
-	<script src="scripts/lib/vue/vue.min.js"></script>
-	<script src="scripts/public/tools.js"></script>
-	<script src="scripts/lib/kkpager/kkpager.min.js"></script>
-	<script src="scripts/public/tools.js"></script>
-	<script src="scripts/public/topNav.js"></script>
+	<script src="/scripts/lib/jquery/jquery.min.js"></script>
+	<script src="/scripts/lib/vue/vue.min.js"></script>
+	<script src="/scripts/public/tools.js"></script>
+	<script src="/scripts/lib/kkpager/kkpager.min.js"></script>
+	<script src="/scripts/public/tools.js"></script>
+	<script src="/scripts/public/topNav.js"></script>
+	<script src="/scripts/public/SideTop.js"></script>
+	
 	<!-- <script src="scripts/search.js"></script> -->
 </body>
 </html>

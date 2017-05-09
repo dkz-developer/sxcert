@@ -216,12 +216,15 @@ a<!DOCTYPE html>
 		</div>		
 	</div>
 
-	<script src="scripts/lib/jquery/jquery.min.js"></script>
-	<script src="scripts/lib/vue/vue.min.js"></script>
-	<script src="scripts/public/tools.js"></script>
-	<script src="scripts/public/topNav.js"></script>
-	<script src="scripts/users.js"></script>
+	<script src="/scripts/lib/jquery/jquery.min.js"></script>
+	<script src="/scripts/lib/vue/vue.min.js"></script>
+	<script src="/scripts/public/tools.js"></script>
+	<script src="/scripts/public/topNav.js"></script>
+	<script src="/scripts/users.js"></script>
+	<script src="/scripts/public/SideTop.js"></script>
+	
 </body>
+
 </html>
 
 

@@ -158,7 +158,9 @@
 	<script src="/style/admin/lib/layer/2.4/layer.js"></script>
 	<script src="/scripts/public/tools.js"></script>
 	<script src="/scripts/public/topNav.js"></script>
+	<script src="/scripts/public/SideTop.js"></script>
 	<script src="/scripts/info.js"></script>
+
 </body>
 </html>
 

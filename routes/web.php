@@ -89,6 +89,7 @@ Route::group(['namespace' => 'Admin','middleware'=>'adminauth'], function () {
 	Route::get('/admin/userInfo','InfoController@userInfo');
 	Route::post('/admin/toExamine','InfoController@toExamine');
 	Route::post('/admin/commonDelete', 'InfoController@commonDelete');
+	Route::get('/admin/system/base','SystemSetController@base');
 });
 Route::get('/custome/kit/captcha/{tmp}', 'Custome\UserController@captcha');
 // 前台

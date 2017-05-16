@@ -15,7 +15,7 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-* {
+*,h1, h2, h3, h4, h5, h6, p  {
 	padding: 0;
 	margin: 0;
 }
@@ -76,38 +76,88 @@ a {}
 			    	h3 {
 			    		font-size: 24px;
 					    font-weight: 400;
-					    line-height: 52px;
 			    	}
 
 			    	p {
 			    		color: #999;
 			    		font-size: 12px;
-					    margin-top: 16px;
+					    margin-top: 10px;
 			    	}
-
-			    	.publishBtn {
-			    		float: right;
-
-			    		button {
-							border: medium none;
-						    border-radius: 2px;
-						    cursor: pointer;
-						    display: inline-block;
-						    font-size: 16px;
-						    height: 34px;
-						    line-height: 34px;
-						    text-align: center;
-						    vertical-align: middle;
-						    width: 120px;
-
-						    &:hover {
-						    	opacity: .8;
-						    }
-			    		}
-			    	}
-
 			    }
 
+			    .publishBtn {
+		    		float: right;
+		    		button {
+						border: none;
+					    border-radius: 2px;
+					    cursor: pointer;
+					    display: inline-block;
+					    font-size: 16px;
+					    height: 34px;
+					    line-height: 34px;
+					    text-align: center;
+					    vertical-align: middle;
+					    width: 120px;
+					    background: #03978b;
+					    color: #fff;
+
+					    &:hover {
+					    	opacity: .8;
+					    }
+		    		}
+		    	}
+			}
+
+			.content {
+				overflow: hidden;
+				padding: 0 30px;
+
+				.topic-item {
+					border-bottom: 1px dashed #cecdcd;
+					padding: 15px 0;
+					overflow: hidden;
+
+					.title {
+						float: left;
+						
+					}
+
+					.info {
+						color: #999;
+					    font-size: 12px;
+					    height: 20px;
+
+						.user, .time {
+							float: right;
+						    max-width: 10%;
+						    overflow: hidden;
+						    text-overflow: ellipsis;
+						    white-space: nowrap;
+						}
+
+						.time {
+							padding-left: 8px;
+						}
+
+						a {
+							float: left;
+							color: #666;
+						    text-decoration: none;
+						    font-size: 14px;
+						}
+					}
+
+					.view {
+						margin-top: 8px;
+						color: #999;
+					    font-size: 12px;
+					    float: left;
+
+					    span {
+					    	margin-right: 15px;
+					    }
+					}
+				}
 			}
 		}
 	}

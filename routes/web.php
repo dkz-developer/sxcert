@@ -10,6 +10,22 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// 论坛首页
+Route::get('/bbs', function () {
+	return view('index');
+});
+
+// 帖子列表页
+Route::get('/forum/topic/', function () {
+	return view('forum');
+});
+
+// 帖子详情页页
+Route::get('/thread/topic/', function () {
+	return view('thread');
+});
+
 // 首页
 Route::get('/', function () {
 	return view('load');
@@ -125,5 +141,5 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/x','LoadListController@getAllList');
 	Route::get('/alpay','PayController@index');
 	Route::any('webreturn','PayController@webReturn');
-	Route::post('webnotify','PayController@alpayNotify');
+	Route::any('webnotify','PayController@alpayNotify');
 });

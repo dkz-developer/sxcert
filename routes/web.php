@@ -21,6 +21,11 @@ Route::get('/forum/topic/', function () {
 	return view('forum');
 });
 
+// 帖子 -- 发布主题页
+Route::get('/forum/topic/add', function () {
+	return view('topic_add');
+});
+
 // 帖子详情页页
 Route::get('/thread/topic/', function () {
 	return view('thread');

@@ -87,7 +87,7 @@ a {}
 
 			    .publishBtn {
 		    		float: right;
-		    		button {
+		    		a {
 						border: none;
 					    border-radius: 2px;
 					    cursor: pointer;
@@ -100,6 +100,7 @@ a {}
 					    width: 120px;
 					    background: #03978b;
 					    color: #fff;
+					    text-decoration: none;
 
 					    &:hover {
 					    	opacity: .8;
@@ -119,6 +120,7 @@ a {}
 
 					.title {
 						float: left;
+						margin-right: 30px;
 						
 					}
 
@@ -139,6 +141,16 @@ a {}
 							padding-left: 8px;
 						}
 
+						.placeTop {
+							border-radius: 3px;
+						    color: #fff;
+						    float: left;
+						    padding: 0 3px;
+						    vertical-align: middle;
+						    background-color: #26a89e;
+							border: 1px solid #03978b;
+						}
+
 						a {
 							float: left;
 							color: #666;
@@ -151,7 +163,6 @@ a {}
 						margin-top: 8px;
 						color: #999;
 					    font-size: 12px;
-					    float: left;
 
 					    span {
 					    	margin-right: 15px;
@@ -159,6 +170,120 @@ a {}
 					}
 				}
 			}
+		}
+
+		.layout-right {
+			float: right;
+			width: 24%;
+
+			.person-info {
+				background-color: #e3e3e3;
+			    height: 270px;
+			    overflow: hidden;
+			    padding-top: 25px;
+			    text-align: center;
+
+			    .names {
+			    	color: #666;
+				    font-size: 18px;
+				    line-height: 1;
+				    overflow: hidden;
+				    text-overflow: ellipsis;
+				    white-space: nowrap;
+			    }
+
+			    .photo {
+			    	margin-top: 15px;
+			    }
+
+			    .btn-groups {
+
+			    	a {
+			    		border: none;
+					    border-radius: 4px;
+					    cursor: pointer;
+					    height: 38px;
+					    line-height: 38px;
+					    font-size: 16px;
+					    text-align: center;
+					    vertical-align: middle;
+					    width: 70%;
+					    background: #03978b;
+					    color: #fff;
+					    display: block;
+					    margin: 0 auto;
+					    margin-top: 15px;
+					    text-decoration: none;
+
+					    &:hover {
+					    	opacity: .8;
+					    }
+
+					    &.register-btn {
+					    	background: #fff;
+					    	color: #03978b;
+
+					    }
+			    	}
+			    }
+	
+			    .info-nums {
+			    	margin: 20px 15px 0;
+				    overflow: hidden;
+				    padding-left: 0;
+
+					.items {
+						width: 50%;
+						float: left;
+
+						p {
+							color: #03978b;
+							line-height: 1;
+						    font-size: 36px;
+						}
+
+						h4 {
+							color: #666;
+							padding-top: 10px;
+							font-size: 14px;
+						}
+
+						&:first-child {
+							border-right: 1px solid #cfcfcf;
+						}
+
+					}
+			    }
+			}
+
+		    .hot-topics {
+		    	margin-top: 20px;
+		    	background: #fff;
+
+		    	.title {
+		    		border-bottom: 1px solid #ddd;
+				    font-size: 18px;
+				    line-height: 1;
+				    padding: 24px 0 24px 30px;
+				    font-weight: 400;
+		    	}
+
+			    ul {
+			    	padding: 15px 25px 30px;
+
+			    	li {
+			    		font-size: 12px;
+					    line-height: 30px;
+					    overflow: hidden;
+					    text-overflow: ellipsis;
+					    white-space: nowrap;
+
+					    a {
+					    	color: #333;
+					    }
+			    	}
+			    }
+		    }
 		}
 	}
 }

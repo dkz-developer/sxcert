@@ -2,7 +2,7 @@
 <html lang="zh-cmn-Hans">
 <head>
 	<meta charset="utf-8">
-	<title>新手专业 -- 论坛页</title>
+	<title>新手专区 -- 论坛页</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
 	<meta name="viewport" contant="width=device-width, initial-scale=1">
@@ -53,7 +53,7 @@
 				<div class="layout-left">
 					<div class="header">
 						<div class="logo">
-							<img src="https://developer.baidu.com/resources/online/forum/img/forum-platfprm-defalt.png">
+							<img src="/images/topicDefault.png">
 						</div>
 						<div class="info">
 							<h3>新手专区</h3>
@@ -61,13 +61,14 @@
 						</div>
 
 						<div class="publishBtn">
-							<button>发布主题</button>
+							<a href="/forum/topic/add">发布主题</a>
 						</div>
 					</div>
 					<div class="content">
 						<div class="topic-item">
 							<div class="info">
 								<a class="title" href="">bch全新安装wordpress，配置https。进不了后台</a>
+								<span class="placeTop">置顶</span>
 								<span class='time'>2017年5月4日回帖</span>
 								<span class='user'>huahua</span>
 							</div>
@@ -80,6 +81,7 @@
 						<div class="topic-item">
 							<div class="info">
 								<a class="title" href="">bch全新安装wordpress，配置https。进不了后台</a>
+								<span class="placeTop">置顶</span>
 								<span class='time'>2017年5月4日回帖</span>
 								<span class='user'>huahua</span>
 							</div>
@@ -127,8 +129,63 @@
 					</div>
 				</div>
 
+				<div class="layout-right">
+				
+					
+					<div class="person-info">
+						@if(empty(session('userInfo')))
+						@else	
+						<p class="names">hi，12121212{{session('userInfo.UserName')}}</p>
+						@endif
+						<div class="photo">
+							<img src="/images/photo.png" alt="">
+						</div>
 
-				<div class="layout-right"></div>
+						@if(empty(session('userInfo')))
+						<div class="btn-groups">
+							<a href="/login" class="login-btn">马上登录</a>
+							<a href="/register" class="register-btn">立即注册</a>
+						</div>	
+						@else
+						<div class="info-nums">
+							<div class="items">
+								<p>0</p>
+								<h4>主题数</h4>
+							</div>
+							<div class="seperate"></div>
+							<div class="items">
+								<p>0</p>
+								<h4>回复数</h4>
+							</div>
+						</div>
+						@endif
+					</div>
+
+					<div class="hot-topics">
+						<h3 class="title">热门主题</h3>
+						<ul>
+							<li>
+								<a href="">域名解析的记录值总是多一个点，导致解析失败</a>
+							</li>
+
+							<li>
+								<a href="">域名解析的记录值总是多一个点，导致解析失败</a>
+							</li>
+
+							<li>
+								<a href="">域名解析的记录值总是多一个点，导致解析失败</a>
+							</li>
+
+							<li>
+								<a href="">域名解析的记录值总是多一个点，导致解析失败</a>
+							</li>
+
+							<li>
+								<a href="">域名解析的记录值总是多一个点，导致解析失败</a>
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 

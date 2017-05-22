@@ -152,42 +152,42 @@ class LoadListController extends Controller
 	{
 		$keyword = $request->input('k');
 		$list = $this->_search($keyword,1);
-		return view('search',['list'=>$list]);
+		return view('search',['list'=>$list,'search'=>$this->search,'keyword'=>$this->keyword]);
 	}
 
 	public function searchCountry(Request $request)
 	{
 		$keyword = $request->input('k');
 		$list = $this->_search($keyword,2);
-		return view('search',['list'=>$list]);
+		return view('search',['list'=>$list,'search'=>$this->search,'keyword'=>$this->keyword]);
 	}
 
 	public function searchModel(Request $request)
 	{
 		$keyword = $request->input('k');
 		$list = $this->_search($keyword,3);
-		return view('search',['list'=>$list]);
+		return view('search',['list'=>$list,'search'=>$this->search,'keyword'=>$this->keyword]);
 	}
 
 	public function searchVersion(Request $request)
 	{
 		$keyword = $request->input('k');
 		$list = $this->_search($keyword,4);
-		return view('search',['list'=>$list]);
+		return view('search',['list'=>$list,'search'=>$this->search,'keyword'=>$this->keyword]);
 	}
 
 	public function searchOs(Request $request)
 	{
 		$keyword = $request->input('k');
 		$list = $this->_search($keyword,5);
-		return view('search',['list'=>$list]);
+		return view('search',['list'=>$list,'search'=>$this->search,'keyword'=>$this->keyword]);
 	}
 
 	public function searchType(Request $request)
 	{
 		$keyword = $request->input('k');
 		$list = $this->_search($keyword,6);
-		return view('search',['list'=>$list]);
+		return view('search',['list'=>$list,'search'=>$this->search,'keyword'=>$this->keyword]);
 	}
 
 	public function searchKeyword(Request $request)

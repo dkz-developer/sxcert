@@ -16,6 +16,23 @@ use Session;
 use DB;
 class UserController extends Controller
 {
+	protected$search;
+	protected $keyword;
+	public function __construct()
+	{
+		$this->search = DB::table('SystemSet')->find(2);
+		$this->keyword = DB::table('SystemSet')->find(3);
+	}
+
+	public function loginPage()
+	{
+		return view('enter',['search'=>$this->search,'keyword'=>$this->keyword]);
+	}
+
+	public function feedback()
+	{
+		return view('feedback',['search'=>$this->search,'keyword'=>$this->keyword]);
+	}
 	/**
 	 * [userCenter 用户中心]
 	 * @return [type] [description]
@@ -39,7 +56,7 @@ class UserController extends Controller
 			$uinfoList = InfoUser::where('user_id',session('userInfo.UserId'))->orderBy('created_at','DESC')->simplePaginate(20);
 		}
 
-		return view('users',['userInfo'=>$userInfo,'buyRecord'=>$buyRecord,'rechargeRecord'=>$rechargeRecord,'allcount'=>$allcount,'scount'=>$scount,'fcount'=>$fcount,'uinfoList'=>$uinfoList]);
+		return view('users',['userInfo'=>$userInfo,'buyRecord'=>$buyRecord,'rechargeRecord'=>$rechargeRecord,'allcount'=>$allcount,'scount'=>$scount,'fcount'=>$fcount,'uinfoList'=>$uinfoList,'search'=>$this->search,'keyword'=>$this->keyword]);
 	}
 
 	public function  captcha(Request $request)

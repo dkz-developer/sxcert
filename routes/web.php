@@ -37,28 +37,19 @@ Route::get('/', function () {
 });
  
 // 登录注册页
-Route::get('/login', function () {
-	return view('enter');
-});
+Route::get('/login', 'Custome\UserController@loginPage');
 
-Route::get('/register', function () {
-	return view('enter');
-});
+Route::get('/register', 'Custome\UserController@loginPage');
 
 // 找回密码页面
 Route::get('/findPassword', function () {
 	return view('findPassword');
 });
 
-// 支付页面
-Route::get('/pay', function () {
-	return view('pay');
-});
+
 
 // 客服页面
-Route::get('/service', function () {
-	return view('service');
-});
+Route::get('/service', 'Custome\LoadListController@service');
 
 
 
@@ -78,9 +69,7 @@ Route::get('/personInfo', function () {
 // });
 
 // 意见反馈页面
-Route::get('/feedback', function () {
-	return view('feedback');
-});
+Route::get('/feedback', 'Custome\UserController@feedback');
 
 // 后台登录
 Route::get('/admin/login', 'Admin\UserController@login');
@@ -114,6 +103,8 @@ Route::group(['namespace' => 'Admin','middleware'=>'adminauth'], function () {
 	Route::post('/admin/changeSeo','SystemSetController@changeSeo');
 });
 Route::get('/custome/kit/captcha/{tmp}', 'Custome\UserController@captcha');
+// 支付页面
+Route::get('/pay', 'Custome\LoadListController@pay');
 // 前台
 Route::group(['namespace' => 'Custome'], function () {
 	Route::post('/custome/login', 'UserController@login');

@@ -13,8 +13,8 @@
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
 	<meta name="viewport" contant="width=device-width, initial-scale=1">
-	<meta name="keywords" content="下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源">
-	<meta name="description" content="下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源">
+	<meta name="keywords" content="{{$keyword->content}}">
+	<meta name="description" content="{{$search->content}}">
 	<link href="/images/favicon.ico" rel="icon" type="image/icon">
 	
 	<link href="/scripts/lib/popover/jquery.webui-popover.min.css" rel="stylesheet">

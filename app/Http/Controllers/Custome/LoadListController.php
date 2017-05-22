@@ -15,6 +15,23 @@ use DB;
 use App\Model\InfoUser;
 class LoadListController extends Controller
 {
+	protected $seoTitle;
+	protected$search;
+	protected $keyword;
+	public function __construct()
+	{
+		$this->seoTitle = DB::table('SystemSet')->find(1);
+		$this->search = DB::table('SystemSet')->find(2);
+		$this->keyword = DB::table('SystemSet')->find(3);
+	}
+	public function pay()
+	{
+		return view('pay',['search'=>$this->search,'keyword'=>$this->keyword]);
+	}
+	public function service()
+	{
+		return view('service',['search'=>$this->search,'keyword'=>$this->keyword]);
+	}
 	public function userRom(Request $request)
 	{
 		$type = $request->input('type',0);
@@ -108,7 +125,8 @@ class LoadListController extends Controller
 			$InfoUser->save();
 		}
 		$infoComment = InfoComment::where('info_id',$id)->get();
-		return view('info',['info'=>$result,'infoComment'=>$infoComment]);
+
+		return view('info',['info'=>$result,'infoComment'=>$infoComment,'search'=>$this->search,'keyword'=>$this->keyword]);
 	}
 
 	public function addInfoComment(Request $request)
@@ -176,7 +194,7 @@ class LoadListController extends Controller
 	{
 		$keyword = $request->input('k');
 		$list = $this->_search($keyword,7);
-		return view('search',['list'=>$list]);
+		return view('search',['list'=>$list,'search'=>$this->search,'keyword'=>$this->keyword]);
 	}
 
 	// public function getAllList()
@@ -209,6 +227,7 @@ class LoadListController extends Controller
 	{
 		$Info = new Info();
 		$list = $Info->where('status',2)->orderBy('created_at' , 'desc')->simplePaginate(20);
-		return view('load',['list'=>$list]);
+		
+		return view('load',['list'=>$list,'seoTitle'=>$this->seoTitle,'search'=>$this->search,'keyword'=>$this->keyword]);
 	}
 }

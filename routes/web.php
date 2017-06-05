@@ -31,10 +31,7 @@ Route::get('/thread/topic/', function () {
 	return view('thread');
 });
 
-// 首页
-Route::get('/', function () {
-	return view('load');
-});
+
  
 // 登录注册页
 Route::get('/login', 'Custome\UserController@loginPage');
@@ -101,6 +98,7 @@ Route::group(['namespace' => 'Admin','middleware'=>'adminauth'], function () {
 	Route::post('/admin/commonDelete', 'InfoController@commonDelete');
 	Route::get('/admin/system/base','SystemSetController@base');
 	Route::post('/admin/changeSeo','SystemSetController@changeSeo');
+	Route::get('/admin/article/channelList','ArticleController@channelList');
 });
 Route::get('/custome/kit/captcha/{tmp}', 'Custome\UserController@captcha');
 // 支付页面
@@ -127,7 +125,7 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/gt_start','UserController@captcha');
 	Route::post('/addUserInfo','LoadListController@userRomAdd');
 	// 下载页
-	Route::get('/','LoadListController@loadlist');
+	Route::match(['get', 'post'],'/','LoadListController@loadlist');
 	Route::get('/rom','LoadListController@loadlist');
 	Route::get('/b','LoadListController@searchBrand');
 	Route::get('/c','LoadListController@searchCountry');

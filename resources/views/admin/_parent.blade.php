@@ -116,6 +116,14 @@
 		</ul>
 	</dd>
 </dl> 
+<dl id="menu-system">
+			<dt><i class="Hui-iconfont">&#xe62e;</i> 文章管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd>
+				<ul>
+					<li><a href="/admin/article/channelList" title="频道列表">频道列表</a></li>
+		</ul>
+	</dd>
+</dl> 
 </div>
 </aside>
 <div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>

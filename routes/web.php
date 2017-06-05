@@ -98,6 +98,9 @@ Route::group(['namespace' => 'Admin','middleware'=>'adminauth'], function () {
 	Route::post('/admin/commonDelete', 'InfoController@commonDelete');
 	Route::get('/admin/system/base','SystemSetController@base');
 	Route::post('/admin/changeSeo','SystemSetController@changeSeo');
+	Route::post('/admin/article/addChannel','ArticleController@addChannel');
+	Route::post('/admin/article/editChannel','ArticleController@editChannel');
+	Route::post('/admin/article/delChannel','ArticleController@delChannel');
 	Route::get('/admin/article/channelList','ArticleController@channelList');
 });
 Route::get('/custome/kit/captcha/{tmp}', 'Custome\UserController@captcha');

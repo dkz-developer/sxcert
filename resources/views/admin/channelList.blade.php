@@ -15,7 +15,7 @@
    <article class="cl pd-20">
             <div class="cl pd-5 bg-1 bk-gray mt-20">
              
-                 <a class="btn btn-primary radius" data-title="添加频道" _href="article-add.html" onclick="article_add('添加频道','/admin/article/addChannel',400,300)" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加管理员</a>
+                 <a class="btn btn-primary radius" data-title="添加频道" _href="article-add.html" onclick="add_channel('添加频道')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加频道</a>
                 </span>
             </div>
             <div class="mt-20">
@@ -26,7 +26,7 @@
                             <th width="50">ID</th>
                             <th width="60">频道名</th>
                             <th width="80">创建时间</th>
-                            <th width="80">更新时间</th>
+                            <!-- <th width="80">更新时间</th> -->
                             <th width="80">操作</th>
                         </tr>
                     </thead>
@@ -35,14 +35,14 @@
                             <tr class="text-c">
                                 <!-- <td><input type="checkbox" value="{{$val->id}}" name=""></td> -->
                                 <td>{{$val->id}}</td>
-                                <td>{{$val->user_name}}</td>
+                                <td>{{$val->theme_name}}</td>
                                 <td >{{$val->created_at}}</td>
-                                <td>{{$val->updated_at}}</td>
+                                <!-- <td>{{$val->updated_at}}</td> -->
                                 <td class="f-14 td-manage">
-                                <a style="text-decoration:none" onClick="modifyPassword(this,{{$val->id}})" href="javascript:;" >
-                                    修改密码
+                                <a style="text-decoration:none" onClick="edit_channel('编辑频道名',{{$val->id}})" href="javascript:;" >
+                                    编辑
                                 </a>
-                                <a style="text-decoration:none" onClick="article_del(this,{{$val->id}})" href="javascript:;" >
+                                <a style="text-decoration:none" onClick="del_channel(this,{{$val->id}})" href="javascript:;" >
                                     删除
                                 </a>
                                 </td>
@@ -71,27 +71,63 @@ $('.table-sort').dataTable({
     ]
 });
 
-/*资讯-添加*/
-function article_add(title,url,w,h){
-    var index = layer.open({
-        type: 2,
-        title: title,
-        content: url,
-         area: ['800px', '400px']
+function add_channel(title){
+    layer.prompt({title: title, formType: 3}, function(channel_name, index) {
+        layer.close(index);
+        $.ajax({
+            headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+            type: 'POST',
+            url: '/admin/article/addChannel',
+            data: {'channel_name':channel_name},
+            dataType: 'json',
+            success: function(data){
+                if(data.code == 'S') {
+                    layer.msg(data.msg,{icon:1,time:2000});
+                    setTimeout(function(){
+                        window.location.reload();
+                    },2000);
+                }else {
+                    layer.msg(data.msg,{icon:2,time:2000});
+                }
+            },
+            error:function(data) {
+                layer.msg('好抱歉，系统出错了，请联系网站管理员！',{icon:2,time:3000});
+            },
+        });     
     });
-    //layer.full(index);
 }
-/*资讯-编辑*/
-function article_edit(title,url,id,w,h){
-    var index = layer.open({
-        type: 2,
-        title: title,
-        content: url+'?id='+id
+
+function edit_channel(title,id){
+    layer.prompt({title: title, formType: 3}, function(channel_name, index) {
+        layer.close(index);
+        $.ajax({
+            headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+            type: 'POST',
+            url: '/admin/article/editChannel',
+            data: {'channel_name':channel_name,'id':id},
+            dataType: 'json',
+            success: function(data){
+                if(data.code == 'S') {
+                    layer.msg(data.msg,{icon:1,time:2000});
+                    setTimeout(function(){
+                        window.location.reload();
+                    },2000);
+                }else {
+                    layer.msg(data.msg,{icon:2,time:2000});
+                }
+            },
+            error:function(data) {
+                layer.msg('好抱歉，系统出错了，请联系网站管理员！',{icon:2,time:3000});
+            },
+        });     
     });
-    layer.full(index);
 }
-/*资讯-删除*/
-function article_del(obj,id){
+
+function del_channel(obj,id){
     layer.confirm('确认要删除吗？',function(){
         $.ajax(
             {
@@ -99,7 +135,7 @@ function article_del(obj,id){
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                 type: 'POST',
-                url: '/admin/dlAdmin',
+                url: '/admin/article/delChannel',
                 data: {'id':id},
                 dataType: 'json',
                 success: function(data){
@@ -115,34 +151,6 @@ function article_del(obj,id){
                 },
             }
         );      
-    });
-}
-function datadel(){
-    layer.confirm('确认要删除吗？',function(){
-        var ids = '';
-        $('input[type=checkbox]:checked').each(function(){
-            ids += $(this).val() + ',';
-        })
-        ids = ids.substring(0,ids.length-1);
-            $.ajax(
-                {
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'POST',
-                    url: '/admin/delInfo',
-                dataType: 'json',
-                data: {'ids':ids},
-                success: function(result){
-                    if(result.code='S'){
-                        $('input[type=checkbox]:checked').parents('tr').remove();
-                        layer.msg(result.msg,{icon:1,time:2000});
-                    }else {
-                        layer.msg(result.msg,{icon:2,time:2000});
-                    }
-                } 
-            }
-        );
     });
 }
 </script>

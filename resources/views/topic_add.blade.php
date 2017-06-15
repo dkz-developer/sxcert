@@ -46,7 +46,7 @@
 			<div class="breadcrumbs">
 			 	<a href="/bbs">论坛首页</a>
 				<i class="fa fa-angle-right"></i>
-				<a href="/forum/topic">新手专区</a>
+				<a href="/forum/topic/{{$themeInfo->id}}">{{$themeInfo->theme_name}}</a>
 			</div>
 
 			<div class="inner">
@@ -55,24 +55,35 @@
 						<h3>发新主题</h3>
 					</div>
 					<div class="content">
-						<div class="row">
-							<div class="col-sm-2 propName">主题</div>
-							<div class="col-sm-9">
-								<input class="form-control" type="text" id="title" placeholder="最多只能输入50个字">
+						<form action="/addArticle" method="post" id="addArticle">
+							<div class="row">
+								<div class="col-sm-2 propName">主题</div>
+								<div class="col-sm-9">
+									<input class="form-control" type="text" id="title" placeholder="最多只能输入50个字" name="title">
+								</div>
 							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-sm-2 propName">正文</div>
-							<div class="col-sm-9">
-								<script id="pubContent" name="content" type="text/plain"></script>
+							{{ csrf_field() }}
+							<div class="row">
+								<div class="col-sm-2 propName">正文</div>
+								<div class="col-sm-9">
+									<script id="pubContent" name="content" type="text/plain"></script>
+								</div>
 							</div>
-						</div>
-
-						<div class="col-sm-11 themePulibBtn">
-							<button>发布主题</button>
-						</div>
-
+							<div class="row" style="min-height: 50px;">
+								<div class="col-sm-2 propName"></div>
+								<div class="col-sm-2">
+									<input type="checkbox" value="1" id="isNeedMoney" name="isNeedMoney">
+									<label for="isNeedMoney" style="font-weight: normal;">是否需要金币</label>
+								</div>
+								<div class="col-sm-7" style="display: none;" id="inputMoney">
+									<input type="number" name="money"  class="form-control"  id="money">	
+								</div>
+							</div>
+							<input type="hidden" name="theme" value="{{$themeInfo->id}}">
+							<div class="col-sm-11 themePulibBtn">
+								<button>发布主题</button>
+							</div>
+						</form>
 					</div>
 				</div>
 
@@ -94,7 +105,7 @@
 						@else
 						<div class="info-nums">
 							<div class="items">
-								<p>0</p>
+								<p>{{$articleCount}}</p>
 								<h4>主题数</h4>
 							</div>
 							<div class="seperate"></div>
@@ -109,25 +120,11 @@
 					<div class="hot-topics">
 						<h3 class="title">热门主题</h3>
 						<ul>
-							<li>
-								<a href="">域名解析的记录值总是多一个点，导致解析失败</a>
-							</li>
-
-							<li>
-								<a href="">域名解析的记录值总是多一个点，导致解析失败</a>
-							</li>
-
-							<li>
-								<a href="">域名解析的记录值总是多一个点，导致解析失败</a>
-							</li>
-
-							<li>
-								<a href="">域名解析的记录值总是多一个点，导致解析失败</a>
-							</li>
-
-							<li>
-								<a href="">域名解析的记录值总是多一个点，导致解析失败</a>
-							</li>
+							@foreach($hotList as $val)
+								<li>
+									<a href="">{{$val->title}}</a>
+								</li>
+							@endforeach
 						</ul>
 					</div>
 				</div>
@@ -145,6 +142,7 @@
 	<script src="/scripts/public/tools.js"></script>
 	<script src="/scripts/public/topNav.js"></script>
 	<script src="/scripts/public/SideTop.js"></script>
+	<script src="/style/admin/lib/layer/2.4/layer.js"></script>
 	<script src="/scripts/topic_add.js"></script>
 </body>
 </html>

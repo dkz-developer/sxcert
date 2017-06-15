@@ -11,20 +11,11 @@
 |
 */
 
-// 论坛首页
-Route::get('/bbs', function () {
-	return view('index');
-});
 
-// 帖子列表页
-Route::get('/forum/topic/', function () {
-	return view('forum');
-});
 
-// 帖子 -- 发布主题页
-Route::get('/forum/topic/add', function () {
-	return view('topic_add');
-});
+
+
+
 
 // 帖子详情页页
 Route::get('/thread/topic/', function () {
@@ -102,6 +93,7 @@ Route::group(['namespace' => 'Admin','middleware'=>'adminauth'], function () {
 	Route::post('/admin/article/editChannel','ArticleController@editChannel');
 	Route::post('/admin/article/delChannel','ArticleController@delChannel');
 	Route::get('/admin/article/channelList','ArticleController@channelList');
+	Route::get('/admin/article/list','ArticleController@articleList');
 });
 Route::get('/custome/kit/captcha/{tmp}', 'Custome\UserController@captcha');
 // 支付页面
@@ -141,4 +133,14 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/alpay','PayController@index');
 	Route::any('webreturn','PayController@webReturn');
 	Route::any('webnotify','PayController@alpayNotify');
+
+	// bbs 论坛
+	Route::get('/bbs', 'BbsController@index');
+	// 帖子列表页
+	Route::get('/forum/topic/{id}','BbsController@forum');
+	Route::post('/addArticle','BbsController@addArticle');
+	// 帖子 -- 发布主题页
+	Route::get('/forum/topic/add/{id}','BbsController@addPage'); /*function ($id) {
+		return view('topic_add',['id'=>$id]);
+	});*/
 });

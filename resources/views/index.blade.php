@@ -91,118 +91,52 @@
 			<div class="product clearfix">
 				<h2>产品论坛</h2>
 				<div class="content">
-					<div class="product-list">
-						<div class="first">
-							<div class="title">云计算基础服务</div>
-							<div class="pic">
-								<img src="https://developer.baidu.com/resources/online/forum/bce/img/sky-ser.png">
-							</div>
-							<div class="discuss">
-								<p>主题: <span>666</span></p>
-								<p>帖子: <span>666</span></p>
-							</div>
-						</div>
-					</div>
-
-					<div class="product-list">
-						<div class="first">
-							<div class="title">云计算基础服务</div>
-							<div class="pic">
-								<img src="https://developer.baidu.com/resources/online/forum/bce/img/sky-ser.png">
-							</div>
-							<div class="discuss">
-								<p>主题: <span>666</span></p>
-								<p>帖子: <span>666</span></p>
+				<?php
+				for($i=0;$i<4;$i++) {
+				?>
+					<a href="/forum/topic/{{$list [$i] ['id']}}">
+						<div class="product-list">
+							<div class="first">
+								<div class="title">{{$list [$i] ['theme_name']}}</div>
+								<div class="pic">
+									<img src="https://developer.baidu.com/resources/online/forum/bce/img/sky-ser.png">
+								</div>
+								<div class="discuss">
+									<p>主题: <span>666</span></p>
+									<p>帖子: <span>666</span></p>
+								</div>
 							</div>
 						</div>
-					</div>
-
-					<div class="product-list">
-						<div class="first">
-							<div class="title">云计算基础服务</div>
-							<div class="pic">
-								<img src="https://developer.baidu.com/resources/online/forum/bce/img/sky-ser.png">
-							</div>
-							<div class="discuss">
-								<p>主题: <span>666</span></p>
-								<p>帖子: <span>666</span></p>
-							</div>
-						</div>
-					</div>
-
-					<div class="product-list">
-						<div class="first">
-							<div class="title">云计算基础服务</div>
-							<div class="pic">
-								<img src="https://developer.baidu.com/resources/online/forum/bce/img/sky-ser.png">
-							</div>
-							<div class="discuss">
-								<p>主题: <span>666</span></p>
-								<p>帖子: <span>666</span></p>
-							</div>
-						</div>
-					</div>
+					</a>
+				<?php
+				}
+				?>
 				</div>
 			</div>
 
 			<div class="classify clearfix">
 				<h2>分类板块</h2>
 				<div class="content clearfix">
+					<?php 
+					for($i=4;$i<count($list);$i++) {
+					?>
 					<div class="classify-list">
 						<div class="icon">
 							<a href=""><img src="https://developer.baidu.com/resources/online/forum/bce/img/freshman-logo.png" alt=""></a>
 						</div>
 						<div class="info">
-							<h4><a href="">新手专区</a></h4>
+							<h4><a href="">{{$list [$i] ['theme_name']}}</a></h4>
 							<div class="introduction">
 								<p>主题：1656666</p>
 								<p>帖子：666</p>
-								<p>版本：宣州是笨蛋</p>
+								<p>版本：doujiangyoutiao</p>
 							</div>	
 						</div>
 					</div>
-
-					<div class="classify-list">
-						<div class="icon">
-							<a href=""><img src="https://developer.baidu.com/resources/online/forum/bce/img/record-service.png" alt=""></a>
-						</div>
-						<div class="info">
-							<h4><a href="">备案服务</a></h4>
-							<div class="introduction">
-								<p>主题：1656666</p>
-								<p>帖子：666</p>
-								<p>版本：宣州是笨蛋</p>
-							</div>						
-						</div>
-					</div>
-
-					<div class="classify-list">
-						<div class="icon">
-							<a href=""><img src="https://developer.baidu.com/resources/online/forum/bce/img/buy-info.png" alt=""></a>
-						</div>
-						<div class="info">
-							<h4><a href="">购买咨询</a></h4>
-							<div class="introduction">
-								<p>主题：1656666</p>
-								<p>帖子：666</p>
-								<p>版本：宣州是笨蛋</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="classify-list">
-						<div class="icon">
-							<a href=""><img src="https://developer.baidu.com/resources/online/forum/bce/img/question.png" alt=""></a>
-						</div>
-						<div class="info">
-							<h4><a href="">问题反馈</a></h4>
-							<div class="introduction">
-								<p>主题：1656666</p>
-								<p>帖子：666</p>
-								<p>版本：宣州是笨蛋</p>
-							</div>	
-						</div>
-					</div>
+					<?php
+					}
+					?>
+					
 				</div>
 			</div>
 		</div>

@@ -1,6 +1,4 @@
 <?php
-if($_GET['aa']==2)
-echo phpinfo();
 /*
  * Laravel - A PHP Framework For Web Artisans
  *

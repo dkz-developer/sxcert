@@ -19,7 +19,11 @@
 			$themeInfo = Theme::find($id);
 			if(empty($themeInfo))
 				return redirect('/bbs');
-			$hotList = Article::where('theme_id',$id)->select('id','title','view_num','created_at','user_name','is_top','is_brilliant','user_id','theme_id','like_num','reply_num')->orderBy('like_num')->skip(0)->take(5)->get();
+			$where = [
+				['theme_id',$id],
+				['status',1]
+			];
+			$hotList = Article::where($where)->select('id','title','view_num','created_at','user_name','is_top','is_brilliant','user_id','theme_id','like_num','reply_num')->orderBy('like_num')->skip(0)->take(5)->get();
 			$articleCount = Article::where('user_id',session('userInfo.UserId'))->count();
 			return view('topic_add',['themeInfo'=>$themeInfo,'hotList'=>$hotList,'articleCount'=>$articleCount]);	
 		}
@@ -31,9 +35,17 @@
 				return redirect('/bbs');
 			$themeInfo = Theme::find($id);
 			$Article = new Article();
-			$list = $Article->where('theme_id',$id)->select('id','title','view_num','created_at','user_name','is_top','is_brilliant','user_id','theme_id','like_num','reply_num')->orderBy('is_top','desc')->orderBy('created_at','desc')->simplePaginate(20);
-			$hotList = $Article->where('theme_id',$id)->select('id','title','view_num','created_at','user_name','is_top','is_brilliant','user_id','theme_id','like_num','reply_num')->orderBy('like_num')->skip(0)->take(5)->get();
-			$articleCount = $Article->where('user_id',session('userInfo.UserId'))->count();
+			$where = [
+				['theme_id',$id],
+				['status',1]
+			];
+			$list = $Article->where($where)->select('id','title','view_num','created_at','user_name','is_top','is_brilliant','user_id','theme_id','like_num','reply_num')->orderBy('is_top','desc')->orderBy('created_at','desc')->simplePaginate(20);
+			$hotList = $Article->where($where)->select('id','title','view_num','created_at','user_name','is_top','is_brilliant','user_id','theme_id','like_num','reply_num')->orderBy('like_num')->skip(0)->take(5)->get();
+			$where = [
+				['status',1],
+				['user_id',session('UserId.UserId')],
+			];
+			$articleCount = $Article->where($where)->count();
 			return view('forum',['themeInfo'=>$themeInfo,'list'=>$list,'hotList'=>$hotList,'articleCount'=>$articleCount]);
 		}
 

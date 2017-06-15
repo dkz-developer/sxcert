@@ -11,7 +11,7 @@
 	<link href="/images/favicon.ico" rel="icon" type="image/icon">
 
     <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="style/css/index.css" rel="stylesheet">
+    <link href="/style/css/thread.css" rel="stylesheet">
 </head>
 <body>
 
@@ -43,164 +43,178 @@
 		</nav>
 
 		<div class="container">
-			<div class="hot-post clearfix">
-				
-				<div class="layout-left inner-content flickadd" >
-
-					<ul class="flicks">
-						<li class="height">
-							<div class="font-content">
-								<div class="photo"><img src="http://bos.nj.bpc.baidu.com/v1/developer/a3be4b6f-4795-4ae4-b97b-82eb68b34519.png" alt=""></div>
-							</div>
-						</li>
-						<li class="height">
-							<div class="font-content">
-								<div class="photo"><img src="https://bos.nj.bpc.baidu.com/v1/developer/f8953830-0f8b-40e6-818a-09b830bf76f2.png" alt=""></div>
-							</div>
-						</li>
-						<li class="height">
-							<div class="font-content">
-								<div class="photo"><img src="https://bos.nj.bpc.baidu.com/v1/developer/9cf08fab-2026-41c5-b9f4-e4d1c93075cc.png" alt=""></div>
-							</div>
-						</li>
-					</ul>
-				</div>	
-
-				<div class="layout-right">
-					<div class="tab clearfix">
-						<div class="tab-list active"><span></span><a href="">最新主题</a></div>
-						<div class="tab-list"><span></span><a href="">最新回复</a></div>
-						<div class="tab-list"><span></span><a href="">热门帖子</a></div>
-					</div>
-
-					<div class="content">
-						<div class="item">
-							<ul>
-								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗bae可以绑定自己的域名吗？和bch的区别在哪里呢？？和bch的区别在哪里呢？</a></li>
-								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗？和bch的区别在哪里呢？</a></li>
-								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗？和bch的区别在哪里呢？</a></li>
-								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗？和bch的区别在哪里呢？</a></li>
-								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗？和bch的区别在哪里呢？</a></li>
-						</div>	
-					</div>
-
-
-				</div>
+			<div class="breadcrumbs">
+			 	<a href="/bbs">论坛首页</a>
+				<i class="fa fa-angle-right"></i>
+				<a href="/forum/topic/1212">此处需要一个字段</a>
 			</div>
 
-			<div class="product clearfix">
-				<h2>产品论坛</h2>
-				<div class="content">
-					<div class="product-list">
-						<div class="first">
-							<div class="title">云计算基础服务</div>
-							<div class="pic">
-								<img src="https://developer.baidu.com/resources/online/forum/bce/img/sky-ser.png">
+			<div class="inner">
+
+				<div class="reply-list">
+					<div class="reply-list-item">
+						<div class="layout-left">
+							<div class="username">华华&周周</div>
+							<div class="info">
+								<div class="marker">楼主</div>
+								<div class="photo">
+									<img src="https://developer.baidu.com/resources/online/forum/img/photo.png" >
+								</div>
+
+								<div class="info-nums">
+									<div class="item">
+										<span class="data">12</span>
+										<span class="type">主题数</span>
+									</div>
+
+									<div class="item">
+										<span class="data">1</span>
+										<span class="type">回复数</span>
+									</div>
+								</div>
+
 							</div>
-							<div class="discuss">
-								<p>主题: <span>666</span></p>
-								<p>帖子: <span>666</span></p>
+						</div>
+						<div class="layout-right">
+							
+							<div class="header">
+								<span class="floor">楼主</span>
+								<span class="time">发表于 2016.09.05 15:12:23</span>
+								<span class="prev">1556 浏览</span>
+								<span class="replys">4 回复</span>
+								<span class="goods">1 赞</span>
 							</div>
+
+							<div class="content">
+								<p>版本放啥子？我也不知道</p>
+								<p>版本放啥子？我也不知道</p>
+								<p>版本放啥子？我也不知道</p>
+								<p>版本放啥子？我也不知道</p>
+								<p>版本放啥子？我也不知道</p>
+								<p>版本放啥子？我也不知道</p>
+								<p>版本放啥子？我也不知道</p>
+								<p>版本放啥子？我也不知道</p>
+							</div>
+
+							<div class="bottom">
+								<a href=""><i class="fa fa-comment-o"></i> 回复</a>
+							</div>
+
 						</div>
 					</div>
 
-					<div class="product-list">
-						<div class="first">
-							<div class="title">云计算基础服务</div>
-							<div class="pic">
-								<img src="https://developer.baidu.com/resources/online/forum/bce/img/sky-ser.png">
+					<div class="reply-list-item">
+						<div class="layout-left">
+							<div class="username">华华&周周</div>
+							<div class="info">
+								<div class="marker">楼主</div>
+								<div class="photo">
+									<img src="https://developer.baidu.com/resources/online/forum/img/photo.png" >
+								</div>
+
+								<div class="info-nums">
+									<div class="item">
+										<span class="data">12</span>
+										<span class="type">主题数</span>
+									</div>
+
+									<div class="item">
+										<span class="data">1</span>
+										<span class="type">回复数</span>
+									</div>
+								</div>
+
 							</div>
-							<div class="discuss">
-								<p>主题: <span>666</span></p>
-								<p>帖子: <span>666</span></p>
+						</div>
+						<div class="layout-right">
+							
+							<div class="header">
+								<span class="floor">楼主</span>
+								<span class="time">发表于 2016.09.05 15:12:23</span>
+								<span class="prev">1556 浏览</span>
+								<span class="replys">4 回复</span>
+								<span class="goods">1 赞</span>
 							</div>
+
+							<div class="content">
+								<p>版本放啥子？我也不知道</p>
+								<p>版本放啥子？我也不知道</p>
+								<p>版本放啥子？我也不知道</p>
+								<p>版本放啥子？我也不知道</p>
+								<p>版本放啥子？我也不知道</p>
+								<p>版本放啥子？我也不知道</p>
+								<p>版本放啥子？我也不知道</p>
+								<p>版本放啥子？我也不知道</p>
+							</div>
+
+							<div class="bottom">
+								<a href=""><i class="fa fa-comment-o"></i> 回复</a>
+							</div>
+
 						</div>
 					</div>
 
-					<div class="product-list">
-						<div class="first">
-							<div class="title">云计算基础服务</div>
-							<div class="pic">
-								<img src="https://developer.baidu.com/resources/online/forum/bce/img/sky-ser.png">
-							</div>
-							<div class="discuss">
-								<p>主题: <span>666</span></p>
-								<p>帖子: <span>666</span></p>
+					<div class="reply-list-item">
+						<div class="layout-left">
+							<div class="username">华华&周周</div>
+							<div class="info">
+								<div class="marker">楼主</div>
+								<div class="photo">
+									<img src="https://developer.baidu.com/resources/online/forum/img/photo.png" >
+								</div>
+
+								<div class="info-nums">
+									<div class="item">
+										<span class="data">12</span>
+										<span class="type">主题数</span>
+									</div>
+
+									<div class="item">
+										<span class="data">1</span>
+										<span class="type">回复数</span>
+									</div>
+								</div>
+
 							</div>
 						</div>
-					</div>
+						<div class="layout-right">
+							
+							<div class="header">
+								<span class="floor">楼主</span>
+								<span class="time">发表于 2016.09.05 15:12:23</span>
+								<span class="prev">1556 浏览</span>
+								<span class="replys">4 回复</span>
+								<span class="goods">1 赞</span>
+							</div>
 
-					<div class="product-list">
-						<div class="first">
-							<div class="title">云计算基础服务</div>
-							<div class="pic">
-								<img src="https://developer.baidu.com/resources/online/forum/bce/img/sky-ser.png">
+							<div class="content">
+								<p>版本放啥子？我也不知道</p>
+								<p>版本放啥子？我也不知道</p>
+								<p>版本放啥子？我也不知道</p>
+								<p>版本放啥子？我也不知道</p>
+								<p>版本放啥子？我也不知道</p>
+								<p>版本放啥子？我也不知道</p>
+								<p>版本放啥子？我也不知道</p>
+								<p>版本放啥子？我也不知道</p>
 							</div>
-							<div class="discuss">
-								<p>主题: <span>666</span></p>
-								<p>帖子: <span>666</span></p>
+
+							<div class="bottom">
+								<a href=""><i class="fa fa-comment-o"></i> 回复</a>
 							</div>
+
 						</div>
 					</div>
 				</div>
-			</div>
 
-			<div class="classify clearfix">
-				<h2>分类板块</h2>
-				<div class="content clearfix">
-					<div class="classify-list">
-						<div class="icon">
-							<a href=""><img src="https://developer.baidu.com/resources/online/forum/bce/img/freshman-logo.png" alt=""></a>
-						</div>
-						<div class="info">
-							<h4><a href="">新手专区</a></h4>
-							<div class="introduction">
-								<p>主题：1656666</p>
-								<p>帖子：666</p>
-								<p>版本：宣州是笨蛋</p>
-							</div>	
-						</div>
-					</div>
+				<div class="reply-editor">
 
-					<div class="classify-list">
-						<div class="icon">
-							<a href=""><img src="https://developer.baidu.com/resources/online/forum/bce/img/record-service.png" alt=""></a>
+					<div class="reply-editor-content">
+						<div class="title">回复</div>
+						<div class="content">
+							<script id="pubContent" name="content" type="text/plain"></script>
 						</div>
-						<div class="info">
-							<h4><a href="">备案服务</a></h4>
-							<div class="introduction">
-								<p>主题：1656666</p>
-								<p>帖子：666</p>
-								<p>版本：宣州是笨蛋</p>
-							</div>						
-						</div>
-					</div>
-
-					<div class="classify-list">
-						<div class="icon">
-							<a href=""><img src="https://developer.baidu.com/resources/online/forum/bce/img/buy-info.png" alt=""></a>
-						</div>
-						<div class="info">
-							<h4><a href="">购买咨询</a></h4>
-							<div class="introduction">
-								<p>主题：1656666</p>
-								<p>帖子：666</p>
-								<p>版本：宣州是笨蛋</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="classify-list">
-						<div class="icon">
-							<a href=""><img src="https://developer.baidu.com/resources/online/forum/bce/img/question.png" alt=""></a>
-						</div>
-						<div class="info">
-							<h4><a href="">问题反馈</a></h4>
-							<div class="introduction">
-								<p>主题：1656666</p>
-								<p>帖子：666</p>
-								<p>版本：宣州是笨蛋</p>
-							</div>	
+						<div class="reply-btn">
+							<button>回复</button>
 						</div>
 					</div>
 				</div>
@@ -213,13 +227,15 @@
 	</div>
 
 	<script src="/scripts/lib/jquery/jquery.min.js"></script>
-	<script src="/scripts/lib/vue/vue.min.js"></script>
-	<script src="/scripts/lib/flickerplate.min.js"></script>
+	<script src="/scripts/lib/UEedtor/ueditor.config.js"></script>
+	<script src="/scripts/lib/UEedtor/ueditor.all.min.js"></script>
 	<script src="/scripts/public/tools.js"></script>
 	<script src="/scripts/public/topNav.js"></script>
-	<script src="/scripts/index.js"></script>
 	<script src="/scripts/public/SideTop.js"></script>
-	
+	<script src="/style/admin/lib/layer/2.4/layer.js"></script>
+	<script src="/scripts/public/SideTop.js"></script>
+	<script src="/scripts/thread.js"></script>
+
 </body>
 </html>
 

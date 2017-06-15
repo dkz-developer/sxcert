@@ -33,10 +33,10 @@
 				</div>
 
 				<div class="search">
-				<form action="/h" method="get" >
+				<form>
 					<input class="form-control" type="text" placeholder="输入机型或版本号(至少3个字符)" name="k" id="keyword">
 					<!-- <input class="form-control" type="hidden" name="i" value="7"> -->
-					<button type="submit" id="searchBtn">搜一下</button>
+					<button type="button" id="searchBtn">搜一下</button>
 				</form>
 			</div>
 
@@ -130,15 +130,18 @@
 
 		var keyword = $.mytools.GetQueryString("k");    // 关键字
 
+
 		$("#searchBtn").click(function() {
 
 			var keyword = $("#keyword").val();
 
 			if(keyword.length < 3) return false;
 
+			window.location.href = "/h?k="+$.trim(keyword);
+
 		})
 
-		$("#keyword").val(keyword);
+		$("#keyword").val(decodeURIComponent(keyword));
 	})
 </script>
 

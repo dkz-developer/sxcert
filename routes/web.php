@@ -10,20 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-
-
-
-
-
-// 帖子详情页页
-Route::get('/thread/topic/', function () {
-	return view('thread');
-});
-
-
- 
 // 登录注册页
 Route::get('/login', 'Custome\UserController@loginPage');
 
@@ -34,12 +20,8 @@ Route::get('/findPassword', function () {
 	return view('findPassword');
 });
 
-
-
 // 客服页面
 Route::get('/service', 'Custome\LoadListController@service');
-
-
 
 // 下载页 search
 Route::get('/search', function () {
@@ -144,7 +126,8 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/forum/topic/{id}','BbsController@forum');
 	Route::post('/addArticle','BbsController@addArticle');
 	// 帖子 -- 发布主题页
-	Route::get('/forum/topic/add/{id}','BbsController@addPage'); /*function ($id) {
-		return view('topic_add',['id'=>$id]);
-	});*/
+	Route::get('/forum/topic/add/{id}','BbsController@addPage'); // 帖子详情页页
+	Route::get('/thread/topic/{id}','BbsController@detail');
+	Route::get('/like/{id}','BbsController@likeArticle');
+	Route::post('/reply','BbsController@reply');
 });

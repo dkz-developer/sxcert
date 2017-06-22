@@ -8,6 +8,7 @@
 	<meta name="viewport" contant="width=device-width, initial-scale=1">
 	<meta name="keywords" content="下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源">
 	<meta name="description" content="下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<link href="/images/favicon.ico" rel="icon" type="image/icon">
 
     <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -46,17 +47,74 @@
 			<div class="breadcrumbs">
 			 	<a href="/bbs">论坛首页</a>
 				<i class="fa fa-angle-right"></i>
-				<a href="/forum/topic/1212">此处需要一个字段</a>
+				<a href="/forum/topic/{{$themeInfo->id}}">{{$themeInfo->theme_name}}</a>
 			</div>
 
 			<div class="inner">
 
 				<div class="reply-list">
+					@if(!empty($list))
 					<div class="reply-list-item">
 						<div class="layout-left">
-							<div class="username">华华&周周</div>
+							<div class="username">{{$list->user_name}}</div>
 							<div class="info">
 								<div class="marker">楼主</div>
+								<div class="photo">
+									<img src="https://developer.baidu.com/resources/online/forum/img/photo.png" >
+								</div>
+
+								<div class="info-nums">
+									<div class="item">
+										<span class="data">{{$list->article_num}}</span>
+										<span class="type">主题数</span>
+									</div>
+
+									<div class="item">
+										<span class="data">1</span>
+										<span class="type">回复数</span>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="layout-right">
+							
+							<div class="header">
+								<span class="floor">楼主</span>
+								<span class="time">发表于 {{date('Y.m.d H:i:s',strtotime($list->created_at))}}</span>
+								<span class="prev">{{$list->view_num}} 浏览</span>
+								<span class="replys">4 回复</span>
+								<span class="goods">{{$list->like_num}} 赞</span>
+							</div>
+
+							<div class="content">
+								<h3 style="font-size: 24px;font-weight: 400;line-height: 30px;margin: 10px 0 15px;text-align: center;color: #999">{{$list->title}}</h3>
+								@if(0 == $list->money)
+									{!!$list->content!!}
+								@else
+									<div style="border:1px dashed #999;height: 60px;border-radius: 3px;text-align: center;line-height: 60px;background-color: #FFFFCC;color: #999">
+										帖子内容售价{{intval($list->money)}}金币 <a href="">点我购买查看 </a>
+									</div>
+								@endif
+							</div>
+
+							<div class="bottom">
+							@if(!empty(session('userInfo')) && 0 == $list->count)
+								<a href="javascript:void(0)" class="goods" article_id="{{$list->id}}" ><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 点赞</a>
+								<small style="color: #d6d6d6;margin: 0 10px;color: #999">|</small> 
+							@endif
+								<a href=""><i class="fa fa-comment-o"></i> 回复</a>
+							</div>
+
+						</div>
+					</div>
+					@endif
+					@foreach($replylist as $key=>$val)
+					<div class="reply-list-item" <?php if(isset($_GET ['replyId']) && $_GET ['replyId'] == $val->id) echo "id='lastReply'"?>>
+						<div class="layout-left">
+							<div class="username">{{$val->user_name}}</div>
+							<div class="info">
+								<div class="marker"><?php $page = isset($_GET ['page'])  ? $_GET ['page'] : 1;echo ($page-1) *5 + $key + 2;?>楼</div>
 								<div class="photo">
 									<img src="https://developer.baidu.com/resources/online/forum/img/photo.png" >
 								</div>
@@ -78,145 +136,48 @@
 						<div class="layout-right">
 							
 							<div class="header">
-								<span class="floor">楼主</span>
-								<span class="time">发表于 2016.09.05 15:12:23</span>
-								<span class="prev">1556 浏览</span>
-								<span class="replys">4 回复</span>
+								<span class="floor"><?php $page = isset($_GET ['page']) ? $_GET ['page'] : 1;echo ($page-1) *5 + $key + 2;?>楼</span>
+								<span class="time">发表于 {{date('Y.m.d H:i:s',strtotime($val->created_at))}}</span>
+								<!-- <span class="prev">1556 浏览</span>
+								<span class="replys">4 回复</span> -->
 								<span class="goods">1 赞</span>
 							</div>
 
 							<div class="content">
-								<p>版本放啥子？我也不知道</p>
-								<p>版本放啥子？我也不知道</p>
-								<p>版本放啥子？我也不知道</p>
-								<p>版本放啥子？我也不知道</p>
-								<p>版本放啥子？我也不知道</p>
-								<p>版本放啥子？我也不知道</p>
-								<p>版本放啥子？我也不知道</p>
-								<p>版本放啥子？我也不知道</p>
+								{!!$val->content!!}
 							</div>
 
 							<div class="bottom">
-								<a href=""><i class="fa fa-comment-o"></i> 回复</a>
+								@if(!empty(session('userInfo')))
+									<a href="javascript:void(0)" class="goods" article_id="{{$val->id}}" ><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 点赞</a>
+									<small style="color: #d6d6d6;margin: 0 10px;color: #999">|</small> 
+								@endif
+									<a href=""><i class="fa fa-comment-o"></i> 回复</a>
 							</div>
 
 						</div>
+					</div> 
+					@endforeach
+					<div class="topic-detail-page" style="margin-top: 6px;text-align: right;">
+						   {{ $replylist->links() }}
 					</div>
-
-					<div class="reply-list-item">
-						<div class="layout-left">
-							<div class="username">华华&周周</div>
-							<div class="info">
-								<div class="marker">楼主</div>
-								<div class="photo">
-									<img src="https://developer.baidu.com/resources/online/forum/img/photo.png" >
-								</div>
-
-								<div class="info-nums">
-									<div class="item">
-										<span class="data">12</span>
-										<span class="type">主题数</span>
-									</div>
-
-									<div class="item">
-										<span class="data">1</span>
-										<span class="type">回复数</span>
-									</div>
-								</div>
-
-							</div>
-						</div>
-						<div class="layout-right">
-							
-							<div class="header">
-								<span class="floor">楼主</span>
-								<span class="time">发表于 2016.09.05 15:12:23</span>
-								<span class="prev">1556 浏览</span>
-								<span class="replys">4 回复</span>
-								<span class="goods">1 赞</span>
-							</div>
-
-							<div class="content">
-								<p>版本放啥子？我也不知道</p>
-								<p>版本放啥子？我也不知道</p>
-								<p>版本放啥子？我也不知道</p>
-								<p>版本放啥子？我也不知道</p>
-								<p>版本放啥子？我也不知道</p>
-								<p>版本放啥子？我也不知道</p>
-								<p>版本放啥子？我也不知道</p>
-								<p>版本放啥子？我也不知道</p>
-							</div>
-
-							<div class="bottom">
-								<a href=""><i class="fa fa-comment-o"></i> 回复</a>
-							</div>
-
-						</div>
-					</div>
-
-					<div class="reply-list-item">
-						<div class="layout-left">
-							<div class="username">华华&周周</div>
-							<div class="info">
-								<div class="marker">楼主</div>
-								<div class="photo">
-									<img src="https://developer.baidu.com/resources/online/forum/img/photo.png" >
-								</div>
-
-								<div class="info-nums">
-									<div class="item">
-										<span class="data">12</span>
-										<span class="type">主题数</span>
-									</div>
-
-									<div class="item">
-										<span class="data">1</span>
-										<span class="type">回复数</span>
-									</div>
-								</div>
-
-							</div>
-						</div>
-						<div class="layout-right">
-							
-							<div class="header">
-								<span class="floor">楼主</span>
-								<span class="time">发表于 2016.09.05 15:12:23</span>
-								<span class="prev">1556 浏览</span>
-								<span class="replys">4 回复</span>
-								<span class="goods">1 赞</span>
-							</div>
-
-							<div class="content">
-								<p>版本放啥子？我也不知道</p>
-								<p>版本放啥子？我也不知道</p>
-								<p>版本放啥子？我也不知道</p>
-								<p>版本放啥子？我也不知道</p>
-								<p>版本放啥子？我也不知道</p>
-								<p>版本放啥子？我也不知道</p>
-								<p>版本放啥子？我也不知道</p>
-								<p>版本放啥子？我也不知道</p>
-							</div>
-
-							<div class="bottom">
-								<a href=""><i class="fa fa-comment-o"></i> 回复</a>
-							</div>
-
-						</div>
-					</div>
+					
 				</div>
 
 				<div class="reply-editor">
-
-					<div class="reply-editor-content">
-						<div class="title">回复</div>
-						<div class="content">
-							<script id="pubContent" name="content" type="text/plain"></script>
+					<form action="javascript:;" id="reply">
+						<div class="reply-editor-content">
+							<div class="title">回复</div>
+							<input type="hidden" id="maxPage" value="{{$maxPage}}">
+							<input type="hidden" id="parent_id" name="parent_id" value="{{$id}}">
+							<div class="content">
+								<script id="pubContent" name="content" type="text/plain"></script>
+							</div>
+							<div class="reply-btn">
+								<button>回复</button>
+							</div>
 						</div>
-						<div class="reply-btn">
-							<button>回复</button>
-						</div>
-					</div>
+					</form>
 				</div>
 			</div>
 		</div>

@@ -4,8 +4,72 @@
 	use App\Http\Controllers\Controller;
 	use App\Model\Theme;
 	use App\Model\Article;
+	use DB;
 	class BbsController extends Controller
 	{
+
+		public function reply(Request $request)
+		{
+			if(empty(session('userInfo')))
+				return response()->json(['code'=>'A','msg'=>'未登录！']);
+			$parentId = $request->input('parent_id',0);
+			if(! is_numeric($parentId))
+				return response()->json(['code'=>'F','msg'=>'参数错误！']);
+			$content = $request->input('content');
+			if(empty($content))
+				return response()->json(['code'=>'F','msg'=>'内容不能为空！']);
+			$Article = new Article();
+			$Article->parent_id = $parentId;
+			$Article->user_id = session('userInfo.UserId');
+			$Article->user_name = session('userInfo.UserName');
+			$Article->content = $content;
+			$res = $Article->save();
+			if($res)
+				return response()->json(['code'=>'S','msg'=>'回帖成功！','data'=>$Article->id]);
+			return response()->json(['code'=>'F','msg'=>'回帖失败！']);
+		}
+
+		public function detail($id,Request $request)
+		{
+			$Article = new Article();
+			$Article::where('id',$id)->increment('view_num');
+			$theme_id = Article::where('id',$id)->value('theme_id');
+			$themeInfo = Theme::find($theme_id);
+			$page = $request->input('page',1);
+			$list = [];
+			if(1 == $page) {
+				$sql = "SELECT a.*,count('b.user_id') AS article_num FROM Article as a LEFT JOIN Article as b ON a.user_id = b.user_id WHERE a.id = ? ";
+				$list = DB::table('Article as a')->LeftJoin('Article as b','a.user_id','=','b.user_id')->select('a.*',DB::raw('count(b.user_id) as article_num'))->where('a.id',$id)->first();
+				if(! empty(session('userInfo')))
+					$count = DB::table('ArticleLike')->where([['ArticleId',$id],['UserId',session('userInfo.UserId')]])->count();
+				else
+					$count = 0;
+				$list->count = $count;
+			}
+			$replylist = $Article->where('parent_id',$id)->orderBy('id','asc')->paginate(5);
+			$maxPage = $Article->where('parent_id',$id)->count();
+			$maxPage = ceil($maxPage/5);
+			return view('thread',['themeInfo'=>$themeInfo,'list'=>$list,'replylist'=>$replylist,'id'=>$id,'maxPage'=>$maxPage]);
+		}
+
+		public function likeArticle($id)
+		{
+			if(empty(session('userInfo')))
+				return response()->json(['code'=>'F','msg'=>'操作失败！']);
+			if(! is_numeric($id))
+				return response()->json(['code'=>'F','msg'=>'参数错误！']);
+			$likeRes = DB::table('ArticleLike')->where([['ArticleId',$id],['UserId',session('userInfo.UserId')]])->first();
+			if(empty($likeRes)) {
+				$res = Article::where('id',$id)->increment('like_num');
+				if($res){
+					DB::table('ArticleLike')->insert(['ArticleId'=>$id,'UserId'=>session('userInfo.UserId')]);
+					return response()->json(['code'=>'S','msg'=>'操作成功！']);
+				}
+			}
+			return response()->json(['code'=>'F','msg'=>'操作失败！']);
+			
+		}
+
 		public function index()
 		{
 			$list = Theme::where('status',1)->get()->toArray();

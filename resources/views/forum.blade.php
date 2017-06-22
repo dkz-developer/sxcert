@@ -68,7 +68,7 @@
 						@foreach($list as $val)
 							<div class="topic-item">
 								<div class="info">
-									<a class="title" href="">{{$val->title}}</a>
+									<a class="title" href="/thread/topic/{{$val->id}}">{{$val->title}}</a>
 									@if(1 == $val->is_brilliant)
 										<span class="placeTop" style="margin-right: 3px;background-color: #ff6563;border:1px solid #ff6563;border-radius: 3px;">精</span>
 									@endif

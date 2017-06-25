@@ -2,12 +2,12 @@
 <html lang="zh-cmn-Hans">
 <head>
 	<meta charset="utf-8">
-	<title>下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源</title>
+	<title>GSMGOOD - 分享安卓最新鲜最好玩的资源</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
 	<meta name="viewport" contant="width=device-width, initial-scale=1">
-	<meta name="keywords" content="下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源">
-	<meta name="description" content="下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源">
+	<meta name="keywords" content="GSMGOOD - 分享安卓最新鲜最好玩的资源">
+	<meta name="description" content="GSMGOOD - 分享安卓最新鲜最好玩的资源">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<link href="/images/favicon.ico" rel="icon" type="image/icon">
 

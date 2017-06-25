@@ -68,19 +68,36 @@
 
 				<div class="layout-right">
 					<div class="tab clearfix">
-						<div class="tab-list active"><span></span><a href="">最新主题</a></div>
-						<div class="tab-list"><span></span><a href="">最新回复</a></div>
-						<div class="tab-list"><span></span><a href="">热门帖子</a></div>
+						<div class="tab-list active" data-tab="1"><span></span><em>最新主题</em></div>
+						<div class="tab-list" data-tab="2"><span></span><em>最新回复</em></div>
+						<div class="tab-list" data-tab="3"><span></span><em>热门帖子</em></div>
 					</div>
 
 					<div class="content">
 						<div class="item">
-							<ul>
-								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗bae可以绑定自己的域名吗？和bch的区别在哪里呢？？和bch的区别在哪里呢？</a></li>
+							<ul data-tab="1">
+								<li><span class="circle"></span><a href="">最新主题模板</a></li>
 								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗？和bch的区别在哪里呢？</a></li>
 								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗？和bch的区别在哪里呢？</a></li>
 								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗？和bch的区别在哪里呢？</a></li>
 								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗？和bch的区别在哪里呢？</a></li>
+							</ul>
+
+							<ul data-tab="2">
+								<li><span class="circle"></span><a href="">最新回复模板</a></li>
+								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗？和bch的区别在哪里呢？</a></li>
+								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗？和bch的区别在哪里呢？</a></li>
+								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗？和bch的区别在哪里呢？</a></li>
+								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗？和bch的区别在哪里呢？</a></li>
+							</ul>
+
+							<ul data-tab="3">
+								<li><span class="circle"></span><a href="">热门帖子模板</a></li>
+								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗？和bch的区别在哪里呢？</a></li>
+								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗？和bch的区别在哪里呢？</a></li>
+								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗？和bch的区别在哪里呢？</a></li>
+								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗？和bch的区别在哪里呢？</a></li>
+							</ul>
 						</div>	
 					</div>
 

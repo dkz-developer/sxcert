@@ -103,7 +103,7 @@
 								<a href="javascript:void(0)" class="goods" article_id="{{$list->id}}" ><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 点赞</a>
 								<small style="color: #d6d6d6;margin: 0 10px;color: #999">|</small> 
 							@endif
-								<a href=""><i class="fa fa-comment-o"></i> 回复</a>
+								<a href="javascript:void(0);"><i class="fa fa-comment-o"></i> 回复</a>
 							</div>
 
 						</div>
@@ -152,7 +152,7 @@
 									<a href="javascript:void(0)" class="goods" article_id="{{$val->id}}" ><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 点赞</a>
 									<small style="color: #d6d6d6;margin: 0 10px;color: #999">|</small> 
 								@endif
-									<a href=""><i class="fa fa-comment-o"></i> 回复</a>
+									<a href="javascript:void(0);"><i class="fa fa-comment-o"></i> 回复</a>
 							</div>
 
 						</div>

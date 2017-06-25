@@ -42,7 +42,7 @@
 			</div>
 		</nav>
 
-		<div class="container">
+		<div class="contain clearfix">
 			<div class="breadcrumbs">
 			 	<a href="/bbs">论坛首页</a>
 				<i class="fa fa-angle-right"></i>

@@ -3,6 +3,8 @@
 (function($) {
 	// 获取最大分页
 	var maxPage = parseInt($('#maxPage').val());
+	if(0 >= maxPage)	
+		maxPage = 1;
 	$(function() {
 		// 当用户回复时滚动到指定位置
 		if($('#lastReply').length > 0) {

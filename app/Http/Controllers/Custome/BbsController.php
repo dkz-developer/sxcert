@@ -13,6 +13,7 @@
 			if(empty(session('userInfo')))
 				return response()->json(['code'=>'A','msg'=>'未登录！']);
 			$parentId = $request->input('parent_id',0);
+			$replyId = $request->input('reply_id',0);
 			if(! is_numeric($parentId))
 				return response()->json(['code'=>'F','msg'=>'参数错误！']);
 			$content = $request->input('content');
@@ -23,6 +24,7 @@
 			$Article->user_id = session('userInfo.UserId');
 			$Article->user_name = session('userInfo.UserName');
 			$Article->content = $content;
+			$Article->replyId = $replyId;
 			$res = $Article->save();
 			if($res)
 				return response()->json(['code'=>'S','msg'=>'回帖成功！','data'=>$Article->id]);

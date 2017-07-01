@@ -76,10 +76,12 @@ Route::group(['namespace' => 'Admin','middleware'=>'adminauth'], function () {
 	Route::post('/admin/article/delChannel','ArticleController@delChannel');
 	Route::get('/admin/article/channelList','ArticleController@channelList');
 	Route::get('/admin/article/list','ArticleController@articleList');
+	Route::get('/admin/article/replyList','ArticleController@replyList');
 	Route::post('/admin/article/setTop','ArticleController@setTop');
 	Route::post('/admin/article/setTop','ArticleController@setTop');
 	Route::post('/admin/article/setBrilliant','ArticleController@setBrilliant');
 	Route::post('/admin/article/delArticle','ArticleController@delArticle');
+	Route::get('/admin/article/delReply','ArticleController@delReply');
 });
 Route::get('/custome/kit/captcha/{tmp}', 'Custome\UserController@captcha');
 // 支付页面
@@ -123,7 +125,7 @@ Route::group(['namespace' => 'Custome'], function () {
 	// bbs 论坛
 	Route::get('/bbs', 'BbsController@index');
 	// 帖子列表页
-	Route::get('/forum/topic/{id}','BbsController@forum');
+	Route::get('/forum/topic/{id?}','BbsController@forum');
 	Route::post('/addArticle','BbsController@addArticle');
 	// 帖子 -- 发布主题页
 	Route::get('/forum/topic/add/{id}','BbsController@addPage'); // 帖子详情页页

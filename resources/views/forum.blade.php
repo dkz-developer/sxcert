@@ -6,8 +6,8 @@
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
 	<meta name="viewport" contant="width=device-width, initial-scale=1">
-	<meta name="keywords" content="">
-	<meta name="description" content="">
+	<meta name="keywords" content="{{$keyword->content}}">
+	<meta name="description" content="{{$search->content}}">
 	<link href="/images/favicon.ico" rel="icon" type="image/icon">
 
     <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -22,8 +22,10 @@
 					<a href="/rom"><img src="images/logo_main3.png" alt=""></a>
 				</div>
 				<div class="search">
-					<input type="text" placeholder="请输入...">	
-					<span class="fa fa-search"></span>
+					<form action="/forum/topic/" id="search">
+						<input type="text" placeholder="请输入..." name="keyword">	
+						<span class="fa fa-search"></span>
+					</form>
 				</div>
 				<div class="items clearfix">
 					<ul>
@@ -42,11 +44,11 @@
 			</div>
 		</nav>
 
-		<div class="container">
+		<div class="contain clearfix">
 			<div class="breadcrumbs">
 			 	<a href="/bbs">论坛首页</a>
 				<i class="fa fa-angle-right"></i>
-				<a href="/forum/topic/{{$themeInfo->id}}">{{$themeInfo->theme_name}}</a>
+				@if(!empty($themeInfo))<a href="/forum/topic/{{$themeInfo->id}}">{{$themeInfo->theme_name or ''}}</a>@endif
 			</div>
 
 			<div class="inner">
@@ -56,12 +58,12 @@
 							<img src="/images/topicDefault.png">
 						</div>
 						<div class="info">
-							<h3>{{$themeInfo->theme_name}}</h3>
+							<h3>{{$themeInfo->theme_name or ''}}</h3>
 							<p>版主：doujiangyoutiao</p>
 						</div>
 
 						<div class="publishBtn">
-							<a href="/forum/topic/add/{{$themeInfo->id}}">发布主题</a>
+							@if(!empty($themeInfo))<a href="/forum/topic/add/{{$themeInfo->id or ''}}">发布主题</a>@endif
 						</div>
 					</div>
 					<div class="content">
@@ -163,7 +165,7 @@
 							</div>
 							<div class="seperate"></div>
 							<div class="items">
-								<p>0</p>
+								<p>{{$replyCount}}</p>
 								<h4>回复数</h4>
 							</div>
 						</div>
@@ -175,7 +177,7 @@
 						<ul>
 						@foreach($hotList as $val)
 							<li>
-								<a href="">{{$val->title}}</a>
+								<a href="/thread/topic/{{$val->id}}">{{$val->title}}</a>
 							</li>
 						@endforeach
 						<!-- 	<li>

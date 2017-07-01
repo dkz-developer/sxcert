@@ -9,7 +9,7 @@
 			echo !empty($brand) ?  trim($brand [0]) : '';
 		?>-<?php 
 			$country = explode('/',$info->country);
-			echo !empty($country [1]) ?  $country [1] : '';?>-{{$info->model}}-{{$info->version}}-{{$info->os}}-下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源</title>
+			echo !empty($country [1]) ?  $country [1] : '';?>-{{$info->model}}-{{$info->version}}-{{$info->os}}-GSMGOOD - 分享安卓最新鲜最好玩的资源</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
 	<meta name="viewport" contant="width=device-width, initial-scale=1">

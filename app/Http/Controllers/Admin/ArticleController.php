@@ -40,10 +40,32 @@
 			return response()->json(['code'=>'F','msg'=>'操作失败！']);
 		}
 
+		public function replyList(Request $request)
+		{
+			$id = $request->input('id');
+			if(is_numeric($id)) {
+				$replyList = DB::table('Article')->where([['status',1],['parent_id',$id]])->get();
+				return view('admin.replyList',['list'=>$replyList]);
+			}
+			return view('admin.replyList',['list'=>[]]);
+		}
+
+		public function delReply(Request $request)
+		{
+			$id = $request->input('id');
+			if(! is_numeric($id))
+				return response()->json(['code'=>'F','msg'=>'参数错误！']);
+			$result = DB::table('Article')->where('id',$id)->delete();
+			if($result)
+				return response()->json(['code'=>'S','msg'=>'操作成功！']);
+			return response()->json(['code'=>'F','msg'=>'操作失败！']);
+		}
+		
 		public function articleList(Request $request)
 		{
 			$where = [
 				['Article.status',1],
+				['parent_id',0]
 			];
 			if($request->has('theme_id')) {
 				$theme_id = $request->input('theme_id');

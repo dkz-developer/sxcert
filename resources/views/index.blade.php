@@ -2,12 +2,12 @@
 <html lang="zh-cmn-Hans">
 <head>
 	<meta charset="utf-8">
-	<title>下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源</title>
+	<title>{{$seoTitle->content}}</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
 	<meta name="viewport" contant="width=device-width, initial-scale=1">
-	<meta name="keywords" content="下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源">
-	<meta name="description" content="下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源">
+	<meta name="keywords" content="{{$keyword->content}}">
+	<meta name="description" content="{{$search->content}}">
 	<link href="/images/favicon.ico" rel="icon" type="image/icon">
 
     <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
@@ -22,8 +22,10 @@
 					<a href="/rom"><img src="images/logo_main3.png" alt=""></a>
 				</div>
 				<div class="search">
-					<input type="text" placeholder="请输入...">	
-					<span class="fa fa-search"></span>
+					<form action="/forum/topic/" id="search">
+						<input type="text" placeholder="请输入..." name="keyword">	
+						<span class="fa fa-search"></span>
+					</form>
 				</div>
 				<div class="items clearfix">
 					<ul>
@@ -68,19 +70,35 @@
 
 				<div class="layout-right">
 					<div class="tab clearfix">
-						<div class="tab-list active"><span></span><a href="">最新主题</a></div>
-						<div class="tab-list"><span></span><a href="">最新回复</a></div>
-						<div class="tab-list"><span></span><a href="">热门帖子</a></div>
+						<div class="tab-list active" data-tab="1"><span></span><em>最新主题</em></div>
+						<div class="tab-list" data-tab="2"><span></span><em>最新回复</em></div>
+						<div class="tab-list" data-tab="3"><span></span><em>热门帖子</em></div>
 					</div>
 
 					<div class="content">
 						<div class="item">
-							<ul>
-								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗bae可以绑定自己的域名吗？和bch的区别在哪里呢？？和bch的区别在哪里呢？</a></li>
+							<ul data-tab="1">
+								@foreach($newList as $val)
+									<li><span class="circle"></span><a href="/thread/topic/{{$val->id}}">{{$val->title}}</a></li>
+								@endforeach
+								<!-- <li><span class="circle"></span><a href="">最新主题模板</a></li>
 								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗？和bch的区别在哪里呢？</a></li>
 								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗？和bch的区别在哪里呢？</a></li>
 								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗？和bch的区别在哪里呢？</a></li>
-								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗？和bch的区别在哪里呢？</a></li>
+								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗？和bch的区别在哪里呢？</a></li> -->
+							</ul>
+
+							<ul data-tab="2">
+								@foreach($newReply as $val)
+									<li><span class="circle"></span><a href="/thread/topic/{{$val->id}}">{{$val->title}}</a></li>
+								@endforeach
+							</ul>
+
+							<ul data-tab="3">
+								@foreach($hotList as $val)
+									<li><span class="circle"></span><a href="/thread/topic/{{$val->id}}">{{$val->title}}</a></li>
+								@endforeach
+							</ul>
 						</div>	
 					</div>
 
@@ -102,8 +120,8 @@
 									<img src="https://developer.baidu.com/resources/online/forum/bce/img/sky-ser.png">
 								</div>
 								<div class="discuss">
-									<p>主题: <span>666</span></p>
-									<p>帖子: <span>666</span></p>
+									<p>主题: <span>{{$list [$i]['theme_num'] or 0}}</span></p>
+									<p>帖子: <span>{{$list [$i]['repley_num'] or 0}}</span></p>
 								</div>
 							</div>
 						</div>
@@ -120,19 +138,21 @@
 					<?php 
 					for($i=4;$i<count($list);$i++) {
 					?>
-					<div class="classify-list">
-						<div class="icon">
-							<a href=""><img src="https://developer.baidu.com/resources/online/forum/bce/img/freshman-logo.png" alt=""></a>
+					<a href="/forum/topic/{{$list [$i] ['id']}}">
+						<div class="classify-list">
+							<div class="icon">
+								<a href=""><img src="https://developer.baidu.com/resources/online/forum/bce/img/freshman-logo.png" alt=""></a>
+							</div>
+							<div class="info">
+								<h4><a href="">{{$list [$i] ['theme_name']}}</a></h4>
+								<div class="introduction">
+									<p>主题：{{$list [$i]['theme_num'] or 0}}</p>
+									<p>帖子：{{$list [$i]['repley_num'] or 0}}</p>
+									<p>版本：doujiangyoutiao</p>
+								</div>	
+							</div>
 						</div>
-						<div class="info">
-							<h4><a href="">{{$list [$i] ['theme_name']}}</a></h4>
-							<div class="introduction">
-								<p>主题：1656666</p>
-								<p>帖子：666</p>
-								<p>版本：doujiangyoutiao</p>
-							</div>	
-						</div>
-					</div>
+					</a>
 					<?php
 					}
 					?>

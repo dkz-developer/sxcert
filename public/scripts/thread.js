@@ -9,11 +9,20 @@
 		// 当用户回复时滚动到指定位置
 		if($('#lastReply').length > 0) {
 			$('html, body').animate({  
-		                    scrollTop: $('#lastReply').offset().top  
-		           }, 2000);
+				scrollTop: $('#lastReply').offset().top  
+			}, 2000);
 		}
 
 		var ue = UE.getEditor('pubContent');
+
+		$(".reply-list-item").find(".bottom .scroll").click(function() {
+
+			ue.focus();
+
+			$('html, body').animate({  
+				scrollTop: $('#reply').offset().top  
+			}, 100);
+		})
 	});
 
 	/**
@@ -25,25 +34,28 @@
 		if(isNaN(id) || id < 0)
 			return false;
 		var offset = $(this).offset();
+		$(this).css('color','#ccc');
 		$.get('/like/'+id,function(msg){
 			if(msg.code == 'S') {
-				//var html = '<div style="height:50px;width:50px;border:1px solid #03978b;color:#03978b;position:absolute;left:'+offset.left+'px;top:'+offset.top+'px"> +1</div>';
-				//document.write(html);
+				var linke_num = $('#goods'+id).text();
+				$('#goods'+id).text(parseInt(linke_num)+1);
+				$('#addlike'+id).css('left',offset.left+'px');
+				$('#addlike'+id).show('slow');
+				setTimeout(function(){
+					$('#addlike'+id).hide('slow');
+				},2000);
 			}
 
 		});
 	});
-
-	/**
-	 * 回帖
-	 */
+	// 回帖
 	$('#reply').submit(function(){
 		var params = $(this).serialize();
 		var parentId = parseInt($('#parent_id').val());
 		$.ajax({
 			headers: {
-	    			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-	    		},
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
 			type: 'POST',
 			url: '/reply',
 			data: params,
@@ -54,8 +66,10 @@
 					setTimeout(function(){
 						window.location.href="/thread/topic/"+parentId+"?page="+maxPage+'&replyId='+data.data;
 					},2000);
-				}else {
-					layer.msg(data.msg,{icon:2,time:2000});
+				}else if('A' == data.code){
+					window.location.href = '/login';
+				}else{
+					layer.msg(data.msg,{icon:2,time:2000,offset: "30%"});
 				}
 			},
 			error:function(data) {
@@ -64,4 +78,10 @@
 		});
 		return false;
 	});
+
+	// 回复评论设置回复id
+	$('.reply_comment').click(function(){
+		$('#reply_id').val(parseInt($(this).attr('reply_id')));
+	});
+
 })(jQuery)

@@ -2,12 +2,12 @@
 <html lang="zh-cmn-Hans">
 <head>
 	<meta charset="utf-8">
-	<title>下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源</title>
+	<title>GSMGOOD - 分享安卓最新鲜最好玩的资源</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
 	<meta name="viewport" contant="width=device-width, initial-scale=1">
-	<meta name="keywords" content="下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源">
-	<meta name="description" content="下载站 - GSMGOOD - 分享安卓最新鲜最好玩的资源">
+	<meta name="keywords" content="{{$keyword->content}}">
+	<meta name="description" content="{{$search->content}}">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<link href="/images/favicon.ico" rel="icon" type="image/icon">
 
@@ -23,8 +23,10 @@
 					<a href="/rom"><img src="images/logo_main3.png" alt=""></a>
 				</div>
 				<div class="search">
-					<input type="text" placeholder="请输入...">	
-					<span class="fa fa-search"></span>
+					<form action="/forum/topic/" id="search">
+						<input type="text" placeholder="请输入..." name="keyword">	
+						<span class="fa fa-search"></span>
+					</form>
 				</div>
 				<div class="items clearfix">
 					<ul>
@@ -70,7 +72,7 @@
 									</div>
 
 									<div class="item">
-										<span class="data">1</span>
+										<span class="data">{{$list->reply_num}}</span>
 										<span class="type">回复数</span>
 									</div>
 								</div>
@@ -84,7 +86,7 @@
 								<span class="time">发表于 {{date('Y.m.d H:i:s',strtotime($list->created_at))}}</span>
 								<span class="prev">{{$list->view_num}} 浏览</span>
 								<span class="replys">4 回复</span>
-								<span class="goods">{{$list->like_num}} 赞</span>
+								<span class="goods"><small id="goods{{$list->id}}" style="font-size: 12px;">{{$list->like_num}}</small> 赞</span>
 							</div>
 
 							<div class="content">
@@ -103,7 +105,7 @@
 								<a href="javascript:void(0)" class="goods" article_id="{{$list->id}}" ><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 点赞</a>
 								<small style="color: #d6d6d6;margin: 0 10px;color: #999">|</small> 
 							@endif
-								<a href=""><i class="fa fa-comment-o"></i> 回复</a>
+								<a href="javascript:void(0);" class="scroll"><i class="fa fa-comment-o"></i> 回复</a>
 							</div>
 
 						</div>
@@ -121,12 +123,12 @@
 
 								<div class="info-nums">
 									<div class="item">
-										<span class="data">12</span>
+										<span class="data">{{$val->article_num}}</span>
 										<span class="type">主题数</span>
 									</div>
 
 									<div class="item">
-										<span class="data">1</span>
+										<span class="data">{{$val->reply_num}}</span>
 										<span class="type">回复数</span>
 									</div>
 								</div>
@@ -140,19 +142,26 @@
 								<span class="time">发表于 {{date('Y.m.d H:i:s',strtotime($val->created_at))}}</span>
 								<!-- <span class="prev">1556 浏览</span>
 								<span class="replys">4 回复</span> -->
-								<span class="goods">1 赞</span>
+								<span class="goods"><small id='goods{{$val->id}}' style="font-size: 12px;">{{$val->like_num}}</small>赞</span>
 							</div>
 
 							<div class="content">
+								@if( !empty($val->replyInfo))
+									<div class="reply-quote-box" style="background-color: #fbfbfb;border: 1px solid #efebeb;margin: 10px 0;padding: 15px 22px;">
+								                      <p class="quote-time" style="color: #999;line-height: 24px;">{{$val->replyInfo->user_name}} 发表于  {{date('Y.m.d H:i:s',strtotime($val->replyInfo->created_at))}}</p>
+								                      <p class="quote-con" style="color: #999;line-height: 24px;">{!!$val->replyInfo->content!!}</p>
+								           </div>
+								@endif
 								{!!$val->content!!}
 							</div>
 
 							<div class="bottom">
-								@if(!empty(session('userInfo')))
+								@if(!empty(session('userInfo')) && 0 == $val->is_like)
+									<p id='addlike{{$val->id}}' style="height: 30px;width: 30px;text-align: center;line-height: 28px;color: #03978b;position: absolute;display: none;">+1</p>
 									<a href="javascript:void(0)" class="goods" article_id="{{$val->id}}" ><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 点赞</a>
 									<small style="color: #d6d6d6;margin: 0 10px;color: #999">|</small> 
 								@endif
-									<a href="javascript:;" reply_id='{{$val->id}}'><i class="fa fa-comment-o"></i> 回复</a>
+									<a href="javascript:void(0);" reply_id='{{$val->id}}' class="reply_comment scroll"><i class="fa fa-comment-o"></i> 回复</a>
 							</div>
 
 						</div>
@@ -170,6 +179,7 @@
 							<div class="title">回复</div>
 							<input type="hidden" id="maxPage" value="{{$maxPage}}">
 							<input type="hidden" id="parent_id" name="parent_id" value="{{$id}}">
+							<input type="hidden" id="reply_id" name="reply_id" value="0">
 							<div class="content">
 								<script id="pubContent" name="content" type="text/plain"></script>
 							</div>

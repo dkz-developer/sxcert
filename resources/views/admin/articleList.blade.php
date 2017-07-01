@@ -56,7 +56,7 @@
 						<th width="100">用户名</th>
 						<th width="50">是否置顶</th>
 						<th width="50">是否精华</th>
-						<th width="200">操作</th>
+						<th width="250">操作</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -77,7 +77,7 @@
 					<tr class="text-c">
 						<td><input type="checkbox" value="" name=""></td>
 						<td>{{$val->id}}</td>
-						<td class="text-l"><u style="cursor:pointer" class="text-primary" onClick="article_edit('查看','article-zhang.html','10002')" title="查看">{{$val->title}}</u></td>
+						<td class="text-l"><a style="cursor:pointer" class="text-primary" href="/thread/topic/{{$val->id}}" title="查看" target="_blank">{{$val->title}}</a></td>
 						<td>{{$val->theme_name}}</td>
 						<td>{{$val->view_num}}</td>
 						<td>{{$val->like_num}}</td>
@@ -88,7 +88,9 @@
 						<td class="td-status" id="brilliant_status{{$val->id}}">@if($val->is_brilliant == 1)<span class="label label-success radius">精华</span>@else <span class="label label-primary radius">否</span> @endif</td>
 						<td class="f-14 td-manage"><a style="text-decoration:none" onClick="setTop('top_status',{{$val->id}},this)" href="javascript:;" title="置顶" status ="{{$val->is_top}}">@if($val->is_top == 0)置顶@else 取消置顶@endif</a>
 							<a style="text-decoration:none" class="ml-5" onClick="setbrilliant('brilliant_status',{{$val->id}},this)" href="javascript:;" title="加精" status="{{$val->is_brilliant}}">@if($val->is_brilliant == 0)加精@else 取消加精 @endif</a>
-							<a style="text-decoration:none" class="ml-5" onClick="del_article(this,{{$val->id}})" href="javascript:;" title="删除">删除</a></td>
+							<a style="text-decoration:none" class="ml-5" onClick="del_article(this,{{$val->id}})" href="javascript:;" title="删除">删除</a>
+							<a style="text-decoration:none" class="ml-5" onClick="show_reply(this,{{$val->id}})" href="javascript:;" title="查看回帖">查看回帖</a>
+						</td>
 					</tr>
 					@endforeach
 				</tbody>
@@ -214,5 +216,10 @@ function del_article(obj,id){
 			}
 		);      
 	});
+}
+
+function show_reply(obj,id)
+{
+	layer_show('查看回帖','/admin/article/replyList?id='+id,800,600);
 }
 </script>

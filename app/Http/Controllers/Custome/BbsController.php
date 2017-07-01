@@ -7,7 +7,15 @@
 	use DB;
 	class BbsController extends Controller
 	{
-
+		protected $seoTitle;
+		protected $search;
+		protected $keyword;
+		public function __construct()
+		{
+			$this->seoTitle = DB::table('SystemSet')->find(1);
+			$this->search = DB::table('SystemSet')->find(2);
+			$this->keyword = DB::table('SystemSet')->find(3);
+		}
 		public function reply(Request $request)
 		{
 			if(empty(session('userInfo')))
@@ -19,15 +27,20 @@
 			$content = $request->input('content');
 			if(empty($content))
 				return response()->json(['code'=>'F','msg'=>'内容不能为空！']);
+			$ArticleInfo = Article::find($parentId);
 			$Article = new Article();
 			$Article->parent_id = $parentId;
 			$Article->user_id = session('userInfo.UserId');
 			$Article->user_name = session('userInfo.UserName');
 			$Article->content = $content;
-			$Article->replyId = $replyId;
+			$Article->reply_id = $replyId;
+			$Article->theme_id = $ArticleInfo->theme_id;
+			$Article->reply_time = date('Y-m-d H:i:s');
 			$res = $Article->save();
-			if($res)
+			if($res){
+				$Article->where('id',$parentId)->increment('reply_num');
 				return response()->json(['code'=>'S','msg'=>'回帖成功！','data'=>$Article->id]);
+			}
 			return response()->json(['code'=>'F','msg'=>'回帖失败！']);
 		}
 
@@ -40,8 +53,9 @@
 			$page = $request->input('page',1);
 			$list = [];
 			if(1 == $page) {
-				$sql = "SELECT a.*,count('b.user_id') AS article_num FROM Article as a LEFT JOIN Article as b ON a.user_id = b.user_id WHERE a.id = ? ";
-				$list = DB::table('Article as a')->LeftJoin('Article as b','a.user_id','=','b.user_id')->select('a.*',DB::raw('count(b.user_id) as article_num'))->where('a.id',$id)->first();
+				$list = $Article->where('id',$id)->first();
+				$list->article_num = $Article->where([['user_id',$list->user_id],['parent_id',0]])->count();
+				$list->reply_num = $Article->where([['user_id',$list->user_id],['parent_id','<>',0]])->count();
 				if(! empty(session('userInfo')))
 					$count = DB::table('ArticleLike')->where([['ArticleId',$id],['UserId',session('userInfo.UserId')]])->count();
 				else
@@ -49,9 +63,16 @@
 				$list->count = $count;
 			}
 			$replylist = $Article->where('parent_id',$id)->orderBy('id','asc')->paginate(5);
+			foreach ($replylist as $key => $value) {
+				if(0 != $value->reply_id) 
+					$value->replyInfo = $Article->find($value->reply_id);
+				$value->is_like = DB::table('ArticleLike')->where([['ArticleId',$value->id],['UserId',session('userInfo.UserId')]])->count();
+				$value->reply_num = $Article->where([['user_id',$value->user_id],['parent_id','<>',0]])->count();
+				$value->article_num = $Article->where([['user_id',$value->user_id],['parent_id',0]])->count();
+			}
 			$maxPage = $Article->where('parent_id',$id)->count();
 			$maxPage = ceil($maxPage/5);
-			return view('thread',['themeInfo'=>$themeInfo,'list'=>$list,'replylist'=>$replylist,'id'=>$id,'maxPage'=>$maxPage]);
+			return view('thread',['themeInfo'=>$themeInfo,'list'=>$list,'replylist'=>$replylist,'id'=>$id,'maxPage'=>$maxPage,'search'=>$this->search,'keyword'=>$this->keyword]);
 		}
 
 		public function likeArticle($id)
@@ -75,7 +96,14 @@
 		public function index()
 		{
 			$list = Theme::where('status',1)->get()->toArray();
-			return view('index',['list'=>$list]);
+			foreach ($list as $key => $value) {
+				$list [$key] ['theme_num'] = Article::where([['status',1],['parent_id',0],['theme_id',$value ['id']]])->count();
+				$list [$key] ['repley_num'] = Article::where([['status',1],['parent_id','<>',0],['theme_id',$value ['id']]])->count();
+			}
+			$newList = Article::select('id','title')->orderBy('created_at','desc')->where([['status',1],['parent_id',0]])->skip(0)->take(5)->get();
+			$newReply = Article::select('id','title')->orderBy('reply_time','desc')->where([['status',1],['parent_id',0]])->skip(0)->take(5)->get();
+			$hotList = Article::select('id','title')->orderBy('view_num','desc')->where([['status',1],['parent_id',0]])->skip(0)->take(5)->get();
+			return view('index',['list'=>$list,'newList'=>$newList,'newReply'=>$newReply,'seoTitle'=>$this->seoTitle,'hotList'=>$hotList,'search'=>$this->search,'keyword'=>$this->keyword]);
 		}
 
 		public function addPage($id)
@@ -90,29 +118,34 @@
 				['status',1]
 			];
 			$hotList = Article::where($where)->select('id','title','view_num','created_at','user_name','is_top','is_brilliant','user_id','theme_id','like_num','reply_num')->orderBy('like_num')->skip(0)->take(5)->get();
-			$articleCount = Article::where('user_id',session('userInfo.UserId'))->count();
-			return view('topic_add',['themeInfo'=>$themeInfo,'hotList'=>$hotList,'articleCount'=>$articleCount]);	
+			$articleCount = Article::where([['user_id',session('userInfo.UserId')],['parent_id',0]])->count();
+			$replyCount = Article::where([['user_id',session('userInfo.UserId')],['parent_id','<>',0]])->count();
+			return view('topic_add',['themeInfo'=>$themeInfo,'hotList'=>$hotList,'articleCount'=>$articleCount,'replyCount'=>$replyCount,'search'=>$this->search,'keyword'=>$this->keyword]);	
 		}
 
-		public function forum($id)
+		public function forum($id=0,Request $request)
 		{
 			// 获取模板信息
 			if(! is_numeric($id))
 				return redirect('/bbs');
-			$themeInfo = Theme::find($id);
 			$Article = new Article();
 			$where = [
 				['theme_id',$id],
-				['status',1]
+				['status',1],
+				['parent_id',0]
 			];
+			if($request->has('keyword')) {
+				$keyword = $request->input('keyword');
+				array_shift($where);
+				array_push($where, ['title','like',"%{$keyword}%"]);
+			}else{
+				$themeInfo = Theme::find($id);
+			}
 			$list = $Article->where($where)->select('id','title','view_num','created_at','user_name','is_top','is_brilliant','user_id','theme_id','like_num','reply_num')->orderBy('is_top','desc')->orderBy('created_at','desc')->simplePaginate(20);
 			$hotList = $Article->where($where)->select('id','title','view_num','created_at','user_name','is_top','is_brilliant','user_id','theme_id','like_num','reply_num')->orderBy('like_num')->skip(0)->take(5)->get();
-			$where = [
-				['status',1],
-				['user_id',session('UserId.UserId')],
-			];
-			$articleCount = $Article->where($where)->count();
-			return view('forum',['themeInfo'=>$themeInfo,'list'=>$list,'hotList'=>$hotList,'articleCount'=>$articleCount]);
+			$articleCount = Article::where([['user_id',session('userInfo.UserId')],['parent_id',0]])->count();
+			$replyCount = Article::where([['user_id',session('userInfo.UserId')],['parent_id','<>',0]])->count();
+			return view('forum',['themeInfo'=>isset($themeInfo) ? $themeInfo : [],'list'=>$list,'hotList'=>$hotList,'articleCount'=>$articleCount,'replyCount'=>$replyCount,'search'=>$this->search,'keyword'=>$this->keyword]);
 		}
 
 		public function addArticle(Request $request)
@@ -144,6 +177,7 @@
 			$Article->user_id = session('userInfo.UserId');
 			$Article->user_name = session('userInfo.UserName');
 			$Article->save();
+			return redirect('/thread/topic/'.$Article->id);
 		}	
 	}
 ?>

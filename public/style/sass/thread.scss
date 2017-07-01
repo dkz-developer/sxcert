@@ -20,9 +20,17 @@ body {
 	margin: 0;
 }
 
+nav .inner {
+	max-width: 1400px;
+	min-width: 1000px;
+	width: 95%;
+}
+
 .container {
-	width: 1200px !important;
 	margin: 0 auto;
+	max-width: 1400px;
+	min-width: 1000px;
+	width: 95%;
 	padding: 0;
 
 	.breadcrumbs {
@@ -119,8 +127,10 @@ body {
 
 				.layout-right {
 					background-color: #fff;
-					float: left;
-					width: 1000px;
+					margin-left: 200px;
+					position: relative;
+					overflow: hidden;
+					padding-bottom: 59px;
 					.header {
 						color: #999;
 					    font-size: 12px;
@@ -144,15 +154,19 @@ body {
 
 					.content {
 						padding: 15px 30px;
+						min-height: 200px;
 					}
 
 					.bottom {
 						border-top: 1px dashed #c3cfca;
-					    height: 70px;
-					    line-height: 70px;
+					    bottom: 0;
+					    left: 30px;
 					    text-align: right;
-					    width: 940px;
-					    margin: 0 auto;
+					    overflow: hidden;
+					    position: absolute;
+					    right: 30px;
+					     height: 59px;
+					    line-height: 59px;
 
 					    a {
 					    	 color: #999;

@@ -20,12 +20,17 @@ body {
 	margin: 0;
 }
 
-a {}
+nav .inner {
+	max-width: 1400px;
+	min-width: 1000px;
+	width: 95%;
+}
 
 .contain {
-	width: 1200px !important;
 	margin: 0 auto;
-	padding: 0;
+	max-width: 1400px;
+	min-width: 1000px;
+	width: 95%;
 
 	.breadcrumbs {
 		color: #666;

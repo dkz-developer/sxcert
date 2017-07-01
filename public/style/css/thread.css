@@ -192,7 +192,7 @@ nav .inner {
           .container .inner .reply-list .reply-list-item .layout-right .bottom a:hover {
             color: #03978b; }
   .container .inner .reply-editor {
-    width: 1200px;
+    width: 100%;
     padding-left: 200px;
     margin-top: 50px;
     background: #ececec; }
@@ -225,5 +225,3 @@ nav .inner {
           color: #fff; }
           .container .inner .reply-editor .reply-editor-content .reply-btn button:hover {
             opacity: .8; }
-
-/*# sourceMappingURL=thread.css.map */

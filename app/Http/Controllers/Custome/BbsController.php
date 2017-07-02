@@ -61,7 +61,8 @@
 				else
 					$count = 0;
 				$list->count = $count;
-				if(0 != $list->money) {
+				$list->is_view = 'S';
+				if(0 <= intval($list->money)) {
 					if(empty(session('userInfo'))) {
 						$list->is_view = 'F';
 					}else{
@@ -220,7 +221,7 @@
 				return response()->json(['code'=>'S','msg'=>'购买成功']);
 			}
 			DB::rollBack();
-			return response()->json(['code'=>'F','msg'=>'购买失败，请联系网站管理员']);
+			return response()->json(['code'=>'F','msg'=>'购买失败，请联系网站管理员','url'=>"/thread/topic/{$articleId}"]);
 		}
 	}
 ?>

@@ -34,9 +34,14 @@
 		{
 			$id = $request->input('id');
 			$Article= new Article();
-			$result = $Article->where('id',$id)->update(['status'=>2]);
-			if($result)
+			$where = [
+				['id',$id],
+				['parent_id',$id]
+			];
+			$result = $Article->where($where)->update(['status'=>2]);
+			if($result){
 				return response()->json(['code'=>'S','msg'=>'操作成功！']);
+			}
 			return response()->json(['code'=>'F','msg'=>'操作失败！']);
 		}
 

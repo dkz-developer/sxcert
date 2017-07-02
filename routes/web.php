@@ -132,4 +132,5 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/thread/topic/{id}','BbsController@detail');
 	Route::get('/like/{id}','BbsController@likeArticle');
 	Route::post('/reply','BbsController@reply');
+	Route::post('/buyArticle','BbsController@buyArticle');
 });

@@ -61,8 +61,20 @@
 				else
 					$count = 0;
 				$list->count = $count;
+				if(0 != $list->money) {
+					if(empty(session('userInfo'))) {
+						$list->is_view = 'F';
+					}else{
+						$res = DB::table('ArticleBuyRecord')->where([['article_id',$list->id],['userId',session('userInfo.UserId')]])->count();
+						if($res >= 1 || $list->user_id == session('userInfo.UserId'))
+							$list->is_view = 'S';
+						else
+							$list->is_view = 'F';
+					}
+				}
 			}
 			$replylist = $Article->where('parent_id',$id)->orderBy('id','asc')->paginate(5);
+			$title = Article::where('id',$id)->value('title');
 			foreach ($replylist as $key => $value) {
 				if(0 != $value->reply_id) 
 					$value->replyInfo = $Article->find($value->reply_id);
@@ -72,7 +84,7 @@
 			}
 			$maxPage = $Article->where('parent_id',$id)->count();
 			$maxPage = ceil($maxPage/5);
-			return view('thread',['themeInfo'=>$themeInfo,'list'=>$list,'replylist'=>$replylist,'id'=>$id,'maxPage'=>$maxPage,'search'=>$this->search,'keyword'=>$this->keyword]);
+			return view('thread',['themeInfo'=>$themeInfo,'list'=>$list,'replylist'=>$replylist,'id'=>$id,'maxPage'=>$maxPage,'search'=>$this->search,'keyword'=>$this->keyword,'title'=>$title]);
 		}
 
 		public function likeArticle($id)
@@ -167,7 +179,14 @@
 			if(empty($content))
 				return redirect('/forum/topic/add');
 			$isNeedMoney = $request->input('isNeedMoney',false);
-			$Article = new Article();
+			$id = $request->input('id',0);
+			if(!empty($id) && is_numeric($id)){
+				$Article = Article::find($id);
+				if($Article->user_id != session('userInfo.UserId'))
+					return redirect('/forum/topic/add');
+			}else{
+				$Article = new Article();
+			}
 			if ($request->has('isNeedMoney')) {
 				$money = $request->input('money',0);
 				if($money <=0 )
@@ -181,6 +200,27 @@
 			$Article->user_name = session('userInfo.UserName');
 			$Article->save();
 			return redirect('/thread/topic/'.$Article->id);
-		}	
+		}
+
+		public function buyArticle(Request $request)	
+		{
+			$articleId = $request->input('id');
+			if(empty(session('userInfo.UserId')))
+				return response()->json(['code'=>'F','msg'=>'请先登录','url'=>'/login']);
+			$userId = session('userInfo.UserId');
+			$userInfo = DB::table('User')->where('UserId',$userId)->first();
+			$articleInfo = Article::find($articleId);
+			if($userInfo->Balance < $articleInfo->money)
+				return response()->json(['code'=>'F','msg'=>'金币余额不足,请先充值!','url'=>'/pay']);
+			DB::beginTransaction();
+			$userRes = DB::table('User')->decrement('Balance',$articleInfo->money);
+			$recordRes = DB::table('ArticleBuyRecord')->insert(['article_id'=>$articleId,'userId'=>$userId,'pay_money'=>$articleInfo->money]);
+			if($userRes && $recordRes) {
+				DB::commit();
+				return response()->json(['code'=>'S','msg'=>'购买成功']);
+			}
+			DB::rollBack();
+			return response()->json(['code'=>'F','msg'=>'购买失败，请联系网站管理员']);
+		}
 	}
 ?>

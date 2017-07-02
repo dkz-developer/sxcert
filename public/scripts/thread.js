@@ -84,4 +84,37 @@
 		$('#reply_id').val(parseInt($(this).attr('reply_id')));
 	});
 
+	// 购买文章
+	$('#buyArticle').click(function(){
+		var id = parseInt($(this).attr('data_id'));
+		$.ajax({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
+			type: 'POST',
+			url: '/buyArticle',
+			data: {'id':id},
+			dataType: 'json',
+			success: function(data){
+				if(data.code == 'S') {
+					layer.msg(data.msg,{icon:1,time:2000});
+					setTimeout(function(){
+						window.location.reload();
+					},2000);
+				}else if('F' == data.code){
+					layer.msg(data.msg,{icon:2,time:2000});
+					setTimeout(function(){
+						window.location.href=data.url;
+					},2000);
+				}else{
+					layer.msg(data.msg,{icon:2,time:2000,offset: "30%"});
+				}
+			},
+			error:function(data) {
+				layer.msg('好抱歉，系统好像出错了，请联系网站管理员！',{icon:2,time:3000});
+			},
+		});
+	});
+
+
 })(jQuery)

@@ -2,7 +2,7 @@
 <html lang="zh-cmn-Hans">
 <head>
 	<meta charset="utf-8">
-	<title>{{$list->title}} - GSMGOOD - 分享安卓最新鲜最好玩的资源</title>
+	<title>{{$title or ''}} - GSMGOOD - 分享安卓最新鲜最好玩的资源</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
 	<meta name="viewport" contant="width=device-width, initial-scale=1">
@@ -92,16 +92,20 @@
 
 							<div class="content">
 								<h3 style="font-size: 24px;font-weight: 400;line-height: 30px;margin: 10px 0 15px;text-align: center;">{{$list->title}}</h3>
-								@if(0 == $list->money)
+								@if('S'==$list->is_view)
 									{!!$list->content!!}
 								@else
 									<div style="border:1px dashed #999;height: 60px;border-radius: 3px;text-align: center;line-height: 60px;background-color: #FFFFCC;color: #999">
-										帖子内容售价{{intval($list->money)}}金币 <a href="">点我购买查看 </a>
+										帖子内容售价{{intval($list->money)}}金币 <a href="javascript:;" id="buyArticle" data_id="{{$list->id}}">点我购买查看 </a>
 									</div>
 								@endif
 							</div>
 
 							<div class="bottom">
+							@if(session('userInfo.UserId') == $list->user_id)
+							<a href="/forum/topic/add/{{$themeInfo->id}}/{{$list->id}}" class="scroll"><i class="fa fa-edit"></i> 编辑</a>
+							<small style="color: #d6d6d6;margin: 0 10px;color: #999">|</small> 
+							@endif
 							@if(!empty(session('userInfo')) && 0 == $list->count)
 								<a href="javascript:void(0)" class="goods" article_id="{{$list->id}}" ><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 点赞</a>
 								<small style="color: #d6d6d6;margin: 0 10px;color: #999">|</small> 

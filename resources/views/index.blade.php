@@ -19,7 +19,7 @@
 		<nav class="clearfix">
 			<div class="inner">
 				<div class="logo">
-					<a href="/rom"><img src="images/logo_main3.png" alt=""></a>
+					<a href="/bbs"><img src="images/logo_main3.png" alt=""></a>
 				</div>
 				<div class="search">
 					<form action="/forum/topic/" id="search">
@@ -79,7 +79,7 @@
 						<div class="item">
 							<ul data-tab="1">
 								@foreach($newList as $val)
-									<li><span class="circle"></span><a href="/thread/topic/{{$val->id}}">{{$val->title}}</a></li>
+									<li><span class="circle"></span><a href="/thread/topic/{{$val->id}}" target="_blank">{{$val->title}}</a></li>
 								@endforeach
 								<!-- <li><span class="circle"></span><a href="">最新主题模板</a></li>
 								<li><span class="circle"></span><a href="">bae可以绑定自己的域名吗？和bch的区别在哪里呢？</a></li>
@@ -90,13 +90,13 @@
 
 							<ul data-tab="2">
 								@foreach($newReply as $val)
-									<li><span class="circle"></span><a href="/thread/topic/{{$val->id}}">{{$val->title}}</a></li>
+									<li><span class="circle"></span><a href="/thread/topic/{{$val->id}}" target="_blank">{{$val->title}}</a></li>
 								@endforeach
 							</ul>
 
 							<ul data-tab="3">
 								@foreach($hotList as $val)
-									<li><span class="circle"></span><a href="/thread/topic/{{$val->id}}">{{$val->title}}</a></li>
+									<li><span class="circle"></span><a href="/thread/topic/{{$val->id}}" target="_blank">{{$val->title}}</a></li>
 								@endforeach
 							</ul>
 						</div>	
@@ -112,7 +112,7 @@
 				<?php
 				for($i=0;$i<4;$i++) {
 				?>
-					<a href="/forum/topic/{{$list [$i] ['id']}}">
+					<a href="/forum/topic/{{$list [$i] ['id']}}" target="_blank">
 						<div class="product-list">
 							<div class="first">
 								<div class="title">{{$list [$i] ['theme_name']}}</div>
@@ -138,7 +138,7 @@
 					<?php 
 					for($i=4;$i<count($list);$i++) {
 					?>
-					<a href="/forum/topic/{{$list [$i] ['id']}}">
+					<a href="/forum/topic/{{$list [$i] ['id']}}" target="_blank">
 						<div class="classify-list">
 							<div class="icon">
 								<a href=""><img src="https://developer.baidu.com/resources/online/forum/bce/img/freshman-logo.png" alt=""></a>

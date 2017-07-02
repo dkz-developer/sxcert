@@ -2,7 +2,7 @@
 <html lang="zh-cmn-Hans">
 <head>
 	<meta charset="utf-8">
-	<title>新手专区 -- 论坛页</title>
+	<title>{{$themeInfo->theme_name or ''}} - GSMGOOD - 分享安卓最新鲜最好玩的资源</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
 	<meta name="viewport" contant="width=device-width, initial-scale=1">
@@ -29,6 +29,7 @@
 				</div>
 				<div class="items clearfix">
 					<ul>
+						<li><a href="/bbs">首页</a></li>
 						<li><a href="/rom">下载站</a></li>
 						<li><a href="/pay">充值</a></li>
 						<li><a href="/service">客服</a></li>

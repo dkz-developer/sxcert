@@ -2,7 +2,7 @@
 <html lang="zh-cmn-Hans">
 <head>
 	<meta charset="utf-8">
-	<title>GSMGOOD - 分享安卓最新鲜最好玩的资源</title>
+	<title>{{$list->title}} - GSMGOOD - 分享安卓最新鲜最好玩的资源</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
 	<meta name="viewport" contant="width=device-width, initial-scale=1">
@@ -30,6 +30,7 @@
 				</div>
 				<div class="items clearfix">
 					<ul>
+						<li><a href="/bbs">首页</a></li>
 						<li><a href="/rom">下载站</a></li>
 						<li><a href="/pay">充值</a></li>
 						<li><a href="/service">客服</a></li>
@@ -90,7 +91,7 @@
 							</div>
 
 							<div class="content">
-								<h3 style="font-size: 24px;font-weight: 400;line-height: 30px;margin: 10px 0 15px;text-align: center;color: #999">{{$list->title}}</h3>
+								<h3 style="font-size: 24px;font-weight: 400;line-height: 30px;margin: 10px 0 15px;text-align: center;">{{$list->title}}</h3>
 								@if(0 == $list->money)
 									{!!$list->content!!}
 								@else

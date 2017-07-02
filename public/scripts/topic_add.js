@@ -21,8 +21,8 @@
 	$('#addArticle').submit(function(){
 		// 判断标题长度
 		var title_len = $('#title').val().length;
-		if(title_len < 1 || title_len > 50) {
-			layer.msg('主题格式为1~50个字符！');
+		if(title_len < 1 || title_len > 80) {
+			layer.msg('主题格式为1~80个字符！');
 			return false;
 		}
 		// 判断正文是否输入

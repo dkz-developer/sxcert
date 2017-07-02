@@ -19,7 +19,7 @@
 		<nav class="clearfix">
 			<div class="inner">
 				<div class="logo">
-					<a href="/rom"><img src="images/logo_main3.png" alt=""></a>
+					<a href="/rom"><img src="/images/logo_main3.png" alt=""></a>
 				</div>
 				<div class="search">
 					<form action="/forum/topic/" id="search">

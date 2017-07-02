@@ -107,7 +107,7 @@
 			</div>
 
 			<div class="product clearfix">
-				<h2>产品论坛</h2>
+				<h2>盒子讨论区</h2>
 				<div class="content">
 				<?php
 				for($i=0;$i<4;$i++) {
@@ -133,7 +133,7 @@
 			</div>
 
 			<div class="classify clearfix">
-				<h2>分类板块</h2>
+				<h2>分类讨论区</h2>
 				<div class="content clearfix">
 					<?php 
 					for($i=4;$i<count($list);$i++) {
@@ -141,14 +141,14 @@
 					<a href="/forum/topic/{{$list [$i] ['id']}}" target="_blank">
 						<div class="classify-list">
 							<div class="icon">
-								<a href=""><img src="https://developer.baidu.com/resources/online/forum/bce/img/freshman-logo.png" alt=""></a>
+								<a href="/forum/topic/{{$list [$i] ['id']}}" target="_blank"><img src="https://developer.baidu.com/resources/online/forum/bce/img/freshman-logo.png" alt=""></a>
 							</div>
 							<div class="info">
-								<h4><a href="/forum/topic/{{$list [$i] ['id']}}">{{$list [$i] ['theme_name']}}</a></h4>
+								<h4><a href="/forum/topic/{{$list [$i] ['id']}}" target="_blank">{{$list [$i] ['theme_name']}}</a></h4>
 								<div class="introduction">
 									<p>主题：{{$list [$i]['theme_num'] or 0}}</p>
 									<p>帖子：{{$list [$i]['repley_num'] or 0}}</p>
-									<p>版本：doujiangyoutiao</p>
+									<p>版主：doujiangyoutiao</p>
 								</div>	
 							</div>
 						</div>

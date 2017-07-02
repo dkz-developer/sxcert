@@ -62,16 +62,17 @@
 							<div class="row">
 								<div class="col-sm-2 propName">主题</div>
 								<div class="col-sm-9">
-									<input class="form-control" type="text" id="title" placeholder="最多只能输入80个字" maxlength="80" name="title">
+									<input class="form-control" type="text" id="title" placeholder="最多只能输入80个字" maxlength="80" name="title" value="{{$list->title or ''}}">
 								</div>
 							</div>
 							{{ csrf_field() }}
 							<div class="row">
 								<div class="col-sm-2 propName">正文</div>
 								<div class="col-sm-9">
-									<script id="pubContent" name="content" type="text/plain"></script>
+									<script id="pubContent" name="content" type="text/plain">{!!$list->content or ''!!}</script>
 								</div>
 							</div>
+							<input type="hidden" name="id" value="{{$list->id or 0}}">
 							<div class="row" style="min-height: 50px;">
 								<div class="col-sm-2 propName"></div>
 								<div class="col-sm-2">

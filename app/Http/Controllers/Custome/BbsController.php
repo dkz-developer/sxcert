@@ -106,7 +106,7 @@
 			return view('index',['list'=>$list,'newList'=>$newList,'newReply'=>$newReply,'seoTitle'=>$this->seoTitle,'hotList'=>$hotList,'search'=>$this->search,'keyword'=>$this->keyword]);
 		}
 
-		public function addPage($id)
+		public function addPage($id,$articleId=0)
 		{
 			if( empty(session('userInfo')) ) 
 				return redirect('/login');
@@ -118,9 +118,12 @@
 				['status',1]
 			];
 			$hotList = Article::where($where)->select('id','title','view_num','created_at','user_name','is_top','is_brilliant','user_id','theme_id','like_num','reply_num')->orderBy('like_num')->skip(0)->take(5)->get();
+			$list = '';
+			if(! empty($articleId))
+				$list = Article::find($articleId);
 			$articleCount = Article::where([['user_id',session('userInfo.UserId')],['parent_id',0]])->count();
 			$replyCount = Article::where([['user_id',session('userInfo.UserId')],['parent_id','<>',0]])->count();
-			return view('topic_add',['themeInfo'=>$themeInfo,'hotList'=>$hotList,'articleCount'=>$articleCount,'replyCount'=>$replyCount,'search'=>$this->search,'keyword'=>$this->keyword]);	
+			return view('topic_add',['themeInfo'=>$themeInfo,'hotList'=>$hotList,'articleCount'=>$articleCount,'replyCount'=>$replyCount,'search'=>$this->search,'keyword'=>$this->keyword,'list'=>$list]);	
 		}
 
 		public function forum($id=0,Request $request)
@@ -157,7 +160,7 @@
 				return redirect('/forum/topic/add');
 			$title = $request->input('title');
 			$titleLen = strlen($title);
-			if($titleLen <= 0 || $titleLen > 50)
+			if($titleLen <= 0 || $titleLen > 80)
 				return redirect('/forum/topic/add');
 			$content = $request->input('content');
 			$contentLen = strlen($content);

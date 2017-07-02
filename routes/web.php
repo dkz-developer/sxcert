@@ -128,7 +128,7 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/forum/topic/{id?}','BbsController@forum');
 	Route::post('/addArticle','BbsController@addArticle');
 	// 帖子 -- 发布主题页
-	Route::get('/forum/topic/add/{id}','BbsController@addPage'); // 帖子详情页页
+	Route::get('/forum/topic/add/{themeId}/{articleId?}','BbsController@addPage'); // 帖子详情页页
 	Route::get('/thread/topic/{id}','BbsController@detail');
 	Route::get('/like/{id}','BbsController@likeArticle');
 	Route::post('/reply','BbsController@reply');

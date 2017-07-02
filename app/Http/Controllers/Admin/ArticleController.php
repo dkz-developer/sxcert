@@ -34,11 +34,8 @@
 		{
 			$id = $request->input('id');
 			$Article= new Article();
-			$where = [
-				['id',$id],
-				['parent_id',$id]
-			];
-			$result = $Article->where($where)->update(['status'=>2]);
+			
+			$result = $Article->where('id',$id)->orWhere('parent_id',$id)->update(['status'=>2]);
 			if($result){
 				return response()->json(['code'=>'S','msg'=>'操作成功！']);
 			}

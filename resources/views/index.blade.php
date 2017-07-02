@@ -144,7 +144,7 @@
 								<a href=""><img src="https://developer.baidu.com/resources/online/forum/bce/img/freshman-logo.png" alt=""></a>
 							</div>
 							<div class="info">
-								<h4><a href="">{{$list [$i] ['theme_name']}}</a></h4>
+								<h4><a href="/forum/topic/{{$list [$i] ['id']}}">{{$list [$i] ['theme_name']}}</a></h4>
 								<div class="introduction">
 									<p>主题：{{$list [$i]['theme_num'] or 0}}</p>
 									<p>帖子：{{$list [$i]['repley_num'] or 0}}</p>

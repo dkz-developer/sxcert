@@ -198,7 +198,7 @@
 		</div>
 
 		<div class="footer">
-			<p>粤ICP备17024526号-1</p>
+			<p>Copyright © 2017 - <a href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action" target="_blank">粤ICP备17024526号-1</a></p>
 		</div>		
 	</div>
 

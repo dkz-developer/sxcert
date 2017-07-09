@@ -52,17 +52,17 @@
 					<ul class="flicks">
 						<li class="height">
 							<div class="font-content">
-								<div class="photo"><img src="http://bos.nj.bpc.baidu.com/v1/developer/a3be4b6f-4795-4ae4-b97b-82eb68b34519.png" alt=""></div>
+								<div class="photo"><img src="/images/G1.png" ></div>
 							</div>
 						</li>
 						<li class="height">
 							<div class="font-content">
-								<div class="photo"><img src="https://bos.nj.bpc.baidu.com/v1/developer/f8953830-0f8b-40e6-818a-09b830bf76f2.png" alt=""></div>
+								<div class="photo"><img src="/images/G2.png"></div>
 							</div>
 						</li>
 						<li class="height">
 							<div class="font-content">
-								<div class="photo"><img src="https://bos.nj.bpc.baidu.com/v1/developer/9cf08fab-2026-41c5-b9f4-e4d1c93075cc.png" alt=""></div>
+								<div class="photo"><img src="/images/G3.png"></div>
 							</div>
 						</li>
 					</ul>
@@ -162,7 +162,7 @@
 		</div>
 
 		<div class="footer">
-			<p>粤ICP备17024526号-1</p>
+			<p>Copyright © 2017 - <a href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action" target="_blank">粤ICP备17024526号-1</a></p>
 		</div>		
 	</div>
 

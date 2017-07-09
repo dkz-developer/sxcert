@@ -50,8 +50,8 @@
 				<!-- <h3 class="title"><a href="/">返回论坛主页面</a></h3> -->
 				<div class="seperate"></div>
 				<div class="services">
-					<ul>
-						<li>QQ客服：<span>503616983(豆浆油条)</span> <a href="tencent://message/?uin=503616983&Site=&Menu=yes"><img src="images/qq.png" alt=""></a> 处理范围：<em>网站所有大小事情</em></li>
+					<ul> 
+						<li>QQ客服：<span>503616983(豆浆油条)</span> <a href="http://wpa.qq.com/msgrd?v=3&uin=503616983&site=qq&menu=yes"><img src="images/qq.png" alt=""></a> 处理范围：<em>网站所有大小事情</em></li>
 						<li>QQ群：<span>590976628</span> 处理范围：<em>网站用户日常交流（加群时需备注网站用户名）</em></li>
 					</ul>
 				</div>

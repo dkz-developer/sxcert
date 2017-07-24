@@ -73,7 +73,7 @@
 						</div>
 
 						<div class="back">
-							<a href="/enter?type=login"><i class="fa fa-mail-reply"></i> 返回登录注册页</a>
+							<a href="/login"><i class="fa fa-mail-reply"></i> 返回登录注册页</a>
 						</div>
 					</form>
 				</div>

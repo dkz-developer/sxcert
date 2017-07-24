@@ -270,12 +270,16 @@ a {
         padding: 0 5px; }
         .box-container .per-info .info li span {
           width: 60px;
-          float: left;
           color: #333;
-          font-weight: 500; }
+          font-weight: 500;
+          float: left; }
         .box-container .per-info .info li em {
+          float: left;
           font-style: normal;
-          color: #777; }
+          color: #777;
+          width: 170px;
+          text-align: center;
+          overflow: hidden; }
         .box-container .per-info .info li .mainColor {
           color: #3fbad9;
           font-weight: 500;

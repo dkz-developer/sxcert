@@ -180,14 +180,19 @@ a {
 
 				span {
 					width: 60px; 
-					float: left;
 					color: #333;
 					font-weight: 500;
+					float: left;
 
 				}
 				em {
+					float: left;
 					font-style: normal;
 					color: #777;
+					width: 170px;
+					text-align: center;
+					overflow: hidden;
+
 
 				}
 

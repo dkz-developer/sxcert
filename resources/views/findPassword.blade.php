@@ -73,7 +73,7 @@
 						</div>
 
 						<div class="back">
-							<a href="/enter?type=login"><i class="fa fa-mail-reply"></i> 返回登录注册页</a>
+							<a href="/login"><i class="fa fa-mail-reply"></i> 返回登录注册页</a>
 						</div>
 					</form>
 				</div>
@@ -81,7 +81,7 @@
 		</div>
 
 		<div class="footer">
-			<p>粤ICP备17024526号-1</p>
+			<p>Copyright © 2017 - <a href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action" target="_blank">粤ICP备17024526号-1</a></p>
 		</div>		
   	</div>
 

@@ -178,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         iscms\Alisms\AlidayuServiceProvider::class,//阿里大于
         Latrell\Alipay\AlipayServiceProvider::class,//支付宝
+        Naux\Mail\SendCloudServiceProvider::class, // 发送邮件
     ],
 
     /*

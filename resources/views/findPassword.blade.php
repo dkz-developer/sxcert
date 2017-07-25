@@ -43,18 +43,18 @@
 
 			<div class="main">
 				<div class="main-title">
-					用手机号重置密码
+					用邮箱账号重置密码
 				</div> 
 
 				<div class="main-content">
 					<form action="" data-act="login">
 						<div class="input-prepend">
-							<input class="restyle" type="text" placeholder="请输入手机号码" id="mobile"  v-on:blur="verification" data-error="手机号码不能为空">
-							<i class="fa fa-mobile"></i>
+							<input class="restyle" type="text" placeholder="请输入邮箱账号" id="mobile"  v-on:blur="verification" data-error="邮箱账号不能为空">
+							<i class="fa fa-envelope-o"></i>
 						</div>
 
 						<div class="input-prepend">
-							<input class="restyle" type="text" placeholder="请输入短信验证码" id="resetcode"  v-on:blur="verification" data-error="短信验证码不能为空">
+							<input class="restyle" type="text" placeholder="请输入邮箱验证码" id="resetcode"  v-on:blur="verification" data-error="邮箱验证码不能为空">
 							<i class="fa fa-shield"></i>
 							<button type="button" class="btn btn-primary sendMessage" @click="sendMessage">发送验证码</button>
 						</div>

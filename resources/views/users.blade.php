@@ -189,8 +189,8 @@ a<!DOCTYPE html>
 								<em><a class="mainColor" @if($userInfo->UserEmail) href="mailto:{{$userInfo->UserEmail}}" @else href="javascript:void(0)" @endif>{{$userInfo->UserEmail or '未设置'}}</a></em>
 							</li> -->
 							 <li>
-								<span>号码</span>
-								<em><a class="mainColor" href="javascript:void(0)">{{$userInfo->Mobile}}</a></em>
+								<span>邮箱</span>
+								<em><a class="mainColor" @if($userInfo->UserEmail) href="mailto:{{$userInfo->UserEmail}}" @else href="javascript:void(0)" @endif>{{$userInfo->UserEmail or '未设置'}}</a></em>
 							</li>
 							<li>
 								<span>财富值</span>

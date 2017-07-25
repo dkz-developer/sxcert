@@ -62,7 +62,7 @@
 					$count = 0;
 				$list->count = $count;
 				$list->is_view = 'S';
-				if(0 <= intval($list->money)) {
+				if(0 < intval($list->money)) {
 					if(empty(session('userInfo'))) {
 						$list->is_view = 'F';
 					}else{
@@ -214,7 +214,7 @@
 			if($userInfo->Balance < $articleInfo->money)
 				return response()->json(['code'=>'F','msg'=>'金币余额不足,请先充值!','url'=>'/pay']);
 			DB::beginTransaction();
-			$userRes = DB::table('User')->decrement('Balance',$articleInfo->money);
+			$userRes = DB::table('User')->where('UserId',$userId)->decrement('Balance',$articleInfo->money);
 			$recordRes = DB::table('ArticleBuyRecord')->insert(['article_id'=>$articleId,'userId'=>$userId,'pay_money'=>$articleInfo->money]);
 			if($userRes && $recordRes) {
 				DB::commit();

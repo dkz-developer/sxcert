@@ -45,7 +45,7 @@
 							<!-- <th width="25"><input type="checkbox" name="" value=""></th> -->
 							<th width="50">ID</th>
 							<th width="60">用户名</th>
-							<th width="80">手机号</th>
+							<th width="80">邮箱</th>
 							<th width="80">创建时间</th>
 							<th width="80">余额</th>
 							<th width="120">操作</th>
@@ -57,7 +57,7 @@
 								<!-- <td><input type="checkbox" value="{{$val->id}}" name=""></td> -->
 								<td>{{$val->UserId}}</td>
 								<td>{{$val->UserName}}</td>
-								<td >{{$val->Mobile}}</td>
+								<td >{{$val->UserEmail}}</td>
 								<td>{{$val->CreateTime}}</td>
 								<td id="blance{{$val->UserId}}">{{number_format($val->Balance)}}</td>
 								<td class="f-14 td-manage"><a style="text-decoration:none" onClick="change_money('修改金币',{{$val->UserId}})" title="是否热门">修改金币</a></td>

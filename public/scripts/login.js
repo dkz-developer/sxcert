@@ -80,8 +80,8 @@
 
         var flag = verification($("#mobile"), "手机号不能为空");
 
-        if(!$.mytools.checkMobile($("#mobile").val())) {
-            layer.tips("手机号码格式不正确", $("#mobile"),{tips: [2, '#333'],time: 4000});
+        if(!$.mytools.checkEmail($("#mobile").val())) {
+            layer.tips("邮箱格式不正确", $("#mobile"),{tips: [2, '#333'],time: 4000});
             return false;
         }
        var params = {

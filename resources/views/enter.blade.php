@@ -50,7 +50,7 @@
 				<div class="main-content">
 					<form action="" v-show="(isLogin == true)"  data-act="login" id="login">
 						<div class="input-prepend">
-							<input class="restyle" type="text" placeholder="请输入用户名或者手机号" id="username"  v-on:blur="verification" data-error="用户名不能为空">
+							<input class="restyle" type="text" placeholder="请输入用户名或者邮箱账号" id="username"  v-on:blur="verification" data-error="用户名不能为空">
 							<i class="fa fa-user"></i>
 						</div>
 
@@ -85,12 +85,12 @@
 						</div>
 
 						<div class="input-prepend">
-							<input class="restyle" type="text" placeholder="请输入手机号" id="mobile" v-on:blur="verification" data-error="手机号不能为空">
-							<i class="fa fa-mobile"></i>
+							<input class="restyle" type="text" placeholder="请输电子邮箱账号" id="mobile" v-on:blur="verification" data-error="邮箱不能为空">
+							<i class="fa fa-envelope-o"></i>
 						</div>
 
 						<div class="input-prepend">
-							<input class="restyle" type="text" placeholder="请输入短信验证码" id="mescode"  v-on:blur="verification" data-error="短信验证码不能为空">
+							<input class="restyle" type="text" placeholder="请输入邮箱验证码" id="mescode"  v-on:blur="verification" data-error="邮箱验证码不能为空">
 							<i class="fa fa-shield"></i>
 							<button type="button" class="btn btn-primary sendMessage" @click="sendMessage">发送验证码</button>
 						</div>

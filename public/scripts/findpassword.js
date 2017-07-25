@@ -41,7 +41,7 @@
         var resetBtn = $(event.currentTarget);
 
         // 验证
-        var flag = verification($("#mobile"), "手机号码不能为空") && verification($("#resetcode"), "短信验证码不能为空") && verification($("#password"), "新密码不能为空") && verification($("#repassword"), "确认密码不能为空");
+        var flag = verification($("#mobile"), "邮箱不能为空") && verification($("#resetcode"), "邮箱验证码不能为空") && verification($("#password"), "新密码不能为空") && verification($("#repassword"), "确认密码不能为空");
 
         if(flag) {
             resetBtn.html('<i class="fa fa-spinner fa-pulse"></i>&nbsp;密码重置中...');
@@ -87,10 +87,10 @@
             }
         }
 
-        var flag = verification($("#mobile"), "手机号码不能为空");
+        var flag = verification($("#mobile"), "邮箱不能为空");
 
-        if(!$.mytools.checkMobile($("#mobile").val())) {
-            layer.tips("手机号码格式不正确", $("#mobile"),{tips: [2, '#333'],time: 4000});
+        if(!$.mytools.checkEmail($("#mobile").val())) {
+            layer.tips("邮箱格式不正确", $("#mobile"),{tips: [2, '#333'],time: 4000});
             return false;
         }
 

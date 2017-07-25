@@ -14,15 +14,26 @@ use App\Model\RechargeRecord;
 use App\Service\Gt\GeetestLib;
 use Session;
 use DB;
+use Naux\Mail\SendCloudTemplate;
+use Illuminate\Support\Facades\Mail;
 class UserController extends Controller
 {
-	protected$search;
+	protected $search;
 	protected $keyword;
 	public function __construct()
 	{
 		$this->search = DB::table('SystemSet')->find(2);
 		$this->keyword = DB::table('SystemSet')->find(3);
 	}
+
+	/*public function emailTest()
+	{
+		$template = new SendCloudTemplate('test_template', ['name'=>'豆浆油条','active_code'=>'123456']);
+		Mail::raw($template, function ($message) {
+		            $message->from('service@admin.gsmgood.com', 'gsmgood');
+		            $message->to('503616983@qq.com');
+		});
+	}*/
 
 	public function loginPage()
 	{
@@ -105,8 +116,10 @@ class UserController extends Controller
 		$userName = $request->input('username');
 		$password = $request->input('password');
 		$where = [];
-		if(is_numeric($userName) && strlen($userName) == 11){
-			array_push($where, ['Mobile',$userName]);
+		//if(is_numeric($userName) && strlen($userName) == 11){
+		$regex = '/^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/';
+		if(preg_match($regex,$userName)){
+			array_push($where, ['UserEmail',$userName]);
 		}else{
 			array_push($where, ['UserName',$userName]);
 		}
@@ -178,9 +191,11 @@ class UserController extends Controller
 			}
 		}
 			
-		$phone = $request->input('mobile');
-		if((Session::get('phone') != $phone) || empty($phone)){
-			return response()->json(['code'=>'F','msg'=>'手机号与验证手机号不一致呀']);
+		$emial = $request->input('mobile');
+		$mescode = trim($request->input('mescode'));
+		//var_dump($emial,session('active_code_'.$emial) );
+		if(session('active_code_'.$emial) != $mescode || empty($emial)){
+			return response()->json(['code'=>'F','msg'=>'邮箱验证码不正确!']);
 		}	    
 		$username = $request->input('username');
 		$password = $request->input('password');
@@ -188,14 +203,14 @@ class UserController extends Controller
 		$userInfo = User::where('UserName',$username)->first();
 		
 		if($password != $repassword){
-			return response()->json(['code'=>'F','msg'=>'两次密码不一致哦']);
+			return response()->json(['code'=>'F','msg'=>'两次密码不一致!']);
 		}
 		
 		if($userInfo){
-			return response()->json(['code'=>'F','msg'=>'用户名已存在，换一个试试呗']);
+			return response()->json(['code'=>'F','msg'=>'用户名已经被其它用户注册!']);
 		}
 		$data = array(
-			'Mobile' => $phone,
+			'UserEmail' => $emial,
 			'UserName' => $username,
 			'Password' => md5($password),
 			'CreateTime' => date('Y-m-d H:i:s'),
@@ -204,6 +219,7 @@ class UserController extends Controller
 		
 		$res = User::insert($data);
 		if($res){
+			$request->session()->forget('active_code_'.$emial);
 			//session(['userInfo'=>$userInfo->toArray()]);
 			return response()->json(['code'=>'S','msg'=>'注册成功','url'=>'/index']);
 		}else{
@@ -222,19 +238,20 @@ class UserController extends Controller
 	 */
 	public function restpwd(Request $request)
 	{
-		$vcode = $request->input('resetcode');
-		if (Session::get('resetcode') != $vcode){
-			return response()->json(['code'=>'F','msg'=>'验证码不正确！']);
-		}
 		$password = $request->input('password');
 		$repassword = $request->input('repassword');
-		$mobile = $request->input('mobile');
+		$email = $request->input('mobile');
+		$vcode = $request->input('resetcode');
+		if (Session::get('active_code_f'.$email) != $vcode){
+			return response()->json(['code'=>'F','msg'=>'验证码不正确！']);
+		}
+		
 		if($password != $repassword)
 			return response()->json(['code'=>'F','msg'=>'两次密码不一致！']);
 
-		$UserInfo = User::where('Mobile',$mobile)->first();
+		$UserInfo = User::where('UserEmail',$email)->first();
 		if(empty($UserInfo))
-			return response()->json(['code'=>'F','msg'=>'该手机号尚未注册！']);
+			return response()->json(['code'=>'F','msg'=>'该用户不存在']);
 		$UserInfo->password = md5($password);
 		$result = $UserInfo->save();
 		if($result)

@@ -39,9 +39,12 @@ class UserController extends Controller
 	{
 		$balance = $request->input('balance',0);
 		$id = $request->input('id',0);
-		$User = User::find($id);
-		$User->Balance += intval($balance);
-		$result = $User->save();
+		if(empty($id) || ! is_numeric($id))
+			return response()->json(['code'=>'F','msg'=>'参数错误！']);
+		//$User = User::find($id);
+		//$User->Balance += intval($balance);
+		//$result = $User->save();
+		$result = User::where('UserId',$id)->increment('Balance',$balance);
 		if($result) {
 			$record = new RechargeRecord();
 			$record->amount = $balance;
@@ -49,7 +52,7 @@ class UserController extends Controller
 			$record->channel = 1;
 			$record->user_id = $id;
 			$record->save();
-			return response()->json(['code'=>'S','msg'=>'修改成功！','data'=>number_format($User->Balance)]);
+			return response()->json(['code'=>'S','msg'=>'修改成功！','data'=>number_format($balance)]);
 		}
 		return response()->json(['code'=>'F','msg'=>'修改失败！']);
 	}

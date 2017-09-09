@@ -112,7 +112,7 @@
 				<?php
 				for($i=0;$i<4;$i++) {
 				?>
-					<a href="/forum/topic/{{$list [$i] ['id']}}" target="_blank">
+					<a href="/forum/topic/{{$list [$i] ['id']}}" >
 						<div class="product-list">
 							<div class="first">
 								<div class="title">{{$list [$i] ['theme_name']}}</div>
@@ -144,7 +144,7 @@
 								<a href="/forum/topic/{{$list [$i] ['id']}}" target="_blank"><img src="https://developer.baidu.com/resources/online/forum/bce/img/freshman-logo.png" alt=""></a>
 							</div>
 							<div class="info">
-								<h4><a href="/forum/topic/{{$list [$i] ['id']}}" target="_blank">{{$list [$i] ['theme_name']}}</a></h4>
+								<h4><a href="/forum/topic/{{$list [$i] ['id']}}">{{$list [$i] ['theme_name']}}</a></h4>
 								<div class="introduction">
 									<p>主题：{{$list [$i]['theme_num'] or 0}}</p>
 									<p>帖子：{{$list [$i]['repley_num'] or 0}}</p>

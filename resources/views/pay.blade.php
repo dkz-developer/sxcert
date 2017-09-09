@@ -45,10 +45,8 @@
 		</nav>
 
 		<div class="container">
-
 			<div class="main">
-				<div class="main-title">充  值</div>
-
+				<div class="main-title">支付宝(alipay)</div>
 				<div class="main-content">
 					<form action="javascript:void(0)" data-act="pay" method="get" id="pays">
 						<div class="input-prepend">
@@ -66,6 +64,57 @@
 					</form>
 				</div>
 			</div>
+
+			<div class="main" style="display: block;">
+				<div class="main-title">贝宝(PayPal)</div>
+				<div class="main-content">
+					<!-- <form style="width: 100%;" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+						<input type="hidden" name="cmd" value="_xclick">
+						<input type="hidden" name="business" value="shuua520@gmail.com">
+						<input type="hidden" name="lc" value="US">
+						<input type="hidden" name="button_subtype" value="services">
+						<input type="hidden" name="no_note" value="0">
+						<input type="hidden" name="currency_code" value="USD">
+						<input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest">
+						<table style="width: 100%;" >
+						<tr><td style="padding-bottom: 14px; font-size: 16px; color: #666;"><input type="hidden" name="on0" value="Please select items">Please select items</td></tr><tr><td><select name="os0">
+							<option value="Credit 500=">Credit 500= $10.00 USD</option>
+							<option value="Credit 1000=">Credit 1000= $20.00 USD</option>
+							<option value="Year VIP member=">Year VIP member= $250.00 USD</option>
+						</select> </td></tr>
+						</table>
+						<input type="hidden" name="currency_code" value="USD">
+						<input type="hidden" name="option_select0" value="Credit 500=">
+						<input type="hidden" name="option_amount0" value="10.00">
+						<input type="hidden" name="option_select1" value="Credit 1000=">
+						<input type="hidden" name="option_amount1" value="20.00">
+						<input type="hidden" name="option_select2" value="Year VIP member=">
+						<input type="hidden" name="option_amount2" value="250.00">
+						<input type="hidden" name="option_index" value="0">
+						<input style="margin: 16px 0;" type="image" src="https://www.paypalobjects.com/zh_XC/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal——最安全便捷的在线支付方式！">
+						<img alt="" border="0" src="https://www.paypalobjects.com/zh_XC/i/scr/pixel.gif" width="1" height="1">
+					</form> -->
+
+
+					<form style="width: 100%;" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+						<input type="hidden" name="cmd" value="_s-xclick">
+						<input type="hidden" name="hosted_button_id" value="X8WXWBL8L2C34">
+						<table  style="width: 100%;" >
+						<tr><td style="padding-bottom: 14px; font-size: 16px; color: #666;"><input type="hidden" name="on0" value="Please select items">Please select items</td></tr><tr><td><select name="os0">
+							<option value="Credit 500=">Credit 500= $ 10.00 USD</option>
+							<option value="Credit 1000=">Credit 1000= $ 20.00 USD</option>
+							<option value="Year VIP member=">Year VIP member= $ 250.00 USD</option>
+						</select> </td></tr>
+						</table>
+						<input type="hidden" name="currency_code" value="USD">
+						<input style="margin: 16px 0;" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+						<img alt="" border="0" src="https://www.paypalobjects.com/zh_XC/i/scr/pixel.gif" width="1" height="1">
+					</form>
+
+				</div>
+					
+			</div>
+				
 		</div>
 
 		<div class="footer">

@@ -1,0 +1,77 @@
+@charset "utf-8";
+/* -------------------------------------------------
+ * 
+ * -------------------------------------------------
+*/
+@import "./bootstrap.min.css";
+@import "./_topNav_index.scss";
+@import "./footer.scss";
+
+body {
+	background: #f5f5f5;
+	font-smoothing: grayscale;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+} 
+
+.container {
+	padding-top: 60px;
+	padding-bottom: 100px;
+	.inner {
+		width:960px;
+		margin: 0 auto;
+		.title {
+			height: 60px;
+			line-height: 60px;
+			color: #000;
+			font-size: 22px;
+			border-bottom: 2px solid #ccc;
+		}
+
+		.info {
+			width: 640px;
+			margin: 0 auto;
+			margin-top: 20px;
+		}
+
+		.conditions {
+			margin-top: 18px;
+			.price {
+				font-size: 18px;
+				color: orange;
+			}
+			.time {
+				margin-top: 6px;
+				color: #666;
+			}
+		}
+	}
+}
+
+.footer {
+	position: fixed;
+	bottom: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

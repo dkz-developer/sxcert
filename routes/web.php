@@ -23,6 +23,16 @@ Route::get('/findPassword', function () {
 // 客服页面
 Route::get('/service', 'Custome\LoadListController@service');
 
+// 服务页面
+Route::get('//fuwu', function () {
+	return view('serve');
+});
+
+// 服务详情页
+Route::get('//fuwu/1', function () {
+	return view('serve_info');
+});
+
 // 下载页 search
 Route::get('/search', function () {
 	return view('search');
@@ -108,7 +118,8 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/gt_start','UserController@captcha');
 	Route::post('/addUserInfo','LoadListController@userRomAdd');
 	// 下载页
-	Route::match(['get', 'post'],'/','LoadListController@loadlist');
+	//Route::get('/','LoadListController@loadlist');
+	Route::get('/','BbsController@index');
 	Route::get('/rom','LoadListController@loadlist');
 	Route::get('/b','LoadListController@searchBrand');
 	Route::get('/c','LoadListController@searchCountry');

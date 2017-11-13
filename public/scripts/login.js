@@ -3,7 +3,7 @@
 (function($) {
 
     var keyword = unescape($.mytools.GetQueryString("keyword"));    // 关键字
-    var backURL = $.mytools.getCookie("backURL") ? $.mytools.getCookie("backURL") : "/rom";
+    var backURL = $.mytools.getCookie("backURL") ? $.mytools.getCookie("backURL") : "/";
     var type = location.pathname.split("/")[1]; // 登录 注册
 
 	// 实例化vue

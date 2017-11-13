@@ -141,7 +141,7 @@
 					<a href="/forum/topic/{{$list [$i] ['id']}}" target="_blank">
 						<div class="classify-list">
 							<div class="icon">
-								<a href="/forum/topic/{{$list [$i] ['id']}}" target="_blank"><img src="https://developer.baidu.com/resources/online/forum/bce/img/freshman-logo.png" alt=""></a>
+								<a href="/forum/topic/{{$list [$i] ['id']}}" target="_blank"><img src="./images/edit.png" alt=""></a>
 							</div>
 							<div class="info">
 								<h4><a href="/forum/topic/{{$list [$i] ['id']}}" target="_blank">{{$list [$i] ['theme_name']}}</a></h4>

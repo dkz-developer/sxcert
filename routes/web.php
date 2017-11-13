@@ -108,7 +108,8 @@ Route::group(['namespace' => 'Custome'], function () {
 	Route::get('/gt_start','UserController@captcha');
 	Route::post('/addUserInfo','LoadListController@userRomAdd');
 	// 下载页
-	Route::match(['get', 'post'],'/','LoadListController@loadlist');
+	//Route::get('/','LoadListController@loadlist');
+	Route::get('/','BbsController@index');
 	Route::get('/rom','LoadListController@loadlist');
 	Route::get('/b','LoadListController@searchBrand');
 	Route::get('/c','LoadListController@searchCountry');

@@ -122,6 +122,7 @@
 				<ul>
 					<li><a href="/admin/article/channelList" title="频道列表">频道列表</a></li>
 					<li><a href="/admin/article/list" title="频道列表">文章列表</a></li>
+					<li><a href="/admin/service/items" title="服务项目">服务项目</a></li>
 		</ul>
 	</dd>
 </dl> 

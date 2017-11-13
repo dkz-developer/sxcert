@@ -47,18 +47,13 @@
 
 		<div class="container">
 			<div class="inner">
-				<div class="title">This is the iCloud Remove Service</div>
+				<div class="title">{{$info->title}}</div>
 				<div class="info">
-					<p>this is info the iCloud Remove Service</p>
-					<p>this is info the iCloud Remove Service</p>
-					<p>this is info the iCloud Remove Service</p>
-					<p>this is info the iCloud Remove Service</p>
-					<p>this is info the iCloud Remove Service</p>
-					<p>this is info the iCloud Remove Service</p>
+					{!! $info->content !!}
 				</div>
 				<div class="conditions">
-					<div class="price">price: $666</div>
-					<div class="time">Delivery Time: 3-5 days</div>
+					<div class="price">price: {{$info->price}}</div>
+					<div class="time">Delivery Time: {{$info->need_date}}</div>
 				</div>		
 			</div>
 		</div>

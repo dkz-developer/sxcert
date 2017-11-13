@@ -138,5 +138,60 @@
 			 }
 			return response()->json(['code'=>'F','msg'=>'操作失败！']);
 		}
+
+		public function itemsList(Request $request)
+		{
+			$where = [['state', 1]];
+			if($request->has('startime'))
+				array_push($where, ['update_time' ,'>=', $request->input('startime')]);
+			if($request->has('endtime'))
+				array_push($where, ['update_time' ,'<=', $request->input('endtime')]);
+			if($request->has('title'))
+				array_push($where, ['title', $request->input('title')]);
+			
+			$list = DB::table('ServiceItems')->where($where)->orderBy('id','desc')->paginate(20);
+			$count = DB::table('ServiceItems')->where('state',1)->count();
+			return view('admin.itemsList',['list'=>$list,'count'=>$count]);
+		}
+
+		public function additems(Request $request)
+		{
+			$id = $request->input('id', 0);
+			$info = [];
+			if($id)
+				$info = DB::table('ServiceItems')->find($id);
+			return view('admin.additems', ['info'=>$info]);
+		}
+
+		public function additemsHandle(Request $request)
+		{
+			$data = $request->all();
+			$data['content'] = $data['editorValue'];
+			unset($data['editorValue']);
+			if(! isset($data['id']) || ! is_numeric($data['id'])) {
+				unset($data['id']);
+				$data['create_time'] = date('Y-m-d H:i:s');
+				$data['update_time'] = $data['create_time'];
+				$result = DB::table('ServiceItems')->insert($data);
+			}else {
+				$data['update_time'] = date('Y-m-d H:i:s');
+				$id = $data['id'];
+				unset($data['id']);
+				$result = DB::table('ServiceItems')->where('id', $id)->update($data);
+			}
+			
+			if($result)
+				return response()->json(['code'=>'S', 'msg'=>'操作成功！']);
+			return response()->json(['code'=>"F", 'msg'=>'操作失败']);
+		}
+
+		public function delItems(Request $request)
+		{
+			$id = $request->input('id', 0);
+			$result = DB::table('ServiceItems')->where('id', $id)->update(['state'=>2]);
+			if($result)
+				return response()->json(['code'=>'S', 'msg'=>'操作成功！']);
+			return response()->json(['code'=>'F', 'msg'=>'操作失败']);
+		}
 	}
 ?>

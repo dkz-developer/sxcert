@@ -57,49 +57,17 @@
                       </tr> 
                     </thead>
                     <tbody>
+                    @foreach($list as $val)
                       <tr>
-                        <td><a href="/fuwu/1" target="_blank">This is the iCloud Remove Service </a></td>
-                        <td><i class="iconfont icon-gold"></i></td>
-                        <td>3-5 days</td>
-                        <td>$666</td>
+                        <td><a href="/fuwu/{{$val->id}}" target="_blank">{{$val->title}} </a></td>
+                        <td><!-- <i class="iconfont icon-gold"></i> -->{{$val->type}}</td>
+                        <td>{{$val->need_date}}</td>
+                        <td>{{$val->price}}</td>
                       </tr>
-
-                      <tr>
-                        <td><a href="/fuwu/1" target="_blank">This is the iCloud Remove Service </a></td>
-                        <td><i class="iconfont icon-gold"></i></td>
-                        <td>3-5 days</td>
-                        <td>$666</td>
-                      </tr>
-
-                      <tr>
-                        <td><a href="/fuwu/1" target="_blank">This is the iCloud Remove Service </a></td>
-                        <td><i class="iconfont icon-gold"></i></td>
-                        <td>3-5 days</td>
-                        <td>$666</td>
-                      </tr>
-
-                      <tr>
-                        <td><a href="/fuwu/1" target="_blank">This is the iCloud Remove Service </a></td>
-                        <td><i class="iconfont icon-gold"></i></td>
-                        <td>3-5 days</td>
-                        <td>$666</td>
-                      </tr>
-
-                      <tr>
-                        <td><a href="/fuwu/1" target="_blank">This is the iCloud Remove Service </a></td>
-                        <td><i class="iconfont icon-gold"></i></td>
-                        <td>3-5 days</td>
-                        <td>$666</td>
-                      </tr>
-
-                      <tr>
-                        <td><a href="/fuwu/1" target="_blank">This is the iCloud Remove Service </a></td>
-                        <td><i class="iconfont icon-gold"></i></td>
-                        <td>3-5 days</td>
-                        <td>$666</td>
-                      </tr>
+                    @endforeach
                     </tbody>
                 </table>
+                <div style="float:right">{{ $list->links() }}</div>
 			</div>
 			
 		</div>

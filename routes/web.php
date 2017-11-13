@@ -24,14 +24,18 @@ Route::get('/findPassword', function () {
 Route::get('/service', 'Custome\LoadListController@service');
 
 // 服务页面
-Route::get('//fuwu', function () {
-	return view('serve');
-});
+// Route::get('//fuwu', function () {
+// 	return view('serve');
+// });
+
+Route::get('/fuwu', 'IndexController@itemslist');
 
 // 服务详情页
-Route::get('//fuwu/1', function () {
-	return view('serve_info');
-});
+// Route::get('/fuwu/{id}', function () {
+// 	return view('serve_info');
+// });
+Route::get('/fuwu/{id}', 'IndexController@itemsInfo');
+
 
 // 下载页 search
 Route::get('/search', function () {
@@ -92,6 +96,10 @@ Route::group(['namespace' => 'Admin','middleware'=>'adminauth'], function () {
 	Route::post('/admin/article/setBrilliant','ArticleController@setBrilliant');
 	Route::post('/admin/article/delArticle','ArticleController@delArticle');
 	Route::get('/admin/article/delReply','ArticleController@delReply');
+	Route::get('/admin/add/items', 'ArticleController@addItems');
+	Route::get('/admin/service/items', 'ArticleController@itemsList');
+	Route::post('/admin/additemsHandle', 'ArticleController@additemsHandle');
+	Route::post('/admin/delitems', 'ArticleController@delItems');
 });
 Route::get('/custome/kit/captcha/{tmp}', 'Custome\UserController@captcha');
 // 支付页面

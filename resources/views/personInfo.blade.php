@@ -30,6 +30,7 @@
 						<li><a href="/bbs">首页</a></li>
 						<li><a href="/rom">下载站</a></li>
 						<li><a href="/pay">充值</a></li>
+						<li><a href="/fuwu">服务</a></li>
 						<li><a href="/service">客服</a></li>
 						@if(empty(session('userInfo')))
 							<li><a href="/login">登录</a></li>

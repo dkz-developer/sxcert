@@ -19,7 +19,7 @@
 		<nav class="clearfix">
 			<div class="inner">
 				<div class="logo">
-					<a href="/bbs"><img src="images/logo_main3.png" alt=""></a>
+					<a href="/bbs"><img src="/images/logo_main3.png" alt=""></a>
 				</div>
 				<div class="search">
 					<form action="/forum/topic/" id="search">
@@ -32,6 +32,7 @@
 						<li><a href="/bbs">首页</a></li>
 						<li><a href="/rom">下载站</a></li>
 						<li><a href="/pay">充值</a></li>
+						<li><a href="/fuwu">服务</a></li>
 						<li><a href="/service">客服</a></li>
 						@if(empty(session('userInfo')))
 							<li><a href="/login">登录</a></li>
@@ -52,8 +53,8 @@
 					{!! $info->content !!}
 				</div>
 				<div class="conditions">
-					<div class="price">price: {{$info->price}}</div>
-					<div class="time">Delivery Time: {{$info->need_date}}</div>
+					<div class="price">价格: {{$info->price}}</div>
+					<div class="time">所需时间: {{$info->need_date}}</div>
 				</div>		
 			</div>
 		</div>

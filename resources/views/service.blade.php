@@ -31,6 +31,7 @@
 						<li><a href="/bbs">首页</a></li>
 						<li><a href="/rom">下载站</a></li>
 						<li><a href="/pay">充值</a></li>
+						<li><a href="/fuwu">服务</a></li>
 						<li><a href="/service">客服</a></li>
 						@if(empty(session('userInfo')))
 							<li><a href="/login">登录</a></li>
@@ -51,8 +52,8 @@
 				<div class="seperate"></div>
 				<div class="services">
 					<ul> 
-						<li>QQ客服：<span>503616983(豆浆油条)</span> <a href="http://wpa.qq.com/msgrd?v=3&uin=503616983&site=qq&menu=yes"><img src="images/qq.png" alt=""></a> 处理范围：<em>网站所有大小事情</em></li>
-						<li>QQ群：<span>590976628</span> 处理范围：<em>网站用户日常交流（加群时需备注网站用户名）</em></li>
+						<li>QQ/Wechat：<span>503616983(豆浆油条)</span> <a href="http://wpa.qq.com/msgrd?v=3&uin=503616983&site=qq&menu=yes"><img src="images/qq.png" alt=""></a> 处理范围：<em>网站基本大小事情</em></li>
+						<li>Skype/Email：<span>doujiangyoutlao@outlook.com</span><em> Note: if you do not have QQ or WeChat please contact me via skype or email!</em></li>
 					</ul>
 				</div>
 			</div>

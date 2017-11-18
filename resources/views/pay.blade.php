@@ -31,6 +31,7 @@
 						<li><a href="/bbs">首页</a></li>
 						<li><a href="/rom">下载站</a></li>
 						<li><a href="/pay">充值</a></li>
+						<li><a href="/fuwu">服务</a></li>
 						<li><a href="/service">客服</a></li>
 						@if(empty(session('userInfo')))
 							<li><a href="/login">登录</a></li>
@@ -101,13 +102,14 @@
 						<input type="hidden" name="hosted_button_id" value="X8WXWBL8L2C34">
 						<table  style="width: 100%;" >
 						<tr><td style="padding-bottom: 14px; font-size: 16px; color: #666;"><input type="hidden" name="on0" value="Please select items">Please select items</td></tr><tr><td><select name="os0">
-							<option value="Credit 500=">Credit 500= $ 10.00 USD</option>
+							<option value="Credit 500="> $ 15.00 USD</option>
 							<option value="Credit 1000=">Credit 1000= $ 20.00 USD</option>
-							<option value="Year VIP member=">Year VIP member= $ 250.00 USD</option>
+							<option value="Year VIP member=">Year VIP member= $ 300.00 USD</option>
 						</select> </td></tr>
 						</table>
 						<input type="hidden" name="currency_code" value="USD">
-						<input style="margin: 16px 0;" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+						<img src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" style="margin: 10px 0;">
+						<!-- <input style="margin: 16px 0;" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0"  alt="PayPal - The safer, easier way to pay online!"> -->
 						<img alt="" border="0" src="https://www.paypalobjects.com/zh_XC/i/scr/pixel.gif" width="1" height="1">
 					</form>
 
@@ -139,12 +141,21 @@
 						layer.msg(data.msg,{icon:2,time:2000});
 				});
 			})
+
+			$("select[name=os0]").change(function() {
+				if($(this).val() == "Credit 500=") {
+					var new_open = window.open('_blank');
+					new_open.location='http://www.paypal.me/gsmgood/15';
+				}else if($(this).val() == "Credit 1000=") {
+					var new_open = window.open('_blank');
+					new_open.location='http://www.paypal.me/gsmgood/15';
+				}else if($(this).val() == "Year VIP member=") {
+					var new_open = window.open('_blank');
+					new_open.location='http://www.paypal.me/gsmgood/300';
+				}
+			})
 			return false;
 		});
 	</script>
-	<!-- <script src="scripts/public/tools.js"></script> -->
-	<!-- <script src="scripts/pay.js"></script> -->
-
-
 </body>
 </html>

@@ -19,11 +19,11 @@ body {
 } 
 
 .container {
-	padding-top: 60px;
-	padding-bottom: 100px;
+	padding: 20px 0;
 	.inner {
 		width:960px;
 		margin: 0 auto;
+		margin-bottom: 20px;
 		.title {
 			height: 60px;
 			line-height: 60px;
@@ -33,9 +33,13 @@ body {
 		}
 
 		.info {
-			width: 640px;
-			margin: 0 auto;
+			// width: 640px;
+			// margin: 0 auto;
 			margin-top: 20px;
+
+			p {
+				margin: 0;
+			}
 		}
 
 		.conditions {
@@ -53,7 +57,7 @@ body {
 }
 
 .footer {
-	position: fixed;
+	position: relative;
 	bottom: 0;
 }
 

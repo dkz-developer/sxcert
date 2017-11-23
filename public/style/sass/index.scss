@@ -29,9 +29,14 @@ body {
 	.hot-post {
 
 		.layout-left {
-			width: 533px;
+			width: 600px;
 			float: left;
 			height: 330px;
+
+			img {
+				width: 600px;
+				height: 330px;
+			}
 
 		}
 

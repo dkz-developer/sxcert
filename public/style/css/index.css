@@ -92,9 +92,12 @@ body {
   margin: 0 auto;
   background: #fff; }
   .container .hot-post .layout-left {
-    width: 533px;
+    width: 600px;
     float: left;
     height: 330px; }
+    .container .hot-post .layout-left img {
+      width: 600px;
+      height: 330px; }
   .container .hot-post .layout-right {
     padding: 0 23px;
     width: 570px;

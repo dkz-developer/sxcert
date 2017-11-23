@@ -34,7 +34,7 @@
 
 				<div class="search">
 				<form>
-					<input class="form-control" type="text" placeholder="输入机型或版本号(至少3个字符)" name="k" id="keyword">
+					<input style="width: 280px;" class="form-control" type="text" placeholder="请在此输入 型号(如:SM-G9550)" name="k" id="keyword">
 					<!-- <input class="form-control" type="hidden" name="i" value="7"> -->
 					<button type="button" id="searchBtn">搜一下</button>
 				</form>

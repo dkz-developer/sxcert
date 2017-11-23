@@ -53,17 +53,17 @@
 					<ul class="flicks">
 						<li class="height">
 							<div class="font-content">
-								<div class="photo"><img src="/images/G1.png" ></div>
+								<a class="photo" href="/rom"><img src="/images/G1.png" ></a>
 							</div>
 						</li>
 						<li class="height">
 							<div class="font-content">
-								<div class="photo"><img src="/images/G2.png"></div>
+								<a class="photo" href="/fuwu"><img src="/images/G2.png" ></a>
 							</div>
 						</li>
 						<li class="height">
 							<div class="font-content">
-								<div class="photo"><img src="/images/G3.png"></div>
+								<a class="photo" href="/pay"><img src="/images/G3.png" ></a>
 							</div>
 						</li>
 					</ul>
@@ -118,7 +118,7 @@
 							<div class="first">
 								<div class="title">{{$list [$i] ['theme_name']}}</div>
 								<div class="pic">
-									<img src="https://developer.baidu.com/resources/online/forum/bce/img/sky-ser.png">
+									<img src="/images/box.jpg">
 								</div>
 								<div class="discuss">
 									<p>主题: <span>{{$list [$i]['theme_num'] or 0}}</span></p>

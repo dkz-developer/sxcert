@@ -102,7 +102,7 @@
 						<input type="hidden" name="hosted_button_id" value="X8WXWBL8L2C34">
 						<table  style="width: 100%;" >
 						<tr><td style="padding-bottom: 14px; font-size: 16px; color: #666;"><input type="hidden" name="on0" value="Please select items">Please select items</td></tr><tr><td><select name="os0">
-							<option value="Credit 500="> $ 15.00 USD</option>
+							<option value="Credit 500=">Credit 500= $ 15.00 USD</option>
 							<option value="Credit 1000=">Credit 1000= $ 20.00 USD</option>
 							<option value="Year VIP member=">Year VIP member= $ 300.00 USD</option>
 						</select> </td></tr>

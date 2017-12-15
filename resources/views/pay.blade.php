@@ -108,7 +108,7 @@
 						</select> </td></tr>
 						</table>
 						<input type="hidden" name="currency_code" value="USD">
-						<img src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" style="margin: 10px 0;">
+						<img src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" style="margin: 10px 0;" id="topay">
 						<!-- <input style="margin: 16px 0;" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0"  alt="PayPal - The safer, easier way to pay online!"> -->
 						<img alt="" border="0" src="https://www.paypalobjects.com/zh_XC/i/scr/pixel.gif" width="1" height="1">
 					</form>
@@ -142,18 +142,18 @@
 				});
 			})
 
-			$("select[name=os0]").change(function() {
-				if($(this).val() == "Credit 500=") {
-					var new_open = window.open('_blank');
+			$("#topay").click(function() {
+				var url = $("select[name=os0]").val();
+				var new_open = window.open('_blank');
+				if(url == "Credit 500=") {
 					new_open.location='http://www.paypal.me/gsmgood/15';
-				}else if($(this).val() == "Credit 1000=") {
-					var new_open = window.open('_blank');
-					new_open.location='http://www.paypal.me/gsmgood/15';
-				}else if($(this).val() == "Year VIP member=") {
-					var new_open = window.open('_blank');
+				}else if(url == "Credit 1000=") {
+					new_open.location='http://www.paypal.me/gsmgood/20';
+				}else if(url == "Year VIP member=") {
 					new_open.location='http://www.paypal.me/gsmgood/300';
 				}
 			})
+
 			return false;
 		});
 	</script>
